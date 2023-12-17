@@ -1,0 +1,1058 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_JAADEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DB_JAADEModelStoreContainer">
+    <EntitySet Name="USUARIO" EntityType="DB_JAADEModel.Store.USUARIO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PERSONA" EntityType="DB_JAADEModel.Store.PERSONA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MODULO" EntityType="DB_JAADEModel.Store.MODULO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ROL" EntityType="DB_JAADEModel.Store.ROL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MODULO_PERMISO" EntityType="DB_JAADEModel.Store.MODULO_PERMISO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CLIENTE" EntityType="DB_JAADEModel.Store.CLIENTE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AGENDA" EntityType="DB_JAADEModel.Store.AGENDA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ESTADO" EntityType="DB_JAADEModel.Store.ESTADO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ZONA" EntityType="DB_JAADEModel.Store.ZONA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOTE" EntityType="DB_JAADEModel.Store.LOTE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PAGO" EntityType="DB_JAADEModel.Store.PAGO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CLIENTE_LOTE" EntityType="DB_JAADEModel.Store.CLIENTE_LOTE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PERSONA_AGENDA" EntityType="DB_JAADEModel.Store.PERSONA_AGENDA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VARIABLEGLOBAL" EntityType="DB_JAADEModel.Store.VARIABLEGLOBAL" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="USUARIOESTADO" Association="DB_JAADEModel.Store.USUARIOESTADO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="ESTADO" EntitySet="ESTADO" />
+    </AssociationSet>
+    <AssociationSet Name="USUARIOPERSONA" Association="DB_JAADEModel.Store.USUARIOPERSONA">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PERSONA" EntitySet="PERSONA" />
+    </AssociationSet>
+    <AssociationSet Name="ROLUSUARIO" Association="DB_JAADEModel.Store.ROLUSUARIO">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="AGENDAPERSONA_AGENDA" Association="DB_JAADEModel.Store.AGENDAPERSONA_AGENDA">
+      <End Role="PERSONA_AGENDA" EntitySet="PERSONA_AGENDA" />
+      <End Role="AGENDA" EntitySet="AGENDA" />
+    </AssociationSet>
+    <AssociationSet Name="MODULO_PERMISOMODULO" Association="DB_JAADEModel.Store.MODULO_PERMISOMODULO">
+      <End Role="MODULO_PERMISO" EntitySet="MODULO_PERMISO" />
+      <End Role="MODULO" EntitySet="MODULO" />
+    </AssociationSet>
+    <AssociationSet Name="MODULO_PERMISOUSUARIO" Association="DB_JAADEModel.Store.MODULO_PERMISOUSUARIO">
+      <End Role="MODULO_PERMISO" EntitySet="MODULO_PERMISO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="MODULO_PERMISOUSUARIO1" Association="DB_JAADEModel.Store.MODULO_PERMISOUSUARIO1">
+      <End Role="MODULO_PERMISO" EntitySet="MODULO_PERMISO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="CLIENTEPERSONA" Association="DB_JAADEModel.Store.CLIENTEPERSONA">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="PERSONA" EntitySet="PERSONA" />
+    </AssociationSet>
+    <AssociationSet Name="PERSONA_AGENDAPERSONA" Association="DB_JAADEModel.Store.PERSONA_AGENDAPERSONA">
+      <End Role="PERSONA_AGENDA" EntitySet="PERSONA_AGENDA" />
+      <End Role="PERSONA" EntitySet="PERSONA" />
+    </AssociationSet>
+    <AssociationSet Name="LOTEZONA" Association="DB_JAADEModel.Store.LOTEZONA">
+      <End Role="LOTE" EntitySet="LOTE" />
+      <End Role="ZONA" EntitySet="ZONA" />
+    </AssociationSet>
+    <AssociationSet Name="CLIENTE_LOTELOTE" Association="DB_JAADEModel.Store.CLIENTE_LOTELOTE">
+      <End Role="CLIENTE_LOTE" EntitySet="CLIENTE_LOTE" />
+      <End Role="LOTE" EntitySet="LOTE" />
+    </AssociationSet>
+    <AssociationSet Name="CLIENTE_LOTECLIENTE" Association="DB_JAADEModel.Store.CLIENTE_LOTECLIENTE">
+      <End Role="CLIENTE_LOTE" EntitySet="CLIENTE_LOTE" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="CLIENTE_LOTEUSUARIO" Association="DB_JAADEModel.Store.CLIENTE_LOTEUSUARIO">
+      <End Role="CLIENTE_LOTE" EntitySet="CLIENTE_LOTE" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="PAGOCLIENTE" Association="DB_JAADEModel.Store.PAGOCLIENTE">
+      <End Role="PAGO" EntitySet="PAGO" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="PAGOLOTE" Association="DB_JAADEModel.Store.PAGOLOTE">
+      <End Role="PAGO" EntitySet="PAGO" />
+      <End Role="LOTE" EntitySet="LOTE" />
+    </AssociationSet>
+    <AssociationSet Name="MODULOMODULO" Association="DB_JAADEModel.Store.MODULOMODULO">
+      <End Role="MODULO" EntitySet="MODULO" />
+      <End Role="MODULO1" EntitySet="MODULO" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Alias" Type="nvarchar" Nullable="false" MaxLength="45" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="ESTADOId" Type="int" Nullable="false" />
+    <Property Name="PERSONAId" Type="int" Nullable="false" />
+    <Property Name="ROLId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PERSONA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ApellidoPaterno" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ApellidoMaterno" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+    <Property Name="Curp" Type="nchar" Nullable="false" MaxLength="18" />
+    <Property Name="Calle" Type="nvarchar" Nullable="false" MaxLength="120" />
+    <Property Name="NoExt" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="NoInt" Type="nvarchar" Nullable="true" MaxLength="15" />
+    <Property Name="Colonia" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Localidad" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="CodigoPostal" Type="nvarchar" Nullable="false" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="MODULO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ruta" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Icono" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="MODULOId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="35" />
+  </EntityType>
+  <EntityType Name="MODULO_PERMISO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaRegistro" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MODULOId" Type="int" Nullable="false" />
+    <Property Name="USUARIOId" Type="int" Nullable="false" />
+    <Property Name="Motivo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="USUARIOAUTORIZOId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Clave" Type="nchar" Nullable="false" MaxLength="5" />
+    <Property Name="PERSONAId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AGENDA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="int" Nullable="false" />
+    <Property Name="Valor" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ESTADO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="35" />
+    <Property Name="Proceso" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Baja" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ZONA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOTE">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ZONAId" Type="int" Nullable="false" />
+    <Property Name="MNorte" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="MSur" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="MOeste" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="MEste" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="CNorte" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CSur" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="COeste" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CEste" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PAGO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroReferencia" Type="nchar" Nullable="false" MaxLength="13" />
+    <Property Name="FechaEmison" Type="datetime" Nullable="false" />
+    <Property Name="CLIENTEId" Type="int" Nullable="false" />
+    <Property Name="LOTEId" Type="int" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENTE_LOTE">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LOTEId" Type="int" Nullable="false" />
+    <Property Name="CLIENTEId" Type="int" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="USUARIOId" Type="int" Nullable="false" />
+    <Property Name="PagoInicial" Type="decimal" Nullable="false" />
+    <Property Name="MontoRestante" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="NoPagos" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PERSONA_AGENDA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AGENDAId" Type="int" Nullable="false" />
+    <Property Name="PERSONAId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VARIABLEGLOBAL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nchar" Nullable="false" MaxLength="65" />
+    <Property Name="Tipo" Type="nchar" Nullable="false" MaxLength="65" />
+    <Property Name="Valor" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="USUARIOESTADO">
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="*" />
+    <End Role="ESTADO" Type="DB_JAADEModel.Store.ESTADO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="ESTADOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USUARIOPERSONA">
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="*" />
+    <End Role="PERSONA" Type="DB_JAADEModel.Store.PERSONA" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="PERSONAId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ROLUSUARIO">
+    <End Role="ROL" Type="DB_JAADEModel.Store.ROL" Multiplicity="1" />
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="ROLId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AGENDAPERSONA_AGENDA">
+    <End Role="PERSONA_AGENDA" Type="DB_JAADEModel.Store.PERSONA_AGENDA" Multiplicity="*" />
+    <End Role="AGENDA" Type="DB_JAADEModel.Store.AGENDA" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AGENDA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PERSONA_AGENDA">
+        <PropertyRef Name="AGENDAId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MODULO_PERMISOMODULO">
+    <End Role="MODULO_PERMISO" Type="DB_JAADEModel.Store.MODULO_PERMISO" Multiplicity="*" />
+    <End Role="MODULO" Type="DB_JAADEModel.Store.MODULO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MODULO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MODULO_PERMISO">
+        <PropertyRef Name="MODULOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MODULO_PERMISOUSUARIO">
+    <End Role="MODULO_PERMISO" Type="DB_JAADEModel.Store.MODULO_PERMISO" Multiplicity="*" />
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MODULO_PERMISO">
+        <PropertyRef Name="USUARIOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MODULO_PERMISOUSUARIO1">
+    <End Role="MODULO_PERMISO" Type="DB_JAADEModel.Store.MODULO_PERMISO" Multiplicity="*" />
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MODULO_PERMISO">
+        <PropertyRef Name="USUARIOAUTORIZOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLIENTEPERSONA">
+    <End Role="CLIENTE" Type="DB_JAADEModel.Store.CLIENTE" Multiplicity="*" />
+    <End Role="PERSONA" Type="DB_JAADEModel.Store.PERSONA" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CLIENTE">
+        <PropertyRef Name="PERSONAId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PERSONA_AGENDAPERSONA">
+    <End Role="PERSONA_AGENDA" Type="DB_JAADEModel.Store.PERSONA_AGENDA" Multiplicity="*" />
+    <End Role="PERSONA" Type="DB_JAADEModel.Store.PERSONA" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PERSONA_AGENDA">
+        <PropertyRef Name="PERSONAId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LOTEZONA">
+    <End Role="LOTE" Type="DB_JAADEModel.Store.LOTE" Multiplicity="*" />
+    <End Role="ZONA" Type="DB_JAADEModel.Store.ZONA" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ZONA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LOTE">
+        <PropertyRef Name="ZONAId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLIENTE_LOTELOTE">
+    <End Role="CLIENTE_LOTE" Type="DB_JAADEModel.Store.CLIENTE_LOTE" Multiplicity="*" />
+    <End Role="LOTE" Type="DB_JAADEModel.Store.LOTE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="LOTE">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOTE">
+        <PropertyRef Name="LOTEId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLIENTE_LOTECLIENTE">
+    <End Role="CLIENTE_LOTE" Type="DB_JAADEModel.Store.CLIENTE_LOTE" Multiplicity="*" />
+    <End Role="CLIENTE" Type="DB_JAADEModel.Store.CLIENTE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOTE">
+        <PropertyRef Name="CLIENTEId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLIENTE_LOTEUSUARIO">
+    <End Role="CLIENTE_LOTE" Type="DB_JAADEModel.Store.CLIENTE_LOTE" Multiplicity="*" />
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOTE">
+        <PropertyRef Name="USUARIOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PAGOCLIENTE">
+    <End Role="PAGO" Type="DB_JAADEModel.Store.PAGO" Multiplicity="*" />
+    <End Role="CLIENTE" Type="DB_JAADEModel.Store.CLIENTE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PAGO">
+        <PropertyRef Name="CLIENTEId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PAGOLOTE">
+    <End Role="PAGO" Type="DB_JAADEModel.Store.PAGO" Multiplicity="*" />
+    <End Role="LOTE" Type="DB_JAADEModel.Store.LOTE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="LOTE">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PAGO">
+        <PropertyRef Name="LOTEId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MODULOMODULO">
+    <End Role="MODULO" Type="DB_JAADEModel.Store.MODULO" Multiplicity="*" />
+    <End Role="MODULO1" Type="DB_JAADEModel.Store.MODULO" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="MODULO1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MODULO">
+        <PropertyRef Name="MODULOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_JAADEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DB_JAADEEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="USUARIO" EntityType="DB_JAADEModel.USUARIO" />
+          <EntitySet Name="PERSONA" EntityType="DB_JAADEModel.PERSONA" />
+          <EntitySet Name="MODULO" EntityType="DB_JAADEModel.MODULO" />
+          <EntitySet Name="ROL" EntityType="DB_JAADEModel.ROL" />
+          <EntitySet Name="MODULO_PERMISO" EntityType="DB_JAADEModel.MODULO_PERMISO" />
+          <EntitySet Name="CLIENTE" EntityType="DB_JAADEModel.CLIENTE" />
+          <EntitySet Name="AGENDA" EntityType="DB_JAADEModel.AGENDA" />
+          <EntitySet Name="ESTADO" EntityType="DB_JAADEModel.ESTADO" />
+          <EntitySet Name="ZONA" EntityType="DB_JAADEModel.ZONA" />
+          <EntitySet Name="LOTE" EntityType="DB_JAADEModel.LOTE" />
+          <EntitySet Name="PAGO" EntityType="DB_JAADEModel.PAGO" />
+          <EntitySet Name="CLIENTE_LOTE" EntityType="DB_JAADEModel.CLIENTE_LOTE" />
+          <AssociationSet Name="USUARIOESTADO" Association="DB_JAADEModel.USUARIOESTADO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="ESTADO" EntitySet="ESTADO" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIOPERSONA" Association="DB_JAADEModel.USUARIOPERSONA">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="ROLUSUARIO" Association="DB_JAADEModel.ROLUSUARIO">
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <EntitySet Name="PERSONA_AGENDA" EntityType="DB_JAADEModel.PERSONA_AGENDA" />
+          <AssociationSet Name="AGENDAPERSONA_AGENDA" Association="DB_JAADEModel.AGENDAPERSONA_AGENDA">
+            <End Role="PERSONA_AGENDA" EntitySet="PERSONA_AGENDA" />
+            <End Role="AGENDA" EntitySet="AGENDA" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_PERMISOMODULO" Association="DB_JAADEModel.MODULO_PERMISOMODULO">
+            <End Role="MODULO_PERMISO" EntitySet="MODULO_PERMISO" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_PERMISOUSUARIO" Association="DB_JAADEModel.MODULO_PERMISOUSUARIO">
+            <End Role="MODULO_PERMISO" EntitySet="MODULO_PERMISO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_PERMISOUSUARIO1" Association="DB_JAADEModel.MODULO_PERMISOUSUARIO1">
+            <End Role="MODULO_PERMISO" EntitySet="MODULO_PERMISO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTEPERSONA" Association="DB_JAADEModel.CLIENTEPERSONA">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="PERSONA_AGENDAPERSONA" Association="DB_JAADEModel.PERSONA_AGENDAPERSONA">
+            <End Role="PERSONA_AGENDA" EntitySet="PERSONA_AGENDA" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="LOTEZONA" Association="DB_JAADEModel.LOTEZONA">
+            <End Role="LOTE" EntitySet="LOTE" />
+            <End Role="ZONA" EntitySet="ZONA" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTE_LOTELOTE" Association="DB_JAADEModel.CLIENTE_LOTELOTE">
+            <End Role="CLIENTE_LOTE" EntitySet="CLIENTE_LOTE" />
+            <End Role="LOTE" EntitySet="LOTE" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTE_LOTECLIENTE" Association="DB_JAADEModel.CLIENTE_LOTECLIENTE">
+            <End Role="CLIENTE_LOTE" EntitySet="CLIENTE_LOTE" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTE_LOTEUSUARIO" Association="DB_JAADEModel.CLIENTE_LOTEUSUARIO">
+            <End Role="CLIENTE_LOTE" EntitySet="CLIENTE_LOTE" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <EntitySet Name="VARIABLEGLOBAL" EntityType="DB_JAADEModel.VARIABLEGLOBAL" />
+          <AssociationSet Name="PAGOCLIENTE" Association="DB_JAADEModel.PAGOCLIENTE">
+            <End Role="PAGO" EntitySet="PAGO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="PAGOLOTE" Association="DB_JAADEModel.PAGOLOTE">
+            <End Role="PAGO" EntitySet="PAGO" />
+            <End Role="LOTE" EntitySet="LOTE" />
+          </AssociationSet>
+          <AssociationSet Name="MODULOMODULO" Association="DB_JAADEModel.MODULOMODULO">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="MODULO1" EntitySet="MODULO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Alias" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="45" />
+          <Property Name="Password" Type="String" Nullable="false" Unicode="true" MaxLength="255" FixedLength="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="ESTADO" Relationship="DB_JAADEModel.USUARIOESTADO" FromRole="USUARIO" ToRole="ESTADO" />
+          <Property Name="ESTADOId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PERSONA" Relationship="DB_JAADEModel.USUARIOPERSONA" FromRole="USUARIO" ToRole="PERSONA" />
+          <Property Name="PERSONAId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ROL" Relationship="DB_JAADEModel.ROLUSUARIO" FromRole="USUARIO" ToRole="ROL" />
+          <Property Name="ROLId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERSONA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="100" />
+          <Property Name="ApellidoPaterno" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoMaterno" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="100" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" />
+          <Property Name="Curp" Type="String" Nullable="false" FixedLength="true" MaxLength="18" Unicode="true" />
+          <Property Name="Calle" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="120" />
+          <Property Name="NoExt" Type="String" Nullable="false" FixedLength="false" MaxLength="15" Unicode="true" />
+          <Property Name="NoInt" Type="String" Unicode="true" FixedLength="false" MaxLength="15" Nullable="true" />
+          <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Localidad" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="100" />
+          <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MODULO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Ruta" Type="String" Nullable="true" />
+          <Property Name="Icono" Type="String" Nullable="true" />
+          <NavigationProperty Name="MODULOPADRE" Relationship="DB_JAADEModel.MODULOMODULO" FromRole="MODULO" ToRole="MODULO1" />
+          <Property Name="MODULOId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="MODULO_PERMISO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaRegistro" Type="String" Nullable="false" />
+          <NavigationProperty Name="MODULO" Relationship="DB_JAADEModel.MODULO_PERMISOMODULO" FromRole="MODULO_PERMISO" ToRole="MODULO" />
+          <Property Name="MODULOId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="DB_JAADEModel.MODULO_PERMISOUSUARIO" FromRole="MODULO_PERMISO" ToRole="USUARIO" />
+          <Property Name="USUARIOId" Type="Int32" Nullable="false" />
+          <Property Name="Motivo" Type="String" Nullable="false" />
+          <NavigationProperty Name="USUARIOAUTORIZO" Relationship="DB_JAADEModel.MODULO_PERMISOUSUARIO1" FromRole="MODULO_PERMISO" ToRole="USUARIO" />
+          <Property Name="USUARIOAUTORIZOId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Clave" Type="String" Nullable="false" FixedLength="true" MaxLength="5" Unicode="true" />
+          <NavigationProperty Name="PERSONA" Relationship="DB_JAADEModel.CLIENTEPERSONA" FromRole="CLIENTE" ToRole="PERSONA" />
+          <Property Name="PERSONAId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AGENDA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="String" Nullable="false" FixedLength="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ESTADO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="35" />
+          <Property Name="Proceso" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="100" />
+          <Property Name="Baja" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZONA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" Unicode="true" MaxLength="100" FixedLength="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOTE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ZONA" Relationship="DB_JAADEModel.LOTEZONA" FromRole="LOTE" ToRole="ZONA" />
+          <Property Name="ZONAId" Type="Int32" Nullable="false" />
+          <Property Name="MNorte" Type="Decimal" Nullable="false" Precision="18" Scale="7" />
+          <Property Name="MSur" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <Property Name="MOeste" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <Property Name="MEste" Type="Decimal" Nullable="false" Precision="18" Scale="7" />
+          <Property Name="CNorte" Type="String" Nullable="false" Unicode="true" />
+          <Property Name="CSur" Type="String" Nullable="false" Unicode="true" />
+          <Property Name="COeste" Type="String" Nullable="false" Unicode="true" />
+          <Property Name="CEste" Type="String" Nullable="false" Unicode="true" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAGO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroReferencia" Type="String" Nullable="false" Unicode="true" FixedLength="true" MaxLength="13" />
+          <Property Name="FechaEmison" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="DB_JAADEModel.PAGOCLIENTE" FromRole="PAGO" ToRole="CLIENTE" />
+          <Property Name="CLIENTEId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LOTE" Relationship="DB_JAADEModel.PAGOLOTE" FromRole="PAGO" ToRole="LOTE" />
+          <Property Name="LOTEId" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOTE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="LOTE" Relationship="DB_JAADEModel.CLIENTE_LOTELOTE" FromRole="CLIENTE_LOTE" ToRole="LOTE" />
+          <Property Name="LOTEId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="DB_JAADEModel.CLIENTE_LOTECLIENTE" FromRole="CLIENTE_LOTE" ToRole="CLIENTE" />
+          <Property Name="CLIENTEId" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="USUARIOASIGNO" Relationship="DB_JAADEModel.CLIENTE_LOTEUSUARIO" FromRole="CLIENTE_LOTE" ToRole="USUARIO" />
+          <Property Name="USUARIOId" Type="Int32" Nullable="false" />
+          <Property Name="PagoInicial" Type="Decimal" Nullable="false" />
+          <Property Name="MontoRestante" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <Property Name="NoPagos" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="USUARIOESTADO">
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.ESTADO" Role="ESTADO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ESTADOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIOPERSONA">
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.PERSONA" Role="PERSONA" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="PERSONAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ROLUSUARIO">
+          <End Type="DB_JAADEModel.ROL" Role="ROL" Multiplicity="1" />
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ROLId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PERSONA_AGENDA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="AGENDA" Relationship="DB_JAADEModel.AGENDAPERSONA_AGENDA" FromRole="PERSONA_AGENDA" ToRole="AGENDA" />
+          <Property Name="AGENDAId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PERSONA" Relationship="DB_JAADEModel.PERSONA_AGENDAPERSONA" FromRole="PERSONA_AGENDA" ToRole="PERSONA" />
+          <Property Name="PERSONAId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="AGENDAPERSONA_AGENDA">
+          <End Type="DB_JAADEModel.PERSONA_AGENDA" Role="PERSONA_AGENDA" Multiplicity="*" />
+          <End Type="DB_JAADEModel.AGENDA" Role="AGENDA" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AGENDA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PERSONA_AGENDA">
+              <PropertyRef Name="AGENDAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_PERMISOMODULO">
+          <End Type="DB_JAADEModel.MODULO_PERMISO" Role="MODULO_PERMISO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.MODULO" Role="MODULO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MODULO_PERMISO">
+              <PropertyRef Name="MODULOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_PERMISOUSUARIO">
+          <End Type="DB_JAADEModel.MODULO_PERMISO" Role="MODULO_PERMISO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MODULO_PERMISO">
+              <PropertyRef Name="USUARIOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_PERMISOUSUARIO1">
+          <End Type="DB_JAADEModel.MODULO_PERMISO" Role="MODULO_PERMISO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MODULO_PERMISO">
+              <PropertyRef Name="USUARIOAUTORIZOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CLIENTEPERSONA">
+          <End Type="DB_JAADEModel.CLIENTE" Role="CLIENTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.PERSONA" Role="PERSONA" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="PERSONAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PERSONA_AGENDAPERSONA">
+          <End Type="DB_JAADEModel.PERSONA_AGENDA" Role="PERSONA_AGENDA" Multiplicity="*" />
+          <End Type="DB_JAADEModel.PERSONA" Role="PERSONA" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PERSONA_AGENDA">
+              <PropertyRef Name="PERSONAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LOTEZONA">
+          <End Type="DB_JAADEModel.LOTE" Role="LOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.ZONA" Role="ZONA" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ZONA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LOTE">
+              <PropertyRef Name="ZONAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CLIENTE_LOTELOTE">
+          <End Type="DB_JAADEModel.CLIENTE_LOTE" Role="CLIENTE_LOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.LOTE" Role="LOTE" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="LOTE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOTE">
+              <PropertyRef Name="LOTEId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CLIENTE_LOTECLIENTE">
+          <End Type="DB_JAADEModel.CLIENTE_LOTE" Role="CLIENTE_LOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CLIENTE" Role="CLIENTE" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOTE">
+              <PropertyRef Name="CLIENTEId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CLIENTE_LOTEUSUARIO">
+          <End Type="DB_JAADEModel.CLIENTE_LOTE" Role="CLIENTE_LOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOTE">
+              <PropertyRef Name="USUARIOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VARIABLEGLOBAL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" FixedLength="true" MaxLength="65" Unicode="true" />
+          <Property Name="Tipo" Type="String" Nullable="false" Unicode="true" FixedLength="true" MaxLength="65" />
+          <Property Name="Valor" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+        </EntityType>
+        <Association Name="PAGOCLIENTE">
+          <End Type="DB_JAADEModel.PAGO" Role="PAGO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CLIENTE" Role="CLIENTE" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PAGO">
+              <PropertyRef Name="CLIENTEId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAGOLOTE">
+          <End Type="DB_JAADEModel.PAGO" Role="PAGO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.LOTE" Role="LOTE" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="LOTE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PAGO">
+              <PropertyRef Name="LOTEId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULOMODULO">
+          <End Type="DB_JAADEModel.MODULO" Role="MODULO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.MODULO" Role="MODULO1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MODULO">
+              <PropertyRef Name="MODULOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_JAADEModelStoreContainer" CdmEntityContainer="DB_JAADEEntities">
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.USUARIO)">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="ESTADOId" ColumnName="ESTADOId" />
+          <ScalarProperty Name="PERSONAId" ColumnName="PERSONAId" />
+          <ScalarProperty Name="ROLId" ColumnName="ROLId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONA">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.PERSONA)">
+        <MappingFragment StoreEntitySet="PERSONA">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Curp" ColumnName="Curp" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="NoExt" ColumnName="NoExt" />
+          <ScalarProperty Name="NoInt" ColumnName="NoInt" />
+          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+          <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MODULO">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.MODULO)">
+        <MappingFragment StoreEntitySet="MODULO">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+          <ScalarProperty Name="Icono" ColumnName="Icono" />
+          <ScalarProperty Name="MODULOId" ColumnName="MODULOId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.ROL)">
+        <MappingFragment StoreEntitySet="ROL">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MODULO_PERMISO">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.MODULO_PERMISO)">
+        <MappingFragment StoreEntitySet="MODULO_PERMISO">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="MODULOId" ColumnName="MODULOId" />
+          <ScalarProperty Name="USUARIOId" ColumnName="USUARIOId" />
+          <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+          <ScalarProperty Name="USUARIOAUTORIZOId" ColumnName="USUARIOAUTORIZOId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.CLIENTE)">
+        <MappingFragment StoreEntitySet="CLIENTE">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="PERSONAId" ColumnName="PERSONAId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AGENDA">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.AGENDA)">
+        <MappingFragment StoreEntitySet="AGENDA">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTADO">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.ESTADO)">
+        <MappingFragment StoreEntitySet="ESTADO">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZONA">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.ZONA)">
+        <MappingFragment StoreEntitySet="ZONA">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOTE">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.LOTE)">
+        <MappingFragment StoreEntitySet="LOTE">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ZONAId" ColumnName="ZONAId" />
+          <ScalarProperty Name="MNorte" ColumnName="MNorte" />
+          <ScalarProperty Name="MSur" ColumnName="MSur" />
+          <ScalarProperty Name="MOeste" ColumnName="MOeste" />
+          <ScalarProperty Name="MEste" ColumnName="MEste" />
+          <ScalarProperty Name="CNorte" ColumnName="CNorte" />
+          <ScalarProperty Name="CSur" ColumnName="CSur" />
+          <ScalarProperty Name="COeste" ColumnName="COeste" />
+          <ScalarProperty Name="CEste" ColumnName="CEste" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAGO">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.PAGO)">
+        <MappingFragment StoreEntitySet="PAGO">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NumeroReferencia" ColumnName="NumeroReferencia" />
+          <ScalarProperty Name="FechaEmison" ColumnName="FechaEmison" />
+          <ScalarProperty Name="CLIENTEId" ColumnName="CLIENTEId" />
+          <ScalarProperty Name="LOTEId" ColumnName="LOTEId" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE_LOTE">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.CLIENTE_LOTE)">
+        <MappingFragment StoreEntitySet="CLIENTE_LOTE">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LOTEId" ColumnName="LOTEId" />
+          <ScalarProperty Name="CLIENTEId" ColumnName="CLIENTEId" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="USUARIOId" ColumnName="USUARIOId" />
+          <ScalarProperty Name="PagoInicial" ColumnName="PagoInicial" />
+          <ScalarProperty Name="MontoRestante" ColumnName="MontoRestante" />
+          <ScalarProperty Name="NoPagos" ColumnName="NoPagos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONA_AGENDA">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.PERSONA_AGENDA)">
+        <MappingFragment StoreEntitySet="PERSONA_AGENDA">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AGENDAId" ColumnName="AGENDAId" />
+          <ScalarProperty Name="PERSONAId" ColumnName="PERSONAId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VARIABLEGLOBAL">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.VARIABLEGLOBAL)">
+        <MappingFragment StoreEntitySet="VARIABLEGLOBAL">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
