@@ -170,6 +170,7 @@ namespace PRESENTACION.SISTEMA
         private void Modificar()
         {
             if (dgvRegistros.DataSource == null) return;
+            if (dgvRegistros.CurrentRow.Cells[0].Value == null) return;
             rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
             contexto.ObjUsuarioData = contexto.ObtenerDataUsuario(rowIndexSeleccionado);
             contexto.ObjUsuario = contexto.ObtenerUsuario(contexto.ObjUsuarioData.Id);

@@ -222,6 +222,7 @@
             // 
             this.dgvRegistros.AllowUserToAddRows = false;
             this.dgvRegistros.AllowUserToDeleteRows = false;
+            this.dgvRegistros.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRegistros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -271,7 +272,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(652, 508);
+            this.btnCancelar.Location = new System.Drawing.Point(652, 509);
             this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.Name = "btnCancelar";
@@ -288,7 +289,7 @@
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.guardar_el_archivo;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(536, 508);
+            this.btnGuardar.Location = new System.Drawing.Point(536, 509);
             this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.Name = "btnGuardar";
@@ -302,7 +303,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 560);
+            this.ClientSize = new System.Drawing.Size(774, 561);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);

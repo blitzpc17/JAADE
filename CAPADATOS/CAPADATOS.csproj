@@ -53,6 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO\LOTES\LotesADO.cs" />
+    <Compile Include="ADO\LOTES\ZonaADO.cs" />
+    <Compile Include="ADO\PAGOS\ClientesADO.cs" />
+    <Compile Include="ADO\PAGOS\ContactoClienteADO.cs" />
+    <Compile Include="ADO\PAGOS\Persona_AgendaADO.cs" />
     <Compile Include="ADO\SISTEMA\EstadoADO.cs" />
     <Compile Include="ADO\SISTEMA\ModulosADO.cs" />
     <Compile Include="ADO\SISTEMA\PersonaADO.cs" />
@@ -67,6 +72,9 @@
     <Compile Include="CLIENTE_LOTE.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\clsAgenda.cs" />
+    <Compile Include="Entidades\clsClientes.cs" />
+    <Compile Include="Entidades\clsLotes.cs" />
     <Compile Include="Entidades\clsModulo.cs" />
     <Compile Include="Entidades\clsUsuario.cs" />
     <Compile Include="ESTADO.cs">
@@ -130,10 +138,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ADO\LOTES\" />
-    <Folder Include="ADO\PAGOS\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Modelo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

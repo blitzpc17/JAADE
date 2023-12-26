@@ -17,5 +17,7 @@ namespace CAPADATOS
         public int Id { get; set; }
         public string Nombre { get; set; }
         public System.DateTime FechaRegistro { get; set; }
+        public Nullable<int> NoManzanas { get; set; }
+        public int NoLotes { get; set; }
     }
 }

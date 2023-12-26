@@ -43,10 +43,16 @@
   <ItemGroup>
     <Compile Include="LOGICAS\BUSQUEDA\busModulosLogica.cs" />
     <Compile Include="LOGICAS\BUSQUEDA\busUsuariosLogica.cs" />
+    <Compile Include="LOGICAS\LOTES\formLotesLogica.cs" />
+    <Compile Include="LOGICAS\PAGOS\busClientesLogica.cs" />
+    <Compile Include="LOGICAS\PAGOS\formAgendaClienteLogica.cs" />
+    <Compile Include="LOGICAS\PAGOS\formClientesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catEstadosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catRolesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formModulosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formUsuariosLogica.cs" />
+    <Compile Include="LOGICAS\LOTES\formZonaLogica.cs" />
+    <Compile Include="LOGICAS\SISTEMA\UtileriasLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,9 +61,6 @@
       <Name>CAPADATOS</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LOGICAS\LOTES\" />
-    <Folder Include="LOGICAS\PAGOS\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

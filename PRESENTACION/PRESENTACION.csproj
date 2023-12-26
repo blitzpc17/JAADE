@@ -80,6 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUSQUEDA\busClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUSQUEDA\busClientes.Designer.cs">
+      <DependentUpon>busClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUSQUEDA\busModulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,42 @@
     </Compile>
     <Compile Include="BUSQUEDA\busUsuarios.Designer.cs">
       <DependentUpon>busUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LOTES\formAsignacionLotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOTES\formAsignacionLotes.Designer.cs">
+      <DependentUpon>formAsignacionLotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LOTES\formLotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOTES\formLotes.Designer.cs">
+      <DependentUpon>formLotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LOTES\formZonas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOTES\formZonas.Designer.cs">
+      <DependentUpon>formZonas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\formAgendaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\formAgendaClientes.Designer.cs">
+      <DependentUpon>formAgendaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\formAsignacionLotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\formAsignacionLotes.Designer.cs">
+      <DependentUpon>formAsignacionLotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\formClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\formClientes.Designer.cs">
+      <DependentUpon>formClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +160,12 @@
     <Compile Include="SISTEMA\formModulos.Designer.cs">
       <DependentUpon>formModulos.cs</DependentUpon>
     </Compile>
+    <Compile Include="SISTEMA\formPermiso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SISTEMA\formPermiso.Designer.cs">
+      <DependentUpon>formPermiso.cs</DependentUpon>
+    </Compile>
     <Compile Include="SISTEMA\formUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,8 +182,32 @@
     <Compile Include="UTILERIAS\Enumeraciones.cs" />
     <Compile Include="UTILERIAS\Global.cs" />
     <Compile Include="UTILERIAS\ThemeConfig.cs" />
+    <EmbeddedResource Include="BUSQUEDA\busClientes.resx">
+      <DependentUpon>busClientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUSQUEDA\busModulos.resx">
       <DependentUpon>busModulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUSQUEDA\busUsuarios.resx">
+      <DependentUpon>busUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOTES\formAsignacionLotes.resx">
+      <DependentUpon>formAsignacionLotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOTES\formLotes.resx">
+      <DependentUpon>formLotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOTES\formZonas.resx">
+      <DependentUpon>formZonas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\formAgendaClientes.resx">
+      <DependentUpon>formAgendaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\formAsignacionLotes.resx">
+      <DependentUpon>formAsignacionLotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\formClientes.resx">
+      <DependentUpon>formClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -158,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SISTEMA\formModulos.resx">
       <DependentUpon>formModulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SISTEMA\formPermiso.resx">
+      <DependentUpon>formPermiso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SISTEMA\formUsuarios.resx">
       <DependentUpon>formUsuarios.cs</DependentUpon>
@@ -189,6 +264,9 @@
     <None Include="Resources\fuerza.png" />
     <None Include="Resources\lupa.png" />
     <None Include="Resources\seleccione.png" />
+    <None Include="Resources\anadir.png" />
+    <None Include="Resources\directorio-telefonico.png" />
+    <None Include="Resources\agenda.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -203,10 +281,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LOTES\" />
-    <Folder Include="PAGOS\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CAPADATOS\CAPADATOS.csproj">
       <Project>{9013e625-7ea9-4d6f-b56a-da836064ad14}</Project>

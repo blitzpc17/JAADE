@@ -36,6 +36,9 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsTotalRegistros = new System.Windows.Forms.ToolStripLabel();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activarDesactivarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtProceso = new Controls.Controles.Txt();
@@ -43,14 +46,11 @@
             this.txtNombre = new Controls.Controles.Txt();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.activarDesactivarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbx1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbx1
@@ -93,6 +93,7 @@
             // 
             this.dgvRegistros.AllowUserToAddRows = false;
             this.dgvRegistros.AllowUserToDeleteRows = false;
+            this.dgvRegistros.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRegistros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -108,6 +109,30 @@
             this.dgvRegistros.Size = new System.Drawing.Size(344, 291);
             this.dgvRegistros.TabIndex = 5;
             this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificarToolStripMenuItem,
+            this.activarDesactivarToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(171, 48);
+            // 
+            // modificarToolStripMenuItem
+            // 
+            this.modificarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.editar;
+            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.modificarToolStripMenuItem.Text = "Modificar";
+            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
+            // 
+            // activarDesactivarToolStripMenuItem
+            // 
+            this.activarDesactivarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.fuerza;
+            this.activarDesactivarToolStripMenuItem.Name = "activarDesactivarToolStripMenuItem";
+            this.activarDesactivarToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.activarDesactivarToolStripMenuItem.Text = "Activar/Desactivar";
+            this.activarDesactivarToolStripMenuItem.Click += new System.EventHandler(this.activarDesactivarToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -193,30 +218,6 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modificarToolStripMenuItem,
-            this.activarDesactivarToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
-            // 
-            // modificarToolStripMenuItem
-            // 
-            this.modificarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.editar;
-            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.modificarToolStripMenuItem.Text = "Modificar";
-            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
-            // 
-            // activarDesactivarToolStripMenuItem
-            // 
-            this.activarDesactivarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.fuerza;
-            this.activarDesactivarToolStripMenuItem.Name = "activarDesactivarToolStripMenuItem";
-            this.activarDesactivarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.activarDesactivarToolStripMenuItem.Text = "Activar/Desactivar";
-            this.activarDesactivarToolStripMenuItem.Click += new System.EventHandler(this.activarDesactivarToolStripMenuItem_Click);
-            // 
             // catEstados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,9 +239,9 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

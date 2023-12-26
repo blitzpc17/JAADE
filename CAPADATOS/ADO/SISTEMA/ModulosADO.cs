@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CAPADATOS.ADO.SISTEMA
 {
-    public class ModulosADO
+    public class ModulosADO:IDisposable
     {
         private DB_JAADEEntities contexto;
 
@@ -64,6 +64,17 @@ namespace CAPADATOS.ADO.SISTEMA
             return contexto.Database.SqlQuery<clsModulo>(query).ToList();
         }
 
+        public DateTime FechaYHoraActualServidor()
+        {
+            var query = "SELECT GETDATE() AS FechaActual;";
 
+            return contexto.Database.SqlQuery<DateTime>(query).FirstOrDefault();
+
+        }
+
+        public void Dispose()
+        {
+            contexto.Dispose();
+        }
     }
 }

@@ -17,7 +17,9 @@ namespace CAPADATOS
         public int Id { get; set; }
         public string Clave { get; set; }
         public int PERSONAId { get; set; }
+        public int ESTADOId { get; set; }
     
         public virtual PERSONA PERSONA { get; set; }
+        public virtual ESTADO ESTADO { get; set; }
     }
 }

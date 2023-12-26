@@ -457,6 +457,7 @@
             // 
             this.dgvRegistros.AllowUserToAddRows = false;
             this.dgvRegistros.AllowUserToDeleteRows = false;
+            this.dgvRegistros.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRegistros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 

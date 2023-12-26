@@ -15,6 +15,7 @@ namespace CAPADATOS
     public partial class LOTE
     {
         public int Id { get; set; }
+        public string Identificador { get; set; }
         public int ZONAId { get; set; }
         public decimal MNorte { get; set; }
         public decimal MSur { get; set; }
@@ -26,6 +27,7 @@ namespace CAPADATOS
         public string CEste { get; set; }
         public System.DateTime FechaRegistro { get; set; }
         public decimal Precio { get; set; }
+        public Nullable<int> Manzana { get; set; }
     
         public virtual ZONA ZONA { get; set; }
     }

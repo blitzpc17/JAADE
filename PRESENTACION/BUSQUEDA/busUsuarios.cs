@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRESENTACION.UTILERIAS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,34 @@ namespace PRESENTACION.BUSQUEDA
         public busUsuarios()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+            WindowState = FormWindowState.Normal;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void busUsuarios_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void busUsuarios_Shown(object sender, EventArgs e)
+        {
+            ThemeConfig.ThemeControls(this);
+            this.MaximizeBox = false;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

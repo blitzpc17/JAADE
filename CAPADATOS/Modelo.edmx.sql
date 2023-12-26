@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/17/2023 17:40:20
+-- Date Created: 12/23/2023 14:05:42
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -64,6 +64,9 @@ IF OBJECT_ID(N'[dbo].[FK_PAGOLOTE]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_MODULOMODULO]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[MODULO] DROP CONSTRAINT [FK_MODULOMODULO];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CLIENTEESTADO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CLIENTE] DROP CONSTRAINT [FK_CLIENTEESTADO];
 GO
 
 -- --------------------------------------------------
@@ -178,7 +181,8 @@ GO
 CREATE TABLE [dbo].[CLIENTE] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Clave] nchar(5)  NOT NULL,
-    [PERSONAId] int  NOT NULL
+    [PERSONAId] int  NOT NULL,
+    [ESTADOId] int  NOT NULL
 );
 GO
 
@@ -203,24 +207,28 @@ GO
 CREATE TABLE [dbo].[ZONA] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nombre] nvarchar(100)  NOT NULL,
-    [FechaRegistro] datetime  NOT NULL
+    [FechaRegistro] datetime  NOT NULL,
+    [NoManzanas] int  NULL,
+    [NoLotes] int  NOT NULL
 );
 GO
 
 -- Creating table 'LOTE'
 CREATE TABLE [dbo].[LOTE] (
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Identificador] nvarchar(10)  NOT NULL,
     [ZONAId] int  NOT NULL,
     [MNorte] decimal(18,7)  NOT NULL,
     [MSur] decimal(18,7)  NOT NULL,
     [MOeste] decimal(18,7)  NOT NULL,
     [MEste] decimal(18,7)  NOT NULL,
-    [CNorte] nvarchar(max)  NOT NULL,
-    [CSur] nvarchar(max)  NOT NULL,
-    [COeste] nvarchar(max)  NOT NULL,
-    [CEste] nvarchar(max)  NOT NULL,
+    [CNorte] nvarchar(350)  NULL,
+    [CSur] nvarchar(350)  NULL,
+    [COeste] nvarchar(350)  NULL,
+    [CEste] nvarchar(350)  NULL,
     [FechaRegistro] datetime  NOT NULL,
-    [Precio] decimal(18,0)  NOT NULL
+    [Precio] decimal(18,7)  NOT NULL,
+    [Manzana] int  NULL
 );
 GO
 
@@ -231,7 +239,7 @@ CREATE TABLE [dbo].[PAGO] (
     [FechaEmison] datetime  NOT NULL,
     [CLIENTEId] int  NOT NULL,
     [LOTEId] int  NOT NULL,
-    [Monto] decimal(18,0)  NOT NULL
+    [Monto] decimal(18,7)  NOT NULL
 );
 GO
 
@@ -242,7 +250,7 @@ CREATE TABLE [dbo].[CLIENTE_LOTE] (
     [CLIENTEId] int  NOT NULL,
     [FechaRegistro] datetime  NOT NULL,
     [USUARIOId] int  NOT NULL,
-    [PagoInicial] decimal(18,0)  NOT NULL,
+    [PagoInicial] decimal(18,7)  NOT NULL,
     [MontoRestante] decimal(18,7)  NOT NULL,
     [NoPagos] int  NOT NULL
 );
@@ -595,6 +603,21 @@ GO
 CREATE INDEX [IX_FK_MODULOMODULO]
 ON [dbo].[MODULO]
     ([MODULOId]);
+GO
+
+-- Creating foreign key on [ESTADOId] in table 'CLIENTE'
+ALTER TABLE [dbo].[CLIENTE]
+ADD CONSTRAINT [FK_CLIENTEESTADO]
+    FOREIGN KEY ([ESTADOId])
+    REFERENCES [dbo].[ESTADO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTEESTADO'
+CREATE INDEX [IX_FK_CLIENTEESTADO]
+ON [dbo].[CLIENTE]
+    ([ESTADOId]);
 GO
 
 -- --------------------------------------------------

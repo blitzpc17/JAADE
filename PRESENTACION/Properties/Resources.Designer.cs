@@ -63,9 +63,39 @@ namespace PRESENTACION.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap agenda {
+            get {
+                object obj = ResourceManager.GetObject("agenda", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap anadir {
+            get {
+                object obj = ResourceManager.GetObject("anadir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancelar {
             get {
                 object obj = ResourceManager.GetObject("cancelar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap directorio_telefonico {
+            get {
+                object obj = ResourceManager.GetObject("directorio-telefonico", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -35,6 +35,7 @@
         <AssociationConnector Association="DB_JAADEModel.PAGOCLIENTE" />
         <AssociationConnector Association="DB_JAADEModel.PAGOLOTE" />
         <AssociationConnector Association="DB_JAADEModel.MODULOMODULO" />
+        <AssociationConnector Association="DB_JAADEModel.CLIENTEESTADO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

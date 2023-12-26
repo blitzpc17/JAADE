@@ -16,7 +16,7 @@ namespace PRESENTACION
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SISTEMA.formModulos());
+            Application.Run(new PAGOS.formAsignacionLotes());
         }
     }
 }

@@ -104,6 +104,7 @@
             // 
             this.dgvRegistros.AllowUserToAddRows = false;
             this.dgvRegistros.AllowUserToDeleteRows = false;
+            this.dgvRegistros.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRegistros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -164,8 +165,10 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(790, 489);
+            this.MinimumSize = new System.Drawing.Size(790, 489);
             this.Name = "busModulos";
-            this.Text = "busModulos";
+            this.Text = "Búsqueda - Módulos";
             this.Load += new System.EventHandler(this.busModulos_Load);
             this.Shown += new System.EventHandler(this.busModulos_Shown);
             this.groupBox1.ResumeLayout(false);
