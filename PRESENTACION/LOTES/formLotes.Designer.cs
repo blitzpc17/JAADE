@@ -244,6 +244,7 @@
             this.cbxManzana.Name = "cbxManzana";
             this.cbxManzana.Size = new System.Drawing.Size(225, 23);
             this.cbxManzana.TabIndex = 30;
+            this.cbxManzana.SelectedIndexChanged += new System.EventHandler(this.cbxManzana_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -533,6 +534,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1175, 599);
             this.Name = "formLotes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "formLotes";
             this.Load += new System.EventHandler(this.formLotes_Load);
             this.Shown += new System.EventHandler(this.formLotes_Shown);

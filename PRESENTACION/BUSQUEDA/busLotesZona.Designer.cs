@@ -1,6 +1,6 @@
 ﻿namespace PRESENTACION.BUSQUEDA
 {
-    partial class busClientes
+    partial class busLotesZona
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(busClientes));
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(busLotesZona));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscar = new Controls.Controles.Txt();
@@ -39,44 +37,12 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsTotalRegistros = new System.Windows.Forms.ToolStripLabel();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(652, 398);
-            this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
-            this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(110, 40);
-            this.btnCancelar.TabIndex = 48;
-            this.btnCancelar.Text = "     Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.seleccione;
-            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(536, 398);
-            this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
-            this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(110, 40);
-            this.btnGuardar.TabIndex = 47;
-            this.btnGuardar.Text = "     Seleccionar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // groupBox1
             // 
@@ -84,10 +50,10 @@
             this.groupBox1.Controls.Add(this.txtBuscar);
             this.groupBox1.Controls.Add(this.toolStrip1);
             this.groupBox1.Controls.Add(this.dgvRegistros);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(750, 380);
-            this.groupBox1.TabIndex = 46;
+            this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registros";
             // 
@@ -145,32 +111,65 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRegistros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegistros.Location = new System.Drawing.Point(15, 59);
+            this.dgvRegistros.Location = new System.Drawing.Point(15, 69);
             this.dgvRegistros.MultiSelect = false;
             this.dgvRegistros.Name = "dgvRegistros";
             this.dgvRegistros.ReadOnly = true;
             this.dgvRegistros.RowHeadersVisible = false;
             this.dgvRegistros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRegistros.Size = new System.Drawing.Size(722, 290);
+            this.dgvRegistros.Size = new System.Drawing.Size(722, 280);
             this.dgvRegistros.TabIndex = 21;
             this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
             this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
             // 
-            // busClientes
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(652, 393);
+            this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
+            this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(110, 40);
+            this.btnCancelar.TabIndex = 51;
+            this.btnCancelar.Text = "     Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.seleccione;
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardar.Location = new System.Drawing.Point(536, 393);
+            this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
+            this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(110, 40);
+            this.btnGuardar.TabIndex = 50;
+            this.btnGuardar.Text = "     Seleccionar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // busLotesZona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 450);
+            this.ClientSize = new System.Drawing.Size(774, 441);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(790, 489);
-            this.MinimumSize = new System.Drawing.Size(790, 489);
-            this.Name = "busClientes";
-            this.Text = "Búsqueda - Clientes";
-            this.Load += new System.EventHandler(this.busClientes_Load);
-            this.Shown += new System.EventHandler(this.busClientes_Shown);
+            this.Name = "busLotesZona";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "busLotesZona";
+            this.Load += new System.EventHandler(this.busLotesZona_Load);
+            this.Shown += new System.EventHandler(this.busLotesZona_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

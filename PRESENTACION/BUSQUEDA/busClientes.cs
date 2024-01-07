@@ -77,10 +77,14 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvRegistros.Columns[12].HeaderText = "LOCALIDAD";
             dgvRegistros.Columns[12].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[13].Visible = false;
-            dgvRegistros.Columns[14].Visible = false;
-            dgvRegistros.Columns[15].HeaderText = "ESTADO";
-            dgvRegistros.Columns[15].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[13].HeaderText = "MUNICIPIO";
+            dgvRegistros.Columns[13].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[14].HeaderText = "ENTIDAD FED.";
+            dgvRegistros.Columns[14].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[15].Visible = false;
+            dgvRegistros.Columns[16].Visible = false;
+            dgvRegistros.Columns[17].HeaderText = "ESTADO";
+            dgvRegistros.Columns[17].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
 
             tsTotalRegistros.Text = contexto.LstClientes.Count.ToString("N0");

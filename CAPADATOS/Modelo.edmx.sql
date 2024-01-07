@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/23/2023 14:05:42
+-- Date Created: 01/07/2024 13:29:22
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -68,6 +68,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CLIENTEESTADO]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CLIENTE] DROP CONSTRAINT [FK_CLIENTEESTADO];
 GO
+IF OBJECT_ID(N'[dbo].[FK_ExcepcionUSUARIO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EXCEPCION] DROP CONSTRAINT [FK_ExcepcionUSUARIO];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -115,6 +118,9 @@ GO
 IF OBJECT_ID(N'[dbo].[VARIABLEGLOBAL]', 'U') IS NOT NULL
     DROP TABLE [dbo].[VARIABLEGLOBAL];
 GO
+IF OBJECT_ID(N'[dbo].[EXCEPCION]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EXCEPCION];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -145,7 +151,9 @@ CREATE TABLE [dbo].[PERSONA] (
     [NoInt] nvarchar(15)  NULL,
     [Colonia] nvarchar(100)  NOT NULL,
     [Localidad] nvarchar(100)  NOT NULL,
-    [CodigoPostal] nvarchar(6)  NOT NULL
+    [Municipio] nvarchar(65)  NOT NULL,
+    [CodigoPostal] nvarchar(6)  NOT NULL,
+    [EntidadFederativa] nvarchar(65)  NULL
 );
 GO
 
@@ -273,6 +281,17 @@ CREATE TABLE [dbo].[VARIABLEGLOBAL] (
 );
 GO
 
+-- Creating table 'EXCEPCION'
+CREATE TABLE [dbo].[EXCEPCION] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Fecha] datetime  NOT NULL,
+    [Formulario] nvarchar(100)  NOT NULL,
+    [Resumen] nvarchar(max)  NOT NULL,
+    [Detalle] nvarchar(max)  NOT NULL,
+    [USUARIOId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -358,6 +377,12 @@ GO
 -- Creating primary key on [Id] in table 'VARIABLEGLOBAL'
 ALTER TABLE [dbo].[VARIABLEGLOBAL]
 ADD CONSTRAINT [PK_VARIABLEGLOBAL]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'EXCEPCION'
+ALTER TABLE [dbo].[EXCEPCION]
+ADD CONSTRAINT [PK_EXCEPCION]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -618,6 +643,21 @@ GO
 CREATE INDEX [IX_FK_CLIENTEESTADO]
 ON [dbo].[CLIENTE]
     ([ESTADOId]);
+GO
+
+-- Creating foreign key on [USUARIOId] in table 'EXCEPCION'
+ALTER TABLE [dbo].[EXCEPCION]
+ADD CONSTRAINT [FK_ExcepcionUSUARIO]
+    FOREIGN KEY ([USUARIOId])
+    REFERENCES [dbo].[USUARIO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ExcepcionUSUARIO'
+CREATE INDEX [IX_FK_ExcepcionUSUARIO]
+ON [dbo].[EXCEPCION]
+    ([USUARIOId]);
 GO
 
 -- --------------------------------------------------

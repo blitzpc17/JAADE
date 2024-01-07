@@ -24,7 +24,7 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             contextoZona = new ZonaADO();
         }
 
-        public void InstanciarRol()
+        public void InstanciarZona()
         {
             ObjZona = new ZONA();
         }

@@ -94,11 +94,11 @@ namespace CAPALOGICA.LOGICAS.LOTES
             {
 
                 case 1:
-                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x=>x.Manzana).ThenBy(x=>x.Precio).ToList();
+                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x=>x.Precio).ToList();
                     break;
 
                 default:
-                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Manzana).ThenBy(x => x.Precio).ToList();
+                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Precio).ToList();
                     break;
 
             }

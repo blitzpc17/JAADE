@@ -41,14 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LOGICAS\BUSQUEDA\busLotesZonaLogica.cs" />
     <Compile Include="LOGICAS\BUSQUEDA\busModulosLogica.cs" />
     <Compile Include="LOGICAS\BUSQUEDA\busUsuariosLogica.cs" />
     <Compile Include="LOGICAS\LOTES\formLotesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\busClientesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formAgendaClienteLogica.cs" />
+    <Compile Include="LOGICAS\PAGOS\formAsignacionLotesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formClientesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catEstadosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catRolesLogica.cs" />
+    <Compile Include="LOGICAS\SISTEMA\clsDatosJaade.cs" />
+    <Compile Include="LOGICAS\SISTEMA\formExcepcionesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formModulosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formUsuariosLogica.cs" />
     <Compile Include="LOGICAS\LOTES\formZonaLogica.cs" />

@@ -1,4 +1,5 @@
-﻿using CAPADATOS.ADO.SISTEMA;
+﻿using CAPADATOS;
+using CAPADATOS.ADO.SISTEMA;
 using System;
 using System.Collections.Generic;
 using System.Linq;

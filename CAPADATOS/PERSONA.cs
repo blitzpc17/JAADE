@@ -25,6 +25,8 @@ namespace CAPADATOS
         public string NoInt { get; set; }
         public string Colonia { get; set; }
         public string Localidad { get; set; }
+        public string Municipio { get; set; }
         public string CodigoPostal { get; set; }
+        public string EntidadFederativa { get; set; }
     }
 }

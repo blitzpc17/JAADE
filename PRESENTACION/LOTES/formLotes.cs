@@ -16,6 +16,7 @@ namespace PRESENTACION.LOTES
     {
         private formLotesLogica contexto;
         private bool cargado = false;
+        private int? Manzana = null;
 
         public formLotes()
         {
@@ -26,11 +27,24 @@ namespace PRESENTACION.LOTES
 
         private void InicializarForm()
         {
-            cargado = false;
-            LimpiarControles();
-            InstanciarContexto();            
-            ListarCatalogos();
-            cargado = true;
+            try
+            {
+                cargado = false;
+                LimpiarControles();
+                InstanciarContexto();
+                ListarCatalogos();
+                cargado = true;
+            }
+            catch(Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar los registros. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+       
         }
 
         private void InstanciarContexto()
@@ -53,6 +67,7 @@ namespace PRESENTACION.LOTES
         {
             ThemeConfig.LimpiarControles(this);
             txtFechaRegistro.Text = Global.FechaServidor().ToString("dd-MM-yyyy HH:mm:ss");
+            Manzana = null;
         }
 
 
@@ -90,7 +105,7 @@ namespace PRESENTACION.LOTES
                         contexto.ObjLote.Precio = Convert.ToDecimal(txtPrecio.Text);
                         contexto.ObjLote.FechaRegistro = _FechaRegistro;
                         contexto.ObjLote.ZONAId = (int)cbxZona.SelectedValue;
-                        contexto.ObjLote.Manzana = (int)cbxManzana.SelectedItem;
+                        contexto.ObjLote.Manzana = Manzana;
                         contexto.Guardar();
                     }
 
@@ -270,8 +285,9 @@ namespace PRESENTACION.LOTES
         private void cbxZona_SelectedValueChanged(object sender, EventArgs e)
         {            
             if (!cargado) return;
-            contexto.ObtenerZona((int)cbxZona.SelectedValue);
-            ListarLotesAsociadosZona(1);
+            int zonaId = (int)cbxZona.SelectedValue;
+            contexto.ObtenerZona(zonaId);
+            ListarLotesAsociadosZona(zonaId);
             if (contexto.ObjZona.NoManzanas != null)
             {
                 cbxManzana.Items.Clear();   
@@ -315,9 +331,18 @@ namespace PRESENTACION.LOTES
             Apariencias();
         }
 
+        private void cbxManzana_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!cargado) return;
+            if (cbxManzana.SelectedValue != null)
+            {
+                Manzana = (int)cbxManzana.SelectedValue;
+            }
+            else
+            {
+                Manzana = null;
+            }
 
-
-
-
+        }
     }
 }

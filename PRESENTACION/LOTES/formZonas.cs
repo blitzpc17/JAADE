@@ -69,13 +69,13 @@ namespace PRESENTACION.LOTES
         {
             if (contexto.ObjZona == null)
             {
-                contexto.InstanciarRol();
+                contexto.InstanciarZona();
             }
 
             contexto.ObjZona.Nombre = txtNombre.Text;
             if (string.IsNullOrEmpty(txtManzanas.Text))
             {
-                contexto.ObjZona = null;
+                contexto.ObjZona.NoManzanas = null;
             }
             else
             {

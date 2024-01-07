@@ -51,7 +51,13 @@ namespace CAPALOGICA.LOGICAS.PAGOS
                 case 12:
                     index = LstClientesAux.FindIndex(x => x.Localidad.StartsWith(termino));
                     break;
-                case 15:
+                case 13:
+                    index = LstClientesAux.FindIndex(x => x.Municipio.StartsWith(termino));
+                    break;
+                case 14:
+                    index = LstClientesAux.FindIndex(x => x.EntidadFederativa.StartsWith(termino));
+                    break;
+                case 17:
                     index = LstClientesAux.FindIndex(x => x.Estado.StartsWith(termino));
                     break;
 
@@ -72,20 +78,30 @@ namespace CAPALOGICA.LOGICAS.PAGOS
             {
 
                 case 1:
-                    LstClientesAux = LstClientes.OrderBy(x => x.Clave).ThenBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Estado).ToList();
+                    LstClientesAux = LstClientes.OrderBy(x => x.Clave).ThenBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Municipio).ThenBy(x => x.EntidadFederativa).ThenBy(x => x.Estado).ToList();
                     break;
                 case 2:
-                    LstClientesAux = LstClientes.OrderBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Estado).ThenBy(x => x.Clave).ToList();
+                    LstClientesAux = LstClientes.OrderBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Municipio).ThenBy(x => x.EntidadFederativa).ThenBy(x => x.Estado).ThenBy(x => x.Clave).ToList();
                     break;
                 case 11:
-                    LstClientesAux = LstClientes.OrderBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Estado).ThenBy(x => x.Clave).ThenBy(x => x.Cliente).ToList();
+                    LstClientesAux = LstClientes.OrderBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Municipio).ThenBy(x => x.EntidadFederativa).ThenBy(x => x.Estado).ThenBy(x => x.Clave).ThenBy(x => x.Cliente).ToList();
                     break;
-                case 15:
+                case 12:
+                    LstClientesAux = LstClientes.OrderBy(x => x.Localidad).ThenBy(x => x.Municipio).ThenBy(x => x.EntidadFederativa).ThenBy(x => x.Estado).ThenBy(x => x.Clave).ThenBy(x => x.Cliente).ThenBy(x => x.Colonia).ToList();
+                    break;
+                case 13:
+                    LstClientesAux = LstClientes.OrderBy(x => x.Municipio).ThenBy(x => x.EntidadFederativa).ThenBy(x => x.Estado).ThenBy(x => x.Clave).ThenBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ToList();
+                    break;
+                case 14:
+                    LstClientesAux = LstClientes.OrderBy(x => x.EntidadFederativa).ThenBy(x => x.Estado).ThenBy(x => x.Clave).ThenBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Municipio).ToList();
+                    break;
+
+                case 17:
                     LstClientesAux = LstClientes.OrderBy(x => x.Estado).ThenBy(x => x.Clave).ThenBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ToList();
                     break;
 
                 default:
-                    LstClientesAux = LstClientes.OrderBy(x => x.Clave).ThenBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Estado).ToList();
+                    LstClientesAux = LstClientes.OrderBy(x => x.Clave).ThenBy(x => x.Cliente).ThenBy(x => x.Colonia).ThenBy(x => x.Localidad).ThenBy(x => x.Municipio).ThenBy(x => x.EntidadFederativa).ThenBy(x => x.Estado).ToList();
                     break;
 
             }

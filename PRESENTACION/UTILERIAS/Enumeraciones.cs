@@ -11,7 +11,8 @@ namespace PRESENTACION.UTILERIAS
 
         public enum VariablesGlobales
         {
-            ThemeConfiguracion
+            ThemeConfiguracion,
+            DomicilioJaade
         }
 
 

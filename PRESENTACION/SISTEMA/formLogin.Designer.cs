@@ -32,11 +32,11 @@
             this.panelBack = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelBack.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -54,11 +54,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnSalir);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtUsuario);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Location = new System.Drawing.Point(2, 2);
@@ -76,12 +76,14 @@
             this.label2.Text = "CONTRASEÑA:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox2
+            // txtPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(70, 308);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(225, 20);
-            this.textBox2.TabIndex = 20;
+            this.txtPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPassword.Location = new System.Drawing.Point(70, 308);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(225, 20);
+            this.txtPassword.TabIndex = 20;
             // 
             // button2
             // 
@@ -92,6 +94,7 @@
             this.button2.TabIndex = 40;
             this.button2.Text = "Salir";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnSalir
             // 
@@ -113,12 +116,12 @@
             this.label1.Text = "USUARIO:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // txtUsuario
             // 
-            this.textBox1.Location = new System.Drawing.Point(70, 236);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(225, 20);
-            this.textBox1.TabIndex = 10;
+            this.txtUsuario.Location = new System.Drawing.Point(70, 236);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(225, 20);
+            this.txtUsuario.TabIndex = 10;
             // 
             // pictureBox1
             // 
@@ -159,11 +162,11 @@
         private System.Windows.Forms.Panel panelBack;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

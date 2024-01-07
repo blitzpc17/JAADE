@@ -1,4 +1,5 @@
-﻿using PRESENTACION.UTILERIAS;
+﻿using CAPADATOS.ADO.SISTEMA;
+using PRESENTACION.UTILERIAS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,15 +13,33 @@ using System.Windows.Forms;
 namespace PRESENTACION.SISTEMA
 {
     public partial class formLogin : Form
-    {
+    {        
         public formLogin()
         {
             InitializeComponent();            
         }
 
+        private bool Authenticate(string Alias, string Password)
+        {
+            using (var contexto = new UsuariosADO())
+            {
+                try
+                {
+                    Global.CredencialesSesionAcceso(contexto.Authenticate(Alias, Password));
+                    return Global.ObjUsuario != null;
+                }
+                catch(Exception ex)
+                {
+                    return false;
+                }
+            
+            }
+         
+        }
+
         private void formLogin_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void formLogin_Shown(object sender, EventArgs e)
@@ -34,10 +53,28 @@ namespace PRESENTACION.SISTEMA
 
         private void btnAcceder_Click(object sender, EventArgs e)
         {
-            MDIMain mDIMain = new MDIMain();
-            Hide();
-            mDIMain.WindowState = FormWindowState.Maximized;
-            mDIMain.ShowDialog();
+            if (Authenticate(txtUsuario.Text, txtPassword.Text))
+            {                
+                MDIMain mDIMain = new MDIMain();
+                Hide();
+                mDIMain.WindowState = FormWindowState.Maximized;
+                mDIMain.ShowDialog();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo acceder con las credenciales ingresadas. Verifique sus datos e intentelo nuevamente.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
+            
+        
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             Close();
         }
     }

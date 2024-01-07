@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CAPADATOS.ADO.PAGOS
 {
-    public class ClientesADO
+    public class ClientesADO:IDisposable
     {
 
         private DB_JAADEEntities contexto;
@@ -47,7 +47,8 @@ namespace CAPADATOS.ADO.PAGOS
             var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.ApellidoPaterno+' '+per.ApellidoMaterno) as Cliente, \r\n"+
                         "per.Nombres, per.ApellidoPaterno as Apaterno, per.ApellidoMaterno as Amaterno, \r\n"+
                         "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n"+
-                        "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado \r\n"+
+                        "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado, \r\n"+
+                        "per.EntidadFederativa, per.Municipio \r\n"+
                         "FROM CLIENTE AS us \r\n"+
                         "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n"+
                         "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id \r\n"+
@@ -61,7 +62,8 @@ namespace CAPADATOS.ADO.PAGOS
             var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.ApellidoPaterno+' '+per.ApellidoMaterno) as Cliente, \r\n" +
                         "per.Nombres, per.ApellidoPaterno as Apaterno, per.ApellidoMaterno as Amaterno, \r\n" +
                         "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n" +
-                        "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado \r\n" +
+                        "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
+                        "per.EntidadFederativa, per.Municipio \r\n" +
                         "FROM CLIENTE AS us \r\n" +
                         "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n"+
                         "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id ";
@@ -69,11 +71,9 @@ namespace CAPADATOS.ADO.PAGOS
             return contexto.Database.SqlQuery<clsClientes>(query).ToList();
         }
 
-
-
-
-
-
-
+        public void Dispose()
+        {
+            contexto.Dispose();
+        }
     }
 }

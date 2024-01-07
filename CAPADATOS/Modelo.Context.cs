@@ -39,5 +39,6 @@ namespace CAPADATOS
         public virtual DbSet<CLIENTE_LOTE> CLIENTE_LOTE { get; set; }
         public virtual DbSet<PERSONA_AGENDA> PERSONA_AGENDA { get; set; }
         public virtual DbSet<VARIABLEGLOBAL> VARIABLEGLOBAL { get; set; }
+        public virtual DbSet<EXCEPCION> EXCEPCION { get; set; }
     }
 }

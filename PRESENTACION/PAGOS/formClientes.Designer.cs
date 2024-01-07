@@ -42,7 +42,6 @@
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAgenda = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
             this.cbxEstado = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -71,6 +70,10 @@
             this.txtNombre = new Controls.Controles.Txt();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtMunicipio = new Controls.Controles.Txt();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtEntidadFederativa = new Controls.Controles.Txt();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
@@ -90,7 +93,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 209);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1135, 337);
-            this.groupBox2.TabIndex = 42;
+            this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registros";
             // 
@@ -110,7 +113,7 @@
             this.txtBuscar.Location = new System.Drawing.Point(516, 30);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(225, 23);
-            this.txtBuscar.TabIndex = 14;
+            this.txtBuscar.TabIndex = 10;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // toolStrip1
@@ -149,13 +152,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRegistros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegistros.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgvRegistros.Location = new System.Drawing.Point(19, 70);
+            this.dgvRegistros.Location = new System.Drawing.Point(19, 59);
             this.dgvRegistros.Name = "dgvRegistros";
             this.dgvRegistros.ReadOnly = true;
             this.dgvRegistros.RowHeadersVisible = false;
             this.dgvRegistros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRegistros.Size = new System.Drawing.Size(1107, 236);
-            this.dgvRegistros.TabIndex = 6;
+            this.dgvRegistros.Size = new System.Drawing.Size(1107, 247);
+            this.dgvRegistros.TabIndex = 20;
             this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
             this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
             // 
@@ -176,8 +179,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnAgenda);
             this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.txtEntidadFederativa);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.txtMunicipio);
+            this.groupBox1.Controls.Add(this.btnAgenda);
             this.groupBox1.Controls.Add(this.cbxEstado);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label13);
@@ -207,7 +213,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1135, 191);
-            this.groupBox1.TabIndex = 41;
+            this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
@@ -216,36 +222,26 @@
             this.btnAgenda.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgenda.Image = global::PRESENTACION.Properties.Resources.agenda;
-            this.btnAgenda.Location = new System.Drawing.Point(901, 120);
+            this.btnAgenda.Location = new System.Drawing.Point(1102, 119);
             this.btnAgenda.Name = "btnAgenda";
             this.btnAgenda.Size = new System.Drawing.Size(24, 24);
-            this.btnAgenda.TabIndex = 51;
+            this.btnAgenda.TabIndex = 150;
             this.btnAgenda.UseVisualStyleBackColor = true;
             this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
-            // 
-            // label16
-            // 
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(780, 120);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(115, 23);
-            this.label16.TabIndex = 45;
-            this.label16.Text = "Datos Contacto:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbxEstado
             // 
             this.cbxEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxEstado.FormattingEnabled = true;
-            this.cbxEstado.Location = new System.Drawing.Point(901, 89);
+            this.cbxEstado.Location = new System.Drawing.Point(901, 147);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(225, 23);
-            this.cbxEstado.TabIndex = 42;
+            this.cbxEstado.TabIndex = 160;
             // 
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(780, 88);
+            this.label15.Location = new System.Drawing.Point(780, 146);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(115, 23);
             this.label15.TabIndex = 38;
@@ -255,7 +251,7 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(780, 59);
+            this.label13.Location = new System.Drawing.Point(780, 117);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(115, 23);
             this.label13.TabIndex = 34;
@@ -265,11 +261,11 @@
             // txtClave
             // 
             this.txtClave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClave.Location = new System.Drawing.Point(901, 59);
+            this.txtClave.Location = new System.Drawing.Point(901, 117);
             this.txtClave.MaxLength = 5;
             this.txtClave.Name = "txtClave";
-            this.txtClave.Size = new System.Drawing.Size(225, 23);
-            this.txtClave.TabIndex = 35;
+            this.txtClave.Size = new System.Drawing.Size(185, 23);
+            this.txtClave.TabIndex = 140;
             // 
             // label12
             // 
@@ -288,7 +284,7 @@
             this.txtCodigoPostal.MaxLength = 5;
             this.txtCodigoPostal.Name = "txtCodigoPostal";
             this.txtCodigoPostal.Size = new System.Drawing.Size(225, 23);
-            this.txtCodigoPostal.TabIndex = 33;
+            this.txtCodigoPostal.TabIndex = 110;
             // 
             // label11
             // 
@@ -306,7 +302,7 @@
             this.txtLocalidad.Location = new System.Drawing.Point(516, 146);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(225, 23);
-            this.txtLocalidad.TabIndex = 31;
+            this.txtLocalidad.TabIndex = 100;
             // 
             // label10
             // 
@@ -324,7 +320,7 @@
             this.txtColonia.Location = new System.Drawing.Point(516, 117);
             this.txtColonia.Name = "txtColonia";
             this.txtColonia.Size = new System.Drawing.Size(225, 23);
-            this.txtColonia.TabIndex = 29;
+            this.txtColonia.TabIndex = 90;
             // 
             // label9
             // 
@@ -342,7 +338,7 @@
             this.txtNoInt.Location = new System.Drawing.Point(516, 88);
             this.txtNoInt.Name = "txtNoInt";
             this.txtNoInt.Size = new System.Drawing.Size(225, 23);
-            this.txtNoInt.TabIndex = 27;
+            this.txtNoInt.TabIndex = 80;
             // 
             // label8
             // 
@@ -360,7 +356,7 @@
             this.txtNoExt.Location = new System.Drawing.Point(516, 59);
             this.txtNoExt.Name = "txtNoExt";
             this.txtNoExt.Size = new System.Drawing.Size(225, 23);
-            this.txtNoExt.TabIndex = 25;
+            this.txtNoExt.TabIndex = 70;
             // 
             // label7
             // 
@@ -378,7 +374,7 @@
             this.txtCalle.Location = new System.Drawing.Point(516, 30);
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(225, 23);
-            this.txtCalle.TabIndex = 23;
+            this.txtCalle.TabIndex = 60;
             // 
             // dtpFechaNacimiento
             // 
@@ -388,7 +384,7 @@
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(132, 118);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(224, 23);
-            this.dtpFechaNacimiento.TabIndex = 21;
+            this.dtpFechaNacimiento.TabIndex = 40;
             // 
             // label6
             // 
@@ -407,7 +403,7 @@
             this.txtCurp.MaxLength = 18;
             this.txtCurp.Name = "txtCurp";
             this.txtCurp.Size = new System.Drawing.Size(225, 23);
-            this.txtCurp.TabIndex = 20;
+            this.txtCurp.TabIndex = 50;
             // 
             // label5
             // 
@@ -435,7 +431,7 @@
             this.txtAmaterno.Location = new System.Drawing.Point(131, 88);
             this.txtAmaterno.Name = "txtAmaterno";
             this.txtAmaterno.Size = new System.Drawing.Size(225, 23);
-            this.txtAmaterno.TabIndex = 16;
+            this.txtAmaterno.TabIndex = 30;
             // 
             // label3
             // 
@@ -453,7 +449,7 @@
             this.txtApaterno.Location = new System.Drawing.Point(131, 59);
             this.txtApaterno.Name = "txtApaterno";
             this.txtApaterno.Size = new System.Drawing.Size(225, 23);
-            this.txtApaterno.TabIndex = 14;
+            this.txtApaterno.TabIndex = 20;
             // 
             // label1
             // 
@@ -471,7 +467,7 @@
             this.txtNombre.Location = new System.Drawing.Point(131, 30);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(225, 23);
-            this.txtNombre.TabIndex = 12;
+            this.txtNombre.TabIndex = 10;
             // 
             // btnCancelar
             // 
@@ -485,7 +481,7 @@
             this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(110, 40);
-            this.btnCancelar.TabIndex = 44;
+            this.btnCancelar.TabIndex = 40;
             this.btnCancelar.Text = "     Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -502,10 +498,48 @@
             this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(110, 40);
-            this.btnGuardar.TabIndex = 43;
+            this.btnGuardar.TabIndex = 30;
             this.btnGuardar.Text = "     Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(780, 60);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(115, 23);
+            this.label14.TabIndex = 52;
+            this.label14.Text = "Municipio:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtMunicipio
+            // 
+            this.txtMunicipio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMunicipio.Location = new System.Drawing.Point(901, 60);
+            this.txtMunicipio.MaxLength = 65;
+            this.txtMunicipio.Name = "txtMunicipio";
+            this.txtMunicipio.Size = new System.Drawing.Size(225, 23);
+            this.txtMunicipio.TabIndex = 120;
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(780, 89);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(115, 23);
+            this.label16.TabIndex = 54;
+            this.label16.Text = "Entidad Fed:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtEntidadFederativa
+            // 
+            this.txtEntidadFederativa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEntidadFederativa.Location = new System.Drawing.Point(901, 89);
+            this.txtEntidadFederativa.MaxLength = 65;
+            this.txtEntidadFederativa.Name = "txtEntidadFederativa";
+            this.txtEntidadFederativa.Size = new System.Drawing.Size(225, 23);
+            this.txtEntidadFederativa.TabIndex = 130;
             // 
             // formClientes
             // 
@@ -546,7 +580,6 @@
         private System.Windows.Forms.ToolStripLabel tsTotalRegistros;
         private System.Windows.Forms.DataGridView dgvRegistros;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cbxEstado;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label13;
@@ -576,5 +609,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
         private System.Windows.Forms.Button btnAgenda;
+        private System.Windows.Forms.Label label16;
+        private Controls.Controles.Txt txtEntidadFederativa;
+        private System.Windows.Forms.Label label14;
+        private Controls.Controles.Txt txtMunicipio;
     }
 }

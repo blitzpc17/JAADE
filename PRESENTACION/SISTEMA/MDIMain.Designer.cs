@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIMain));
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.sISTEMAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cATALOGOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,9 +38,14 @@
             this.pERMISOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cAPTURAYCONSULTAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pAGOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asignacionLotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.capturaYConsultaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.eXCEPCIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +54,8 @@
             // 
             this.mainMenuStrip.AutoSize = false;
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sISTEMAToolStripMenuItem});
+            this.sISTEMAToolStripMenuItem,
+            this.pAGOSToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.Size = new System.Drawing.Size(890, 24);
@@ -60,7 +67,8 @@
             this.sISTEMAToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cATALOGOSToolStripMenuItem,
             this.aCCESOToolStripMenuItem,
-            this.uSUARIOSToolStripMenuItem});
+            this.uSUARIOSToolStripMenuItem,
+            this.eXCEPCIONESToolStripMenuItem});
             this.sISTEMAToolStripMenuItem.Name = "sISTEMAToolStripMenuItem";
             this.sISTEMAToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.sISTEMAToolStripMenuItem.Text = "SISTEMA";
@@ -68,7 +76,7 @@
             // cATALOGOSToolStripMenuItem
             // 
             this.cATALOGOSToolStripMenuItem.Name = "cATALOGOSToolStripMenuItem";
-            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cATALOGOSToolStripMenuItem.Text = "CATALOGOS";
             // 
             // aCCESOToolStripMenuItem
@@ -77,7 +85,7 @@
             this.mODULOSToolStripMenuItem,
             this.pERMISOSToolStripMenuItem});
             this.aCCESOToolStripMenuItem.Name = "aCCESOToolStripMenuItem";
-            this.aCCESOToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.aCCESOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aCCESOToolStripMenuItem.Text = "ACCESO";
             // 
             // mODULOSToolStripMenuItem
@@ -97,7 +105,7 @@
             this.uSUARIOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cAPTURAYCONSULTAToolStripMenuItem});
             this.uSUARIOSToolStripMenuItem.Name = "uSUARIOSToolStripMenuItem";
-            this.uSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.uSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uSUARIOSToolStripMenuItem.Text = "USUARIOS";
             // 
             // cAPTURAYCONSULTAToolStripMenuItem
@@ -105,6 +113,37 @@
             this.cAPTURAYCONSULTAToolStripMenuItem.Name = "cAPTURAYCONSULTAToolStripMenuItem";
             this.cAPTURAYCONSULTAToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.cAPTURAYCONSULTAToolStripMenuItem.Text = "CAPTURA Y CONSULTA";
+            // 
+            // pAGOSToolStripMenuItem
+            // 
+            this.pAGOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.asignacionLotesToolStripMenuItem,
+            this.clientesToolStripMenuItem});
+            this.pAGOSToolStripMenuItem.Name = "pAGOSToolStripMenuItem";
+            this.pAGOSToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.pAGOSToolStripMenuItem.Text = "PAGOS";
+            // 
+            // asignacionLotesToolStripMenuItem
+            // 
+            this.asignacionLotesToolStripMenuItem.Name = "asignacionLotesToolStripMenuItem";
+            this.asignacionLotesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.asignacionLotesToolStripMenuItem.Text = "Asignacion Lotes";
+            this.asignacionLotesToolStripMenuItem.Click += new System.EventHandler(this.asignacionLotesToolStripMenuItem_Click);
+            // 
+            // clientesToolStripMenuItem
+            // 
+            this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.capturaYConsultaToolStripMenuItem1});
+            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.clientesToolStripMenuItem.Text = "Clientes";
+            // 
+            // capturaYConsultaToolStripMenuItem1
+            // 
+            this.capturaYConsultaToolStripMenuItem1.Name = "capturaYConsultaToolStripMenuItem1";
+            this.capturaYConsultaToolStripMenuItem1.Size = new System.Drawing.Size(173, 22);
+            this.capturaYConsultaToolStripMenuItem1.Text = "Captura y consulta";
+            this.capturaYConsultaToolStripMenuItem1.Click += new System.EventHandler(this.capturaYConsultaToolStripMenuItem1_Click);
             // 
             // statusStrip
             // 
@@ -122,6 +161,13 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel.Text = "Estado";
             // 
+            // eXCEPCIONESToolStripMenuItem
+            // 
+            this.eXCEPCIONESToolStripMenuItem.Name = "eXCEPCIONESToolStripMenuItem";
+            this.eXCEPCIONESToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eXCEPCIONESToolStripMenuItem.Text = "EXCEPCIONES";
+            this.eXCEPCIONESToolStripMenuItem.Click += new System.EventHandler(this.eXCEPCIONESToolStripMenuItem_Click);
+            // 
             // MDIMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,6 +175,7 @@
             this.ClientSize = new System.Drawing.Size(890, 453);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.mainMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MDIMain";
@@ -158,6 +205,11 @@
         private System.Windows.Forms.ToolStripMenuItem pERMISOSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uSUARIOSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cAPTURAYCONSULTAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pAGOSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asignacionLotesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem capturaYConsultaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem eXCEPCIONESToolStripMenuItem;
     }
 }
 

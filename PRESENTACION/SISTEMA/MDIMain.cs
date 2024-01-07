@@ -34,5 +34,26 @@ namespace PRESENTACION.SISTEMA
             
             
         }
+
+        private void asignacionLotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new PAGOS.formAsignacionLotes();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void capturaYConsultaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var form = new PAGOS.formClientes();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void eXCEPCIONESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new SISTEMA.formExcepciones();
+            form.MdiParent = this;
+            form.Show();
+        }
     }
 }

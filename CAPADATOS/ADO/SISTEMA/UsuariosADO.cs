@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CAPADATOS.ADO.SISTEMA
 {
-    public class UsuariosADO
+    public class UsuariosADO:IDisposable
     {
         private DB_JAADEEntities contexto;
 
@@ -76,7 +76,22 @@ namespace CAPADATOS.ADO.SISTEMA
             return contexto.Database.SqlQuery<clsUsuario>(query).ToList();   
         }
 
+        public USUARIO Authenticate(string usuario, string password)
+        {
+            var query = "SELECT TOP 1 *FROM USUARIO WHERE ALIAS = '"+usuario+"' AND PASSWORD = '"+password+"' ";
+            return contexto.Database.SqlQuery<USUARIO>(query).FirstOrDefault();
+        }
 
-
+        public void Dispose()
+        {
+            try
+            {
+                contexto.Dispose();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

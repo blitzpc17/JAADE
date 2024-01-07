@@ -83,6 +83,8 @@ namespace PRESENTACION.PAGOS
             contexto.ObjPersona.Colonia = txtColonia.Text;
             contexto.ObjPersona.Localidad = txtLocalidad.Text;
             contexto.ObjPersona.CodigoPostal = txtCodigoPostal.Text;
+            contexto.ObjPersona.EntidadFederativa = txtEntidadFederativa.Text;
+            contexto.ObjPersona.Municipio = txtMunicipio.Text;
 
             contexto.ObjCliente.Clave = txtClave.Text;
             contexto.ObjCliente.ESTADOId = (int)cbxEstado.SelectedValue;     
@@ -115,10 +117,14 @@ namespace PRESENTACION.PAGOS
             dgvRegistros.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvRegistros.Columns[12].HeaderText = "LOCALIDAD";
             dgvRegistros.Columns[12].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[13].Visible = false;
-            dgvRegistros.Columns[14].Visible = false;
-            dgvRegistros.Columns[15].HeaderText = "ESTADO";
-            dgvRegistros.Columns[15].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[13].HeaderText = "MUNICIPIO";
+            dgvRegistros.Columns[13].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[14].HeaderText = "ENTIDAD FED.";
+            dgvRegistros.Columns[14].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[15].Visible = false;
+            dgvRegistros.Columns[16].Visible = false;
+            dgvRegistros.Columns[17].HeaderText = "ESTADO";
+            dgvRegistros.Columns[17].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
 
             tsTotalRegistros.Text = contexto.LstClientes.Count.ToString("N0");
@@ -173,7 +179,8 @@ namespace PRESENTACION.PAGOS
                 txtColonia.Text = contexto.ObjClienteData.Colonia;
                 txtLocalidad.Text = contexto.ObjClienteData.Localidad;
                 txtCodigoPostal.Text = contexto.ObjClienteData.CodigoPostal;
-
+                txtMunicipio.Text = contexto.ObjClienteData.Municipio;
+                txtEntidadFederativa.Text = contexto.ObjClienteData.EntidadFederativa;
                 txtClave.Text = contexto.ObjClienteData.Clave;
                 cbxEstado.SelectedValue = contexto.ObjClienteData.EstadoId;
             }

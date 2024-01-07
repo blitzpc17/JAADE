@@ -35,7 +35,7 @@ namespace CAPADATOS.ADO.LOTES
         public List<LOTE> Listar()
         {
             return contexto.LOTE.ToList();
-        }
+        }      
 
         public List<clsLotes> ListarLotes(int zonaId)
         {
@@ -72,5 +72,9 @@ namespace CAPADATOS.ADO.LOTES
 
             return contexto.Database.SqlQuery<clsLotes>(query).FirstOrDefault();
         }
+
+       
+
+
     }
 }

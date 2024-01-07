@@ -43,8 +43,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,14 +57,17 @@
   <ItemGroup>
     <Compile Include="ADO\LOTES\LotesADO.cs" />
     <Compile Include="ADO\LOTES\ZonaADO.cs" />
+    <Compile Include="ADO\PAGOS\AsignacionClienteLoteADO.cs" />
     <Compile Include="ADO\PAGOS\ClientesADO.cs" />
     <Compile Include="ADO\PAGOS\ContactoClienteADO.cs" />
     <Compile Include="ADO\PAGOS\Persona_AgendaADO.cs" />
     <Compile Include="ADO\SISTEMA\EstadoADO.cs" />
+    <Compile Include="ADO\SISTEMA\ExcepcionADO.cs" />
     <Compile Include="ADO\SISTEMA\ModulosADO.cs" />
     <Compile Include="ADO\SISTEMA\PersonaADO.cs" />
     <Compile Include="ADO\SISTEMA\RolesADO.cs" />
     <Compile Include="ADO\SISTEMA\UsuariosADO.cs" />
+    <Compile Include="ADO\SISTEMA\VariableGlobalADO.cs" />
     <Compile Include="AGENDA.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -73,11 +78,17 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\clsAgenda.cs" />
+    <Compile Include="Entidades\clsClienteLote.cs" />
     <Compile Include="Entidades\clsClientes.cs" />
+    <Compile Include="Entidades\clsContratoParametros.cs" />
+    <Compile Include="Entidades\clsExcepciones.cs" />
     <Compile Include="Entidades\clsLotes.cs" />
     <Compile Include="Entidades\clsModulo.cs" />
     <Compile Include="Entidades\clsUsuario.cs" />
     <Compile Include="ESTADO.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXCEPCION.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="LOTE.cs">
@@ -138,7 +149,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Modelo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
