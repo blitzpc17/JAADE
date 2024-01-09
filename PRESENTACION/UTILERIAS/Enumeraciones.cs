@@ -12,7 +12,9 @@ namespace PRESENTACION.UTILERIAS
         public enum VariablesGlobales
         {
             ThemeConfiguracion,
-            DomicilioJaade
+            DomicilioJaade,
+            ConsecutivoClientes,
+            ConsecutivoPagos
         }
 
 

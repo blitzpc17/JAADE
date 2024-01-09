@@ -38,6 +38,7 @@
             this.pERMISOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cAPTURAYCONSULTAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eXCEPCIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pAGOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignacionLotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +46,8 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.eXCEPCIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pagosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.capturaYConsultaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +78,7 @@
             // cATALOGOSToolStripMenuItem
             // 
             this.cATALOGOSToolStripMenuItem.Name = "cATALOGOSToolStripMenuItem";
-            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.cATALOGOSToolStripMenuItem.Text = "CATALOGOS";
             // 
             // aCCESOToolStripMenuItem
@@ -85,7 +87,7 @@
             this.mODULOSToolStripMenuItem,
             this.pERMISOSToolStripMenuItem});
             this.aCCESOToolStripMenuItem.Name = "aCCESOToolStripMenuItem";
-            this.aCCESOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aCCESOToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.aCCESOToolStripMenuItem.Text = "ACCESO";
             // 
             // mODULOSToolStripMenuItem
@@ -105,7 +107,7 @@
             this.uSUARIOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cAPTURAYCONSULTAToolStripMenuItem});
             this.uSUARIOSToolStripMenuItem.Name = "uSUARIOSToolStripMenuItem";
-            this.uSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.uSUARIOSToolStripMenuItem.Text = "USUARIOS";
             // 
             // cAPTURAYCONSULTAToolStripMenuItem
@@ -114,11 +116,19 @@
             this.cAPTURAYCONSULTAToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.cAPTURAYCONSULTAToolStripMenuItem.Text = "CAPTURA Y CONSULTA";
             // 
+            // eXCEPCIONESToolStripMenuItem
+            // 
+            this.eXCEPCIONESToolStripMenuItem.Name = "eXCEPCIONESToolStripMenuItem";
+            this.eXCEPCIONESToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.eXCEPCIONESToolStripMenuItem.Text = "EXCEPCIONES";
+            this.eXCEPCIONESToolStripMenuItem.Click += new System.EventHandler(this.eXCEPCIONESToolStripMenuItem_Click);
+            // 
             // pAGOSToolStripMenuItem
             // 
             this.pAGOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.asignacionLotesToolStripMenuItem,
-            this.clientesToolStripMenuItem});
+            this.clientesToolStripMenuItem,
+            this.pagosToolStripMenuItem1});
             this.pAGOSToolStripMenuItem.Name = "pAGOSToolStripMenuItem";
             this.pAGOSToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.pAGOSToolStripMenuItem.Text = "PAGOS";
@@ -126,7 +136,7 @@
             // asignacionLotesToolStripMenuItem
             // 
             this.asignacionLotesToolStripMenuItem.Name = "asignacionLotesToolStripMenuItem";
-            this.asignacionLotesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.asignacionLotesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.asignacionLotesToolStripMenuItem.Text = "Asignacion Lotes";
             this.asignacionLotesToolStripMenuItem.Click += new System.EventHandler(this.asignacionLotesToolStripMenuItem_Click);
             // 
@@ -135,7 +145,7 @@
             this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.capturaYConsultaToolStripMenuItem1});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // capturaYConsultaToolStripMenuItem1
@@ -161,12 +171,20 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel.Text = "Estado";
             // 
-            // eXCEPCIONESToolStripMenuItem
+            // pagosToolStripMenuItem1
             // 
-            this.eXCEPCIONESToolStripMenuItem.Name = "eXCEPCIONESToolStripMenuItem";
-            this.eXCEPCIONESToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eXCEPCIONESToolStripMenuItem.Text = "EXCEPCIONES";
-            this.eXCEPCIONESToolStripMenuItem.Click += new System.EventHandler(this.eXCEPCIONESToolStripMenuItem_Click);
+            this.pagosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.capturaYConsultaToolStripMenuItem2});
+            this.pagosToolStripMenuItem1.Name = "pagosToolStripMenuItem1";
+            this.pagosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.pagosToolStripMenuItem1.Text = "Pagos";
+            // 
+            // capturaYConsultaToolStripMenuItem2
+            // 
+            this.capturaYConsultaToolStripMenuItem2.Name = "capturaYConsultaToolStripMenuItem2";
+            this.capturaYConsultaToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.capturaYConsultaToolStripMenuItem2.Text = "Captura y consulta";
+            this.capturaYConsultaToolStripMenuItem2.Click += new System.EventHandler(this.capturaYConsultaToolStripMenuItem2_Click);
             // 
             // MDIMain
             // 
@@ -210,6 +228,8 @@
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem capturaYConsultaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem eXCEPCIONESToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pagosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem capturaYConsultaToolStripMenuItem2;
     }
 }
 

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtTicket" targetNamespace="http://tempuri.org/dtTicket.xsd" xmlns:mstns="http://tempuri.org/dtTicket.xsd" xmlns="http://tempuri.org/dtTicket.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtTicket" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dtTicket" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dtTicket">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtEncabezado" msprop:Generator_RowClassName="dtEncabezadoRow" msprop:Generator_RowEvHandlerName="dtEncabezadoRowChangeEventHandler" msprop:Generator_RowDeletedName="dtEncabezadoRowDeleted" msprop:Generator_RowDeletingName="dtEncabezadoRowDeleting" msprop:Generator_RowEvArgName="dtEncabezadoRowChangeEvent" msprop:Generator_TablePropName="dtEncabezado" msprop:Generator_RowChangedName="dtEncabezadoRowChanged" msprop:Generator_UserTableName="dtEncabezado" msprop:Generator_RowChangingName="dtEncabezadoRowChanging" msprop:Generator_TableClassName="dtEncabezadoDataTable" msprop:Generator_TableVarName="tabledtEncabezado">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fecha" msprop:Generator_UserColumnName="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" type="xs:string" minOccurs="0" />
+              <xs:element name="Cliente" msprop:Generator_UserColumnName="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" type="xs:string" minOccurs="0" />
+              <xs:element name="PrecioLote" msprop:Generator_UserColumnName="PrecioLote" msprop:Generator_ColumnPropNameInTable="PrecioLoteColumn" msprop:Generator_ColumnPropNameInRow="PrecioLote" msprop:Generator_ColumnVarNameInTable="columnPrecioLote" type="xs:string" minOccurs="0" />
+              <xs:element name="NoPagos" msprop:Generator_UserColumnName="NoPagos" msprop:Generator_ColumnPropNameInTable="NoPagosColumn" msprop:Generator_ColumnPropNameInRow="NoPagos" msprop:Generator_ColumnVarNameInTable="columnNoPagos" type="xs:string" minOccurs="0" />
+              <xs:element name="Zona" msprop:Generator_UserColumnName="Zona" msprop:Generator_ColumnPropNameInTable="ZonaColumn" msprop:Generator_ColumnPropNameInRow="Zona" msprop:Generator_ColumnVarNameInTable="columnZona" type="xs:string" minOccurs="0" />
+              <xs:element name="IdentificadorLote" msprop:Generator_UserColumnName="IdentificadorLote" msprop:Generator_ColumnPropNameInTable="IdentificadorLoteColumn" msprop:Generator_ColumnPropNameInRow="IdentificadorLote" msprop:Generator_ColumnVarNameInTable="columnIdentificadorLote" type="xs:string" minOccurs="0" />
+              <xs:element name="ObsComportamientoPago" msprop:Generator_UserColumnName="ObsComportamientoPago" msprop:Generator_ColumnPropNameInTable="ObsComportamientoPagoColumn" msprop:Generator_ColumnPropNameInRow="ObsComportamientoPago" msprop:Generator_ColumnVarNameInTable="columnObsComportamientoPago" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtPartidas" msprop:Generator_RowClassName="dtPartidasRow" msprop:Generator_RowEvHandlerName="dtPartidasRowChangeEventHandler" msprop:Generator_RowDeletedName="dtPartidasRowDeleted" msprop:Generator_RowDeletingName="dtPartidasRowDeleting" msprop:Generator_RowEvArgName="dtPartidasRowChangeEvent" msprop:Generator_TablePropName="dtPartidas" msprop:Generator_RowChangedName="dtPartidasRowChanged" msprop:Generator_UserTableName="dtPartidas" msprop:Generator_RowChangingName="dtPartidasRowChanging" msprop:Generator_TableClassName="dtPartidasDataTable" msprop:Generator_TableVarName="tabledtPartidas">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="No." msprop:Generator_UserColumnName="No." msprop:Generator_ColumnPropNameInTable="_No_Column" msprop:Generator_ColumnPropNameInRow="_No_" msprop:Generator_ColumnVarNameInTable="_columnNo_" type="xs:string" minOccurs="0" />
+              <xs:element name="Monto" msprop:Generator_UserColumnName="Monto" msprop:Generator_ColumnPropNameInTable="MontoColumn" msprop:Generator_ColumnPropNameInRow="Monto" msprop:Generator_ColumnVarNameInTable="columnMonto" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_UserColumnName="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

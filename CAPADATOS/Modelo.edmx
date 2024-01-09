@@ -93,6 +93,10 @@
       <End Role="Excepcion" EntitySet="EXCEPCION" />
       <End Role="USUARIO" EntitySet="USUARIO" />
     </AssociationSet>
+    <AssociationSet Name="PAGOUSUARIO" Association="DB_JAADEModel.Store.PAGOUSUARIO">
+      <End Role="PAGO" EntitySet="PAGO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="USUARIO">
     <Key>
@@ -218,6 +222,7 @@
     <Property Name="CLIENTEId" Type="int" Nullable="false" />
     <Property Name="LOTEId" Type="int" Nullable="false" />
     <Property Name="Monto" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="USUARIORECIBEPAGOId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CLIENTE_LOTE">
     <Key>
@@ -476,6 +481,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PAGOUSUARIO">
+    <End Role="PAGO" Type="DB_JAADEModel.Store.PAGO" Multiplicity="*" />
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PAGO">
+        <PropertyRef Name="USUARIORECIBEPAGOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -566,6 +583,10 @@
           <EntitySet Name="EXCEPCION" EntityType="DB_JAADEModel.EXCEPCION" />
           <AssociationSet Name="ExcepcionUSUARIO" Association="DB_JAADEModel.ExcepcionUSUARIO">
             <End Role="Excepcion" EntitySet="EXCEPCION" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="PAGOUSUARIO" Association="DB_JAADEModel.PAGOUSUARIO">
+            <End Role="PAGO" EntitySet="PAGO" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
         </EntityContainer>
@@ -705,6 +726,8 @@
           <NavigationProperty Name="LOTE" Relationship="DB_JAADEModel.PAGOLOTE" FromRole="PAGO" ToRole="LOTE" />
           <Property Name="LOTEId" Type="Int32" Nullable="false" />
           <Property Name="Monto" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <NavigationProperty Name="USUARIO" Relationship="DB_JAADEModel.PAGOUSUARIO" FromRole="PAGO" ToRole="USUARIO" />
+          <Property Name="USUARIORECIBEPAGOId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="CLIENTE_LOTE">
           <Key>
@@ -969,6 +992,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="PAGOUSUARIO">
+          <End Type="DB_JAADEModel.PAGO" Role="PAGO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PAGO">
+              <PropertyRef Name="USUARIORECIBEPAGOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1108,6 +1143,7 @@
           <ScalarProperty Name="CLIENTEId" ColumnName="CLIENTEId" />
           <ScalarProperty Name="LOTEId" ColumnName="LOTEId" />
           <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="USUARIORECIBEPAGOId" ColumnName="USUARIORECIBEPAGOId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

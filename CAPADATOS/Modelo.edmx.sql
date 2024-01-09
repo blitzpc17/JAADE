@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/07/2024 13:29:22
+-- Date Created: 01/08/2024 11:25:05
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -70,6 +70,9 @@ IF OBJECT_ID(N'[dbo].[FK_CLIENTEESTADO]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ExcepcionUSUARIO]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EXCEPCION] DROP CONSTRAINT [FK_ExcepcionUSUARIO];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PAGOUSUARIO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PAGO] DROP CONSTRAINT [FK_PAGOUSUARIO];
 GO
 
 -- --------------------------------------------------
@@ -247,7 +250,8 @@ CREATE TABLE [dbo].[PAGO] (
     [FechaEmison] datetime  NOT NULL,
     [CLIENTEId] int  NOT NULL,
     [LOTEId] int  NOT NULL,
-    [Monto] decimal(18,7)  NOT NULL
+    [Monto] decimal(18,7)  NOT NULL,
+    [USUARIORECIBEPAGOId] int  NOT NULL
 );
 GO
 
@@ -658,6 +662,21 @@ GO
 CREATE INDEX [IX_FK_ExcepcionUSUARIO]
 ON [dbo].[EXCEPCION]
     ([USUARIOId]);
+GO
+
+-- Creating foreign key on [USUARIORECIBEPAGOId] in table 'PAGO'
+ALTER TABLE [dbo].[PAGO]
+ADD CONSTRAINT [FK_PAGOUSUARIO]
+    FOREIGN KEY ([USUARIORECIBEPAGOId])
+    REFERENCES [dbo].[USUARIO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PAGOUSUARIO'
+CREATE INDEX [IX_FK_PAGOUSUARIO]
+ON [dbo].[PAGO]
+    ([USUARIORECIBEPAGOId]);
 GO
 
 -- --------------------------------------------------

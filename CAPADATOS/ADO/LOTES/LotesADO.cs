@@ -37,15 +37,33 @@ namespace CAPADATOS.ADO.LOTES
             return contexto.LOTE.ToList();
         }      
 
-        public List<clsLotes> ListarLotes(int zonaId)
+        public List<clsLotes> ListarLotes(int id,bool busquedaCliente = false)
         {
-            string query = "SELECT "+
-                            "LT.Id, LT.Identificador, ZN.Nombre AS Zona, zn.Id ZonaId, "+
-                            "LT.MNorte, LT.MSur, LT.MEste, LT.MOeste, LT.CNorte, LT.CSur, "+
-                            "LT.CEste, Lt.COeste, LT.FechaRegistro, LT.Precio, LT.Manzana " +
-                            "FROM ZONA AS ZN "+
-                            "JOIN LOTE AS LT ON ZN.Id = LT.ZONAId " +
-                            "WHERE ZN.Id = "+zonaId; 
+            string query = "";
+
+            if (busquedaCliente)
+            {
+                query = "select " +
+                        "LT.Id, LT.Identificador, ZN.Nombre AS Zona, zn.Id as ZonaId, \r\n " +
+                        "LT.MNorte, LT.MSur, LT.MEste, LT.MOeste, LT.CNorte, LT.CSur, \r\n" +
+                        "LT.CEste, Lt.COeste, LT.FechaRegistro, LT.Precio, LT.Manzana \r\n" +
+                        "FROM CLIENTE_LOTE cl \r\n" +
+                        "JOIN CLIENTE cli ON cl.CLIENTEId = cli.Id \r\n" +
+                        "JOIN LOTE lt ON cl.LOTEId = lt.Id \r\n" +
+                        "JOIN ZONA ZN ON lt.ZONAId = zn.Id \r\n"+
+                        "WHERE cli.Id = "+id;
+            }
+            else
+            {
+                query = "SELECT " +
+                           "LT.Id, LT.Identificador, ZN.Nombre AS Zona, zn.Id as ZonaId, \r\n" +
+                           "LT.MNorte, LT.MSur, LT.MEste, LT.MOeste, LT.CNorte, LT.CSur, \r\n" +
+                           "LT.CEste, Lt.COeste, LT.FechaRegistro, LT.Precio, LT.Manzana \r\n" +
+                           "FROM ZONA AS ZN " +
+                           "JOIN LOTE AS LT ON ZN.Id = LT.ZONAId " +
+                           "WHERE ZN.Id = " + id;
+            }
+            
 
             return contexto.Database.SqlQuery<clsLotes>(query).ToList();
         }

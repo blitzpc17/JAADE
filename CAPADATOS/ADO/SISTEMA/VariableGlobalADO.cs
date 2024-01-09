@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,9 +42,29 @@ namespace CAPADATOS.ADO.SISTEMA
             return variable != null ? variable.Valor : null;
         }
 
+      
+
+        public int GenerarFolio(string nombreVariable)
+        {
+            var resultados = contexto.Database.SqlQuery<int>("exec SP_CREARFOLIO @NombreVariable",
+                    new SqlParameter("@NombreVariable", nombreVariable)).ToList();
+
+            if (resultados.Count > 0)
+            {
+                return resultados[0];
+            }
+
+            return 0;
+        }
+
+
         public void Dispose()
         {
             contexto.Dispose();
         }
+
+
+
+
     }
 }

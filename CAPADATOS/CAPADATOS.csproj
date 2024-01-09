@@ -60,6 +60,7 @@
     <Compile Include="ADO\PAGOS\AsignacionClienteLoteADO.cs" />
     <Compile Include="ADO\PAGOS\ClientesADO.cs" />
     <Compile Include="ADO\PAGOS\ContactoClienteADO.cs" />
+    <Compile Include="ADO\PAGOS\PagosADO.cs" />
     <Compile Include="ADO\PAGOS\Persona_AgendaADO.cs" />
     <Compile Include="ADO\SISTEMA\EstadoADO.cs" />
     <Compile Include="ADO\SISTEMA\ExcepcionADO.cs" />
@@ -81,10 +82,17 @@
     <Compile Include="Entidades\clsClienteLote.cs" />
     <Compile Include="Entidades\clsClientes.cs" />
     <Compile Include="Entidades\clsContratoParametros.cs" />
+    <Compile Include="Entidades\clsCredencialesFtp.cs" />
+    <Compile Include="Entidades\clsCredencialesTwilio.cs" />
     <Compile Include="Entidades\clsExcepciones.cs" />
     <Compile Include="Entidades\clsLotes.cs" />
     <Compile Include="Entidades\clsModulo.cs" />
+    <Compile Include="Entidades\clsPago.cs" />
+    <Compile Include="Entidades\clsTicketEncabezado.cs" />
+    <Compile Include="Entidades\clsTicketPago.cs" />
+    <Compile Include="Entidades\clsTicketPartida.cs" />
     <Compile Include="Entidades\clsUsuario.cs" />
+    <Compile Include="Entidades\clsWhatsApp.cs" />
     <Compile Include="ESTADO.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>

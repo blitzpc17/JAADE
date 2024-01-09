@@ -20,8 +20,10 @@ namespace CAPADATOS
         public int CLIENTEId { get; set; }
         public int LOTEId { get; set; }
         public decimal Monto { get; set; }
+        public int USUARIORECIBEPAGOId { get; set; }
     
         public virtual CLIENTE CLIENTE { get; set; }
         public virtual LOTE LOTE { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

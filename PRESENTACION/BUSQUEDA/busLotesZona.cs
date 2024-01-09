@@ -18,14 +18,24 @@ namespace PRESENTACION.BUSQUEDA
         private busLotesZonaLogica contexto;
         public clsLotes ObjEntidad;
         private int rowIndexSeleccionado = -1;
-        private int zonaId = -1;
+        private int zonaId = -1, clienteId;
+        private bool buscarPorCliente = false;
 
-        public busLotesZona(int zonaId)
+        public busLotesZona(int id, bool buscarPorCliente= false)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Normal;
-            this.zonaId = zonaId;
+            this.buscarPorCliente = buscarPorCliente;
+            if (this.buscarPorCliente)
+            {
+                clienteId = id;
+            }
+            else
+            {
+                zonaId = id;
+            }
+            
         }  
         private void InicializarForm()
         {
@@ -37,8 +47,16 @@ namespace PRESENTACION.BUSQUEDA
 
         public void Listar()
         {
-            contexto.ZonaId = zonaId;
-            contexto.ListarRegistros(); 
+            if (buscarPorCliente)
+            {
+                contexto.ClienteId = clienteId;
+            }
+            else
+            {
+                contexto.ZonaId = zonaId;
+            }
+
+            contexto.ListarRegistros(buscarPorCliente);
         }
 
         private void filtrar(int column, string termino)

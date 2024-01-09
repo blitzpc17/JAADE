@@ -55,5 +55,12 @@ namespace PRESENTACION.SISTEMA
             form.MdiParent = this;
             form.Show();
         }
+
+        private void capturaYConsultaToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            var form = new PAGOS.formPagos();
+            form.MdiParent = this;
+            form.Show();
+        }
     }
 }

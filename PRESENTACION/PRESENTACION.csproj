@@ -48,6 +48,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -72,6 +78,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +91,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Twilio, Version=6.15.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.6.15.2\lib\net451\Twilio.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUSQUEDA\busClientes.cs">
@@ -100,6 +113,12 @@
     </Compile>
     <Compile Include="BUSQUEDA\busModulos.Designer.cs">
       <DependentUpon>busModulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUSQUEDA\busPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUSQUEDA\busPagos.Designer.cs">
+      <DependentUpon>busPagos.cs</DependentUpon>
     </Compile>
     <Compile Include="BUSQUEDA\busUsuarios.cs">
       <SubType>Form</SubType>
@@ -137,11 +156,31 @@
     <Compile Include="PAGOS\formClientes.Designer.cs">
       <DependentUpon>formClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAGOS\formPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\formPagos.Designer.cs">
+      <DependentUpon>formPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\REPORTES\dtTicket.cs">
+      <DependentUpon>dtTicket.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\REPORTES\dtTicket.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtTicket.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PAGOS\REPORTES\repContratoLote.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PAGOS\REPORTES\repContratoLote.Designer.cs">
       <DependentUpon>repContratoLote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\REPORTES\repTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\REPORTES\repTicket.Designer.cs">
+      <DependentUpon>repTicket.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -206,6 +245,9 @@
     <EmbeddedResource Include="BUSQUEDA\busModulos.resx">
       <DependentUpon>busModulos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BUSQUEDA\busPagos.resx">
+      <DependentUpon>busPagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUSQUEDA\busUsuarios.resx">
       <DependentUpon>busUsuarios.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,10 +266,17 @@
     <EmbeddedResource Include="PAGOS\formClientes.resx">
       <DependentUpon>formClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\formPagos.resx">
+      <DependentUpon>formPagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\repContratoLote.resx">
       <DependentUpon>repContratoLote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\reportContrato.rdlc" />
+    <EmbeddedResource Include="PAGOS\REPORTES\repTicket.resx">
+      <DependentUpon>repTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\REPORTES\repTicketPago.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -263,6 +312,17 @@
       <DependentUpon>MDIMain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="PAGOS\REPORTES\dtTicket.xsc">
+      <DependentUpon>dtTicket.xsd</DependentUpon>
+    </None>
+    <None Include="PAGOS\REPORTES\dtTicket.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtTicket.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PAGOS\REPORTES\dtTicket.xss">
+      <DependentUpon>dtTicket.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -290,6 +350,7 @@
     <None Include="Resources\directorio-telefonico.png" />
     <None Include="Resources\agenda.png" />
     <None Include="Resources\reporte.png" />
+    <None Include="Resources\ticket.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

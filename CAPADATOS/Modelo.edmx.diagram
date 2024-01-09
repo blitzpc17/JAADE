@@ -38,6 +38,7 @@
         <AssociationConnector Association="DB_JAADEModel.CLIENTEESTADO" />
         <EntityTypeShape EntityType="DB_JAADEModel.EXCEPCION" Width="1.5" PointX="2.125" PointY="10.75" />
         <AssociationConnector Association="DB_JAADEModel.ExcepcionUSUARIO" />
+        <AssociationConnector Association="DB_JAADEModel.PAGOUSUARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

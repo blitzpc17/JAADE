@@ -17,16 +17,24 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
         public int index = -1;
         public int indexAux = -1;
         public int Column = 0;
-        public int ZonaId = -1;
+        public int ZonaId = -1, ClienteId = -1;
 
         public busLotesZonaLogica()
         {
             contexto = new LotesADO();
         }
 
-        public void ListarRegistros()
+        public void ListarRegistros(bool busquedaCliente= false)
         {
-            LstLote = contexto.ListarLotes(ZonaId);
+            if (busquedaCliente)
+            {
+                LstLote = contexto.ListarLotes(ClienteId, true);
+            }
+            else
+            {
+                LstLote = contexto.ListarLotes(ZonaId);
+            }
+            
         }
 
         public clsLotes ObtenerRegistro(int id)
