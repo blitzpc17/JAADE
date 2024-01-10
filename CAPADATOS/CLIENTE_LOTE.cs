@@ -19,9 +19,12 @@ namespace CAPADATOS
         public int CLIENTEId { get; set; }
         public System.DateTime FechaRegistro { get; set; }
         public int USUARIOId { get; set; }
-        public decimal PagoInicial { get; set; }
         public decimal MontoRestante { get; set; }
         public int NoPagos { get; set; }
+        public bool ExcedePlazoPago { get; set; }
+        public string FechaExcedePlazo { get; set; }
+        public Nullable<decimal> MontoExcedePlazo { get; set; }
+        public Nullable<int> NoPagosExcede { get; set; }
     
         public virtual LOTE LOTE { get; set; }
         public virtual CLIENTE CLIENTE { get; set; }

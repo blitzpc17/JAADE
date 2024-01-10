@@ -65,6 +65,7 @@
     <Compile Include="ADO\SISTEMA\EstadoADO.cs" />
     <Compile Include="ADO\SISTEMA\ExcepcionADO.cs" />
     <Compile Include="ADO\SISTEMA\ModulosADO.cs" />
+    <Compile Include="ADO\SISTEMA\ModuloPermisoADO.cs" />
     <Compile Include="ADO\SISTEMA\PersonaADO.cs" />
     <Compile Include="ADO\SISTEMA\RolesADO.cs" />
     <Compile Include="ADO\SISTEMA\UsuariosADO.cs" />
@@ -78,15 +79,25 @@
     <Compile Include="CLIENTE_LOTE.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="CONTROL.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONTROL_PERMISO.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\clsAgenda.cs" />
     <Compile Include="Entidades\clsClienteLote.cs" />
     <Compile Include="Entidades\clsClientes.cs" />
     <Compile Include="Entidades\clsContratoParametros.cs" />
+    <Compile Include="Entidades\clsCorreo.cs" />
+    <Compile Include="Entidades\clsCredencialesCorreo.cs" />
     <Compile Include="Entidades\clsCredencialesFtp.cs" />
     <Compile Include="Entidades\clsCredencialesTwilio.cs" />
     <Compile Include="Entidades\clsExcepciones.cs" />
+    <Compile Include="Entidades\clsInformacionPagoLote.cs" />
     <Compile Include="Entidades\clsLotes.cs" />
     <Compile Include="Entidades\clsModulo.cs" />
+    <Compile Include="Entidades\clsModuloPermiso.cs" />
     <Compile Include="Entidades\clsPago.cs" />
     <Compile Include="Entidades\clsTicketEncabezado.cs" />
     <Compile Include="Entidades\clsTicketPago.cs" />

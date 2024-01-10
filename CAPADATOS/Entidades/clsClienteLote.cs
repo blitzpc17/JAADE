@@ -17,7 +17,7 @@ namespace CAPADATOS.Entidades
         public DateTime FechaAsignacion { get; set; }
         public int? Manzana { get; set; }
         public decimal PrecioLote { get; set; }
-        public decimal PagoInicial { get; set; }    
+       // public decimal PagoInicial { get; set; }    
         public int NoPagos { get; set; }    
         public decimal MontoRestante { get; set; }  
         

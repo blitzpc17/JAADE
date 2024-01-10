@@ -351,6 +351,7 @@
     <None Include="Resources\agenda.png" />
     <None Include="Resources\reporte.png" />
     <None Include="Resources\ticket.png" />
+    <None Include="Resources\categoria.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

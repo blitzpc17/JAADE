@@ -167,7 +167,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "busLotesZona";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "busLotesZona";
+            this.Text = "Búsqueda - Lotes";
             this.Load += new System.EventHandler(this.busLotesZona_Load);
             this.Shown += new System.EventHandler(this.busLotesZona_Shown);
             this.groupBox1.ResumeLayout(false);

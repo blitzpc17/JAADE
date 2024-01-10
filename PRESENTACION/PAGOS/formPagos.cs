@@ -16,7 +16,7 @@ namespace PRESENTACION.PAGOS
     public partial class formPagos : Form
     {
         
-        private formPagosLogica contexto;       
+        private formPagosLogica contexto;          
 
         public formPagos()
         {
@@ -79,7 +79,7 @@ namespace PRESENTACION.PAGOS
         private void btnUsuarioSolicita_Click(object sender, EventArgs e)
         {
             //filtre pagos por cliente
-            busPagos busP = null;
+            busPagos busP;
             if (contexto.ObjCliente == null)
             {
                 busP = new busPagos();
@@ -102,8 +102,47 @@ namespace PRESENTACION.PAGOS
 
         private void SetDataPago()
         {
+            //llenar datos del objcliente y objlote
+            contexto.ObjCliente = contexto.ObtenerDataCliente(contexto.ObjPagoDato.ClienteId);
+            contexto.ObjLotes = contexto.ObtenerLoteData(contexto.ObjPagoDato.LoteId);
             txtNumeroReferencia.Text = contexto.ObjPagoDato.NumeroReferencia;
             txtFechaRegistro.Text = contexto.ObjPagoDato.FechaEmision.ToString("dd-MM-yyyy HH:mm:ss");
+            CalcularDatosPago();
+        }
+
+        private void CalcularDatosPago()
+        {
+            contexto.ObjInformacionPagoLote = contexto.ObtenerDataPagoLote(contexto.ObjCliente.Id, contexto.ObjLotes.Id);
+
+            txtEstado.Text = DefinirEstadoPagoLote();
+            txtTotalPagos.Text = contexto.ObjInformacionPagoLote.NumeroPagos.ToString("N0");
+            txtPagosRealizados.Text = contexto.ObjInformacionPagoLote.PagosRealizados.ToString("N0");
+            txtNoPagoActual.Text = contexto.ObjInformacionPagoLote.PagoActual.ToString("N0");            
+            txtSaldoFavor.Text = contexto.ObjInformacionPagoLote.SaldoFavor.ToString("N2");
+            txtSaldoContra.Text = contexto.ObjInformacionPagoLote.SaldoContra.ToString("N2");
+            txtMontoMensualidad.Text = contexto.ObjInformacionPagoLote.MontoMensualidad.ToString("N2");
+            txtMontoAtrasado.Text = contexto.ObjInformacionPagoLote.MontoAtrasado.ToString("N2");
+            txtMontoExcedePlazo.Text = contexto.ObjInformacionPagoLote.MontoExcedePlazo.ToString("N2");
+            txtTotalPagar.Text = contexto.ObjInformacionPagoLote.TotalPagar.ToString("N2");
+            
+        }
+        private void MarcarExcedioPlazo()
+        {
+            contexto.ActualizarExcedioPlazoPagoLote(contexto.ObjLotes.Id, contexto.ObjCliente.Id, true);
+        }
+        private string DefinirEstadoPagoLote()
+        {
+            if (contexto.ObjInformacionPagoLote.ExcedePlazoPago)
+            {
+                return "Número de pagos excedido.";
+            }else if (contexto.ObjInformacionPagoLote.SaldoContra>0)
+            {
+                return "Atraso en pagos.";
+            }
+            else
+            {
+                return "Sin adeudos.";
+            }
         }
 
         private void Guardar()
@@ -115,10 +154,10 @@ namespace PRESENTACION.PAGOS
             }else if (contexto.ObjLotes == null)
             {
                 _errMsj = "No se ha seleccionado el lote.";
-            }else if (string.IsNullOrEmpty(txtMonto.Text))
+            }else if (string.IsNullOrEmpty(txtMontoRecibido.Text))
             {
                 _errMsj = "No ha ingresado el monto a pagar";
-            }else if (!Global.EsValorDecimal(txtMonto.Text))
+            }else if (!Global.EsValorDecimal(txtMontoRecibido.Text))
             {
                 _errMsj = "Ha ingresado un valor no válido en el monto.";
             }
@@ -136,7 +175,7 @@ namespace PRESENTACION.PAGOS
                 }
                 contexto.ObjPago.CLIENTEId = contexto.ObjCliente.Id;
                 contexto.ObjPago.LOTEId = contexto.ObjLotes.Id;
-                contexto.ObjPago.Monto = Convert.ToDecimal(txtMonto.Text);
+                contexto.ObjPago.Monto = Convert.ToDecimal(txtMontoRecibido.Text);
                 contexto.ObjPago.USUARIORECIBEPAGOId = Global.ObjUsuario.Id;
                 contexto.ObjPago.FechaEmison = Global.FechaServidor();
 

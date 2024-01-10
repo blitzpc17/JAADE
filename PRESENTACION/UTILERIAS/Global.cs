@@ -2,6 +2,7 @@
 using CAPADATOS.ADO.SISTEMA;
 using CAPADATOS.Entidades;
 using CAPALOGICA.LOGICAS.SISTEMA;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -125,11 +126,14 @@ namespace PRESENTACION.UTILERIAS
             
         }
 
-        public static bool SubirArchivoFtp(clsCredencialesFtp objCredenciales, string pathLocal, string pathRemoto)
+        public static bool SubirArchivoFtp(Enumeraciones.VariablesGlobales variableCredenciales, string pathLocal, string pathRemoto)
         {
-            string ftpServer = objCredenciales.Server;
-            string ftpUsername = objCredenciales.Username;
-            string ftpPassword = objCredenciales.Password;
+            clsCredencialesFtp _ObjCredencialesFtp =
+               JsonConvert.DeserializeObject<clsCredencialesFtp>(DevulveVariableGlobal(variableCredenciales));
+
+            string ftpServer =   _ObjCredencialesFtp.Server;
+            string ftpUsername = _ObjCredencialesFtp.Username;
+            string ftpPassword = _ObjCredencialesFtp.Password;
 
             // Ruta del archivo local que deseas subir
             string archivoLocal = pathLocal;
@@ -161,11 +165,14 @@ namespace PRESENTACION.UTILERIAS
             }
         }
 
-        public static bool EliminarArchivoFtp(clsCredencialesFtp objCredenciales, string pathRemoto)
+        public static bool EliminarArchivoFtp(Enumeraciones.VariablesGlobales variableCredenciales, string pathRemoto)
         {
-            string ftpServer = objCredenciales.Server;
-            string ftpUsername = objCredenciales.Username;
-            string ftpPassword = objCredenciales.Password;
+            clsCredencialesFtp _ObjCredencialesFtp = 
+                JsonConvert.DeserializeObject<clsCredencialesFtp>(DevulveVariableGlobal(variableCredenciales));
+
+            string ftpServer =   _ObjCredencialesFtp.Server;
+            string ftpUsername = _ObjCredencialesFtp.Username;
+            string ftpPassword = _ObjCredencialesFtp.Password;            
 
             // Ruta en el servidor FTP del archivo que deseas eliminar
             string rutaRemota = pathRemoto;
@@ -189,10 +196,12 @@ namespace PRESENTACION.UTILERIAS
             }
         }
 
-        public static bool EnviarWhatsApp(clsCredencialesTwilio objCredenciales, clsWhatsApp objWhats)
+        public static bool EnviarWhatsApp(Enumeraciones.VariablesGlobales variableCredenciales, clsWhatsApp objWhats)
         {
-            string accountSid = objCredenciales.AccountSId;
-            string authToken = objCredenciales.AccountSId;
+            clsCredencialesTwilio _ObjCredenciales = 
+                JsonConvert.DeserializeObject<clsCredencialesTwilio>(DevulveVariableGlobal(variableCredenciales));
+            string accountSid = _ObjCredenciales.AccountSId;
+            string authToken = _ObjCredenciales.AccountSId;
 
             TwilioClient.Init(accountSid, authToken);
 
@@ -204,7 +213,7 @@ namespace PRESENTACION.UTILERIAS
             {
                 var message = MessageResource.Create(
                     body: objWhats.Cuerpo,
-                    from: new PhoneNumber("whatsapp:+52"+objCredenciales.TelefonoSalida),
+                    from: new PhoneNumber("whatsapp:+52"+_ObjCredenciales.TelefonoSalida),
                     to: new PhoneNumber(recipientPhoneNumber),
                     mediaUrl: new List<Uri> { new Uri(objWhats.PathMediaFile) }
                 );
@@ -218,20 +227,22 @@ namespace PRESENTACION.UTILERIAS
             }
         }
 
-        public static bool EnviarCorreo()
+        public static bool EnviarCorreo(Enumeraciones.VariablesGlobales VariableCredencial, clsCorreo objCorreo)
         {
+            clsCredencialesCorreo _ObjCorreoCredenciales = 
+                JsonConvert.DeserializeObject<clsCredencialesCorreo>(DevulveVariableGlobal(VariableCredencial));
             // Configurar la información del correo electrónico y el servidor SMTP
-            string fromAddress = "tuCorreo@gmail.com";
-            string toAddress = "destinatario@example.com";
-            string subject = "Asunto del Correo";
-            string body = "Cuerpo del Correo";
-            string smtpHost = "smtp.gmail.com"; // Puedes cambiarlo según tu proveedor de correo
-            int smtpPort = 587; // Puedes cambiarlo según tu proveedor de correo
-            string smtpUsername = "tuCorreo@gmail.com";
-            string smtpPassword = "tuContraseña";
+            string fromAddress = _ObjCorreoCredenciales.EmailBase;
+            List<string> toAddress = objCorreo.CorreoDestino;
+            string subject = objCorreo.Asunto;
+            string body = objCorreo.Cuerpo;
+            string smtpHost = _ObjCorreoCredenciales.Hostname;
+            int smtpPort = _ObjCorreoCredenciales.Puerto;
+            string smtpUsername = _ObjCorreoCredenciales.SmtpUsername;
+            string smtpPassword = _ObjCorreoCredenciales.SmtpPassword;
 
             // Ruta del archivo PDF que deseas adjuntar
-            string pdfFilePath = @"C:\Ruta\Al\Archivo.pdf";
+            List<string> pdfFilePath = objCorreo.PathAttach; //@"C:\Ruta\Al\Archivo.pdf";
 
             // Crear el cliente SMTP y configurar las credenciales
             using (SmtpClient smtpClient = new SmtpClient(smtpHost, smtpPort))
@@ -244,13 +255,19 @@ namespace PRESENTACION.UTILERIAS
                 using (MailMessage mailMessage = new MailMessage())
                 {
                     mailMessage.From = new MailAddress(fromAddress);
-                    mailMessage.To.Add(toAddress);
+                    foreach(var item in toAddress)
+                    {
+                        mailMessage.To.Add(item);
+                    }                    
                     mailMessage.Subject = subject;
                     mailMessage.Body = body;
 
                     // Adjuntar el archivo PDF
-                    Attachment pdfAttachment = new Attachment(pdfFilePath);
-                    mailMessage.Attachments.Add(pdfAttachment);
+                    foreach(var file in pdfFilePath)
+                    {
+                        Attachment pdfAttachment = new Attachment(file);
+                        mailMessage.Attachments.Add(pdfAttachment);
+                    }                  
 
                     try
                     {
@@ -276,8 +293,8 @@ namespace PRESENTACION.UTILERIAS
 
         public static string ObtenerFolio(string tipo)
         {
-            string _Prefijo = null, _NombreVariable = null;
-            int _Longitud = 0;
+            string _Prefijo, _NombreVariable;
+            int _Longitud;
             
             switch(tipo){
                 case "PAGO":
@@ -306,11 +323,24 @@ namespace PRESENTACION.UTILERIAS
                 if (consecutivo > 0)
                 {
                     _folio = consecutivo.ToString("N0");
-                    _folio.PadRight(longitud, '0');
+                    _folio = _folio.PadLeft(longitud, '0');
                     return Prefijo+_folio;
                 }
                 return null;
             }
+        }
+
+        public static int ObtenerDiferenciaFechas(string Por, DateTime FechaInicial, DateTime FechaFinal)
+        {
+            return FechaFinal.Year - FechaInicial.Year * 12 + FechaFinal.Month - FechaInicial.Month ;
+        }
+
+        public static string ObtenerNombreUsuario(USUARIO obj)
+        {
+            PERSONA objPersona;
+            objPersona = obj.PERSONA;
+            if (objPersona != null) return objPersona.Nombres + " " + objPersona.ApellidoPaterno + " " + objPersona.ApellidoMaterno;
+            return null;
         }
 
 

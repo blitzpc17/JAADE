@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/08/2024 11:25:05
+-- Date Created: 01/10/2024 11:20:16
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -74,6 +74,21 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PAGOUSUARIO]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PAGO] DROP CONSTRAINT [FK_PAGOUSUARIO];
 GO
+IF OBJECT_ID(N'[dbo].[FK_LOTEESTADO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LOTE] DROP CONSTRAINT [FK_LOTEESTADO];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CONTROLMODULO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CONTROL] DROP CONSTRAINT [FK_CONTROLMODULO];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CONTROL_PERMISOCONTROL]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CONTROL_PERMISO] DROP CONSTRAINT [FK_CONTROL_PERMISOCONTROL];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CONTROL_PERMISOUSUARIO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CONTROL_PERMISO] DROP CONSTRAINT [FK_CONTROL_PERMISOUSUARIO];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CONTROL_PERMISOUSUARIO1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CONTROL_PERMISO] DROP CONSTRAINT [FK_CONTROL_PERMISOUSUARIO1];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -124,6 +139,12 @@ GO
 IF OBJECT_ID(N'[dbo].[EXCEPCION]', 'U') IS NOT NULL
     DROP TABLE [dbo].[EXCEPCION];
 GO
+IF OBJECT_ID(N'[dbo].[CONTROL]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CONTROL];
+GO
+IF OBJECT_ID(N'[dbo].[CONTROL_PERMISO]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CONTROL_PERMISO];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -163,9 +184,9 @@ GO
 -- Creating table 'MODULO'
 CREATE TABLE [dbo].[MODULO] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Nombre] nvarchar(max)  NOT NULL,
-    [Ruta] nvarchar(max)  NULL,
-    [Icono] nvarchar(max)  NULL,
+    [Nombre] nvarchar(120)  NOT NULL,
+    [Ruta] nvarchar(450)  NULL,
+    [Icono] nvarchar(250)  NULL,
     [MODULOId] int  NULL
 );
 GO
@@ -180,7 +201,7 @@ GO
 -- Creating table 'MODULO_PERMISO'
 CREATE TABLE [dbo].[MODULO_PERMISO] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [FechaRegistro] nvarchar(max)  NOT NULL,
+    [FechaRegistro] datetime  NOT NULL,
     [MODULOId] int  NOT NULL,
     [USUARIOId] int  NOT NULL,
     [Motivo] nvarchar(max)  NOT NULL,
@@ -239,19 +260,23 @@ CREATE TABLE [dbo].[LOTE] (
     [CEste] nvarchar(350)  NULL,
     [FechaRegistro] datetime  NOT NULL,
     [Precio] decimal(18,7)  NOT NULL,
-    [Manzana] int  NULL
+    [Manzana] int  NULL,
+    [ESTADOId] int  NOT NULL
 );
 GO
 
 -- Creating table 'PAGO'
 CREATE TABLE [dbo].[PAGO] (
     [Id] int IDENTITY(1,1) NOT NULL,
+    [NumeroPago] nvarchar(max)  NOT NULL,
     [NumeroReferencia] nchar(13)  NOT NULL,
     [FechaEmison] datetime  NOT NULL,
     [CLIENTEId] int  NOT NULL,
     [LOTEId] int  NOT NULL,
     [Monto] decimal(18,7)  NOT NULL,
-    [USUARIORECIBEPAGOId] int  NOT NULL
+    [USUARIORECIBEPAGOId] int  NOT NULL,
+    [SaldoFavor] decimal(18,7)  NOT NULL,
+    [SaldoContra] decimal(18,7)  NOT NULL
 );
 GO
 
@@ -262,9 +287,12 @@ CREATE TABLE [dbo].[CLIENTE_LOTE] (
     [CLIENTEId] int  NOT NULL,
     [FechaRegistro] datetime  NOT NULL,
     [USUARIOId] int  NOT NULL,
-    [PagoInicial] decimal(18,7)  NOT NULL,
     [MontoRestante] decimal(18,7)  NOT NULL,
-    [NoPagos] int  NOT NULL
+    [NoPagos] int  NOT NULL,
+    [ExcedePlazoPago] bit  NOT NULL,
+    [FechaExcedePlazo] nvarchar(max)  NULL,
+    [MontoExcedePlazo] decimal(18,7)  NULL,
+    [NoPagosExcede] int  NULL
 );
 GO
 
@@ -279,8 +307,8 @@ GO
 -- Creating table 'VARIABLEGLOBAL'
 CREATE TABLE [dbo].[VARIABLEGLOBAL] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Nombre] nchar(65)  NOT NULL,
-    [Tipo] nchar(65)  NOT NULL,
+    [Nombre] nvarchar(65)  NOT NULL,
+    [Tipo] nvarchar(10)  NOT NULL,
     [Valor] nvarchar(max)  NOT NULL
 );
 GO
@@ -293,6 +321,29 @@ CREATE TABLE [dbo].[EXCEPCION] (
     [Resumen] nvarchar(max)  NOT NULL,
     [Detalle] nvarchar(max)  NOT NULL,
     [USUARIOId] int  NOT NULL
+);
+GO
+
+-- Creating table 'CONTROL'
+CREATE TABLE [dbo].[CONTROL] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Nombre] nvarchar(65)  NOT NULL,
+    [FechaRegistro] datetime  NOT NULL,
+    [Baja] bit  NOT NULL,
+    [MODULOId] int  NOT NULL
+);
+GO
+
+-- Creating table 'CONTROL_PERMISO'
+CREATE TABLE [dbo].[CONTROL_PERMISO] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [CONTROLId] int  NOT NULL,
+    [USUARIOSOLICITAId] int  NOT NULL,
+    [USUARIOASIGNOId] int  NOT NULL,
+    [Visible] nvarchar(max)  NOT NULL,
+    [Enabled] nvarchar(max)  NOT NULL,
+    [Readonly] bit  NOT NULL,
+    [FechaRegistro] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -387,6 +438,18 @@ GO
 -- Creating primary key on [Id] in table 'EXCEPCION'
 ALTER TABLE [dbo].[EXCEPCION]
 ADD CONSTRAINT [PK_EXCEPCION]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CONTROL'
+ALTER TABLE [dbo].[CONTROL]
+ADD CONSTRAINT [PK_CONTROL]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CONTROL_PERMISO'
+ALTER TABLE [dbo].[CONTROL_PERMISO]
+ADD CONSTRAINT [PK_CONTROL_PERMISO]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -677,6 +740,81 @@ GO
 CREATE INDEX [IX_FK_PAGOUSUARIO]
 ON [dbo].[PAGO]
     ([USUARIORECIBEPAGOId]);
+GO
+
+-- Creating foreign key on [ESTADOId] in table 'LOTE'
+ALTER TABLE [dbo].[LOTE]
+ADD CONSTRAINT [FK_LOTEESTADO]
+    FOREIGN KEY ([ESTADOId])
+    REFERENCES [dbo].[ESTADO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LOTEESTADO'
+CREATE INDEX [IX_FK_LOTEESTADO]
+ON [dbo].[LOTE]
+    ([ESTADOId]);
+GO
+
+-- Creating foreign key on [MODULOId] in table 'CONTROL'
+ALTER TABLE [dbo].[CONTROL]
+ADD CONSTRAINT [FK_CONTROLMODULO]
+    FOREIGN KEY ([MODULOId])
+    REFERENCES [dbo].[MODULO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CONTROLMODULO'
+CREATE INDEX [IX_FK_CONTROLMODULO]
+ON [dbo].[CONTROL]
+    ([MODULOId]);
+GO
+
+-- Creating foreign key on [CONTROLId] in table 'CONTROL_PERMISO'
+ALTER TABLE [dbo].[CONTROL_PERMISO]
+ADD CONSTRAINT [FK_CONTROL_PERMISOCONTROL]
+    FOREIGN KEY ([CONTROLId])
+    REFERENCES [dbo].[CONTROL]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CONTROL_PERMISOCONTROL'
+CREATE INDEX [IX_FK_CONTROL_PERMISOCONTROL]
+ON [dbo].[CONTROL_PERMISO]
+    ([CONTROLId]);
+GO
+
+-- Creating foreign key on [USUARIOSOLICITAId] in table 'CONTROL_PERMISO'
+ALTER TABLE [dbo].[CONTROL_PERMISO]
+ADD CONSTRAINT [FK_CONTROL_PERMISOUSUARIO]
+    FOREIGN KEY ([USUARIOSOLICITAId])
+    REFERENCES [dbo].[USUARIO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CONTROL_PERMISOUSUARIO'
+CREATE INDEX [IX_FK_CONTROL_PERMISOUSUARIO]
+ON [dbo].[CONTROL_PERMISO]
+    ([USUARIOSOLICITAId]);
+GO
+
+-- Creating foreign key on [USUARIOASIGNOId] in table 'CONTROL_PERMISO'
+ALTER TABLE [dbo].[CONTROL_PERMISO]
+ADD CONSTRAINT [FK_CONTROL_PERMISOUSUARIO1]
+    FOREIGN KEY ([USUARIOASIGNOId])
+    REFERENCES [dbo].[USUARIO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CONTROL_PERMISOUSUARIO1'
+CREATE INDEX [IX_FK_CONTROL_PERMISOUSUARIO1]
+ON [dbo].[CONTROL_PERMISO]
+    ([USUARIOASIGNOId]);
 GO
 
 -- --------------------------------------------------

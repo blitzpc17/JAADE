@@ -18,7 +18,7 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
         public int indexAux = -1;
         public int Column = 0;
 
-        public void BusquedaUsuariosLogica()
+        public busUsuariosLogica()
         {
             contexto = new UsuariosADO();
         }

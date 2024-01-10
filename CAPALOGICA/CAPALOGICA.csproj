@@ -56,6 +56,7 @@
     <Compile Include="LOGICAS\SISTEMA\clsDatosJaade.cs" />
     <Compile Include="LOGICAS\SISTEMA\formExcepcionesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formModulosLogica.cs" />
+    <Compile Include="LOGICAS\SISTEMA\formPermisoLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formUsuariosLogica.cs" />
     <Compile Include="LOGICAS\LOTES\formZonaLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\UtileriasLogica.cs" />

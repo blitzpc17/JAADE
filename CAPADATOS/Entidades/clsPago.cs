@@ -21,6 +21,10 @@ namespace CAPADATOS.Entidades
         public decimal Monto { get; set; }
         public int UsuarioRecibeId { get; set; }
         public string Usuario { get; set; } 
+        public int NoPagos { get; set; }
+        public decimal PrecioLote { get; set; }
+        public int PagosRealizados { get; set; }
+        public decimal SaldoAcumulado { get; set; }
 
 
     }

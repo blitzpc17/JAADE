@@ -1,4 +1,5 @@
 ﻿using CAPADATOS;
+using CAPADATOS.ADO.LOTES;
 using CAPADATOS.ADO.PAGOS;
 using CAPADATOS.Entidades;
 using System;
@@ -12,6 +13,10 @@ namespace CAPALOGICA.LOGICAS.PAGOS
     public class formPagosLogica
     {
         private PagosADO contexto;
+        private LotesADO contextoLotes;
+        private ClientesADO contextoClientes;
+        
+        
         public List<clsPago> LstPagos;
         public List<clsPago> LstPagosAux;
 
@@ -19,14 +24,19 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public clsClientes ObjCliente;
         public clsLotes ObjLotes;
         public clsPago ObjPagoDato;
+        public clsInformacionPagoLote ObjInformacionPagoLote;
         public PAGO ObjPago;
         public clsUsuario ObjUsuarioRecibe;   
 
-        public int Index=-1;
+        public int Index=-1, NoPagoEstimadoActual;
+
+        public decimal SaldoEncontra, SaldoFavor, MontoAtrasado, CargoAdicional;   
 
         public formPagosLogica()
         {
             contexto = new PagosADO();
+            contextoLotes = new LotesADO();
+            contextoClientes = new ClientesADO();
         }
 
         public void InstanciarPago()
@@ -51,8 +61,31 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         {
             return contexto.ListarPagos(clienteId);
         }
-     
 
+        public clsClientes ObtenerDataCliente(int idCliente)
+        {
+            return contextoClientes.ObtenerDataCliente(idCliente);
+        }
+
+        public clsLotes ObtenerLoteData(int idLote)
+        {
+            return contextoLotes.ObtenerLoteData(idLote);
+        }
+
+        public clsInformacionPagoLote ObtenerDataPagoLote(int idCliente, int idLote)
+        {
+            return contextoLotes.ObtenerDataPagoLote(idCliente, idLote);
+        }
+        public bool ActualizarExcedioPlazoPagoLote(int idLote, int clienteId, bool excedioPlazo)
+        {
+            using (var contexto = new AsignacionClienteLoteADO())
+            {
+                CLIENTE_LOTE objAsignacion = contexto.ObtenerAsignacionClienteLote(clienteId, idLote);
+                objAsignacion.ExcedePlazoPago = excedioPlazo;
+                contexto.Guardar();
+            }
+            return true;
+        }
         public bool Filtrar(int column, string termino)
         {
             if (LstPagosAux == null) LstPagosAux = LstPagos;
@@ -62,8 +95,6 @@ namespace CAPALOGICA.LOGICAS.PAGOS
                 case 1:
                     Index = LstPagosAux.FindIndex(x => x.NumeroReferencia.StartsWith(termino));
                     break;
-             
-
 
                 default:
                     Index = -1;

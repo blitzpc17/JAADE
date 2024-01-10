@@ -163,7 +163,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "busPagos";
-            this.Text = "busPagos";
+            this.Text = "Búsqueda - Pagos";
             this.Load += new System.EventHandler(this.busPagos_Load);
             this.Shown += new System.EventHandler(this.busPagos_Shown);
             this.groupBox1.ResumeLayout(false);

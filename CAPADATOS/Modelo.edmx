@@ -21,6 +21,8 @@
     <EntitySet Name="PERSONA_AGENDA" EntityType="DB_JAADEModel.Store.PERSONA_AGENDA" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="VARIABLEGLOBAL" EntityType="DB_JAADEModel.Store.VARIABLEGLOBAL" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EXCEPCION" EntityType="DB_JAADEModel.Store.EXCEPCION" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CONTROL" EntityType="DB_JAADEModel.Store.CONTROL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CONTROL_PERMISO" EntityType="DB_JAADEModel.Store.CONTROL_PERMISO" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="USUARIOESTADO" Association="DB_JAADEModel.Store.USUARIOESTADO">
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="ESTADO" EntitySet="ESTADO" />
@@ -97,6 +99,26 @@
       <End Role="PAGO" EntitySet="PAGO" />
       <End Role="USUARIO" EntitySet="USUARIO" />
     </AssociationSet>
+    <AssociationSet Name="LOTEESTADO" Association="DB_JAADEModel.Store.LOTEESTADO">
+      <End Role="LOTE" EntitySet="LOTE" />
+      <End Role="ESTADO" EntitySet="ESTADO" />
+    </AssociationSet>
+    <AssociationSet Name="CONTROLMODULO" Association="DB_JAADEModel.Store.CONTROLMODULO">
+      <End Role="CONTROL" EntitySet="CONTROL" />
+      <End Role="MODULO" EntitySet="MODULO" />
+    </AssociationSet>
+    <AssociationSet Name="CONTROL_PERMISOCONTROL" Association="DB_JAADEModel.Store.CONTROL_PERMISOCONTROL">
+      <End Role="CONTROL_PERMISO" EntitySet="CONTROL_PERMISO" />
+      <End Role="CONTROL" EntitySet="CONTROL" />
+    </AssociationSet>
+    <AssociationSet Name="CONTROL_PERMISOUSUARIO" Association="DB_JAADEModel.Store.CONTROL_PERMISOUSUARIO">
+      <End Role="CONTROL_PERMISO" EntitySet="CONTROL_PERMISO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="CONTROL_PERMISOUSUARIO1" Association="DB_JAADEModel.Store.CONTROL_PERMISOUSUARIO1">
+      <End Role="CONTROL_PERMISO" EntitySet="CONTROL_PERMISO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="USUARIO">
     <Key>
@@ -134,9 +156,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ruta" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Icono" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="120" />
+    <Property Name="Ruta" Type="nvarchar" Nullable="true" MaxLength="450" />
+    <Property Name="Icono" Type="nvarchar" Nullable="true" MaxLength="250" />
     <Property Name="MODULOId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="ROL">
@@ -151,7 +173,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FechaRegistro" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="MODULOId" Type="int" Nullable="false" />
     <Property Name="USUARIOId" Type="int" Nullable="false" />
     <Property Name="Motivo" Type="nvarchar(max)" Nullable="false" />
@@ -211,18 +233,22 @@
     <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="Precio" Type="decimal" Nullable="false" Precision="18" Scale="7" />
     <Property Name="Manzana" Type="int" Nullable="true" />
+    <Property Name="ESTADOId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PAGO">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroPago" Type="nvarchar(max)" Nullable="false" />
     <Property Name="NumeroReferencia" Type="nchar" Nullable="false" MaxLength="13" />
     <Property Name="FechaEmison" Type="datetime" Nullable="false" />
     <Property Name="CLIENTEId" Type="int" Nullable="false" />
     <Property Name="LOTEId" Type="int" Nullable="false" />
     <Property Name="Monto" Type="decimal" Nullable="false" Precision="18" Scale="7" />
     <Property Name="USUARIORECIBEPAGOId" Type="int" Nullable="false" />
+    <Property Name="SaldoFavor" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="SaldoContra" Type="decimal" Nullable="false" Precision="18" Scale="7" />
   </EntityType>
   <EntityType Name="CLIENTE_LOTE">
     <Key>
@@ -233,9 +259,12 @@
     <Property Name="CLIENTEId" Type="int" Nullable="false" />
     <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="USUARIOId" Type="int" Nullable="false" />
-    <Property Name="PagoInicial" Type="decimal" Nullable="false" Precision="18" Scale="7" />
     <Property Name="MontoRestante" Type="decimal" Nullable="false" Precision="18" Scale="7" />
     <Property Name="NoPagos" Type="int" Nullable="false" />
+    <Property Name="ExcedePlazoPago" Type="bit" Nullable="false" />
+    <Property Name="FechaExcedePlazo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="MontoExcedePlazo" Type="decimal" Nullable="true" Precision="18" Scale="7" />
+    <Property Name="NoPagosExcede" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="PERSONA_AGENDA">
     <Key>
@@ -250,8 +279,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nchar" Nullable="false" MaxLength="65" />
-    <Property Name="Tipo" Type="nchar" Nullable="false" MaxLength="65" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="65" />
+    <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="10" />
     <Property Name="Valor" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="EXCEPCION">
@@ -264,6 +293,29 @@
     <Property Name="Resumen" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Detalle" Type="nvarchar(max)" Nullable="false" />
     <Property Name="USUARIOId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTROL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="65" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="Baja" Type="bit" Nullable="false" />
+    <Property Name="MODULOId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTROL_PERMISO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CONTROLId" Type="int" Nullable="false" />
+    <Property Name="USUARIOSOLICITAId" Type="int" Nullable="false" />
+    <Property Name="USUARIOASIGNOId" Type="int" Nullable="false" />
+    <Property Name="Visible" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Enabled" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Readonly" Type="bit" Nullable="false" />
+    <Property Name="FechaRegistro" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="USUARIOESTADO">
     <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="*" />
@@ -493,6 +545,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="LOTEESTADO">
+    <End Role="LOTE" Type="DB_JAADEModel.Store.LOTE" Multiplicity="*" />
+    <End Role="ESTADO" Type="DB_JAADEModel.Store.ESTADO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LOTE">
+        <PropertyRef Name="ESTADOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTROLMODULO">
+    <End Role="CONTROL" Type="DB_JAADEModel.Store.CONTROL" Multiplicity="*" />
+    <End Role="MODULO" Type="DB_JAADEModel.Store.MODULO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MODULO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CONTROL">
+        <PropertyRef Name="MODULOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTROL_PERMISOCONTROL">
+    <End Role="CONTROL_PERMISO" Type="DB_JAADEModel.Store.CONTROL_PERMISO" Multiplicity="*" />
+    <End Role="CONTROL" Type="DB_JAADEModel.Store.CONTROL" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CONTROL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CONTROL_PERMISO">
+        <PropertyRef Name="CONTROLId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTROL_PERMISOUSUARIO">
+    <End Role="CONTROL_PERMISO" Type="DB_JAADEModel.Store.CONTROL_PERMISO" Multiplicity="*" />
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CONTROL_PERMISO">
+        <PropertyRef Name="USUARIOSOLICITAId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTROL_PERMISOUSUARIO1">
+    <End Role="CONTROL_PERMISO" Type="DB_JAADEModel.Store.CONTROL_PERMISO" Multiplicity="*" />
+    <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CONTROL_PERMISO">
+        <PropertyRef Name="USUARIOASIGNOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -589,6 +701,28 @@
             <End Role="PAGO" EntitySet="PAGO" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
+          <AssociationSet Name="LOTEESTADO" Association="DB_JAADEModel.LOTEESTADO">
+            <End Role="LOTE" EntitySet="LOTE" />
+            <End Role="ESTADO" EntitySet="ESTADO" />
+          </AssociationSet>
+          <EntitySet Name="CONTROL" EntityType="DB_JAADEModel.CONTROL" />
+          <EntitySet Name="CONTROL_PERMISO" EntityType="DB_JAADEModel.CONTROL_PERMISO" />
+          <AssociationSet Name="CONTROLMODULO" Association="DB_JAADEModel.CONTROLMODULO">
+            <End Role="CONTROL" EntitySet="CONTROL" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="CONTROL_PERMISOCONTROL" Association="DB_JAADEModel.CONTROL_PERMISOCONTROL">
+            <End Role="CONTROL_PERMISO" EntitySet="CONTROL_PERMISO" />
+            <End Role="CONTROL" EntitySet="CONTROL" />
+          </AssociationSet>
+          <AssociationSet Name="CONTROL_PERMISOUSUARIO" Association="DB_JAADEModel.CONTROL_PERMISOUSUARIO">
+            <End Role="CONTROL_PERMISO" EntitySet="CONTROL_PERMISO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="CONTROL_PERMISOUSUARIO1" Association="DB_JAADEModel.CONTROL_PERMISOUSUARIO1">
+            <End Role="CONTROL_PERMISO" EntitySet="CONTROL_PERMISO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="USUARIO">
           <Key>
@@ -629,9 +763,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" />
-          <Property Name="Ruta" Type="String" Nullable="true" />
-          <Property Name="Icono" Type="String" Nullable="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Ruta" Type="String" Nullable="true" Unicode="true" FixedLength="false" MaxLength="450" />
+          <Property Name="Icono" Type="String" Nullable="true" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MODULOPADRE" Relationship="DB_JAADEModel.MODULOMODULO" FromRole="MODULO" ToRole="MODULO1" />
           <Property Name="MODULOId" Type="Int32" Nullable="true" />
         </EntityType>
@@ -647,12 +781,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FechaRegistro" Type="String" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="MODULO" Relationship="DB_JAADEModel.MODULO_PERMISOMODULO" FromRole="MODULO_PERMISO" ToRole="MODULO" />
           <Property Name="MODULOId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="USUARIO" Relationship="DB_JAADEModel.MODULO_PERMISOUSUARIO" FromRole="MODULO_PERMISO" ToRole="USUARIO" />
           <Property Name="USUARIOId" Type="Int32" Nullable="false" />
-          <Property Name="Motivo" Type="String" Nullable="false" />
+          <Property Name="Motivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="USUARIOAUTORIZO" Relationship="DB_JAADEModel.MODULO_PERMISOUSUARIO1" FromRole="MODULO_PERMISO" ToRole="USUARIO" />
           <Property Name="USUARIOAUTORIZOId" Type="Int32" Nullable="false" />
         </EntityType>
@@ -713,12 +847,15 @@
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
           <Property Name="Manzana" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="ESTADO" Relationship="DB_JAADEModel.LOTEESTADO" FromRole="LOTE" ToRole="ESTADO" />
+          <Property Name="ESTADOId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PAGO">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroPago" Type="String" Nullable="false" />
           <Property Name="NumeroReferencia" Type="String" Nullable="false" Unicode="true" FixedLength="true" MaxLength="13" />
           <Property Name="FechaEmison" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="CLIENTE" Relationship="DB_JAADEModel.PAGOCLIENTE" FromRole="PAGO" ToRole="CLIENTE" />
@@ -728,6 +865,8 @@
           <Property Name="Monto" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
           <NavigationProperty Name="USUARIO" Relationship="DB_JAADEModel.PAGOUSUARIO" FromRole="PAGO" ToRole="USUARIO" />
           <Property Name="USUARIORECIBEPAGOId" Type="Int32" Nullable="false" />
+          <Property Name="SaldoFavor" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <Property Name="SaldoContra" Type="Decimal" Nullable="false" Precision="18" Scale="7" />
         </EntityType>
         <EntityType Name="CLIENTE_LOTE">
           <Key>
@@ -741,9 +880,12 @@
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="USUARIOASIGNO" Relationship="DB_JAADEModel.CLIENTE_LOTEUSUARIO" FromRole="CLIENTE_LOTE" ToRole="USUARIO" />
           <Property Name="USUARIOId" Type="Int32" Nullable="false" />
-          <Property Name="PagoInicial" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
           <Property Name="MontoRestante" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
           <Property Name="NoPagos" Type="Int32" Nullable="false" />
+          <Property Name="ExcedePlazoPago" Type="Boolean" Nullable="false" />
+          <Property Name="FechaExcedePlazo" Type="String" Nullable="true" />
+          <Property Name="MontoExcedePlazo" Type="Decimal" Scale="7" Precision="18" Nullable="true" />
+          <Property Name="NoPagosExcede" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="USUARIOESTADO">
           <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="*" />
@@ -916,8 +1058,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" FixedLength="true" MaxLength="65" Unicode="true" />
-          <Property Name="Tipo" Type="String" Nullable="false" Unicode="true" FixedLength="true" MaxLength="65" />
+          <Property Name="Nombre" Type="String" Nullable="false" FixedLength="false" MaxLength="65" Unicode="true" />
+          <Property Name="Tipo" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="10" />
           <Property Name="Valor" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
         </EntityType>
         <Association Name="PAGOCLIENTE">
@@ -1001,6 +1143,93 @@
             </Principal>
             <Dependent Role="PAGO">
               <PropertyRef Name="USUARIORECIBEPAGOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LOTEESTADO">
+          <End Type="DB_JAADEModel.LOTE" Role="LOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.ESTADO" Role="ESTADO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LOTE">
+              <PropertyRef Name="ESTADOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CONTROL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" FixedLength="false" MaxLength="65" Unicode="true" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <Property Name="Baja" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MODULO" Relationship="DB_JAADEModel.CONTROLMODULO" FromRole="CONTROL" ToRole="MODULO" />
+          <Property Name="MODULOId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTROL_PERMISO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CONTROL" Relationship="DB_JAADEModel.CONTROL_PERMISOCONTROL" FromRole="CONTROL_PERMISO" ToRole="CONTROL" />
+          <Property Name="CONTROLId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIOSOLICITA" Relationship="DB_JAADEModel.CONTROL_PERMISOUSUARIO" FromRole="CONTROL_PERMISO" ToRole="USUARIO" />
+          <Property Name="USUARIOSOLICITAId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIOASIGNO" Relationship="DB_JAADEModel.CONTROL_PERMISOUSUARIO1" FromRole="CONTROL_PERMISO" ToRole="USUARIO" />
+          <Property Name="USUARIOASIGNOId" Type="Int32" Nullable="false" />
+          <Property Name="Visible" Type="String" Nullable="false" />
+          <Property Name="Enabled" Type="String" Nullable="false" />
+          <Property Name="Readonly" Type="Boolean" Nullable="false" />
+          <Property Name="FechaRegistro" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="CONTROLMODULO">
+          <End Type="DB_JAADEModel.CONTROL" Role="CONTROL" Multiplicity="*" />
+          <End Type="DB_JAADEModel.MODULO" Role="MODULO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CONTROL">
+              <PropertyRef Name="MODULOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTROL_PERMISOCONTROL">
+          <End Type="DB_JAADEModel.CONTROL_PERMISO" Role="CONTROL_PERMISO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CONTROL" Role="CONTROL" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CONTROL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CONTROL_PERMISO">
+              <PropertyRef Name="CONTROLId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTROL_PERMISOUSUARIO">
+          <End Type="DB_JAADEModel.CONTROL_PERMISO" Role="CONTROL_PERMISO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CONTROL_PERMISO">
+              <PropertyRef Name="USUARIOSOLICITAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTROL_PERMISOUSUARIO1">
+          <End Type="DB_JAADEModel.CONTROL_PERMISO" Role="CONTROL_PERMISO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CONTROL_PERMISO">
+              <PropertyRef Name="USUARIOASIGNOId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1131,6 +1360,7 @@
           <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
           <ScalarProperty Name="Manzana" ColumnName="Manzana" />
+          <ScalarProperty Name="ESTADOId" ColumnName="ESTADOId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1138,12 +1368,15 @@
       <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.PAGO)">
         <MappingFragment StoreEntitySet="PAGO">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NumeroPago" ColumnName="NumeroPago" />
           <ScalarProperty Name="NumeroReferencia" ColumnName="NumeroReferencia" />
           <ScalarProperty Name="FechaEmison" ColumnName="FechaEmison" />
           <ScalarProperty Name="CLIENTEId" ColumnName="CLIENTEId" />
           <ScalarProperty Name="LOTEId" ColumnName="LOTEId" />
           <ScalarProperty Name="Monto" ColumnName="Monto" />
           <ScalarProperty Name="USUARIORECIBEPAGOId" ColumnName="USUARIORECIBEPAGOId" />
+          <ScalarProperty Name="SaldoFavor" ColumnName="SaldoFavor" />
+          <ScalarProperty Name="SaldoContra" ColumnName="SaldoContra" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1155,9 +1388,12 @@
           <ScalarProperty Name="CLIENTEId" ColumnName="CLIENTEId" />
           <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
           <ScalarProperty Name="USUARIOId" ColumnName="USUARIOId" />
-          <ScalarProperty Name="PagoInicial" ColumnName="PagoInicial" />
           <ScalarProperty Name="MontoRestante" ColumnName="MontoRestante" />
           <ScalarProperty Name="NoPagos" ColumnName="NoPagos" />
+          <ScalarProperty Name="ExcedePlazoPago" ColumnName="ExcedePlazoPago" />
+          <ScalarProperty Name="FechaExcedePlazo" ColumnName="FechaExcedePlazo" />
+          <ScalarProperty Name="MontoExcedePlazo" ColumnName="MontoExcedePlazo" />
+          <ScalarProperty Name="NoPagosExcede" ColumnName="NoPagosExcede" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1189,6 +1425,31 @@
           <ScalarProperty Name="Resumen" ColumnName="Resumen" />
           <ScalarProperty Name="Detalle" ColumnName="Detalle" />
           <ScalarProperty Name="USUARIOId" ColumnName="USUARIOId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTROL">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.CONTROL)">
+        <MappingFragment StoreEntitySet="CONTROL">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
+          <ScalarProperty Name="MODULOId" ColumnName="MODULOId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTROL_PERMISO">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.CONTROL_PERMISO)">
+        <MappingFragment StoreEntitySet="CONTROL_PERMISO">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CONTROLId" ColumnName="CONTROLId" />
+          <ScalarProperty Name="USUARIOSOLICITAId" ColumnName="USUARIOSOLICITAId" />
+          <ScalarProperty Name="USUARIOASIGNOId" ColumnName="USUARIOASIGNOId" />
+          <ScalarProperty Name="Visible" ColumnName="Visible" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Readonly" ColumnName="Readonly" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

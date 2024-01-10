@@ -73,6 +73,10 @@
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtFechaRegistro = new Controls.Controles.Txt();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtMunicipio = new Controls.Controles.Txt();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -82,6 +86,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.txtMunicipio);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.txtFechaRegistro);
             this.groupBox1.Controls.Add(this.cbxRol);
             this.groupBox1.Controls.Add(this.cbxEstado);
             this.groupBox1.Controls.Add(this.label16);
@@ -114,7 +122,7 @@
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1135, 191);
+            this.groupBox1.Size = new System.Drawing.Size(1135, 214);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
@@ -126,7 +134,7 @@
             this.cbxRol.Location = new System.Drawing.Point(901, 146);
             this.cbxRol.Name = "cbxRol";
             this.cbxRol.Size = new System.Drawing.Size(225, 23);
-            this.cbxRol.TabIndex = 43;
+            this.cbxRol.TabIndex = 170;
             // 
             // cbxEstado
             // 
@@ -135,7 +143,7 @@
             this.cbxEstado.Location = new System.Drawing.Point(901, 117);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(225, 23);
-            this.cbxEstado.TabIndex = 42;
+            this.cbxEstado.TabIndex = 160;
             // 
             // label16
             // 
@@ -174,7 +182,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(225, 23);
-            this.txtPassword.TabIndex = 37;
+            this.txtPassword.TabIndex = 150;
             // 
             // label13
             // 
@@ -190,9 +198,10 @@
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(901, 59);
+            this.txtUsuario.MaxLength = 45;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(225, 23);
-            this.txtUsuario.TabIndex = 35;
+            this.txtUsuario.TabIndex = 140;
             // 
             // label12
             // 
@@ -208,9 +217,10 @@
             // 
             this.txtCodigoPostal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigoPostal.Location = new System.Drawing.Point(901, 30);
+            this.txtCodigoPostal.MaxLength = 5;
             this.txtCodigoPostal.Name = "txtCodigoPostal";
             this.txtCodigoPostal.Size = new System.Drawing.Size(225, 23);
-            this.txtCodigoPostal.TabIndex = 33;
+            this.txtCodigoPostal.TabIndex = 130;
             // 
             // label11
             // 
@@ -228,7 +238,7 @@
             this.txtLocalidad.Location = new System.Drawing.Point(516, 146);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(225, 23);
-            this.txtLocalidad.TabIndex = 31;
+            this.txtLocalidad.TabIndex = 110;
             // 
             // label10
             // 
@@ -246,7 +256,7 @@
             this.txtColonia.Location = new System.Drawing.Point(516, 117);
             this.txtColonia.Name = "txtColonia";
             this.txtColonia.Size = new System.Drawing.Size(225, 23);
-            this.txtColonia.TabIndex = 29;
+            this.txtColonia.TabIndex = 100;
             // 
             // label9
             // 
@@ -264,7 +274,7 @@
             this.txtNoInt.Location = new System.Drawing.Point(516, 88);
             this.txtNoInt.Name = "txtNoInt";
             this.txtNoInt.Size = new System.Drawing.Size(225, 23);
-            this.txtNoInt.TabIndex = 27;
+            this.txtNoInt.TabIndex = 90;
             // 
             // label8
             // 
@@ -282,7 +292,7 @@
             this.txtNoExt.Location = new System.Drawing.Point(516, 59);
             this.txtNoExt.Name = "txtNoExt";
             this.txtNoExt.Size = new System.Drawing.Size(225, 23);
-            this.txtNoExt.TabIndex = 25;
+            this.txtNoExt.TabIndex = 80;
             // 
             // label7
             // 
@@ -300,7 +310,7 @@
             this.txtCalle.Location = new System.Drawing.Point(516, 30);
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(225, 23);
-            this.txtCalle.TabIndex = 23;
+            this.txtCalle.TabIndex = 70;
             // 
             // dtpFechaNacimiento
             // 
@@ -310,7 +320,7 @@
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(132, 118);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(224, 23);
-            this.dtpFechaNacimiento.TabIndex = 21;
+            this.dtpFechaNacimiento.TabIndex = 40;
             // 
             // label6
             // 
@@ -326,9 +336,10 @@
             // 
             this.txtCurp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCurp.Location = new System.Drawing.Point(131, 146);
+            this.txtCurp.MaxLength = 18;
             this.txtCurp.Name = "txtCurp";
             this.txtCurp.Size = new System.Drawing.Size(225, 23);
-            this.txtCurp.TabIndex = 20;
+            this.txtCurp.TabIndex = 50;
             // 
             // label5
             // 
@@ -356,7 +367,7 @@
             this.txtAmaterno.Location = new System.Drawing.Point(131, 88);
             this.txtAmaterno.Name = "txtAmaterno";
             this.txtAmaterno.Size = new System.Drawing.Size(225, 23);
-            this.txtAmaterno.TabIndex = 16;
+            this.txtAmaterno.TabIndex = 30;
             // 
             // label3
             // 
@@ -374,7 +385,7 @@
             this.txtApaterno.Location = new System.Drawing.Point(131, 59);
             this.txtApaterno.Name = "txtApaterno";
             this.txtApaterno.Size = new System.Drawing.Size(225, 23);
-            this.txtApaterno.TabIndex = 14;
+            this.txtApaterno.TabIndex = 20;
             // 
             // label1
             // 
@@ -392,7 +403,7 @@
             this.txtNombre.Location = new System.Drawing.Point(131, 30);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(225, 23);
-            this.txtNombre.TabIndex = 12;
+            this.txtNombre.TabIndex = 10;
             // 
             // groupBox2
             // 
@@ -403,9 +414,9 @@
             this.groupBox2.Controls.Add(this.txtBuscar);
             this.groupBox2.Controls.Add(this.toolStrip1);
             this.groupBox2.Controls.Add(this.dgvRegistros);
-            this.groupBox2.Location = new System.Drawing.Point(12, 209);
+            this.groupBox2.Location = new System.Drawing.Point(12, 232);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1135, 337);
+            this.groupBox2.Size = new System.Drawing.Size(1135, 364);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registros";
@@ -435,7 +446,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.tsTotalRegistros});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 309);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 336);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1129, 25);
             this.toolStrip1.TabIndex = 7;
@@ -470,7 +481,7 @@
             this.dgvRegistros.ReadOnly = true;
             this.dgvRegistros.RowHeadersVisible = false;
             this.dgvRegistros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRegistros.Size = new System.Drawing.Size(1107, 236);
+            this.dgvRegistros.Size = new System.Drawing.Size(1107, 263);
             this.dgvRegistros.TabIndex = 6;
             this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
             this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
@@ -497,7 +508,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(1037, 559);
+            this.btnCancelar.Location = new System.Drawing.Point(1037, 609);
             this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.Name = "btnCancelar";
@@ -514,7 +525,7 @@
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.guardar_el_archivo;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(921, 559);
+            this.btnGuardar.Location = new System.Drawing.Point(921, 609);
             this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.Name = "btnGuardar";
@@ -524,17 +535,54 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(10, 175);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(115, 23);
+            this.label17.TabIndex = 44;
+            this.label17.Text = "Fecha Registro:";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtFechaRegistro
+            // 
+            this.txtFechaRegistro.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaRegistro.Location = new System.Drawing.Point(131, 175);
+            this.txtFechaRegistro.Name = "txtFechaRegistro";
+            this.txtFechaRegistro.ReadOnly = true;
+            this.txtFechaRegistro.Size = new System.Drawing.Size(225, 23);
+            this.txtFechaRegistro.TabIndex = 60;
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(395, 175);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(115, 23);
+            this.label18.TabIndex = 46;
+            this.label18.Text = "Municipio:";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtMunicipio
+            // 
+            this.txtMunicipio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMunicipio.Location = new System.Drawing.Point(516, 175);
+            this.txtMunicipio.Name = "txtMunicipio";
+            this.txtMunicipio.Size = new System.Drawing.Size(225, 23);
+            this.txtMunicipio.TabIndex = 120;
+            // 
             // formUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1159, 611);
+            this.ClientSize = new System.Drawing.Size(1159, 661);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1175, 650);
+            this.MinimumSize = new System.Drawing.Size(1175, 700);
             this.Name = "formUsuarios";
             this.Text = "formUsuarios";
             this.Load += new System.EventHandler(this.formUsuarios_Load);
@@ -595,5 +643,9 @@
         private Controls.Controles.Txt txtBuscar;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
+        private System.Windows.Forms.Label label18;
+        private Controls.Controles.Txt txtMunicipio;
+        private System.Windows.Forms.Label label17;
+        private Controls.Controles.Txt txtFechaRegistro;
     }
 }

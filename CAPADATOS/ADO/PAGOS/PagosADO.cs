@@ -47,7 +47,14 @@ namespace CAPADATOS.ADO.PAGOS
                         "PG.NumeroReferencia, PG.FechaEmison,  \r\n "+
                         "CLI.Id AS ClienteId, (per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Cliente, \r\n "+
                         "LT.Id as LoteId, LT.Identificador as IdentificadorLote, LT.ZONAId as ZonaId, ZN.Nombre as Zona, LT.Manzana, \r\n "+
-                        "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario \r\n "+
+                        "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario, \r\n "+
+                        "CLT.NoPagos as NoPagos, LT.Precio as PrecioLote, \r\n"+
+                        "( \r\n"+
+                        "    SELECT COUNT(*)FROM PAGO WHERE PAGO.CLIENTEId = CLI.Id AND PAGO.LOTEId = LT.Id \r\n"+
+                        ") as PagosRealizados, \r\n"+
+                        "( \r\n"+
+                        "    SELECT SUM(Monto) FROM PAGO WHERE PAGO.CLIENTEId = CLI.Id AND PAGO.LOTEId = LT.Id \r\n"+
+                        ") as SaldoAcumulado \r\n"+
                         "FROM PAGO PG \r\n "+
                         "JOIN CLIENTE CLI ON PG.CLIENTEId = CLI.Id \r\n "+
                         "JOIN PERSONA PER ON CLI.PERSONAId = PER.Id \r\n "+
@@ -70,7 +77,14 @@ namespace CAPADATOS.ADO.PAGOS
                     "PG.Id as PagoId, PG.NumeroReferencia, PG.FechaEmison,  \r\n " +
                     "CLI.Id AS ClienteId, (per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Cliente, \r\n " +
                     "LT.Id as LoteId, LT.Identificador as IdentificadorLote, LT.ZONAId as ZonaId, ZN.Nombre as Zona, LT.Manzana, \r\n " +
-                    "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario \r\n " +
+                    "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario, \r\n " +
+                        "CLT.NoPagos as NoPagos, LT.Precio as PrecioLote, \r\n" +
+                        "( \r\n" +
+                        "    SELECT COUNT(*)FROM PAGO WHERE PAGO.CLIENTEId = CLI.Id AND PAGO.LOTEId = LT.Id \r\n" +
+                        ") as PagosRealizados, \r\n" +
+                        "( \r\n" +
+                        "    SELECT SUM(Monto) FROM PAGO WHERE PAGO.CLIENTEId = CLI.Id AND PAGO.LOTEId = LT.Id \r\n" +
+                        ") as SaldoAcumulado \r\n" +
                     "FROM PAGO PG \r\n " +
                     "JOIN CLIENTE CLI ON PG.CLIENTEId = CLI.Id \r\n " +
                     "JOIN PERSONA PER ON CLI.PERSONAId = PER.Id \r\n " +
@@ -87,7 +101,14 @@ namespace CAPADATOS.ADO.PAGOS
                      "PG.Id as PagoId, PG.NumeroReferencia, PG.FechaEmison,  \r\n " +
                      "CLI.Id AS ClienteId, (per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Cliente, \r\n " +
                      "LT.Id as LoteId, LT.Identificador as IdentificadorLote, LT.ZONAId as ZonaId, ZN.Nombre as Zona, LT.Manzana, \r\n " +
-                     "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario \r\n " +
+                     "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario, \r\n " +
+                        "CLT.NoPagos as NoPagos, LT.Precio as PrecioLote, \r\n" +
+                        "( \r\n" +
+                        "    SELECT COUNT(*)FROM PAGO WHERE PAGO.CLIENTEId = CLI.Id AND PAGO.LOTEId = LT.Id \r\n" +
+                        ") as PagosRealizados, \r\n" +
+                        "( \r\n" +
+                        "    SELECT SUM(Monto) FROM PAGO WHERE PAGO.CLIENTEId = CLI.Id AND PAGO.LOTEId = LT.Id \r\n" +
+                        ") as SaldoAcumulado \r\n" +
                      "FROM PAGO PG \r\n " +
                      "JOIN CLIENTE CLI ON PG.CLIENTEId = CLI.Id \r\n " +
                      "JOIN PERSONA PER ON CLI.PERSONAId = PER.Id \r\n " +

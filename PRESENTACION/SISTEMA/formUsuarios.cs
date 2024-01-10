@@ -26,15 +26,29 @@ namespace PRESENTACION.SISTEMA
 
         public void InicializarModulo()
         {
-            LimpiarControles();
-            InstanciarContexto();
-            ListarCatalogos();
-            ListarRegistros();
+            try
+            {
+                LimpiarControles();
+                InstanciarContexto();
+                ListarCatalogos();
+                ListarRegistros();
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar los registros. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            
         }
 
         public void LimpiarControles()
         {
             ThemeConfig.LimpiarControles(this);
+            txtFechaRegistro.Text = Global.FechaServidor().ToString("dd-MM-yyyy HH:mm:ss");
         }
 
         public void ListarCatalogos()
@@ -58,52 +72,64 @@ namespace PRESENTACION.SISTEMA
 
         public void Guardar()
         {
-
-            if (cbxEstado.SelectedIndex == -1)
+            try
             {
-                MessageBox.Show("El campo ESTADO es OBLIGATORIO.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (cbxEstado.SelectedIndex == -1)
+                {
+                    MessageBox.Show("El campo ESTADO es OBLIGATORIO.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cbxRol.SelectedIndex == -1)
+                {
+                    MessageBox.Show("El campo ROLES es OBLIGATORIO.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (contexto.ObjUsuario == null)
+                {
+                    contexto.InstanciarUsuario();
+                }
+
+                if (contexto.ObjUsuarioData == null)
+                {
+                    contexto.InstanciarPersona();
+                    contexto.InstanciarUsuario();
+                }
+                contexto.ObjPersona.Nombres = txtNombre.Text;
+                contexto.ObjPersona.ApellidoMaterno = txtAmaterno.Text;
+                contexto.ObjPersona.ApellidoPaterno = txtApaterno.Text;
+                contexto.ObjPersona.FechaNacimiento = dtpFechaNacimiento.Value;
+                contexto.ObjPersona.Curp = txtCurp.Text;
+                contexto.ObjPersona.Calle = txtCalle.Text;
+                contexto.ObjPersona.NoExt = txtNoExt.Text;
+                contexto.ObjPersona.NoInt = txtNoInt.Text;
+                contexto.ObjPersona.Colonia = txtColonia.Text;
+                contexto.ObjPersona.Localidad = txtLocalidad.Text;
+                contexto.ObjPersona.Municipio = txtMunicipio.Text;  
+                contexto.ObjPersona.CodigoPostal = txtCodigoPostal.Text;
+
+                contexto.ObjUsuario.Alias = txtUsuario.Text;
+                contexto.ObjUsuario.Password = txtPassword.Text;
+                contexto.ObjUsuario.ESTADOId = (int)cbxEstado.SelectedValue;
+                contexto.ObjUsuario.ROLId = (int)cbxRol.SelectedValue;
+                contexto.ObjUsuario.FechaRegistro = DateTime.Now;
+
+                contexto.Guardar();
+
+
+                MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                InicializarModulo();
             }
-
-            if (cbxRol.SelectedIndex == -1)
+            catch (Exception ex)
             {
-                MessageBox.Show("El campo ROLES es OBLIGATORIO.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (contexto.ObjUsuario == null)
-            {
-                contexto.InstanciarUsuario();
-            }           
-
-            if(contexto.ObjUsuarioData == null)
-            {
-                contexto.InstanciarPersona();
-                contexto.InstanciarUsuario();
-            }
-            contexto.ObjPersona.Nombres = txtNombre.Text;
-            contexto.ObjPersona.ApellidoMaterno = txtAmaterno.Text;
-            contexto.ObjPersona.ApellidoPaterno = txtApaterno.Text;
-            contexto.ObjPersona.FechaNacimiento = dtpFechaNacimiento.Value;
-            contexto.ObjPersona.Curp = txtCurp.Text;
-            contexto.ObjPersona.Calle = txtCalle.Text;
-            contexto.ObjPersona.NoExt = txtNoExt.Text;
-            contexto.ObjPersona.NoInt = txtNoInt.Text;
-            contexto.ObjPersona.Colonia = txtColonia.Text;
-            contexto.ObjPersona.Localidad = txtLocalidad.Text;
-            contexto.ObjPersona.CodigoPostal = txtCodigoPostal.Text;    
-
-            contexto.ObjUsuario.Alias = txtUsuario.Text;
-            contexto.ObjUsuario.Password = txtPassword.Text;
-            contexto.ObjUsuario.ESTADOId = (int)cbxEstado.SelectedValue;
-            contexto.ObjUsuario.ROLId = (int)cbxRol.SelectedValue;
-            contexto.ObjUsuario.FechaRegistro = DateTime.Now;
-
-            contexto.Guardar();
-
-
-            MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            InicializarModulo();
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }          
 
         }
 

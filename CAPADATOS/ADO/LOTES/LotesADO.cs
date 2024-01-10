@@ -91,6 +91,32 @@ namespace CAPADATOS.ADO.LOTES
             return contexto.Database.SqlQuery<clsLotes>(query).FirstOrDefault();
         }
 
+        public clsInformacionPagoLote ObtenerDataPagoLote(int idCliente, int idLote)
+        {
+            string query = "SELECT \r\n" +
+                            "A.*, ((A.PrecioLote - A.PagoInicial) / A.NumeroPagos) AS MontoMensualidad \r\n" +
+                            "FROM( \r\n" +
+                            "SELECT \r\n" +
+                            "Lt.Id as LoteId, LT.Identificador as IdentificadorLote, \r\n" +
+                            "LT.Precio as PrecioLote, \r\n" +
+                            "CL.FechaRegistro as FechaContrato, \r\n" +
+                            "CL.PagoInicial as PagoInicial, \r\n" +
+                            "CL.NoPagos as NumeroPagos, CLI.Id as ClienteId, \r\n" +
+                            "( \r\n" +
+                            "    SELECT COUNT(*)FROM PAGO WHERE PAGO.CLIENTEId = CLI.Id AND PAGO.LOTEId = LT.Id \r\n" +
+                            ") as PagosRealizados, \r\n" +
+                            "( \r\n" +
+                            "    SELECT SUM(PAGO.Monto) FROM PAGO WHERE PAGO.CLIENTEId = CLI.Id AND PAGO.LOTEId = LT.Id \r\n" +
+                            ") AS SaldoFavor \r\n" +
+                            "FROM CLIENTE_LOTE CL \r\n" +
+                            "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n" +
+                            "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n" +
+                            ") AS A WHERE CLI.Id = "+idCliente+" AND LT.Id = "+idLote;
+
+
+            return contexto.Database.SqlQuery<clsInformacionPagoLote>(query).FirstOrDefault();
+        }
+
        
 
 

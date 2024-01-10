@@ -12,17 +12,19 @@ namespace CAPADATOS
     using System;
     using System.Collections.Generic;
     
-    public partial class MODULO_PERMISO
+    public partial class CONTROL_PERMISO
     {
         public int Id { get; set; }
-        public System.DateTime FechaRegistro { get; set; }
-        public int MODULOId { get; set; }
-        public int USUARIOId { get; set; }
-        public string Motivo { get; set; }
-        public int USUARIOAUTORIZOId { get; set; }
+        public int CONTROLId { get; set; }
+        public int USUARIOSOLICITAId { get; set; }
+        public int USUARIOASIGNOId { get; set; }
+        public string Visible { get; set; }
+        public string Enabled { get; set; }
+        public bool Readonly { get; set; }
+        public string FechaRegistro { get; set; }
     
-        public virtual MODULO MODULO { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
-        public virtual USUARIO USUARIOAUTORIZO { get; set; }
+        public virtual CONTROL CONTROL { get; set; }
+        public virtual USUARIO USUARIOSOLICITA { get; set; }
+        public virtual USUARIO USUARIOASIGNO { get; set; }
     }
 }

@@ -40,5 +40,7 @@ namespace CAPADATOS
         public virtual DbSet<PERSONA_AGENDA> PERSONA_AGENDA { get; set; }
         public virtual DbSet<VARIABLEGLOBAL> VARIABLEGLOBAL { get; set; }
         public virtual DbSet<EXCEPCION> EXCEPCION { get; set; }
+        public virtual DbSet<CONTROL> CONTROL { get; set; }
+        public virtual DbSet<CONTROL_PERMISO> CONTROL_PERMISO { get; set; }
     }
 }

@@ -127,14 +127,16 @@ namespace PRESENTACION.PAGOS
                 if (contexto.ObjClienteLote == null)
                 {
                     contexto.InstanciarAsignacionLote();
+                    contexto.ObjClienteLote.ExcedePlazoPago = false;
                 }
                 contexto.ObjClienteLote.CLIENTEId = (int)ClienteIdSeleccionado;
                 contexto.ObjClienteLote.LOTEId = contexto.ObjLoteSeleccionado.Id;
-                contexto.ObjClienteLote.PagoInicial = Convert.ToDecimal(txtPagoInicial.Text);
                 contexto.ObjClienteLote.FechaRegistro = Global.FechaServidor();
                 contexto.ObjClienteLote.NoPagos = Convert.ToInt32(txtNoPagos.Text);
                 contexto.ObjClienteLote.MontoRestante = Convert.ToDecimal(txtMontoRestante.Text);
                 contexto.ObjClienteLote.USUARIOId = Global.ObjUsuario.Id;
+             
+
 
 
                 contexto.Guardar();
@@ -200,7 +202,7 @@ namespace PRESENTACION.PAGOS
             txtCliente.Text = contexto.ObjClienteLoteSeleccionado.Cliente;
             txtFechaRegistro.Text = contexto.ObjClienteLoteSeleccionado.FechaAsignacion.ToString("dd-MM-yyyy HH:mm:ss");
             txtNoPagos.Text = contexto.ObjClienteLoteSeleccionado.NoPagos.ToString("N0");
-            txtPagoInicial.Text = contexto.ObjClienteLoteSeleccionado.PagoInicial.ToString("N2");
+           // txtPagoInicial.Text = contexto.ObjClienteLoteSeleccionado.PagoInicial.ToString("N2");
             txtPrecioLote.Text = contexto.ObjClienteLoteSeleccionado.PrecioLote.ToString("N2");
             LoteSeleccionado = contexto.ObjClienteLoteSeleccionado.LoteId;
             contexto.ObjLoteSeleccionado = contexto.ObtenerLote((int)LoteSeleccionado);
@@ -397,7 +399,7 @@ namespace PRESENTACION.PAGOS
             repContrato.parametros.Add(new ReportParameter("TITULARVENTAJAADE", ObjDatosJaade.TitularVenta ));
             repContrato.parametros.Add(new ReportParameter("NOMBRECLIENTE", contexto.ObjClienteLoteSeleccionado.Cliente));
             repContrato.parametros.Add(new ReportParameter("PRECIOLOTE", contexto.ObjClienteLoteSeleccionado.PrecioLote.ToString("N2")));
-            repContrato.parametros.Add(new ReportParameter("PAGOINICIAL", contexto.ObjClienteLoteSeleccionado.PagoInicial.ToString("N2")));
+         //   repContrato.parametros.Add(new ReportParameter("PAGOINICIAL", contexto.ObjClienteLoteSeleccionado.PagoInicial.ToString("N2")));
             repContrato.parametros.Add(new ReportParameter("NOPAGOS", contexto.ObjClienteLoteSeleccionado.NoPagos.ToString("N0")));
             repContrato.parametros.Add(new ReportParameter("DIAPAGO", _FechaHoraContrato.ToString("dd")));
             decimal _MontoRestante = Global.CalcularPagoMensualRestante(contexto.ObjClienteLoteSeleccionado.MontoRestante, contexto.ObjClienteLoteSeleccionado.NoPagos);

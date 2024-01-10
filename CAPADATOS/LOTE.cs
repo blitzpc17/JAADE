@@ -28,7 +28,9 @@ namespace CAPADATOS
         public System.DateTime FechaRegistro { get; set; }
         public decimal Precio { get; set; }
         public Nullable<int> Manzana { get; set; }
+        public int ESTADOId { get; set; }
     
         public virtual ZONA ZONA { get; set; }
+        public virtual ESTADO ESTADO { get; set; }
     }
 }

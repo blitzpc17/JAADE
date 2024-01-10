@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CAPADATOS.ADO.PAGOS
 {
-    public class AsignacionClienteLoteADO
+    public class AsignacionClienteLoteADO:IDisposable
     {
         private DB_JAADEEntities contexto;
 
@@ -87,9 +87,17 @@ namespace CAPADATOS.ADO.PAGOS
 
             return contexto.Database.SqlQuery<clsClienteLote>(query).FirstOrDefault();
 
+        }
 
+        public CLIENTE_LOTE ObtenerAsignacionClienteLote(int idCliente, int idLote)
+        {
+            return contexto.CLIENTE_LOTE.FirstOrDefault(x=>x.CLIENTEId == idCliente && x.LOTEId == idLote);
         }
 
 
+        public void Dispose()
+        {
+            contexto.Dispose();
+        }
     }
 }

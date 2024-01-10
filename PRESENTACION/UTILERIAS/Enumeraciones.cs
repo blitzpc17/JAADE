@@ -14,7 +14,10 @@ namespace PRESENTACION.UTILERIAS
             ThemeConfiguracion,
             DomicilioJaade,
             ConsecutivoClientes,
-            ConsecutivoPagos
+            ConsecutivoPagos,
+            CredencialesFtp,
+            CredencialesTwilio,
+            CredencialesCorreo
         }
 
 

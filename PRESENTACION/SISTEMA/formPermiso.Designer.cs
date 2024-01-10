@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPermiso));
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txt1 = new Controls.Controles.Txt();
+            this.txtUsuarioAsigno = new Controls.Controles.Txt();
             this.label1 = new System.Windows.Forms.Label();
             this.btnUsuarioSolicita = new System.Windows.Forms.Button();
             this.btnModulo = new System.Windows.Forms.Button();
-            this.txtModulo = new Controls.Controles.Txt();
+            this.txtFechaRegistro = new Controls.Controles.Txt();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtIcono = new Controls.Controles.Txt();
+            this.txtMotivo = new Controls.Controles.Txt();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtRuta = new Controls.Controles.Txt();
+            this.txtModulo = new Controls.Controles.Txt();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNombre = new Controls.Controles.Txt();
+            this.txtSolicita = new Controls.Controles.Txt();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -52,10 +53,14 @@
             this.tsTotalRegistros = new System.Windows.Forms.ToolStripLabel();
             this.txtBuscar = new Controls.Controles.Txt();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -94,18 +99,18 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txt1);
+            this.groupBox1.Controls.Add(this.txtUsuarioAsigno);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnUsuarioSolicita);
             this.groupBox1.Controls.Add(this.btnModulo);
-            this.groupBox1.Controls.Add(this.txtModulo);
+            this.groupBox1.Controls.Add(this.txtFechaRegistro);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtIcono);
+            this.groupBox1.Controls.Add(this.txtMotivo);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtRuta);
+            this.groupBox1.Controls.Add(this.txtModulo);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtNombre);
+            this.groupBox1.Controls.Add(this.txtSolicita);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(750, 156);
@@ -113,13 +118,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
-            // txt1
+            // txtUsuarioAsigno
             // 
-            this.txt1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(516, 59);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(225, 23);
-            this.txt1.TabIndex = 53;
+            this.txtUsuarioAsigno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuarioAsigno.Location = new System.Drawing.Point(516, 59);
+            this.txtUsuarioAsigno.Name = "txtUsuarioAsigno";
+            this.txtUsuarioAsigno.ReadOnly = true;
+            this.txtUsuarioAsigno.Size = new System.Drawing.Size(225, 23);
+            this.txtUsuarioAsigno.TabIndex = 53;
             // 
             // label1
             // 
@@ -155,13 +161,14 @@
             this.btnModulo.UseVisualStyleBackColor = true;
             this.btnModulo.Click += new System.EventHandler(this.btnModulo_Click);
             // 
-            // txtModulo
+            // txtFechaRegistro
             // 
-            this.txtModulo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModulo.Location = new System.Drawing.Point(516, 30);
-            this.txtModulo.Name = "txtModulo";
-            this.txtModulo.Size = new System.Drawing.Size(225, 23);
-            this.txtModulo.TabIndex = 40;
+            this.txtFechaRegistro.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaRegistro.Location = new System.Drawing.Point(516, 30);
+            this.txtFechaRegistro.Name = "txtFechaRegistro";
+            this.txtFechaRegistro.ReadOnly = true;
+            this.txtFechaRegistro.Size = new System.Drawing.Size(225, 23);
+            this.txtFechaRegistro.TabIndex = 40;
             // 
             // label5
             // 
@@ -183,14 +190,14 @@
             this.label4.Text = "Motivo:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtIcono
+            // txtMotivo
             // 
-            this.txtIcono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIcono.Location = new System.Drawing.Point(131, 89);
-            this.txtIcono.Multiline = true;
-            this.txtIcono.Name = "txtIcono";
-            this.txtIcono.Size = new System.Drawing.Size(225, 46);
-            this.txtIcono.TabIndex = 30;
+            this.txtMotivo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMotivo.Location = new System.Drawing.Point(131, 89);
+            this.txtMotivo.Multiline = true;
+            this.txtMotivo.Name = "txtMotivo";
+            this.txtMotivo.Size = new System.Drawing.Size(225, 46);
+            this.txtMotivo.TabIndex = 30;
             // 
             // label3
             // 
@@ -202,13 +209,13 @@
             this.label3.Text = "Módulo:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtRuta
+            // txtModulo
             // 
-            this.txtRuta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRuta.Location = new System.Drawing.Point(131, 59);
-            this.txtRuta.Name = "txtRuta";
-            this.txtRuta.Size = new System.Drawing.Size(185, 23);
-            this.txtRuta.TabIndex = 20;
+            this.txtModulo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtModulo.Location = new System.Drawing.Point(131, 59);
+            this.txtModulo.Name = "txtModulo";
+            this.txtModulo.Size = new System.Drawing.Size(185, 23);
+            this.txtModulo.TabIndex = 20;
             // 
             // label2
             // 
@@ -220,13 +227,13 @@
             this.label2.Text = "Solicita:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtNombre
+            // txtSolicita
             // 
-            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(131, 30);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(185, 23);
-            this.txtNombre.TabIndex = 10;
+            this.txtSolicita.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSolicita.Location = new System.Drawing.Point(131, 30);
+            this.txtSolicita.Name = "txtSolicita";
+            this.txtSolicita.Size = new System.Drawing.Size(185, 23);
+            this.txtSolicita.TabIndex = 10;
             // 
             // groupBox2
             // 
@@ -295,6 +302,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRegistros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegistros.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvRegistros.Location = new System.Drawing.Point(13, 59);
             this.dgvRegistros.MultiSelect = false;
             this.dgvRegistros.Name = "dgvRegistros";
@@ -305,6 +313,30 @@
             this.dgvRegistros.TabIndex = 24;
             this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
             this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificarToolStripMenuItem,
+            this.eliminarToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(126, 48);
+            // 
+            // modificarToolStripMenuItem
+            // 
+            this.modificarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.editar;
+            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.modificarToolStripMenuItem.Text = "Modificar";
+            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.eliminar;
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // formPermiso
             // 
@@ -328,6 +360,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -338,15 +371,15 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnModulo;
-        private Controls.Controles.Txt txtModulo;
+        private Controls.Controles.Txt txtFechaRegistro;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private Controls.Controles.Txt txtIcono;
+        private Controls.Controles.Txt txtMotivo;
         private System.Windows.Forms.Label label3;
-        private Controls.Controles.Txt txtRuta;
+        private Controls.Controles.Txt txtModulo;
         private System.Windows.Forms.Label label2;
-        private Controls.Controles.Txt txtNombre;
-        private Controls.Controles.Txt txt1;
+        private Controls.Controles.Txt txtSolicita;
+        private Controls.Controles.Txt txtUsuarioAsigno;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnUsuarioSolicita;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -356,5 +389,8 @@
         private System.Windows.Forms.ToolStripLabel tsTotalRegistros;
         private Controls.Controles.Txt txtBuscar;
         private System.Windows.Forms.DataGridView dgvRegistros;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
     }
 }

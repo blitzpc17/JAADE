@@ -39,6 +39,13 @@
         <EntityTypeShape EntityType="DB_JAADEModel.EXCEPCION" Width="1.5" PointX="2.125" PointY="10.75" />
         <AssociationConnector Association="DB_JAADEModel.ExcepcionUSUARIO" />
         <AssociationConnector Association="DB_JAADEModel.PAGOUSUARIO" />
+        <AssociationConnector Association="DB_JAADEModel.LOTEESTADO" />
+        <EntityTypeShape EntityType="DB_JAADEModel.CONTROL" Width="1.5" PointX="4.875" PointY="10.625" />
+        <EntityTypeShape EntityType="DB_JAADEModel.CONTROL_PERMISO" Width="1.5" PointX="4.75" PointY="13.375" />
+        <AssociationConnector Association="DB_JAADEModel.CONTROLMODULO" />
+        <AssociationConnector Association="DB_JAADEModel.CONTROL_PERMISOCONTROL" />
+        <AssociationConnector Association="DB_JAADEModel.CONTROL_PERMISOUSUARIO" />
+        <AssociationConnector Association="DB_JAADEModel.CONTROL_PERMISOUSUARIO1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
