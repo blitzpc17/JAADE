@@ -98,6 +98,7 @@
     <Compile Include="Entidades\clsLotes.cs" />
     <Compile Include="Entidades\clsModulo.cs" />
     <Compile Include="Entidades\clsModuloPermiso.cs" />
+    <Compile Include="Entidades\clsModulosAccesoUsuario.cs" />
     <Compile Include="Entidades\clsPago.cs" />
     <Compile Include="Entidades\clsTicketEncabezado.cs" />
     <Compile Include="Entidades\clsTicketPago.cs" />

@@ -70,7 +70,7 @@ namespace CAPADATOS.ADO.SISTEMA
 
             return contexto.Database.SqlQuery<DateTime>(query).FirstOrDefault();
 
-        }
+        } 
 
         public void Dispose()
         {

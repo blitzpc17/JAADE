@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIMain));
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.sISTEMAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cATALOGOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aCCESOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mODULOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pERMISOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +49,10 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.cATALOGOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsNombreUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsRol = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -77,13 +80,6 @@
             this.sISTEMAToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.sISTEMAToolStripMenuItem.Text = "SISTEMA";
             // 
-            // cATALOGOSToolStripMenuItem
-            // 
-            this.cATALOGOSToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.categoria;
-            this.cATALOGOSToolStripMenuItem.Name = "cATALOGOSToolStripMenuItem";
-            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cATALOGOSToolStripMenuItem.Text = "CATALOGOS";
-            // 
             // aCCESOToolStripMenuItem
             // 
             this.aCCESOToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -96,7 +92,7 @@
             // mODULOSToolStripMenuItem
             // 
             this.mODULOSToolStripMenuItem.Name = "mODULOSToolStripMenuItem";
-            this.mODULOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mODULOSToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.mODULOSToolStripMenuItem.Text = "MODULOS";
             this.mODULOSToolStripMenuItem.Click += new System.EventHandler(this.mODULOSToolStripMenuItem_Click);
             // 
@@ -106,20 +102,20 @@
             this.mODULOSToolStripMenuItem1,
             this.cONTROLESToolStripMenuItem});
             this.pERMISOSToolStripMenuItem.Name = "pERMISOSToolStripMenuItem";
-            this.pERMISOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pERMISOSToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.pERMISOSToolStripMenuItem.Text = "PERMISOS";
             // 
             // mODULOSToolStripMenuItem1
             // 
             this.mODULOSToolStripMenuItem1.Name = "mODULOSToolStripMenuItem1";
-            this.mODULOSToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.mODULOSToolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
             this.mODULOSToolStripMenuItem1.Text = "MODULOS";
             this.mODULOSToolStripMenuItem1.Click += new System.EventHandler(this.mODULOSToolStripMenuItem1_Click);
             // 
             // cONTROLESToolStripMenuItem
             // 
             this.cONTROLESToolStripMenuItem.Name = "cONTROLESToolStripMenuItem";
-            this.cONTROLESToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cONTROLESToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.cONTROLESToolStripMenuItem.Text = "CONTROLES";
             // 
             // uSUARIOSToolStripMenuItem
@@ -157,7 +153,7 @@
             // asignacionLotesToolStripMenuItem
             // 
             this.asignacionLotesToolStripMenuItem.Name = "asignacionLotesToolStripMenuItem";
-            this.asignacionLotesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.asignacionLotesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.asignacionLotesToolStripMenuItem.Text = "Asignacion Lotes";
             this.asignacionLotesToolStripMenuItem.Click += new System.EventHandler(this.asignacionLotesToolStripMenuItem_Click);
             // 
@@ -166,7 +162,7 @@
             this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.capturaYConsultaToolStripMenuItem1});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // capturaYConsultaToolStripMenuItem1
@@ -181,7 +177,7 @@
             this.pagosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.capturaYConsultaToolStripMenuItem2});
             this.pagosToolStripMenuItem1.Name = "pagosToolStripMenuItem1";
-            this.pagosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.pagosToolStripMenuItem1.Size = new System.Drawing.Size(164, 22);
             this.pagosToolStripMenuItem1.Text = "Pagos";
             // 
             // capturaYConsultaToolStripMenuItem2
@@ -194,7 +190,10 @@
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
+            this.toolStripStatusLabel,
+            this.tsNombreUsuario,
+            this.toolStripStatusLabel1,
+            this.tsRol});
             this.statusStrip.Location = new System.Drawing.Point(0, 431);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(890, 22);
@@ -203,9 +202,37 @@
             // 
             // toolStripStatusLabel
             // 
+            this.toolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
-            this.toolStripStatusLabel.Text = "Estado";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(84, 17);
+            this.toolStripStatusLabel.Text = "BIENVENIDO: ";
+            // 
+            // cATALOGOSToolStripMenuItem
+            // 
+            this.cATALOGOSToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.registro;
+            this.cATALOGOSToolStripMenuItem.Name = "cATALOGOSToolStripMenuItem";
+            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cATALOGOSToolStripMenuItem.Text = "CATALOGOS";
+            // 
+            // tsNombreUsuario
+            // 
+            this.tsNombreUsuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsNombreUsuario.Name = "tsNombreUsuario";
+            this.tsNombreUsuario.Size = new System.Drawing.Size(118, 17);
+            this.tsNombreUsuario.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
+            this.toolStripStatusLabel1.Text = "ROL:";
+            // 
+            // tsRol
+            // 
+            this.tsRol.Name = "tsRol";
+            this.tsRol.Size = new System.Drawing.Size(118, 17);
+            this.tsRol.Text = "toolStripStatusLabel2";
             // 
             // MDIMain
             // 
@@ -253,6 +280,9 @@
         private System.Windows.Forms.ToolStripMenuItem capturaYConsultaToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mODULOSToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cONTROLESToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel tsNombreUsuario;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel tsRol;
     }
 }
 

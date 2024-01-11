@@ -17,7 +17,7 @@ namespace PRESENTACION.SISTEMA
     public partial class MDIMain : Form
     {
         protected USUARIO ObjCredencial;
-        protected List<clsModuloPermiso> LstPermisos;
+        protected List<clsModulosAccesoUsuario> LstPermisos;
         
         private int childFormNumber = 0;
         private bool darktheme = false;
@@ -50,6 +50,8 @@ namespace PRESENTACION.SISTEMA
         private void SetCredenciales()
         {
             ObjCredencial = Global.ObjUsuario;
+            tsNombreUsuario.Text = Global.ObtenerNombreUsuario(ObjCredencial);
+            tsRol.Text = ObjCredencial.ROL.Nombre;
         }
         private void LimpiarMenu()
         {
@@ -59,7 +61,7 @@ namespace PRESENTACION.SISTEMA
         {
             using (var contexto = new ModuloPermisoADO())
             {
-                LstPermisos = contexto.ListarModuloPermisoUsuario(ObjCredencial.Id);
+                LstPermisos = contexto.ListarAccesoPermisoUsuario(ObjCredencial.Id);
             }
         }
         private void LLenarMenu()
@@ -69,23 +71,42 @@ namespace PRESENTACION.SISTEMA
                 MessageBox.Show("No tienes accesos al sistema, verifica con tu administrador e inicia sesión nuevamente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Close();
             }
-
-            foreach(var padre in LstPermisos.Where(x=>x.RutaModulo.Equals("#")).Select(x => new {PadreId = x.ModuloId, Nombre = x.NombreModulo}).Distinct())
+            var listaPadres = LstPermisos.Select(x => new { PadreId = x.ModuloPadreId, Nombre = x.ModuloPadreNombre }).Distinct();
+            foreach (var padre in listaPadres)
             {
                 ToolStripMenuItem itemPadre = new ToolStripMenuItem(padre.Nombre);
-                foreach (var item in LstPermisos.Where(x=>x.RutaModulo!="#"))
+                var listaSubs = LstPermisos.Where(x => x.ModuloPadreId == padre.PadreId).Select(x => new { SubId = x.ModuloSubId, PadreId = x.ModuloPadreId, Nombre = x.ModuloSubNombre }).Distinct();
+                foreach (var item in listaSubs)
                 {
-                    if (string.IsNullOrEmpty(item.RutaModulo))
+                    if(item.PadreId == padre.PadreId)
                     {
-                        //sub
-                    }
-                    else
-                    {
-                        //item
+                        ToolStripMenuItem itemSub = new ToolStripMenuItem(item.Nombre);
+                     
                         
+                        var listaChilds = LstPermisos.Where(x=>x.ModuloSubId==item.SubId).Select(x=>new {Id= x.ModuloId, Nombre = x.Nombre, Icono = x.Icono, Ruta = x.Ruta}).Distinct();
+                        foreach(var child in listaChilds)
+                        {
+                            ToolStripMenuItem itemChild = new ToolStripMenuItem(child.Nombre);
+                            itemChild.Image = Enumeraciones.ListaImagenes().Where(x => x.Key == child.Icono).First().Value;
+                            string rutaFormulario = child.Ruta;
+                            itemChild.Click += (sender, e) =>
+                            {
+                                Form formularioExistente = (Form)Activator.CreateInstance(Type.GetType(rutaFormulario));
+
+                               // Mostrar el formulario existente
+                               formularioExistente.Show();
+                            };
+                            itemSub.DropDownItems.Add(itemChild);
+                            
+                        }
+
+                        itemPadre.DropDownItems.Add(itemSub);
                     }
+                
                 }
-                MainMenuStrip.Items.Add(itemPadre);
+
+                mainMenuStrip.Items.Add(itemPadre); 
+             
             }
 
 

@@ -79,6 +79,21 @@ namespace CAPADATOS.ADO.SISTEMA
             return contexto.Database.SqlQuery<clsModuloPermiso>(query).FirstOrDefault();     
         }
 
+        public List<clsModulosAccesoUsuario> ListarAccesoPermisoUsuario(int usuarioId)
+        {
+            string sql = "SELECT \r\n" +
+                            "M.Id as ModuloId, M.Nombre, M.Icono, M.Ruta, \r\n" +
+                            "MS.Id as ModuloSubId, MS.Nombre as ModuloSubNombre, MS.Ruta AS ModuloSubRuta, \r\n" +
+                            "MPP.Id as ModuloPadreId, MPP.Nombre as ModuloPadreNombre, MPP.Ruta AS ModuloPadreRuta \r\n" +
+                            "FROM MODULO_PERMISO MP \r\n" +
+                            "JOIN MODULO M ON MP.MODULOId = M.Id \r\n" +
+                            "LEFT JOIN MODULO MS ON M.MODULOId = MS.Id \r\n" +
+                            "LEFT JOIN MODULO MPP ON MS.MODULOId = MPP.Id \r\n" +
+                            "WHERE MP.USUARIOId = " + usuarioId;
+
+            return contexto.Database.SqlQuery<clsModulosAccesoUsuario>(sql).ToList();
+        }
+
         public void Dispose()
         {
             contexto.Dispose();
