@@ -218,7 +218,7 @@ namespace PRESENTACION.PAGOS
                 return;
             }
             txtLote.Text = contexto.ObjLotes.Identificador;
-
+            txtZona.Text = contexto.ObjLotes.Zona;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
