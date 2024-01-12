@@ -20,7 +20,7 @@ namespace PRESENTACION.UTILERIAS
     public static class Global
     {
 
-        public static USUARIO ObjUsuario;
+        public static clsUsuario ObjUsuario;
 
         public static bool EsValorEntero(string valor)
         {
@@ -40,7 +40,7 @@ namespace PRESENTACION.UTILERIAS
             }
         }
 
-        public static void CredencialesSesionAcceso(USUARIO obj)
+        public static void CredencialesSesionAcceso(clsUsuario obj)
         {
             ObjUsuario = obj;
         }

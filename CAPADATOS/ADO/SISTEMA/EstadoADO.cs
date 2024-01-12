@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CAPADATOS.ADO.SISTEMA
 {
-    public class EstadoADO
+    public class EstadoADO:IDisposable
     {
         private DB_JAADEEntities contexto;
 
@@ -38,6 +38,11 @@ namespace CAPADATOS.ADO.SISTEMA
         public ESTADO Obtener(int id)
         {
             return contexto.ESTADO.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Dispose()
+        {
+            contexto.Dispose();
         }
     }
 }

@@ -37,10 +37,11 @@ namespace PRESENTACION.SISTEMA
             {
                 Global.GuardarExcepcion(ex, Name);
                 MessageBox.Show(
-                    "Ocurrió un error al intentar cargar los registros. Intentelo nuevamente.",
+                    "Ocurrió un error al intentar cargar el módulo. Intentelo nuevamente.",
                     "Error en la operación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                Close();
             }
             
         }

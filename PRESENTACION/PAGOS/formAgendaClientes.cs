@@ -67,18 +67,31 @@ namespace PRESENTACION.PAGOS
 
         private void GuardarRegistroContacto()
         {
-            if (contexto.ObjDatoContactoData == null)
+            try
             {
-                contexto.InstanciarDatoContacto();
+                if (contexto.ObjDatoContactoData == null)
+                {
+                    contexto.InstanciarDatoContacto();
+                }
+
+                contexto.ObjDatoContacto.Tipo = (int)cbxTipoContacto.SelectedValue;
+                contexto.ObjDatoContacto.Valor = txtDato.Text;
+
+                contexto.Guardar();
+
+                MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                InicializarForm();
             }
-
-            contexto.ObjDatoContacto.Tipo = (int)cbxTipoContacto.SelectedValue;
-            contexto.ObjDatoContacto.Valor = txtDato.Text; 
-
-            contexto.Guardar();
-
-            MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            InicializarForm();
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+           
         }
 
         private void Modificar()

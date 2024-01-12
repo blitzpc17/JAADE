@@ -29,10 +29,24 @@ namespace PRESENTACION.BUSQUEDA
 
         private void InicializarForm()
         {
-            contexto = new busPagosLogica();
-            Listar();
-            ordenar(1);
-            contexto.Column = 1;
+            try
+            {
+                contexto = new busPagosLogica();
+                Listar();
+                ordenar(1);
+                contexto.Column = 1;
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar el módulo. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+            
         }
 
         public void Listar()
@@ -78,7 +92,9 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[8].HeaderText = "Zona";
             dgvRegistros.Columns[8].Width = 180;
             dgvRegistros.Columns[9].HeaderText = "Manzana";
-            dgvRegistros.Columns[9].Width = 110;
+            dgvRegistros.Columns[9].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvRegistros.Columns[9].Width = 85;
             dgvRegistros.Columns[10].HeaderText = "Monto";
             dgvRegistros.Columns[10].DefaultCellStyle.Format = "N2";
             dgvRegistros.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -86,7 +102,11 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[11].Visible = false;
             dgvRegistros.Columns[12].HeaderText = "Recibio";
             dgvRegistros.Columns[12].Width = 250;
-            
+            dgvRegistros.Columns[13].Visible = false;
+            dgvRegistros.Columns[14].Visible = false;
+            dgvRegistros.Columns[15].Visible = false;
+            dgvRegistros.Columns[16].Visible = false;
+
             tsTotalRegistros.Text = contexto.LstPagosAux.Count.ToString("N0");
         }
 
@@ -115,21 +135,6 @@ namespace PRESENTACION.BUSQUEDA
             Close();
         }
 
-        private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
-        }
-
-        private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvRegistros.DataSource == null) return;
-            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
-            ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
-            Close();
-        }
-
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (dgvRegistros.Rows.Count <= 0) return;
@@ -143,10 +148,19 @@ namespace PRESENTACION.BUSQUEDA
             filtrar(contexto.Column, txtBuscar.Text);
         }
 
+        private void dgvRegistros_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvRegistros.DataSource == null) return;
+            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
+            Close();
+        }
 
-
-
-
-
+        private void dgvRegistros_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (contexto.Column == e.ColumnIndex) return;
+            contexto.Column = e.ColumnIndex;
+            ordenar(contexto.Column);
+        }
     }
 }

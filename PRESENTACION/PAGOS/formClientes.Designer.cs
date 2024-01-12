@@ -41,6 +41,10 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtEntidadFederativa = new Controls.Controles.Txt();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtMunicipio = new Controls.Controles.Txt();
             this.btnAgenda = new System.Windows.Forms.Button();
             this.cbxEstado = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -70,10 +74,6 @@
             this.txtNombre = new Controls.Controles.Txt();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtMunicipio = new Controls.Controles.Txt();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtEntidadFederativa = new Controls.Controles.Txt();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
@@ -217,6 +217,44 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(780, 89);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(115, 23);
+            this.label16.TabIndex = 54;
+            this.label16.Text = "Entidad Fed:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtEntidadFederativa
+            // 
+            this.txtEntidadFederativa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEntidadFederativa.Location = new System.Drawing.Point(901, 89);
+            this.txtEntidadFederativa.MaxLength = 65;
+            this.txtEntidadFederativa.Name = "txtEntidadFederativa";
+            this.txtEntidadFederativa.Size = new System.Drawing.Size(225, 23);
+            this.txtEntidadFederativa.TabIndex = 130;
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(780, 60);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(115, 23);
+            this.label14.TabIndex = 52;
+            this.label14.Text = "Municipio:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtMunicipio
+            // 
+            this.txtMunicipio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMunicipio.Location = new System.Drawing.Point(901, 60);
+            this.txtMunicipio.MaxLength = 65;
+            this.txtMunicipio.Name = "txtMunicipio";
+            this.txtMunicipio.Size = new System.Drawing.Size(225, 23);
+            this.txtMunicipio.TabIndex = 120;
+            // 
             // btnAgenda
             // 
             this.btnAgenda.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -264,6 +302,7 @@
             this.txtClave.Location = new System.Drawing.Point(901, 117);
             this.txtClave.MaxLength = 5;
             this.txtClave.Name = "txtClave";
+            this.txtClave.ReadOnly = true;
             this.txtClave.Size = new System.Drawing.Size(185, 23);
             this.txtClave.TabIndex = 140;
             // 
@@ -502,44 +541,6 @@
             this.btnGuardar.Text = "     Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // label14
-            // 
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(780, 60);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(115, 23);
-            this.label14.TabIndex = 52;
-            this.label14.Text = "Municipio:";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtMunicipio
-            // 
-            this.txtMunicipio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMunicipio.Location = new System.Drawing.Point(901, 60);
-            this.txtMunicipio.MaxLength = 65;
-            this.txtMunicipio.Name = "txtMunicipio";
-            this.txtMunicipio.Size = new System.Drawing.Size(225, 23);
-            this.txtMunicipio.TabIndex = 120;
-            // 
-            // label16
-            // 
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(780, 89);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(115, 23);
-            this.label16.TabIndex = 54;
-            this.label16.Text = "Entidad Fed:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtEntidadFederativa
-            // 
-            this.txtEntidadFederativa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEntidadFederativa.Location = new System.Drawing.Point(901, 89);
-            this.txtEntidadFederativa.MaxLength = 65;
-            this.txtEntidadFederativa.Name = "txtEntidadFederativa";
-            this.txtEntidadFederativa.Size = new System.Drawing.Size(225, 23);
-            this.txtEntidadFederativa.TabIndex = 130;
             // 
             // formClientes
             // 

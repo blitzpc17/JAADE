@@ -71,7 +71,8 @@ namespace PRESENTACION.UTILERIAS
                     {
                         foreach( var ditem in ((ToolStripMenuItem)item).DropDownItems)
                         {
-                            ((ToolStripDropDownItem)ditem).BackColor = Principal;
+                            ((ToolStripDropDownItem)ditem).BackColor = Enfasis;
+                           // ((ToolStripDropDownItem)ditem).ForeColor = 
                         }
                     }
                 }

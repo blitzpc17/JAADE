@@ -18,17 +18,31 @@ namespace PRESENTACION.SISTEMA
 
         public void InicializarModulo()
         {
-            LimpiarControles();
-            dgvRegistros.DataSource = null;
-            tsTotalRegistros.Text = @"0";
-            InstanciarContexto();
+            try
+            {
+                LimpiarControles();
+                dgvRegistros.DataSource = null;
+                tsTotalRegistros.Text = @"0";
+                InstanciarContexto();
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar el modulo. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+           
         }
 
         public void LimpiarControles()
         {
             ThemeConfig.LimpiarControles(this);
             txtFechaRegistro.Text = Global.FechaServidor().ToString("dd-MM-yyyy");
-            txtUsuarioAsigno.Text = Global.ObtenerNombreUsuario(Global.ObjUsuario);
+            txtUsuarioAsigno.Text = Global.ObjUsuario.Nombre;
         }
 
         public void InstanciarContexto()
@@ -73,7 +87,7 @@ namespace PRESENTACION.SISTEMA
             {
                 Global.GuardarExcepcion(ex, Name);
                 MessageBox.Show(
-                    "Ocurrió un error al intentar guardar los registros. Intentelo nuevamente.",
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
                     "Error en la operación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

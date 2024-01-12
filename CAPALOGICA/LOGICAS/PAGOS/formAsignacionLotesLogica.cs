@@ -1,6 +1,7 @@
 ﻿using CAPADATOS;
 using CAPADATOS.ADO.LOTES;
 using CAPADATOS.ADO.PAGOS;
+using CAPADATOS.ADO.SISTEMA;
 using CAPADATOS.Entidades;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         private LotesADO contextoLotes;
         private ZonaADO contextoZona;
         private AsignacionClienteLoteADO contextoAsignacion;
-        
+        private PagosADO contextoPagos;
+
         public CLIENTE_LOTE ObjClienteLote;
         public clsLotes ObjLoteSeleccionado;
         public clsClienteLote ObjClienteLoteSeleccionado;
@@ -24,6 +26,12 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public List<clsClienteLote> LstClienteLotes;
         public List<clsClienteLote> LstClienteLotesAux;
         public List<ZONA> LstZonas;
+        public List<PAGO> LstPagosAsociadosClienteLote;
+        public PAGO ObjPago;
+
+        private LOTE ObjLote;
+        private LOTE ObjLoteAnt;
+        public List<ESTADO> LstEstadosLote;
 
         public int index;
         public int Column;
@@ -37,7 +45,8 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         {
             contextoAsignacion = new AsignacionClienteLoteADO();
             contextoZona = new ZonaADO();
-            contextoLotes = new LotesADO(); 
+            contextoLotes = new LotesADO();
+            contextoPagos = new PagosADO();
         }
 
         public void InstanciarAsignacionLote()
@@ -80,7 +89,70 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         }
         public clsLotes ObtenerLote(int loteId)
         {
-            return contextoLotes.ObtenerLoteData(loteId);   
+            return contextoLotes.ObtenerLoteData(loteId);
+        }
+        public clsClientes ObtenerClienteData(int clienteId)
+        {
+            using (var contexto = new ClientesADO())
+            {
+                return contexto.ObtenerDataCliente(clienteId);
+            }
+        }
+        public void ListarEstadosProcesoLotes(string nombreProceso)
+        {
+            using (var contexto = new EstadoADO())
+            {
+                LstEstadosLote = contexto.Listar().Where(x => x.Proceso == nombreProceso).ToList();
+            }
+        }
+        public bool ActualizarEstadoLote(int idLote, string estado)
+        {
+            try
+            {
+                ObjLote = contextoLotes.Obtener(idLote);
+                ObjLote.ESTADOId = LstEstadosLote.First(x => x.Nombre == estado).Id;
+                contextoLotes.Guardar();
+                return true;
+
+            } catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool ReasignarPagosLote(int idLoteAnterior, int clienteId, int idLoteNuevo)
+        {
+            try
+            {
+                LstPagosAsociadosClienteLote = contextoPagos.ListarPagosAsociadosLote(clienteId, idLoteAnterior);
+                LstPagosAsociadosClienteLote.ForEach(x => x.LOTEId = idLoteNuevo);
+                contextoPagos.Guardar();
+                return true;
+            } catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public void GuardarPagoInicial()
+        {
+            contextoPagos.Insertar(ObjPago);
+            contextoPagos.Guardar();
+        }
+        public void InstanciarObjetoPago()
+        {
+            ObjPago = new PAGO();
+        }
+
+        public PAGO ObtenerPagoInicial(int idCliente, int loteId)
+        {
+            LstPagosAsociadosClienteLote = contextoPagos.ListarPagosAsociadosLote(idCliente, loteId);
+            return (LstPagosAsociadosClienteLote== null || LstPagosAsociadosClienteLote.Count==0)? null: LstPagosAsociadosClienteLote.First(x=>x.NumeroPago=="1");
+        }
+
+        public CLIENTE_LOTE ObtenerAsignacionClienteLote(int id)
+        {
+            return contextoAsignacion.Obtener(id);
         }
 
         public bool Filtrar(int column, string termino)
@@ -143,12 +215,6 @@ namespace CAPALOGICA.LOGICAS.PAGOS
 
         }
 
-        public clsClientes ObtenerClienteData(int clienteId)
-        {
-            using (var contexto = new ClientesADO())
-            {
-                return contexto.ObtenerDataCliente(clienteId);
-            }
-        }
+      
     }
 }

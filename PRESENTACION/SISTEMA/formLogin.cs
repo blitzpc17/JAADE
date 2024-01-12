@@ -58,7 +58,7 @@ namespace PRESENTACION.SISTEMA
                 MDIMain mDIMain = new MDIMain();
                 Hide();
                 mDIMain.WindowState = FormWindowState.Maximized;
-                mDIMain.ShowDialog();
+                mDIMain.ShowDialog();  
                 Close();
             }
             else

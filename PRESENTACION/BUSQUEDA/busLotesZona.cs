@@ -39,10 +39,24 @@ namespace PRESENTACION.BUSQUEDA
         }  
         private void InicializarForm()
         {
-            contexto = new busLotesZonaLogica();
-            Listar();
-            ordenar(1);
-            contexto.Column = 1;
+            try
+            {
+                contexto = new busLotesZonaLogica();
+                Listar();
+                ordenar(1);
+                contexto.Column = 1;
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar el módulo. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+           
         }
 
         public void Listar()
@@ -119,6 +133,13 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[13].DefaultCellStyle.Format = "N2";
             dgvRegistros.Columns[13].Width = 110;
             dgvRegistros.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvRegistros.Columns[14].HeaderText = "Manzana";
+            dgvRegistros.Columns[14].DefaultCellStyle.Format = "N0";
+            dgvRegistros.Columns[14].Width = 110;
+            dgvRegistros.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvRegistros.Columns[15].Visible = false;
+            dgvRegistros.Columns[16].HeaderText = "Estado";
+            dgvRegistros.Columns[16].Width = 110;
             tsTotalRegistros.Text = contexto.LstLoteAux.Count.ToString("N0");
         }
 

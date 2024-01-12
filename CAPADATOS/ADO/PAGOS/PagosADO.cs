@@ -44,7 +44,7 @@ namespace CAPADATOS.ADO.PAGOS
         public clsPago ObtenerDataPago(int id)
         {
             var query = "SELECT \r\n "+
-                        "PG.NumeroReferencia, PG.FechaEmison,  \r\n "+
+                        "PG.NumeroReferencia, PG.FechaEmison as FechaEmision,  \r\n " +
                         "CLI.Id AS ClienteId, (per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Cliente, \r\n "+
                         "LT.Id as LoteId, LT.Identificador as IdentificadorLote, LT.ZONAId as ZonaId, ZN.Nombre as Zona, LT.Manzana, \r\n "+
                         "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario, \r\n "+
@@ -74,7 +74,7 @@ namespace CAPADATOS.ADO.PAGOS
             if (clienteId!=null)
             {
                 query = "SELECT \r\n " +
-                    "PG.Id as PagoId, PG.NumeroReferencia, PG.FechaEmison,  \r\n " +
+                    "PG.Id as PagoId, PG.NumeroReferencia, PG.FechaEmison as FechaEmision,  \r\n " +
                     "CLI.Id AS ClienteId, (per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Cliente, \r\n " +
                     "LT.Id as LoteId, LT.Identificador as IdentificadorLote, LT.ZONAId as ZonaId, ZN.Nombre as Zona, LT.Manzana, \r\n " +
                     "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario, \r\n " +
@@ -98,7 +98,7 @@ namespace CAPADATOS.ADO.PAGOS
             else
             {
                 query = "SELECT \r\n " +
-                     "PG.Id as PagoId, PG.NumeroReferencia, PG.FechaEmison,  \r\n " +
+                     "PG.Id as PagoId, PG.NumeroReferencia, PG.FechaEmison as FechaEmision,  \r\n " +
                      "CLI.Id AS ClienteId, (per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Cliente, \r\n " +
                      "LT.Id as LoteId, LT.Identificador as IdentificadorLote, LT.ZONAId as ZonaId, ZN.Nombre as Zona, LT.Manzana, \r\n " +
                      "PG.Monto, us.Id as UsuarioRecibeId, (PERUS.Nombres + ' ' + PERUS.ApellidoPaterno + ' ' + PERUS.ApellidoMaterno) as Usuario, \r\n " +
@@ -121,6 +121,11 @@ namespace CAPADATOS.ADO.PAGOS
          
 
             return contexto.Database.SqlQuery<clsPago>(query).ToList();
+        }
+
+        public List<PAGO>ListarPagosAsociadosLote(int clienteId, int LoteId)
+        {
+            return contexto.PAGO.Where(x=>x.CLIENTEId==clienteId&& x.LOTEId==LoteId).ToList();
         }
 
 

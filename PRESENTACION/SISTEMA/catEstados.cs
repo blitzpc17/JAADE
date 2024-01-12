@@ -25,9 +25,23 @@ namespace PRESENTACION.SISTEMA
 
         private void InicializarForm()
         {
-            LimpiarControles();
-            InstanciarContextos();
-            ListarRegistros();
+            try
+            {
+                LimpiarControles();
+                InstanciarContextos();
+                ListarRegistros();
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar el modulo. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+         
         }
 
         private void InstanciarContextos()
@@ -61,19 +75,33 @@ namespace PRESENTACION.SISTEMA
 
         private void Guardar()
         {
-            if (contexto.ObjEstado == null)
+            try
             {
-                contexto.InstanciarEstado();
-                contexto.ObjEstado.Baja = false;
+                if (contexto.ObjEstado == null)
+                {
+                    contexto.InstanciarEstado();
+                    contexto.ObjEstado.Baja = false;
+                }
+
+                contexto.ObjEstado.Nombre = txtNombre.Text;
+                contexto.ObjEstado.Proceso = txtProceso.Text;
+
+                contexto.Guardar();
+
+                MessageBox.Show("Registro guardado correctamente.", "Aciso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                InicializarForm();
             }
-
-            contexto.ObjEstado.Nombre = txtNombre.Text;
-            contexto.ObjEstado.Proceso = txtProceso.Text;
-
-            contexto.Guardar();
-
-            MessageBox.Show("Registro guardado correctamente.", "Aciso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            InicializarForm();
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+       
 
         }
 

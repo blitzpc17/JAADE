@@ -16,7 +16,7 @@ namespace PRESENTACION.LOTES
     {
         private formLotesLogica contexto;
         private bool cargado = false;
-        private int? Manzana = null;
+        private int? Manzana = null;        
 
         public formLotes()
         {
@@ -34,6 +34,7 @@ namespace PRESENTACION.LOTES
                 InstanciarContexto();
                 ListarCatalogos();
                 cargado = true;
+                contexto.Column = 1;
             }
             catch(Exception ex)
             {
@@ -60,6 +61,7 @@ namespace PRESENTACION.LOTES
             cbxZona.DataSource = contexto.LstZona;           
             cbxZona.SelectedIndex = -1;
             cbxManzana.Items.Clear();
+            contexto.ListarEstadosProceso(Enumeraciones.Procesos.LOTE.ToString());
             
         }
 
@@ -68,79 +70,151 @@ namespace PRESENTACION.LOTES
             ThemeConfig.LimpiarControles(this);
             txtFechaRegistro.Text = Global.FechaServidor().ToString("dd-MM-yyyy HH:mm:ss");
             Manzana = null;
+            dgvRegistros.DataSource = null;
+            cbxManzana.Items.Clear();
+            cbxManzana.SelectedIndex = -1;
+            tsTotalRegistros.Text = @"0";
         }
 
 
         private void GuardarLotes(bool multiple)
         {
-           
-            DateTime _FechaRegistro = Global.FechaServidor();
-            int _UltimoLote = contexto.ObtenerUltimoLote((int)cbxZona.SelectedValue);
-            if (multiple)
-            {
-                if (!Global.EsValorEntero(txtLotesDinamicos.Text))
+           try
+           {
+                string _errorMsj=null;
+                if (cbxZona.SelectedValue == null)
                 {
-                    MessageBox.Show("Valor inválido, ingrese la cantidad de lotes a generar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _errorMsj = "No seleccionado la ZONA del lote.";
+                }
+                else if (string.IsNullOrEmpty(txtPrecio.Text))
+                {
+                    _errorMsj = "El campo PRECIO es Obligatorio.";
+                }
+                else if (string.IsNullOrEmpty(txtMNorte.Text))
+                {
+                    _errorMsj = "El campo M. NORTE es Obligatorio.";
+                }else if (string.IsNullOrEmpty(txtMSur.Text))
+                {
+                    _errorMsj = "El campo M. SUR es Obligatorio.";
+                }
+                else if (string.IsNullOrEmpty(txtMOeste.Text))
+                {
+                    _errorMsj = "El campo M. OESTE es Obligatorio.";
+                }
+                else if (string.IsNullOrEmpty(txtMEste.Text))
+                {
+                    _errorMsj = "El campo M. ESTE es Obligatorio.";
+                }
+                else if (string.IsNullOrEmpty(txtCNorte.Text))
+                {
+                    _errorMsj = "El campo C. NORTE es Obligatorio.";
+                }
+                else if (string.IsNullOrEmpty(txtCSur.Text))
+                {
+                    _errorMsj = "El campo C. SUR es Obligatorio.";
+                }
+                else if (string.IsNullOrEmpty(txtCEste.Text))
+                {
+                    _errorMsj = "El campo C. ESTE es Obligatorio.";
+                }
+                else if (string.IsNullOrEmpty(txtCOeste.Text))
+                {
+                    _errorMsj = "El campo C. OESTE es Obligatorio.";
+                }else if((contexto.ObjZona.NoManzanas!=null && contexto.ObjZona.NoManzanas > 0)&&Manzana==null)
+                {
+                    _errorMsj = "El campo MANZANA es Obligatorio.";
+                }
+                 
+
+                if (!string.IsNullOrEmpty(_errorMsj))
+                {
+                    MessageBox.Show(_errorMsj, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-               
-                int _NoLotes = int.Parse(txtLotesDinamicos.Text);
-                int _LimiteLotes = contexto.ObjZona.NoLotes;
-
-                if ((_UltimoLote + _NoLotes) <= _LimiteLotes)
+                DateTime _FechaRegistro = Global.FechaServidor();
+                int _UltimoLote = contexto.ObtenerUltimoLote((int)cbxZona.SelectedValue);
+                if (multiple)
                 {
-                    for (int i = _UltimoLote+1; i <= _NoLotes; i++)
+                    if (!Global.EsValorEntero(txtLotesDinamicos.Text))
                     {
-                        contexto.InstanciarLote();
-                        contexto.ObjLote.Identificador = "L/"+i+(cbxManzana.Items.Count>0? " M/"+cbxManzana.SelectedItem : "");
-                        contexto.ObjLote.MNorte = Convert.ToDecimal(txtMNorte.Text);
-                        contexto.ObjLote.MSur = Convert.ToDecimal(txtMSur.Text);
-                        contexto.ObjLote.MEste = Convert.ToDecimal(txtMEste.Text);
-                        contexto.ObjLote.MOeste = Convert.ToDecimal(txtMOeste.Text);
-                        contexto.ObjLote.CNorte = txtCNorte.Text;
-                        contexto.ObjLote.CEste = txtCEste.Text;
-                        contexto.ObjLote.COeste = txtCOeste.Text;
-                        contexto.ObjLote.CSur = txtCSur.Text;
-                        contexto.ObjLote.Precio = Convert.ToDecimal(txtPrecio.Text);
-                        contexto.ObjLote.FechaRegistro = _FechaRegistro;
-                        contexto.ObjLote.ZONAId = (int)cbxZona.SelectedValue;
-                        contexto.ObjLote.Manzana = Manzana;
-                        contexto.Guardar();
+                        MessageBox.Show("Valor inválido, ingrese la cantidad de lotes a generar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
 
-                    MessageBox.Show("Lotes generados corectamente.",
-                       "Aviso",
-                       MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    InicializarForm();
+                    int _NoLotes = int.Parse(txtLotesDinamicos.Text);
+                    int _LimiteLotes = contexto.ObjZona.NoLotes;
+
+                    if ((_UltimoLote + _NoLotes) <= _LimiteLotes)
+                    {
+                        for (int i = _UltimoLote + 1; i <= (_UltimoLote + _NoLotes); i++)
+                        {
+                            contexto.InstanciarLote();
+                            contexto.ObjLote.Identificador = "L/" + i + (cbxManzana.Items.Count > 0 ? " M/" + cbxManzana.SelectedItem : "");
+                            contexto.ObjLote.MNorte = Convert.ToDecimal(txtMNorte.Text);
+                            contexto.ObjLote.MSur = Convert.ToDecimal(txtMSur.Text);
+                            contexto.ObjLote.MEste = Convert.ToDecimal(txtMEste.Text);
+                            contexto.ObjLote.MOeste = Convert.ToDecimal(txtMOeste.Text);
+                            contexto.ObjLote.CNorte = txtCNorte.Text;
+                            contexto.ObjLote.CEste = txtCEste.Text;
+                            contexto.ObjLote.COeste = txtCOeste.Text;
+                            contexto.ObjLote.CSur = txtCSur.Text;
+                            contexto.ObjLote.Precio = Convert.ToDecimal(txtPrecio.Text);
+                            contexto.ObjLote.FechaRegistro = _FechaRegistro;
+                            contexto.ObjLote.ZONAId = (int)cbxZona.SelectedValue;
+                            contexto.ObjLote.Manzana = Manzana;
+                            contexto.ObjLote.ESTADOId = contexto.ObtenerEstadoLote(Enumeraciones.EstadosProcesoLote.LIBRE.ToString()).Id;
+                            contexto.Guardar();
+                        }
+
+                        MessageBox.Show("Lotes generados corectamente.",
+                           "Aviso",
+                           MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El número de lotes a crear es superior a la cantidad de lotes que tiene la zona seleccionada.\r\n Verifique su ifnromación",
+                            "Advertencia",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El número de lotes a crear es superior a la cantidad de lotes que tiene la zona seleccionada.\r\n Verifique su ifnromación",
-                        "Advertencia",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }                
+                    string[] identificadorAnterior = contexto.ObjLote.Identificador.Split(' ');
+                    string manzanaAnterior = identificadorAnterior[1].Substring(2);
+                    contexto.ObjLote.Identificador = contexto.ObjLote.Identificador.Substring(0, contexto.ObjLote.Identificador.Length - manzanaAnterior.Length) + (cbxManzana.Items.Count > 0 ? cbxManzana.SelectedItem : "");
+                    contexto.ObjLote.MNorte = Convert.ToDecimal(txtMNorte.Text);
+                    contexto.ObjLote.MSur = Convert.ToDecimal(txtMSur.Text);
+                    contexto.ObjLote.MEste = Convert.ToDecimal(txtMEste.Text);
+                    contexto.ObjLote.MOeste = Convert.ToDecimal(txtMOeste.Text);
+                    contexto.ObjLote.CNorte = txtCNorte.Text;
+                    contexto.ObjLote.CEste = txtCEste.Text;
+                    contexto.ObjLote.COeste = txtCOeste.Text;
+                    contexto.ObjLote.CSur = txtCSur.Text;
+                    contexto.ObjLote.Precio = Convert.ToDecimal(txtPrecio.Text);
+                    contexto.ObjLote.FechaRegistro = _FechaRegistro;
+                    contexto.ObjLote.ZONAId = (int)cbxZona.SelectedValue;
+                    contexto.ObjLote.Manzana = (int)cbxManzana.SelectedItem;
+                    contexto.Guardar();
+
+                    MessageBox.Show("Registro guardado correctamente.",
+                        "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                InicializarForm();
             }
-            else
-            {
-                string [] identificadorAnterior = contexto.ObjLote.Identificador.Split(' ');
-                string manzanaAnterior = identificadorAnterior[1].Substring(2);
-                contexto.ObjLote.Identificador = contexto.ObjLote.Identificador.Substring(0, contexto.ObjLote.Identificador.Length-manzanaAnterior.Length)+(cbxManzana.Items.Count>0?cbxManzana.SelectedItem:"");
-                contexto.ObjLote.MNorte = Convert.ToDecimal(txtMNorte.Text);
-                contexto.ObjLote.MSur = Convert.ToDecimal(txtMSur.Text);
-                contexto.ObjLote.MEste = Convert.ToDecimal(txtMEste.Text);
-                contexto.ObjLote.MOeste = Convert.ToDecimal(txtMOeste.Text);
-                contexto.ObjLote.CNorte = txtCNorte.Text;
-                contexto.ObjLote.CEste = txtCEste.Text;
-                contexto.ObjLote.COeste = txtCOeste.Text;
-                contexto.ObjLote.CSur = txtCSur.Text;
-                contexto.ObjLote.Precio = Convert.ToDecimal(txtPrecio.Text);
-                contexto.ObjLote.FechaRegistro = _FechaRegistro;
-                contexto.ObjLote.ZONAId = (int)cbxZona.SelectedValue;
-                contexto.ObjLote.Manzana = (int)cbxManzana.SelectedItem;
-                contexto.Guardar();
-            }
+           catch (Exception ex)
+           {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+           }
+            
         }
 
         private void ListarLotesAsociadosZona(int ZonaId)
@@ -192,9 +266,16 @@ namespace PRESENTACION.LOTES
             dgvRegistros.Columns[13].DefaultCellStyle.Format = "N2";
             dgvRegistros.Columns[13].Width = 110;
             dgvRegistros.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvRegistros.Columns[14].HeaderText = "Manzana";
+            dgvRegistros.Columns[14].DefaultCellStyle.Format = "N0";
+            dgvRegistros.Columns[14].Width = 110;
+            dgvRegistros.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvRegistros.Columns[15].Visible= false;
+            dgvRegistros.Columns[16].HeaderText = "Estado";
+            dgvRegistros.Columns[16].Width = 110;
             tsTotalRegistros.Text = contexto.LstLoteAux.Count.ToString("N0");
 
-            contexto.Column = 1;
+            
         }
 
 
@@ -225,22 +306,31 @@ namespace PRESENTACION.LOTES
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtLotesDinamicos.Text))
+            try
             {
-                MessageBox.Show("No se puede guardar el registro porque tiene definido un número de lotes dinámicos.",
-                       "Advertencia",
-                       MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (!string.IsNullOrEmpty(txtLotesDinamicos.Text))
+                {
+                    MessageBox.Show("No se puede guardar el registro porque tiene definido un número de lotes dinámicos.",
+                           "Advertencia",
+                           MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                return;
+                    return;
+                }
 
+                GuardarLotes(false);
+              
+
+                
             }
-
-            GuardarLotes(false);
-            MessageBox.Show("Registro guardado correctamente.",
-                      "Aviso",
-                      MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            InicializarForm();
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }        
 
         }
 
@@ -288,9 +378,9 @@ namespace PRESENTACION.LOTES
             int zonaId = (int)cbxZona.SelectedValue;
             contexto.ObtenerZona(zonaId);
             ListarLotesAsociadosZona(zonaId);
+            cbxManzana.Items.Clear();            
             if (contexto.ObjZona.NoManzanas != null)
-            {
-                cbxManzana.Items.Clear();   
+            {                 
                 for (int i = 1; i<= contexto.ObjZona.NoManzanas; i++)
                 {
                     cbxManzana.Items.Add(i);
@@ -334,9 +424,9 @@ namespace PRESENTACION.LOTES
         private void cbxManzana_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!cargado) return;
-            if (cbxManzana.SelectedValue != null)
+            if (cbxManzana.SelectedIndex != -1)
             {
-                Manzana = (int)cbxManzana.SelectedValue;
+                Manzana = (int)cbxManzana.SelectedItem;
             }
             else
             {

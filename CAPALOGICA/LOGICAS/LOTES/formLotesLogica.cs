@@ -1,5 +1,6 @@
 ﻿using CAPADATOS;
 using CAPADATOS.ADO.LOTES;
+using CAPADATOS.ADO.SISTEMA;
 using CAPADATOS.Entidades;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace CAPALOGICA.LOGICAS.LOTES
 
         private LotesADO contextoLotes;
         private ZonaADO contextoZonas;
+        private EstadoADO contextoEstado;
         public LOTE ObjLote;
         public clsLotes ObjLoteData;
         public List<clsLotes> LstLote;
         public List<clsLotes> LstLoteAux;        
         public List<ZONA> LstZona;
+        public List<ESTADO> LstEstados;
         public ZONA ObjZona;
 
         public int index = -1;
@@ -29,6 +32,7 @@ namespace CAPALOGICA.LOGICAS.LOTES
         {
             contextoLotes = new LotesADO();
             contextoZonas = new ZonaADO();
+            contextoEstado = new EstadoADO();
         }
 
         public void InstanciarLote()
@@ -62,6 +66,15 @@ namespace CAPALOGICA.LOGICAS.LOTES
             contextoLotes.Eliminar(entidad);
         }
 
+        public void ListarEstadosProceso(string nombreProceso)
+        {
+            LstEstados = contextoEstado.Listar().Where(x => x.Proceso == nombreProceso).ToList();
+        }
+        public ESTADO ObtenerEstadoLote(string nombreEstado)
+        {
+            return LstEstados.FirstOrDefault(x => x.Nombre == nombreEstado);            
+        }
+
 
         public bool Filtrar(int column, string termino)
         {
@@ -71,7 +84,13 @@ namespace CAPALOGICA.LOGICAS.LOTES
             {
                 case 1:
                     index = LstLoteAux.FindIndex(x => x.Identificador.StartsWith(termino));
-                    break;               
+                    break;
+                case 14:
+                    index = LstLoteAux.FindIndex(x => x.Manzana.ToString().StartsWith(termino));
+                    break;
+                case 16:
+                    index = LstLoteAux.FindIndex(x => x.Estado.StartsWith(termino));
+                    break;
 
                 default:
                     index = -1;
@@ -83,10 +102,7 @@ namespace CAPALOGICA.LOGICAS.LOTES
 
         }
 
-        public int ObtenerUltimoLote(int ZonaId)
-        {
-            return contextoLotes.ObtenerUltimoLote(ZonaId);
-        }
+  
 
         public void Ordenar(int column)
         {
@@ -94,19 +110,27 @@ namespace CAPALOGICA.LOGICAS.LOTES
             {
 
                 case 1:
-                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x=>x.Precio).ToList();
+                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Manzana).ThenBy(x=>x.Precio).ThenBy(x => x.Estado).ToList();
+                    break;
+
+                case 16:
+                    LstLoteAux = LstLote.OrderBy(x => x.Estado).ThenBy(x=>x.Identificador).ThenBy(x=>x.Manzana).ThenBy(x => x.Precio).ToList();
                     break;
 
                 default:
-                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Precio).ToList();
+                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Manzana).ThenBy(x => x.Precio).ThenBy(x => x.Estado).ToList();
                     break;
 
             }
         }
 
+        public int ObtenerUltimoLote(int ZonaId)
+        {
+            return contextoLotes.ObtenerUltimoLote(ZonaId);
+        }
         public void ListarCatalogos()
         {
-            LstZona = contextoZonas.Listar();
+            LstZona = contextoZonas.Listar();            
         }
 
         public void ObtenerZona(int idZona)

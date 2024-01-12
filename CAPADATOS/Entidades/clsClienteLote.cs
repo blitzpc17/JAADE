@@ -16,10 +16,13 @@ namespace CAPADATOS.Entidades
         public string Cliente { get; set; }
         public DateTime FechaAsignacion { get; set; }
         public int? Manzana { get; set; }
-        public decimal PrecioLote { get; set; }
-       // public decimal PagoInicial { get; set; }    
+        public decimal PrecioLote { get; set; }   
         public int NoPagos { get; set; }    
         public decimal MontoRestante { get; set; }  
+        public int EstadoId { get; set; }
+        public string Estado { get; set; }
+        public int PagosRegistrados { get; set; }
+        public int Id { get; set; }
         
 
     }

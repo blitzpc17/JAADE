@@ -38,6 +38,7 @@ namespace PRESENTACION.SISTEMA
                     "Error en la operación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                Close();
             }
         }
 

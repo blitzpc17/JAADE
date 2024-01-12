@@ -28,9 +28,23 @@ namespace PRESENTACION.BUSQUEDA
 
         private void InicializarForm()
         {
-            contexto = new busUsuariosLogica();
-            Listar();
-            ordenar(1);
+            try
+            {
+                contexto = new busUsuariosLogica();
+                Listar();
+                ordenar(1);
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar el módulo. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+          
         }
 
         public void Listar()

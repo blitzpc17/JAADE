@@ -51,6 +51,12 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
                 case 1:
                     index = LstLoteAux.FindIndex(x => x.Identificador.StartsWith(termino));
                     break;
+                case 14:
+                    index = LstLoteAux.FindIndex(x => x.Manzana.ToString().StartsWith(termino));
+                    break;
+                case 16:
+                    index = LstLoteAux.FindIndex(x => x.Estado.StartsWith(termino));
+                    break;
 
                 default:
                     index = -1;
@@ -68,11 +74,15 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
             {
 
                 case 1:
-                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Precio).ToList();
+                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Manzana).ThenBy(x => x.Precio).ThenBy(x => x.Estado).ToList();
+                    break;
+
+                case 16:
+                    LstLoteAux = LstLote.OrderBy(x => x.Estado).ThenBy(x => x.Identificador).ThenBy(x => x.Manzana).ThenBy(x => x.Precio).ToList();
                     break;
 
                 default:
-                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Precio).ToList();
+                    LstLoteAux = LstLote.OrderBy(x => x.Identificador).ThenBy(x => x.Manzana).ThenBy(x => x.Precio).ThenBy(x => x.Estado).ToList();
                     break;
 
             }

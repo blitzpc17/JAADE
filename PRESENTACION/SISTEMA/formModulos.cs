@@ -19,9 +19,23 @@ namespace PRESENTACION.SISTEMA
 
         private void InicializarForm()
         {
-            LimpiarControles();
-            InstanciarContextos();
-            ListarRegistros();
+            try
+            {
+                LimpiarControles();
+                InstanciarContextos();
+                ListarRegistros();
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar el modulo. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+           
         }
 
         private void InstanciarContextos()
@@ -31,9 +45,7 @@ namespace PRESENTACION.SISTEMA
 
         private void LimpiarControles()
         {
-            ThemeConfig.LimpiarControles(this);
-            txtRuta.CharacterCasing = CharacterCasing.Normal;
-            txtIcono.CharacterCasing = CharacterCasing.Normal;
+            ThemeConfig.LimpiarControles(this);          
         }
 
         private void Apariencias()
@@ -65,27 +77,40 @@ namespace PRESENTACION.SISTEMA
 
         private void Guardar()
         {
-            if (contexto.ObjModulo == null)
+            try
             {
-                contexto.InstanciarRol();
-            }
+                if (contexto.ObjModulo == null)
+                {
+                    contexto.InstanciarRol();
+                }
 
-            contexto.ObjModulo.Nombre = txtNombre.Text;
-            contexto.ObjModulo.Icono = txtIcono.Text;
-            contexto.ObjModulo.Ruta = txtRuta.Text;
-            if (ModuloPadreSeleccionadoId == -1)
+                contexto.ObjModulo.Nombre = txtNombre.Text;
+                contexto.ObjModulo.Icono = txtIcono.Text;
+                contexto.ObjModulo.Ruta = txtRuta.Text;
+                if (ModuloPadreSeleccionadoId == -1)
+                {
+                    contexto.ObjModulo.MODULOId = null;
+                }
+                else
+                {
+                    contexto.ObjModulo.MODULOId = ModuloPadreSeleccionadoId;
+                }
+
+                contexto.Guardar();
+
+                MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                InicializarForm();
+            }
+            catch (Exception ex)
             {
-                contexto.ObjModulo.MODULOId = null;
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-            else
-            {
-                contexto.ObjModulo.MODULOId = ModuloPadreSeleccionadoId;
-            }
-
-            contexto.Guardar();
-
-            MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            InicializarForm();
+            
 
         }
 
@@ -149,6 +174,8 @@ namespace PRESENTACION.SISTEMA
         {
             ThemeConfig.ThemeControls(this);
             MaximizeBox = false;
+            txtRuta.CharacterCasing = CharacterCasing.Normal;
+            txtIcono.CharacterCasing = CharacterCasing.Normal;
         }
 
         private void btnModulo_Click(object sender, EventArgs e)

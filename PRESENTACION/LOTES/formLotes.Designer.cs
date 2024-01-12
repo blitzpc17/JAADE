@@ -237,6 +237,7 @@
             // 
             // cbxManzana
             // 
+            this.cbxManzana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxManzana.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxManzana.FormattingEnabled = true;
             this.cbxManzana.ItemHeight = 15;
@@ -396,6 +397,7 @@
             // 
             // cbxZona
             // 
+            this.cbxZona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxZona.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxZona.FormattingEnabled = true;
             this.cbxZona.ItemHeight = 15;

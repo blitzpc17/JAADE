@@ -41,6 +41,14 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtNoPagosExcedente = new Controls.Controles.Txt();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtMontoExcedePlazo = new Controls.Controles.Txt();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtFechaExcedePlazo = new Controls.Controles.Txt();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtExcedePlazoPago = new Controls.Controles.Txt();
             this.label9 = new System.Windows.Forms.Label();
             this.txtMontoRestante = new Controls.Controles.Txt();
             this.label8 = new System.Windows.Forms.Label();
@@ -62,14 +70,6 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtNoPagosExcedente = new Controls.Controles.Txt();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtMontoExcedePlazo = new Controls.Controles.Txt();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtFechaExcedePlazo = new Controls.Controles.Txt();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtExcedePlazoPago = new Controls.Controles.Txt();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
@@ -211,6 +211,82 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(780, 117);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(115, 23);
+            this.label10.TabIndex = 106;
+            this.label10.Text = "No. Pagos Exc:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtNoPagosExcedente
+            // 
+            this.txtNoPagosExcedente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoPagosExcedente.Location = new System.Drawing.Point(901, 117);
+            this.txtNoPagosExcedente.Name = "txtNoPagosExcedente";
+            this.txtNoPagosExcedente.ReadOnly = true;
+            this.txtNoPagosExcedente.Size = new System.Drawing.Size(225, 23);
+            this.txtNoPagosExcedente.TabIndex = 140;
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(780, 88);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(115, 23);
+            this.label11.TabIndex = 105;
+            this.label11.Text = "Monto Exc. Pzo:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtMontoExcedePlazo
+            // 
+            this.txtMontoExcedePlazo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMontoExcedePlazo.Location = new System.Drawing.Point(901, 88);
+            this.txtMontoExcedePlazo.Name = "txtMontoExcedePlazo";
+            this.txtMontoExcedePlazo.ReadOnly = true;
+            this.txtMontoExcedePlazo.Size = new System.Drawing.Size(225, 23);
+            this.txtMontoExcedePlazo.TabIndex = 130;
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(780, 59);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(115, 23);
+            this.label12.TabIndex = 104;
+            this.label12.Text = "Fecha Exd. Pzo:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtFechaExcedePlazo
+            // 
+            this.txtFechaExcedePlazo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaExcedePlazo.Location = new System.Drawing.Point(901, 59);
+            this.txtFechaExcedePlazo.Name = "txtFechaExcedePlazo";
+            this.txtFechaExcedePlazo.ReadOnly = true;
+            this.txtFechaExcedePlazo.Size = new System.Drawing.Size(225, 23);
+            this.txtFechaExcedePlazo.TabIndex = 120;
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(780, 30);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(115, 23);
+            this.label13.TabIndex = 103;
+            this.label13.Text = "Exc. Pzo. Pago:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtExcedePlazoPago
+            // 
+            this.txtExcedePlazoPago.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtExcedePlazoPago.Location = new System.Drawing.Point(901, 30);
+            this.txtExcedePlazoPago.Name = "txtExcedePlazoPago";
+            this.txtExcedePlazoPago.ReadOnly = true;
+            this.txtExcedePlazoPago.Size = new System.Drawing.Size(225, 23);
+            this.txtExcedePlazoPago.TabIndex = 110;
+            // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -314,7 +390,7 @@
             this.cbxZona.Name = "cbxZona";
             this.cbxZona.Size = new System.Drawing.Size(225, 23);
             this.cbxZona.TabIndex = 30;
-            this.cbxZona.SelectedIndexChanged += new System.EventHandler(this.cbxZona_SelectedIndexChanged);
+            this.cbxZona.SelectedValueChanged += new System.EventHandler(this.cbxZona_SelectedValueChanged);
             // 
             // btnLotes
             // 
@@ -355,6 +431,7 @@
             this.txtLote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLote.Location = new System.Drawing.Point(131, 88);
             this.txtLote.Name = "txtLote";
+            this.txtLote.ReadOnly = true;
             this.txtLote.Size = new System.Drawing.Size(185, 23);
             this.txtLote.TabIndex = 40;
             // 
@@ -437,82 +514,6 @@
             this.btnGuardar.Text = "     Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(780, 117);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(115, 23);
-            this.label10.TabIndex = 106;
-            this.label10.Text = "No. Pagos Exc:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtNoPagosExcedente
-            // 
-            this.txtNoPagosExcedente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoPagosExcedente.Location = new System.Drawing.Point(901, 117);
-            this.txtNoPagosExcedente.Name = "txtNoPagosExcedente";
-            this.txtNoPagosExcedente.ReadOnly = true;
-            this.txtNoPagosExcedente.Size = new System.Drawing.Size(225, 23);
-            this.txtNoPagosExcedente.TabIndex = 140;
-            // 
-            // label11
-            // 
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(780, 88);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(115, 23);
-            this.label11.TabIndex = 105;
-            this.label11.Text = "Monto Exc. Pzo:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtMontoExcedePlazo
-            // 
-            this.txtMontoExcedePlazo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoExcedePlazo.Location = new System.Drawing.Point(901, 88);
-            this.txtMontoExcedePlazo.Name = "txtMontoExcedePlazo";
-            this.txtMontoExcedePlazo.ReadOnly = true;
-            this.txtMontoExcedePlazo.Size = new System.Drawing.Size(225, 23);
-            this.txtMontoExcedePlazo.TabIndex = 130;
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(780, 59);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(115, 23);
-            this.label12.TabIndex = 104;
-            this.label12.Text = "Fecha Exd. Pzo:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtFechaExcedePlazo
-            // 
-            this.txtFechaExcedePlazo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaExcedePlazo.Location = new System.Drawing.Point(901, 59);
-            this.txtFechaExcedePlazo.Name = "txtFechaExcedePlazo";
-            this.txtFechaExcedePlazo.ReadOnly = true;
-            this.txtFechaExcedePlazo.Size = new System.Drawing.Size(225, 23);
-            this.txtFechaExcedePlazo.TabIndex = 120;
-            // 
-            // label13
-            // 
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(780, 30);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(115, 23);
-            this.label13.TabIndex = 103;
-            this.label13.Text = "Exc. Pzo. Pago:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtExcedePlazoPago
-            // 
-            this.txtExcedePlazoPago.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExcedePlazoPago.Location = new System.Drawing.Point(901, 30);
-            this.txtExcedePlazoPago.Name = "txtExcedePlazoPago";
-            this.txtExcedePlazoPago.ReadOnly = true;
-            this.txtExcedePlazoPago.Size = new System.Drawing.Size(225, 23);
-            this.txtExcedePlazoPago.TabIndex = 110;
             // 
             // formAsignacionLotes
             // 

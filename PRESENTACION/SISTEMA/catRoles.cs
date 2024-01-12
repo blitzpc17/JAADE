@@ -25,9 +25,23 @@ namespace PRESENTACION.SISTEMA
 
         private void InicializarForm()
         {
-            LimpiarControles();
-            InstanciarContextos();
-            ListarRegistros();
+            try
+            {
+                LimpiarControles();
+                InstanciarContextos();
+                ListarRegistros();
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar el modulo. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+            
         }
 
         private void InstanciarContextos()
@@ -62,17 +76,30 @@ namespace PRESENTACION.SISTEMA
 
         private void Guardar()
         {
-            if (contexto.ObjRol == null)
+            try
             {
-                contexto.InstanciarRol();
+                if (contexto.ObjRol == null)
+                {
+                    contexto.InstanciarRol();
+                }
+
+                contexto.ObjRol.Nombre = txtNombre.Text;
+
+                contexto.Guardar();
+
+                MessageBox.Show("Registro guardado correctamente.", "Aciso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                InicializarForm();
             }
-
-            contexto.ObjRol.Nombre = txtNombre.Text;
-
-            contexto.Guardar();
-
-            MessageBox.Show("Registro guardado correctamente.", "Aciso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            InicializarForm();
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+           
 
         }
 

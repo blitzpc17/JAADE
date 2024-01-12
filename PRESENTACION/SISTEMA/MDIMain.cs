@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,9 @@ namespace PRESENTACION.SISTEMA
 {
     public partial class MDIMain : Form
     {
-        protected USUARIO ObjCredencial;
+        protected clsUsuario ObjCredencial;
         protected List<clsModulosAccesoUsuario> LstPermisos;
-        
-        private int childFormNumber = 0;
-        private bool darktheme = false;
+        private string PaginaActiva;
 
         public MDIMain()
         {
@@ -35,6 +34,7 @@ namespace PRESENTACION.SISTEMA
                 ObtenerModulos();
                 LimpiarMenu();
                 LLenarMenu();
+                InicializarTabUsuario();
             }
             catch (Exception ex)
             {
@@ -47,11 +47,19 @@ namespace PRESENTACION.SISTEMA
             }
           
         }
+
+        private void InicializarTabUsuario()
+        {
+            PaginaActiva = "";
+            tabControl1.Width = 29;
+        }
+
         private void SetCredenciales()
         {
             ObjCredencial = Global.ObjUsuario;
-            tsNombreUsuario.Text = Global.ObtenerNombreUsuario(ObjCredencial);
-            tsRol.Text = ObjCredencial.ROL.Nombre;
+            txtSysNombre.Text =ObjCredencial.Nombre;
+            txtSysRol.Text = ObjCredencial.Rol;
+            txtSysUsuario.Text = ObjCredencial.Alias;
         }
         private void LimpiarMenu()
         {
@@ -87,13 +95,17 @@ namespace PRESENTACION.SISTEMA
                         foreach(var child in listaChilds)
                         {
                             ToolStripMenuItem itemChild = new ToolStripMenuItem(child.Nombre);
-                            itemChild.Image = Enumeraciones.ListaImagenes().Where(x => x.Key == child.Icono).First().Value;
+                            var icono = Enumeraciones.ListaImagenes().Where(x => x.Key == child.Icono).First().Value;
+                            itemChild.Image = icono;
                             string rutaFormulario = child.Ruta;
                             itemChild.Click += (sender, e) =>
                             {
                                 Form formularioExistente = (Form)Activator.CreateInstance(Type.GetType(rutaFormulario));
 
-                               // Mostrar el formulario existente
+                                // Mostrar el formulario existente
+                               formularioExistente.MdiParent = this;
+                               formularioExistente.Text = child.Nombre;
+                                formularioExistente.Resize += FormularioHijo_Resize;
                                formularioExistente.Show();
                             };
                             itemSub.DropDownItems.Add(itemChild);
@@ -110,6 +122,15 @@ namespace PRESENTACION.SISTEMA
             }
 
 
+        }
+
+        private void FormularioHijo_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+               
+                this.Height = 130;
+            }
         }
 
         private void MDIMain_Load(object sender, EventArgs e)
@@ -171,6 +192,51 @@ namespace PRESENTACION.SISTEMA
             var form = new SISTEMA.formUsuarios();
             form.MdiParent= this;
             form.Show();
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            tabControl1.Width = 250;
+        }
+
+        private void tabControl1_Click(object sender, EventArgs e)
+        {            
+            if (!PaginaActiva.Equals(tabControl1.SelectedTab.Text))
+            {
+                PaginaActiva = tabControl1.SelectedTab.Text;
+                tabControl1_Selected(new object(),
+                   new TabControlEventArgs(tabControl1.SelectedTab, tabControl1.SelectedIndex,
+                       TabControlAction.Selected));
+               
+            }
+            else
+            {
+                PaginaActiva = "";
+                tabControl1.Width = 29;
+            }
+        }
+
+        private void cERRARSESIÓNToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach(var childs in MdiChildren)
+            {
+                childs.Close();
+            }
+            formLogin login = new formLogin();
+            Hide();           
+            login.ShowDialog();
+        }
+
+        private void cALCULADORAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var p = new Process
+            {
+                StartInfo =
+                {
+                    FileName = @"calc.exe"
+                }
+            };
+            p.Start();
         }
     }
 }

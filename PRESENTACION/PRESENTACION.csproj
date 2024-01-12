@@ -353,6 +353,12 @@
     <None Include="Resources\ticket.png" />
     <None Include="Resources\categoria.png" />
     <None Include="Resources\registro.png" />
+    <None Include="Resources\asignar.png" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\pagar.png" />
+    <None Include="Resources\permiso.png" />
+    <None Include="Resources\calculadora.png" />
+    <None Include="Resources\cerrar-sesion.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

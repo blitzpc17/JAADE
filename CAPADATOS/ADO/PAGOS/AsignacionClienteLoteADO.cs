@@ -51,17 +51,21 @@ namespace CAPADATOS.ADO.PAGOS
         public List<clsClienteLote> ListarAsignacionesClientes(int clienteId)
         {
             string query = "SELECT " +
-                           "C.Id as ClienteId, zn.Id as ZonaId, LT.Id as LoteId, " +
+                           "C.Id as ClienteId, zn.Id as ZonaId, LT.Id as LoteId, \r\n" +
                            "LT.Identificador as CodigoLote, ZN.Nombre AS ZonaNombre,  \r\n" +
                            "(per.Nombres+' '+per.ApellidoPaterno+' '+per.ApellidoMaterno) as Cliente, \r\n" +
-                           "CL.FechaRegistro as FechaAsignacion, " +
-                           "LT.Manzana, LT.Precio as PrecioLote, CL.PagoInicial, CL.NoPagos, CL.MontoRestante \r\n" +
+                           "CL.FechaRegistro as FechaAsignacion, \r\n" +
+                           "LT.Manzana, LT.Precio as PrecioLote, CL.NoPagos, CL.MontoRestante, \r\n" +
+                           "EDO.Id as EstadoId, EDO.Nombre as Estado, \r\n "+
+                           "(SELECT COUNT(*) FROM PAGO WHERE PAGO.CLIENTEId = C.Id AND PAGO.LOTEId = LT.Id) as  PagosRegistrados, \r\n" +
+                           "CL.Id as Id \r\n"+
                             "FROM \r\n" +
                             "CLIENTE_LOTE CL \r\n" +
                             "JOIN CLIENTE C ON CL.CLIENTEId = C.Id \r\n" +
                             "JOIN PERSONA AS per ON C.PERSONAId = per.Id \r\n" +
                             "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n" +
                             "JOIN ZONA ZN ON LT.ZONAId = ZN.Id \r\n" +
+                            "JOIN ESTADO EDO ON LT.ESTADOId = EDO.Id \r\n"+
                             "WHERE C.Id = " + clienteId;
 
             return contexto.Database.SqlQuery<clsClienteLote>(query).ToList();
@@ -71,12 +75,14 @@ namespace CAPADATOS.ADO.PAGOS
 
         public clsClienteLote ObtenerAsignacionesLotes(int clienteId, int loteId)
         {
-            string query = "SELECT " +
-                           "C.Id as ClienteId, zn.Id as ZonaId, LT.Id as LoteId, " +
-                           "LT.Identificador as CodigoLote, ZN.Nombre AS ZonaNombre,  \r\n" +
-                           "(per.Nombres+' '+per.ApellidoPaterno+' '+per.ApellidoMaterno) as Cliente, \r\n" +
-                           "CL.FechaRegistro as FechaAsignacion, " +
-                           "LT.Manzana, LT.Precio as PrecioLote, CL.PagoInicial, CL.NoPagos, CL.MontoRestante \r\n" +
+            string query =  "SELECT " +
+                            "C.Id as ClienteId, zn.Id as ZonaId, LT.Id as LoteId, \r\n" +
+                            "LT.Identificador as CodigoLote, ZN.Nombre AS ZonaNombre,  \r\n" +
+                            "(per.Nombres+' '+per.ApellidoPaterno+' '+per.ApellidoMaterno) as Cliente, \r\n" +
+                            "CL.FechaRegistro as FechaAsignacion, \r\n" +
+                            "LT.Manzana, LT.Precio as PrecioLote, CL.NoPagos, CL.MontoRestante, \r\n" +
+                            "(SELECT COUNT(*) FROM PAGO WHERE PAGO.CLIENTEId = C.Id AND PAGO.LOTEId = LT.Id) as PagosRegistrados, \r\n" +
+                            "CL.Id as Id \r\n" +
                             "FROM \r\n" +
                             "CLIENTE_LOTE CL \r\n" +
                             "JOIN CLIENTE C ON CL.CLIENTEId = C.Id \r\n" +
@@ -93,7 +99,6 @@ namespace CAPADATOS.ADO.PAGOS
         {
             return contexto.CLIENTE_LOTE.FirstOrDefault(x=>x.CLIENTEId == idCliente && x.LOTEId == idLote);
         }
-
 
         public void Dispose()
         {

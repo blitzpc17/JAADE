@@ -21,8 +21,7 @@ namespace PRESENTACION.PAGOS
         private int ZonaSeleccionadaId = -1;
         private bool Cargado = false;
         private formAsignacionLotesLogica contexto;
-        private int? ClienteIdSeleccionado = null, LoteSeleccionado = null;
-
+        private bool CambiarLote =false;
 
         public formAsignacionLotes()
         {
@@ -50,13 +49,15 @@ namespace PRESENTACION.PAGOS
             tsTotalRegistros.Text = @"0";
             Cargado = false;
             ZonaSeleccionadaId = -1;
-            ClienteIdSeleccionado = null;
-            LoteSeleccionado = null;
+            contexto.ObjClienteSeleccionado = null;
+            contexto.ObjLoteSeleccionado = null;
+            CambiarLote =false;
         }
 
         private void ListarCatalogos()
         {
             ListarZonas();
+            contexto.ListarEstadosProcesoLotes(Enumeraciones.Procesos.LOTE.ToString());
         }
         private void ListarZonas()
         {
@@ -72,7 +73,6 @@ namespace PRESENTACION.PAGOS
             dgvRegistros.DataSource = contexto.LstClienteLotesAux;
             if (dgvRegistros.DataSource == null) return;
             dgvRegistros.Columns[0].Visible = false;
-            dgvRegistros.Columns[0].Frozen = true;
             dgvRegistros.Columns[1].Visible = false;
             dgvRegistros.Columns[2].Visible = false;
             dgvRegistros.Columns[3].HeaderText = "CÓDIGO LOTE";
@@ -87,23 +87,23 @@ namespace PRESENTACION.PAGOS
             dgvRegistros.Columns[8].HeaderText = "PRECIO LOTE";
             dgvRegistros.Columns[8].Width = 180;
             dgvRegistros.Columns[8].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[9].HeaderText = "PAGO INICIAL";
+            dgvRegistros.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;          
+            dgvRegistros.Columns[9].HeaderText = "NO. PAGOS";
             dgvRegistros.Columns[9].Width = 180;
             dgvRegistros.Columns[9].DefaultCellStyle.Format = "N2";
             dgvRegistros.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[10].HeaderText = "NO. PAGOS";
+            dgvRegistros.Columns[10].HeaderText = "MONTO RESTANTE";
             dgvRegistros.Columns[10].Width = 180;
             dgvRegistros.Columns[10].DefaultCellStyle.Format = "N2";
             dgvRegistros.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[11].HeaderText = "MONTO RESTANTE";
-            dgvRegistros.Columns[11].Width = 180;
-            dgvRegistros.Columns[11].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-           
-
-
+            dgvRegistros.Columns[11].Visible = false;
+            dgvRegistros.Columns[12].HeaderText = "ESTADO";
+            dgvRegistros.Columns[12].Width = 180;
+            dgvRegistros.Columns[13].HeaderText = "PAGOS REGISTRADOS";
+            dgvRegistros.Columns[13].Width = 180;
+            dgvRegistros.Columns[13].DefaultCellStyle.Format = "N0";
+            dgvRegistros.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvRegistros.Columns[14].Visible = false;
             tsTotalRegistros.Text = contexto.LstClienteLotesAux.Count.ToString("N0");
 
         }
@@ -113,7 +113,7 @@ namespace PRESENTACION.PAGOS
             try
             {
                 if (contexto.ObjLoteSeleccionado == null ||
-                ClienteIdSeleccionado == null ||
+                contexto.ObjClienteSeleccionado == null ||
                 string.IsNullOrEmpty(txtMontoRestante.Text) ||
                 string.IsNullOrEmpty(txtNoPagos.Text)
 
@@ -123,24 +123,71 @@ namespace PRESENTACION.PAGOS
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
                     return;
-                }
-                if (contexto.ObjClienteLote == null)
+                }               
+
+                if (contexto.ObjClienteLoteSeleccionado == null)
                 {
                     contexto.InstanciarAsignacionLote();
                     contexto.ObjClienteLote.ExcedePlazoPago = false;
                 }
-                contexto.ObjClienteLote.CLIENTEId = (int)ClienteIdSeleccionado;
                 contexto.ObjClienteLote.LOTEId = contexto.ObjLoteSeleccionado.Id;
+             
+                contexto.ObjClienteLote.CLIENTEId = contexto.ObjClienteSeleccionado.Id;
                 contexto.ObjClienteLote.FechaRegistro = Global.FechaServidor();
                 contexto.ObjClienteLote.NoPagos = Convert.ToInt32(txtNoPagos.Text);
                 contexto.ObjClienteLote.MontoRestante = Convert.ToDecimal(txtMontoRestante.Text);
                 contexto.ObjClienteLote.USUARIOId = Global.ObjUsuario.Id;
-             
-
-
 
                 contexto.Guardar();
-                MessageBox.Show("Asignación realizada correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                contexto.ActualizarEstadoLote(contexto.ObjLoteSeleccionado.Id, Enumeraciones.EstadosProcesoLote.ASIGNADO.ToString());
+                MessageBox.Show("Asignación realizada correctamente, ¡generando el primer pago!.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (contexto.ObjClienteLoteSeleccionado == null)
+                {
+                    //si no existia la asignacion crear el pago inicial
+                    contexto.InstanciarObjetoPago();
+                    contexto.ObjPago.CLIENTEId = contexto.ObjClienteSeleccionado.Id;
+                    contexto.ObjPago.LOTEId = contexto.ObjLoteSeleccionado.Id;
+                    contexto.ObjPago.NumeroPago = @"1";
+                    contexto.ObjPago.NumeroReferencia = Global.ObtenerFolio("PAGO");
+                    contexto.ObjPago.Monto = Convert.ToDecimal(txtPagoInicial.Text);
+                    contexto.ObjPago.USUARIORECIBEPAGOId = Global.ObjUsuario.Id;
+                    contexto.ObjPago.SaldoFavor = Convert.ToDecimal(txtPagoInicial.Text);
+                    contexto.ObjPago.SaldoContra = Convert.ToDecimal(txtMontoRestante.Text);
+                    contexto.ObjPago.FechaEmison = Global.FechaServidor();
+
+                    contexto.GuardarPagoInicial();
+
+                    MessageBox.Show("Pago inicial registrado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //agregar el envio del recibo por whats o correo
+                }
+
+
+                if (contexto.ObjClienteLoteSeleccionado != null && CambiarLote)
+                {
+                    MessageBox.Show("A continuación se van a traspasar los pagos efectuados del lote " + contexto.ObjClienteLoteSeleccionado.CodigoLote +
+                        " al " + contexto.ObjLoteSeleccionado.Identificador, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);//mensaje de que se van a cambiar las asociaciones de los pagos y el lote ant se va a liberar
+                    List<string> _MsjError = new List<string>() ;
+                    bool _error = false;
+                    if(contexto.ReasignarPagosLote(contexto.ObjClienteLoteSeleccionado.LoteId, contexto.ObjClienteLoteSeleccionado.ClienteId, contexto.ObjLoteSeleccionado.Id))
+                    {
+                        _MsjError.Add("Operación de traspaso de pagos realizada correctamente.");
+                        _MsjError.Add("Aviso");
+                        contexto.ActualizarEstadoLote(contexto.ObjClienteLoteSeleccionado.LoteId, Enumeraciones.EstadosProcesoLote.LIBRE.ToString());
+                        contexto.ActualizarEstadoLote(contexto.ObjLoteSeleccionado.Id, Enumeraciones.EstadosProcesoLote.ASIGNADO.ToString());
+                    }
+                    else
+                    {
+                        _MsjError.Add("Ocurrió un error en el traspaso, verifique en el módulo de pagos si se ve reflejado el traspaso, en caso contrario vuelva a intentar la reasignación.");
+                        _MsjError.Add("Error");
+                        _error = true;
+                    }
+                    MessageBox.Show(_MsjError[0], _MsjError[1], MessageBoxButtons.OK, _error?MessageBoxIcon.Error:MessageBoxIcon.Information);
+                    if (_error)
+                    {
+                        return;
+                    }
+                }
+                InicializarModulo();
             }
             catch (Exception ex)
             {
@@ -197,18 +244,19 @@ namespace PRESENTACION.PAGOS
         private void SetDataLote(int idLote) 
         {
             Cargado = false;
-            contexto.ObjClienteLoteSeleccionado = contexto.ObtenerAsignacionesLotes((int)ClienteIdSeleccionado, idLote);
-            ClienteIdSeleccionado = contexto.ObjClienteLoteSeleccionado.ClienteId;
+            contexto.ObjClienteLoteSeleccionado = contexto.ObtenerAsignacionesLotes(contexto.ObjClienteSeleccionado.Id, idLote);
+            contexto.ObjClienteLote = contexto.ObtenerAsignacionClienteLote(contexto.ObjClienteLoteSeleccionado.Id);
             txtCliente.Text = contexto.ObjClienteLoteSeleccionado.Cliente;
             txtFechaRegistro.Text = contexto.ObjClienteLoteSeleccionado.FechaAsignacion.ToString("dd-MM-yyyy HH:mm:ss");
             txtNoPagos.Text = contexto.ObjClienteLoteSeleccionado.NoPagos.ToString("N0");
-           // txtPagoInicial.Text = contexto.ObjClienteLoteSeleccionado.PagoInicial.ToString("N2");
             txtPrecioLote.Text = contexto.ObjClienteLoteSeleccionado.PrecioLote.ToString("N2");
-            LoteSeleccionado = contexto.ObjClienteLoteSeleccionado.LoteId;
-            contexto.ObjLoteSeleccionado = contexto.ObtenerLote((int)LoteSeleccionado);
+            contexto.ObjLoteSeleccionado = contexto.ObtenerLote(contexto.ObjClienteLoteSeleccionado.LoteId);
+            contexto.ObjPago = contexto.ObtenerPagoInicial(contexto.ObjClienteSeleccionado.Id, contexto.ObjLoteSeleccionado.Id);            
+            txtPagoInicial.Text = (contexto.ObjPago==null?@"0":contexto.ObjPago.Monto.ToString("N2"));
             txtLote.Text = contexto.ObjLoteSeleccionado.Identificador;
             CalcularMontoRestante();
             cbxZona.SelectedValue = contexto.ObjClienteLoteSeleccionado.ZonaId;
+            ZonaSeleccionadaId = contexto.ObjClienteLoteSeleccionado.ZonaId;
             ObtenerClienteData(contexto.ObjClienteLoteSeleccionado.ClienteId);
             Cargado = true;
             
@@ -232,8 +280,8 @@ namespace PRESENTACION.PAGOS
                     return;
                 }
 
-                ClienteIdSeleccionado = busquedaCliente.ObjEntidad.Id;
-                txtCliente.Text = busquedaCliente.ObjEntidad.Cliente;
+                contexto.ObjClienteSeleccionado = busquedaCliente.ObjEntidad;
+                txtCliente.Text = contexto.ObjClienteSeleccionado.Cliente;
                 ListarLotesZonaCliente();
                 Apariencias();
             }
@@ -251,7 +299,7 @@ namespace PRESENTACION.PAGOS
 
         private void ListarLotesZonaCliente()
         {
-            contexto.LstClienteLotes = contexto.ListarAsignacionesCliente((int)ClienteIdSeleccionado);
+            contexto.LstClienteLotes = contexto.ListarAsignacionesCliente(contexto.ObjClienteSeleccionado.Id);
             contexto.LstClienteLotesAux = contexto.LstClienteLotes;
         }
 
@@ -307,7 +355,7 @@ namespace PRESENTACION.PAGOS
 
         private void btnLotes_Click(object sender, EventArgs e)
         {
-            if (cbxZona.SelectedIndex == -1||ZonaSeleccionadaId == -1)
+            if (ZonaSeleccionadaId == -1)
             {
                 MessageBox.Show("No se ha seleccionado la ZONA.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -322,8 +370,24 @@ namespace PRESENTACION.PAGOS
                 return;
             }
 
-            contexto.ObjLoteSeleccionado = busLotes.ObjEntidad;
-            LoteSeleccionado = contexto.ObjLoteSeleccionado.Id;            
+            if(contexto.ObjClienteLoteSeleccionado!=null 
+                && contexto.ObjClienteLoteSeleccionado.LoteId != busLotes.ObjEntidad.Id 
+                && busLotes.ObjEntidad.EstadoId == contexto.LstEstadosLote.First(x=>x.Nombre==Enumeraciones.EstadosProcesoLote.LIBRE.ToString()).Id
+                )
+            {
+                if(MessageBox.Show("¿Desea cambiar el lote "+contexto.ObjClienteLoteSeleccionado.CodigoLote+
+                    " por el "+busLotes.ObjEntidad.Identificador+"?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)==DialogResult.Yes)
+                {
+                    CambiarLote = true;
+                }
+                else
+                {
+                    MessageBox.Show("Reasignacion cancelada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
+            contexto.ObjLoteSeleccionado = busLotes.ObjEntidad;            
             txtLote.Text = contexto.ObjLoteSeleccionado.Identificador;
             txtPrecioLote.Text = contexto.ObjLoteSeleccionado.Precio.ToString("N2");
 
@@ -333,24 +397,32 @@ namespace PRESENTACION.PAGOS
         {
             if (!Cargado) return;
             if (string.IsNullOrEmpty(txtPagoInicial.Text)) return;
-            if (ClienteIdSeleccionado == null)
+
+            List<string> _msjError = new List<string>();
+            _msjError.Add("Advertencia");
+
+            if (contexto.ObjClienteSeleccionado == null)
             {
-                MessageBox.Show("No ha seleccionado ningún CLIENTE.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                _msjError.Add("No ha seleccionado ningún CLIENTE.");               
+              
             }
-            if (LoteSeleccionado == null)
+            if (contexto.ObjLoteSeleccionado == null)
             {
-                MessageBox.Show("No ha seleccionado ningún LOTE.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+               _msjError.Add("No ha seleccionado ningún LOTE.");
             }
             if (!Global.EsValorDecimal(txtPrecioLote.Text))
             {
-                MessageBox.Show("Verifique el valor del campo *PRECIO LOTE*, tiene un valor inválido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                _msjError.Add("Verifique el valor del campo *PRECIO LOTE*, tiene un valor inválido.");
             }
             if (!Global.EsValorDecimal(txtPagoInicial.Text))
             {
-                MessageBox.Show("Verifique el valor del campo *PAGO INICIAL*, tiene un valor inválido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                _msjError.Add("Verifique el valor del campo *PAGO INICIAL*, tiene un valor inválido.");
+            }
+
+            if (_msjError.Count > 1)
+            {
+                MessageBox.Show(_msjError[1], _msjError[1], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPagoInicial.Clear();
                 return;
             }
             CalcularMontoRestante();
@@ -358,55 +430,68 @@ namespace PRESENTACION.PAGOS
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            if (contexto.ObjClienteLoteSeleccionado == null)
+            try
             {
-                MessageBox.Show("No ha seleccionado ningún lote.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (contexto.ObjClienteLoteSeleccionado == null)
+                {
+                    MessageBox.Show("No ha seleccionado ningún lote.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DateTime _FechaHoraContrato = Global.FechaServidor();
+                clsDatosJaade ObjDatosJaade = JsonConvert.DeserializeObject<clsDatosJaade>(Global.DevulveVariableGlobal(Enumeraciones.VariablesGlobales.DomicilioJaade));
+
+                var repContrato = new REPORTES.repContratoLote();
+
+                repContrato.InstanciarListaParametros();
+                //llenar parametros
+                repContrato.parametros.Add(new ReportParameter("HORA", _FechaHoraContrato.ToString("HH:mm:ss")));
+                repContrato.parametros.Add(new ReportParameter("DIA", _FechaHoraContrato.Day.ToString()));
+                repContrato.parametros.Add(new ReportParameter("MES", Global.MesALetra(_FechaHoraContrato.Month).ToUpper()));
+                repContrato.parametros.Add(new ReportParameter("ANIO", Global.DigitoAnio(_FechaHoraContrato)));
+                repContrato.parametros.Add(new ReportParameter("CLIENTE", contexto.ObjClienteLoteSeleccionado.Cliente));
+                repContrato.parametros.Add(new ReportParameter("CALLEJAADE", ObjDatosJaade.Calle));
+                repContrato.parametros.Add(new ReportParameter("NOEXTJAADE", ObjDatosJaade.NoExt));
+                repContrato.parametros.Add(new ReportParameter("NOINTJAADE", ObjDatosJaade.NoInt));
+                repContrato.parametros.Add(new ReportParameter("COLONIAJAADE", ObjDatosJaade.Colonia));
+                repContrato.parametros.Add(new ReportParameter("LOCALIDADJAADE", ObjDatosJaade.Localidad));
+                repContrato.parametros.Add(new ReportParameter("MUNICIPIOJAADE", ObjDatosJaade.Municipio));
+                repContrato.parametros.Add(new ReportParameter("ESTADOJAADE", ObjDatosJaade.Estado));
+                repContrato.parametros.Add(new ReportParameter("TELEFONOJAADE", ObjDatosJaade.Telefono));
+                repContrato.parametros.Add(new ReportParameter("DOMICILIOCLIENTE", Global.ArmarDomicilioCliente(contexto.ObjClienteSeleccionado)));
+                repContrato.parametros.Add(new ReportParameter("CODIGOLOTE", contexto.ObjClienteLoteSeleccionado.CodigoLote));
+                repContrato.parametros.Add(new ReportParameter("MANZANA", contexto.ObjClienteLoteSeleccionado.Manzana == null ? "S/M" : contexto.ObjClienteLoteSeleccionado.Manzana.ToString()));
+                repContrato.parametros.Add(new ReportParameter("ZONA", contexto.ObjClienteLoteSeleccionado.ZonaNombre));
+                repContrato.parametros.Add(new ReportParameter("MNORTE", contexto.ObjLoteSeleccionado.MNorte.ToString("N2")));
+                repContrato.parametros.Add(new ReportParameter("MSUR", contexto.ObjLoteSeleccionado.MSur.ToString("N2")));
+                repContrato.parametros.Add(new ReportParameter("MESTE", contexto.ObjLoteSeleccionado.MEste.ToString("N2")));
+                repContrato.parametros.Add(new ReportParameter("MOESTE", contexto.ObjLoteSeleccionado.MOeste.ToString("N2")));
+                repContrato.parametros.Add(new ReportParameter("CNORTE", contexto.ObjLoteSeleccionado.CNorte));
+                repContrato.parametros.Add(new ReportParameter("CSUR", contexto.ObjLoteSeleccionado.CSur));
+                repContrato.parametros.Add(new ReportParameter("CESTE", contexto.ObjLoteSeleccionado.CEste));
+                repContrato.parametros.Add(new ReportParameter("COESTE", contexto.ObjLoteSeleccionado.COeste));
+                repContrato.parametros.Add(new ReportParameter("TITULARVENTAJAADE", ObjDatosJaade.TitularVenta));
+                repContrato.parametros.Add(new ReportParameter("NOMBRECLIENTE", contexto.ObjClienteLoteSeleccionado.Cliente));
+                repContrato.parametros.Add(new ReportParameter("PRECIOLOTE", contexto.ObjClienteLoteSeleccionado.PrecioLote.ToString("N2")));
+                repContrato.parametros.Add(new ReportParameter("PAGOINICIAL", contexto.ObjPago.Monto.ToString("N2")));
+                repContrato.parametros.Add(new ReportParameter("NOPAGOS", contexto.ObjClienteLoteSeleccionado.NoPagos.ToString("N0")));
+                repContrato.parametros.Add(new ReportParameter("DIAPAGO", _FechaHoraContrato.ToString("dd")));
+                decimal _MontoRestante = Global.CalcularPagoMensualRestante(contexto.ObjClienteLoteSeleccionado.MontoRestante, contexto.ObjClienteLoteSeleccionado.NoPagos);
+                repContrato.parametros.Add(new ReportParameter("MONTOPAGOMENSUAL", _MontoRestante.ToString("N2")));
+
+
+                repContrato.ShowDialog();
             }
-
-            DateTime _FechaHoraContrato = Global.FechaServidor();
-            clsDatosJaade ObjDatosJaade = JsonConvert.DeserializeObject<clsDatosJaade>(Global.DevulveVariableGlobal(Enumeraciones.VariablesGlobales.DomicilioJaade));
-
-            var repContrato = new REPORTES.repContratoLote();
-
-            repContrato.InstanciarListaParametros();
-            //llenar parametros
-            repContrato.parametros.Add(new ReportParameter("HORA", _FechaHoraContrato.ToString("HH:mm:ss")));
-            repContrato.parametros.Add(new ReportParameter("DIA", _FechaHoraContrato.Day.ToString()));
-            repContrato.parametros.Add(new ReportParameter("MES", Global.MesALetra(_FechaHoraContrato.Month)));
-            repContrato.parametros.Add(new ReportParameter("ANIO", Global.DigitoAnio(_FechaHoraContrato))) ;
-            repContrato.parametros.Add(new ReportParameter("CLIENTE", contexto.ObjClienteLoteSeleccionado.Cliente));
-            repContrato.parametros.Add(new ReportParameter("CALLEJAADE", ObjDatosJaade.Calle));
-            repContrato.parametros.Add(new ReportParameter("NOEXTJAADE", ObjDatosJaade.NoExt));
-            repContrato.parametros.Add(new ReportParameter("NOINTJAADE", ObjDatosJaade.NoInt));
-            repContrato.parametros.Add(new ReportParameter("COLONIAJAADE", ObjDatosJaade.Colonia));
-            repContrato.parametros.Add(new ReportParameter("LOCALIDADJAADE", ObjDatosJaade.Localidad));
-            repContrato.parametros.Add(new ReportParameter("MUNICIPIOJAADE", ObjDatosJaade.Municipio));
-            repContrato.parametros.Add(new ReportParameter("ESTADOJAADE", ObjDatosJaade.Estado));
-            repContrato.parametros.Add(new ReportParameter("TELEFONOJAADE", ObjDatosJaade.Telefono));
-            repContrato.parametros.Add(new ReportParameter("DOMICILIOCLIENTE",Global.ArmarDomicilioCliente(contexto.ObjClienteSeleccionado) ));
-            repContrato.parametros.Add(new ReportParameter("CODIGOLOTE", contexto.ObjClienteLoteSeleccionado.CodigoLote));
-            repContrato.parametros.Add(new ReportParameter("MANZANA", contexto.ObjClienteLoteSeleccionado.Manzana==null?"S/M": contexto.ObjClienteLoteSeleccionado.Manzana.ToString()));
-            repContrato.parametros.Add(new ReportParameter("ZONA", contexto.ObjClienteLoteSeleccionado.ZonaNombre));
-            repContrato.parametros.Add(new ReportParameter("MNORTE", contexto.ObjLoteSeleccionado.MNorte.ToString("N2") ));
-            repContrato.parametros.Add(new ReportParameter("MSUR", contexto.ObjLoteSeleccionado.MSur.ToString("N2") ));
-            repContrato.parametros.Add(new ReportParameter("MESTE", contexto.ObjLoteSeleccionado.MEste.ToString("N2")));
-            repContrato.parametros.Add(new ReportParameter("MOESTE", contexto.ObjLoteSeleccionado.MOeste.ToString("N2")));
-            repContrato.parametros.Add(new ReportParameter("CNORTE", contexto.ObjLoteSeleccionado.CNorte ));
-            repContrato.parametros.Add(new ReportParameter("CSUR", contexto.ObjLoteSeleccionado.CSur));
-            repContrato.parametros.Add(new ReportParameter("CESTE", contexto.ObjLoteSeleccionado.CEste));
-            repContrato.parametros.Add(new ReportParameter("COESTE", contexto.ObjLoteSeleccionado.COeste));
-            repContrato.parametros.Add(new ReportParameter("TITULARVENTAJAADE", ObjDatosJaade.TitularVenta ));
-            repContrato.parametros.Add(new ReportParameter("NOMBRECLIENTE", contexto.ObjClienteLoteSeleccionado.Cliente));
-            repContrato.parametros.Add(new ReportParameter("PRECIOLOTE", contexto.ObjClienteLoteSeleccionado.PrecioLote.ToString("N2")));
-         //   repContrato.parametros.Add(new ReportParameter("PAGOINICIAL", contexto.ObjClienteLoteSeleccionado.PagoInicial.ToString("N2")));
-            repContrato.parametros.Add(new ReportParameter("NOPAGOS", contexto.ObjClienteLoteSeleccionado.NoPagos.ToString("N0")));
-            repContrato.parametros.Add(new ReportParameter("DIAPAGO", _FechaHoraContrato.ToString("dd")));
-            decimal _MontoRestante = Global.CalcularPagoMensualRestante(contexto.ObjClienteLoteSeleccionado.MontoRestante, contexto.ObjClienteLoteSeleccionado.NoPagos);
-            repContrato.parametros.Add(new ReportParameter("MONTOPAGOMENSUAL", _MontoRestante.ToString("N2")));
-
-
-            repContrato.ShowDialog();
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar generar la presentación del documento. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }            
         }
 
         private void editarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -415,11 +500,10 @@ namespace PRESENTACION.PAGOS
             SetDataLote((int)dgvRegistros.CurrentRow.Cells[2].Value);
         }
 
-        private void cbxZona_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbxZona_SelectedValueChanged(object sender, EventArgs e)
         {
             if (!Cargado) return;
             ZonaSeleccionadaId = (int)cbxZona.SelectedValue;
-
         }
     }
 }

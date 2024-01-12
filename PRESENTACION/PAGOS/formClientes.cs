@@ -26,10 +26,24 @@ namespace PRESENTACION.PAGOS
 
         public void InicializarModulo()
         {
-            LimpiarControles();
-            InstanciarContexto();
-            ListarCatalogos();
-            ListarRegistros();
+            try
+            {
+                LimpiarControles();
+                InstanciarContexto();
+                ListarCatalogos();
+                ListarRegistros();
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar cargar el módulo. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
+          
         }
 
         public void LimpiarControles()
@@ -54,46 +68,54 @@ namespace PRESENTACION.PAGOS
 
         public void Guardar()
         {
-
-            if (cbxEstado.SelectedIndex == -1)
+            try
             {
-                MessageBox.Show("El campo ESTADO es OBLIGATORIO.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (cbxEstado.SelectedIndex == -1)
+                {
+                    MessageBox.Show("El campo ESTADO es OBLIGATORIO.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (contexto.ObjClienteData == null)
+                {
+                    contexto.InstanciarPersona();
+                    contexto.InstanciarCliente();
+                    contexto.ObjCliente.Clave = Global.ObtenerFolio("CLIENTE");
+                }
+                contexto.ObjPersona.Nombres = txtNombre.Text;
+                contexto.ObjPersona.ApellidoMaterno = txtAmaterno.Text;
+                contexto.ObjPersona.ApellidoPaterno = txtApaterno.Text;
+                contexto.ObjPersona.FechaNacimiento = dtpFechaNacimiento.Value;
+                contexto.ObjPersona.Curp = txtCurp.Text;
+                contexto.ObjPersona.Calle = txtCalle.Text;
+                contexto.ObjPersona.NoExt = txtNoExt.Text;
+                contexto.ObjPersona.NoInt = txtNoInt.Text;
+                contexto.ObjPersona.Colonia = txtColonia.Text;
+                contexto.ObjPersona.Localidad = txtLocalidad.Text;
+                contexto.ObjPersona.CodigoPostal = txtCodigoPostal.Text;
+                contexto.ObjPersona.EntidadFederativa = txtEntidadFederativa.Text;
+                contexto.ObjPersona.Municipio = txtMunicipio.Text;
+
+
+                contexto.ObjCliente.ESTADOId = (int)cbxEstado.SelectedValue;
+
+                contexto.Guardar();
+
+
+                MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                InicializarModulo();
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
 
-            if (contexto.ObjCliente == null)
-            {
-                contexto.InstanciarCliente();
-            }
-
-            if (contexto.ObjClienteData== null)
-            {
-                contexto.InstanciarPersona();
-                contexto.InstanciarCliente();
-            }
-            contexto.ObjPersona.Nombres = txtNombre.Text;
-            contexto.ObjPersona.ApellidoMaterno = txtAmaterno.Text;
-            contexto.ObjPersona.ApellidoPaterno = txtApaterno.Text;
-            contexto.ObjPersona.FechaNacimiento = dtpFechaNacimiento.Value;
-            contexto.ObjPersona.Curp = txtCurp.Text;
-            contexto.ObjPersona.Calle = txtCalle.Text;
-            contexto.ObjPersona.NoExt = txtNoExt.Text;
-            contexto.ObjPersona.NoInt = txtNoInt.Text;
-            contexto.ObjPersona.Colonia = txtColonia.Text;
-            contexto.ObjPersona.Localidad = txtLocalidad.Text;
-            contexto.ObjPersona.CodigoPostal = txtCodigoPostal.Text;
-            contexto.ObjPersona.EntidadFederativa = txtEntidadFederativa.Text;
-            contexto.ObjPersona.Municipio = txtMunicipio.Text;
-
-            contexto.ObjCliente.Clave = txtClave.Text;
-            contexto.ObjCliente.ESTADOId = (int)cbxEstado.SelectedValue;     
-
-            contexto.Guardar();
-
-
-            MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            InicializarModulo();
 
         }
 

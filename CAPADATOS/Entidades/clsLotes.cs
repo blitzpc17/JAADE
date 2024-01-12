@@ -23,6 +23,8 @@ namespace CAPADATOS.Entidades
         public DateTime FechaRegistro { get; set; }
         public decimal Precio { get; set; }
         public int? Manzana { get; set; }   
+        public int EstadoId { get; set; }
+        public string Estado { get; set; }
 
 
 
