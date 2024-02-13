@@ -48,15 +48,14 @@
     <Compile Include="LOGICAS\LOTES\formLotesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\busClientesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formAgendaClienteLogica.cs" />
-    <Compile Include="LOGICAS\PAGOS\formAsignacionLotesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formClientesLogica.cs" />
-    <Compile Include="LOGICAS\PAGOS\formPagosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catEstadosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catRolesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\clsDatosJaade.cs" />
     <Compile Include="LOGICAS\SISTEMA\formExcepcionesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formModulosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formPermisoLogica.cs" />
+    <Compile Include="LOGICAS\SISTEMA\formPermisoRolLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\formUsuariosLogica.cs" />
     <Compile Include="LOGICAS\LOTES\formZonaLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\UtileriasLogica.cs" />

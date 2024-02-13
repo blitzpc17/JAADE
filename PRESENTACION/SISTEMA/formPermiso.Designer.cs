@@ -31,31 +31,30 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPermiso));
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtUsuarioAsigno = new Controls.Controles.Txt();
+            this.txtUsuarioAsigno = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtFechaRegistro = new System.Windows.Forms.TextBox();
+            this.txtMotivo = new System.Windows.Forms.TextBox();
             this.btnUsuarioSolicita = new System.Windows.Forms.Button();
+            this.txtModulo = new System.Windows.Forms.TextBox();
+            this.txtSolicita = new System.Windows.Forms.TextBox();
             this.btnModulo = new System.Windows.Forms.Button();
-            this.txtFechaRegistro = new Controls.Controles.Txt();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtMotivo = new Controls.Controles.Txt();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtModulo = new Controls.Controles.Txt();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtSolicita = new Controls.Controles.Txt();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsTotalRegistros = new System.Windows.Forms.ToolStripLabel();
-            this.txtBuscar = new Controls.Controles.Txt();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -63,69 +62,35 @@
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(652, 509);
-            this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
-            this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(110, 40);
-            this.btnCancelar.TabIndex = 43;
-            this.btnCancelar.Text = "     Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.guardar_el_archivo;
-            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(536, 509);
-            this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
-            this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(110, 40);
-            this.btnGuardar.TabIndex = 42;
-            this.btnGuardar.Text = "     Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtUsuarioAsigno);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnUsuarioSolicita);
-            this.groupBox1.Controls.Add(this.btnModulo);
             this.groupBox1.Controls.Add(this.txtFechaRegistro);
+            this.groupBox1.Controls.Add(this.txtMotivo);
+            this.groupBox1.Controls.Add(this.btnUsuarioSolicita);
+            this.groupBox1.Controls.Add(this.txtModulo);
+            this.groupBox1.Controls.Add(this.txtSolicita);
+            this.groupBox1.Controls.Add(this.btnModulo);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtMotivo);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtModulo);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtSolicita);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(750, 156);
-            this.groupBox1.TabIndex = 41;
+            this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
             // txtUsuarioAsigno
             // 
             this.txtUsuarioAsigno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuarioAsigno.Location = new System.Drawing.Point(516, 59);
+            this.txtUsuarioAsigno.Location = new System.Drawing.Point(510, 59);
             this.txtUsuarioAsigno.Name = "txtUsuarioAsigno";
             this.txtUsuarioAsigno.ReadOnly = true;
             this.txtUsuarioAsigno.Size = new System.Drawing.Size(225, 23);
-            this.txtUsuarioAsigno.TabIndex = 53;
+            this.txtUsuarioAsigno.TabIndex = 50;
             // 
             // label1
             // 
@@ -136,6 +101,24 @@
             this.label1.TabIndex = 52;
             this.label1.Text = "Asigno:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtFechaRegistro
+            // 
+            this.txtFechaRegistro.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaRegistro.Location = new System.Drawing.Point(510, 30);
+            this.txtFechaRegistro.Name = "txtFechaRegistro";
+            this.txtFechaRegistro.ReadOnly = true;
+            this.txtFechaRegistro.Size = new System.Drawing.Size(225, 23);
+            this.txtFechaRegistro.TabIndex = 40;
+            // 
+            // txtMotivo
+            // 
+            this.txtMotivo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMotivo.Location = new System.Drawing.Point(131, 88);
+            this.txtMotivo.Multiline = true;
+            this.txtMotivo.Name = "txtMotivo";
+            this.txtMotivo.Size = new System.Drawing.Size(225, 46);
+            this.txtMotivo.TabIndex = 30;
             // 
             // btnUsuarioSolicita
             // 
@@ -149,6 +132,24 @@
             this.btnUsuarioSolicita.UseVisualStyleBackColor = true;
             this.btnUsuarioSolicita.Click += new System.EventHandler(this.btnUsuarioSolicita_Click);
             // 
+            // txtModulo
+            // 
+            this.txtModulo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtModulo.Location = new System.Drawing.Point(131, 59);
+            this.txtModulo.Name = "txtModulo";
+            this.txtModulo.ReadOnly = true;
+            this.txtModulo.Size = new System.Drawing.Size(185, 23);
+            this.txtModulo.TabIndex = 20;
+            // 
+            // txtSolicita
+            // 
+            this.txtSolicita.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSolicita.Location = new System.Drawing.Point(131, 30);
+            this.txtSolicita.Name = "txtSolicita";
+            this.txtSolicita.ReadOnly = true;
+            this.txtSolicita.Size = new System.Drawing.Size(185, 23);
+            this.txtSolicita.TabIndex = 10;
+            // 
             // btnModulo
             // 
             this.btnModulo.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -160,15 +161,6 @@
             this.btnModulo.TabIndex = 50;
             this.btnModulo.UseVisualStyleBackColor = true;
             this.btnModulo.Click += new System.EventHandler(this.btnModulo_Click);
-            // 
-            // txtFechaRegistro
-            // 
-            this.txtFechaRegistro.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaRegistro.Location = new System.Drawing.Point(516, 30);
-            this.txtFechaRegistro.Name = "txtFechaRegistro";
-            this.txtFechaRegistro.ReadOnly = true;
-            this.txtFechaRegistro.Size = new System.Drawing.Size(225, 23);
-            this.txtFechaRegistro.TabIndex = 40;
             // 
             // label5
             // 
@@ -190,15 +182,6 @@
             this.label4.Text = "Motivo:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtMotivo
-            // 
-            this.txtMotivo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMotivo.Location = new System.Drawing.Point(131, 89);
-            this.txtMotivo.Multiline = true;
-            this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.Size = new System.Drawing.Size(225, 46);
-            this.txtMotivo.TabIndex = 30;
-            // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -208,14 +191,6 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Módulo:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtModulo
-            // 
-            this.txtModulo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModulo.Location = new System.Drawing.Point(131, 59);
-            this.txtModulo.Name = "txtModulo";
-            this.txtModulo.Size = new System.Drawing.Size(185, 23);
-            this.txtModulo.TabIndex = 20;
             // 
             // label2
             // 
@@ -227,29 +202,30 @@
             this.label2.Text = "Solicita:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtSolicita
-            // 
-            this.txtSolicita.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSolicita.Location = new System.Drawing.Point(131, 30);
-            this.txtSolicita.Name = "txtSolicita";
-            this.txtSolicita.Size = new System.Drawing.Size(185, 23);
-            this.txtSolicita.TabIndex = 10;
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.txtBuscar);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.toolStrip1);
-            this.groupBox2.Controls.Add(this.txtBuscar);
             this.groupBox2.Controls.Add(this.dgvRegistros);
             this.groupBox2.Location = new System.Drawing.Point(12, 175);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(750, 327);
-            this.groupBox2.TabIndex = 44;
+            this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registros";
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(326, 30);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(225, 23);
+            this.txtBuscar.TabIndex = 10;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // label6
             // 
@@ -285,15 +261,6 @@
             this.tsTotalRegistros.Size = new System.Drawing.Size(13, 22);
             this.tsTotalRegistros.Text = "0";
             // 
-            // txtBuscar
-            // 
-            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(326, 30);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(225, 23);
-            this.txtBuscar.TabIndex = 23;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
-            // 
             // dgvRegistros
             // 
             this.dgvRegistros.AllowUserToAddRows = false;
@@ -313,33 +280,58 @@
             this.dgvRegistros.RowHeadersVisible = false;
             this.dgvRegistros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRegistros.Size = new System.Drawing.Size(722, 237);
-            this.dgvRegistros.TabIndex = 24;
+            this.dgvRegistros.TabIndex = 20;
             this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
             this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modificarToolStripMenuItem,
             this.eliminarToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(126, 48);
-            // 
-            // modificarToolStripMenuItem
-            // 
-            this.modificarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.editar;
-            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.modificarToolStripMenuItem.Text = "Modificar";
-            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(118, 26);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.eliminar;
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(652, 509);
+            this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
+            this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(110, 40);
+            this.btnCancelar.TabIndex = 40;
+            this.btnCancelar.Text = "     Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.guardar_el_archivo;
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardar.Location = new System.Drawing.Point(536, 509);
+            this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
+            this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(110, 40);
+            this.btnGuardar.TabIndex = 30;
+            this.btnGuardar.Text = "     Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // formPermiso
             // 
@@ -374,15 +366,10 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnModulo;
-        private Controls.Controles.Txt txtFechaRegistro;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private Controls.Controles.Txt txtMotivo;
         private System.Windows.Forms.Label label3;
-        private Controls.Controles.Txt txtModulo;
         private System.Windows.Forms.Label label2;
-        private Controls.Controles.Txt txtSolicita;
-        private Controls.Controles.Txt txtUsuarioAsigno;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnUsuarioSolicita;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -390,10 +377,14 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel tsTotalRegistros;
-        private Controls.Controles.Txt txtBuscar;
         private System.Windows.Forms.DataGridView dgvRegistros;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtUsuarioAsigno;
+        private System.Windows.Forms.TextBox txtFechaRegistro;
+        private System.Windows.Forms.TextBox txtMotivo;
+        private System.Windows.Forms.TextBox txtModulo;
+        private System.Windows.Forms.TextBox txtSolicita;
+        private System.Windows.Forms.TextBox txtBuscar;
     }
 }

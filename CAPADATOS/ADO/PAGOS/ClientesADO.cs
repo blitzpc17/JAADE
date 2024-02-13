@@ -22,9 +22,22 @@ namespace CAPADATOS.ADO.PAGOS
             contexto.CLIENTE.Add(entidad);
         }
 
-        public void Guardar()
+        public bool Guardar()
         {
-            contexto.SaveChanges();
+            try
+            {
+                contexto.SaveChanges();
+                return true;
+            }catch(Exception ex)
+            {
+                return false;
+            }
+           
+        }
+
+        public void InsertarMasivo(List<CLIENTE>lst)
+        {
+            contexto.CLIENTE.AddRange(lst);
         }
 
         public void Eliminar(CLIENTE entidad)
@@ -44,8 +57,8 @@ namespace CAPADATOS.ADO.PAGOS
 
         public clsClientes ObtenerDataCliente(int id)
         {
-            var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.ApellidoPaterno+' '+per.ApellidoMaterno) as Cliente, \r\n"+
-                        "per.Nombres, per.ApellidoPaterno as Apaterno, per.ApellidoMaterno as Amaterno, \r\n"+
+            var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.Apellidos) as Cliente, \r\n"+
+                        "per.Nombres, per.Apellidos as Apellidos, \r\n"+
                         "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n"+
                         "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado, \r\n"+
                         "per.EntidadFederativa, per.Municipio \r\n"+
@@ -59,8 +72,8 @@ namespace CAPADATOS.ADO.PAGOS
 
         public List<clsClientes> ListarClientes()
         {
-            var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.ApellidoPaterno+' '+per.ApellidoMaterno) as Cliente, \r\n" +
-                        "per.Nombres, per.ApellidoPaterno as Apaterno, per.ApellidoMaterno as Amaterno, \r\n" +
+            var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.Apellidos) as Cliente, \r\n" +
+                        "per.Nombres, per.Apellidos as Apellidos, \r\n" +
                         "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n" +
                         "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
                         "per.EntidadFederativa, per.Municipio \r\n" +
@@ -74,6 +87,21 @@ namespace CAPADATOS.ADO.PAGOS
         public void Dispose()
         {
             contexto.Dispose();
+        }
+
+        public clsClientes ObtenerDataClienteClave(string clave)
+        {
+            var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.Apellidos) as Cliente, \r\n" +
+                        "per.Nombres, per.Apellidos as Apellidos, \r\n" +
+                        "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n" +
+                        "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
+                        "per.EntidadFederativa, per.Municipio \r\n" +
+                        "FROM CLIENTE AS us \r\n" +
+                        "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n" +
+                        "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id \r\n" +
+                        "WHERE us.Clave = '" +clave +"'";
+
+            return contexto.Database.SqlQuery<clsClientes>(query).FirstOrDefault();
         }
     }
 }

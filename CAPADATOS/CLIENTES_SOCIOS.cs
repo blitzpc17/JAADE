@@ -12,13 +12,13 @@ namespace CAPADATOS
     using System;
     using System.Collections.Generic;
     
-    public partial class ZONA
+    public partial class CLIENTES_SOCIOS
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
-        public System.DateTime FechaRegistro { get; set; }
-        public Nullable<int> NoManzanas { get; set; }
-        public int NoLotes { get; set; }
-        public string Direccion { get; set; }
+        public int CLIENTEId { get; set; }
+        public int SOCIOSId { get; set; }
+    
+        public virtual CLIENTE CLIENTE { get; set; }
+        public virtual SOCIOS SOCIOS { get; set; }
     }
 }

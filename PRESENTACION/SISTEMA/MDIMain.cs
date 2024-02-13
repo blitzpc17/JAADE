@@ -143,36 +143,13 @@ namespace PRESENTACION.SISTEMA
             ThemeConfig.ThemeControls(this, false);
             WindowState = FormWindowState.Maximized;
             
-        }
-
-        private void asignacionLotesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = new PAGOS.formAsignacionLotes();
-            form.MdiParent = this;
-            form.Show();
-        }
-
-        private void capturaYConsultaToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            var form = new PAGOS.formClientes();
-            form.MdiParent = this;
-            form.Show();
-        }
-
+        }  
         private void eXCEPCIONESToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new SISTEMA.formExcepciones();
             form.MdiParent = this;
             form.Show();
         }
-
-        private void capturaYConsultaToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            var form = new PAGOS.formPagos();
-            form.MdiParent = this;
-            form.Show();
-        }
-
         private void mODULOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new SISTEMA.formModulos();

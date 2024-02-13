@@ -1,37 +1,38 @@
 ﻿using CAPALOGICA.LOGICAS.PAGOS;
+using PRESENTACION.BUSQUEDA;
 using PRESENTACION.UTILERIAS;
+using SpreadsheetLight;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PRESENTACION.PAGOS
 {
     public partial class formClientes : Form
     {
+        private formClientesLogica contexto;
+        private string msjErrorImport = null;
+        private bool cargado = false;
+        private busClientes bus;
+        private int row = 0;//rowimport
+
         public formClientes()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Normal;
-        }
-
-        private formClientesLogica contexto;
-        private int rowIndexSeleccionado = -1;
+        }       
 
         public void InicializarModulo()
         {
             try
             {
+                cargado = false;
                 LimpiarControles();
                 InstanciarContexto();
                 ListarCatalogos();
-                ListarRegistros();
+                txtClave.Text = @"NUEVO";
+                cargado = true;
             }
             catch (Exception ex)
             {
@@ -59,6 +60,11 @@ namespace PRESENTACION.PAGOS
             cbxEstado.ValueMember = "Id";
             cbxEstado.SelectedIndex = -1;
 
+            cbxTipoContacto.DataSource = contexto.LstTipos;
+            cbxTipoContacto.DisplayMember = "key";
+            cbxTipoContacto.ValueMember = "value";
+            cbxTipoContacto.SelectedIndex = -1; 
+
         }
 
         public void InstanciarContexto()
@@ -82,10 +88,13 @@ namespace PRESENTACION.PAGOS
                     contexto.InstanciarCliente();
                     contexto.ObjCliente.Clave = Global.ObtenerFolio("CLIENTE");
                 }
+
                 contexto.ObjPersona.Nombres = txtNombre.Text;
-                contexto.ObjPersona.ApellidoMaterno = txtAmaterno.Text;
-                contexto.ObjPersona.ApellidoPaterno = txtApaterno.Text;
-                contexto.ObjPersona.FechaNacimiento = dtpFechaNacimiento.Value;
+                contexto.ObjPersona.Apellidos = txtApellidos.Text;
+                if(dtpFechaNacimiento.Value.Year!= Global.FechaServidor().Year)
+                {
+                    contexto.ObjPersona.FechaNacimiento = dtpFechaNacimiento.Value;
+                }                
                 contexto.ObjPersona.Curp = txtCurp.Text;
                 contexto.ObjPersona.Calle = txtCalle.Text;
                 contexto.ObjPersona.NoExt = txtNoExt.Text;
@@ -117,83 +126,19 @@ namespace PRESENTACION.PAGOS
 
 
 
-        }
-
-        private void Apariencias()
+        }    
+      
+        private void SetDataCliente()
         {
-            if (dgvRegistros.DataSource == null) return;
-            dgvRegistros.Columns[0].Visible = false;
-            dgvRegistros.Columns[1].HeaderText = "CLAVE";
-            dgvRegistros.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;          
-            dgvRegistros.Columns[2].HeaderText = "NOMBRE";
-            dgvRegistros.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[3].Visible = false;
-            dgvRegistros.Columns[4].Visible = false;
-            dgvRegistros.Columns[5].Visible = false;
-            dgvRegistros.Columns[6].Visible = false;
-            dgvRegistros.Columns[7].Visible = false;
-            dgvRegistros.Columns[8].Visible = false;
-            dgvRegistros.Columns[9].Visible = false;
-            dgvRegistros.Columns[10].Visible = false;
-            dgvRegistros.Columns[11].HeaderText = "COLONIA";
-            dgvRegistros.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[12].HeaderText = "LOCALIDAD";
-            dgvRegistros.Columns[12].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[13].HeaderText = "MUNICIPIO";
-            dgvRegistros.Columns[13].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[14].HeaderText = "ENTIDAD FED.";
-            dgvRegistros.Columns[14].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[15].Visible = false;
-            dgvRegistros.Columns[16].Visible = false;
-            dgvRegistros.Columns[17].HeaderText = "ESTADO";
-            dgvRegistros.Columns[17].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-
-            tsTotalRegistros.Text = contexto.LstClientes.Count.ToString("N0");
-
-        }
-
-        private void ListarRegistros()
-        {
-            dgvRegistros.DataSource = null;
-            contexto.ListarUsuarios();
-            dgvRegistros.DataSource = contexto.LstClientesAux;
-            Apariencias();
-        }
-
-        private void filtrar(int column, string termino)
-        {
-            if (contexto.Filtrar(column, termino))
-            {
-                contexto.indexAux = contexto.index;
-                dgvRegistros.Rows[contexto.index].Cells[column].Selected = true;
-                dgvRegistros.FirstDisplayedScrollingRowIndex = contexto.index;
-            }
-        }
-
-        private void ordenar(int column)
-        {
-            txtBuscar.Clear();
-            txtBuscar.Focus();
-            contexto.Ordenar(column);
-            dgvRegistros.DataSource = contexto.LstClientesAux;
-            Apariencias();
-        }
-
-        private void Modificar()
-        {
-            if (dgvRegistros.DataSource == null) return;
-            if (dgvRegistros.CurrentRow.Cells[0].Value == null) return;
-            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
-            contexto.ObjClienteData = contexto.ObtenerDataCliente(rowIndexSeleccionado);
-            contexto.ObjCliente = contexto.ObtenerCliente(contexto.ObjClienteData.Id);
-            contexto.ObjPersona = contexto.ObtenerPersona(contexto.ObjCliente.PERSONAId);
-            if (contexto.ObjCliente != null)
+        
+            if (contexto.ObjCliente != null && contexto.ObjClienteData != null)
             {
                 txtNombre.Text = contexto.ObjClienteData.Nombres;
-                txtAmaterno.Text = contexto.ObjClienteData.Amaterno;
-                txtApaterno.Text = contexto.ObjClienteData.Apaterno;
-                dtpFechaNacimiento.Value = contexto.ObjClienteData.FechaNacimiento;
+                txtApellidos.Text = contexto.ObjClienteData.Apellidos;
+                if (contexto.ObjClienteData.FechaNacimiento!=null)
+                {
+                    dtpFechaNacimiento.Value = Convert.ToDateTime(contexto.ObjClienteData.FechaNacimiento);
+                }                
                 txtCurp.Text = contexto.ObjClienteData.Curp;
                 txtCalle.Text = contexto.ObjClienteData.Calle;
                 txtNoExt.Text = contexto.ObjClienteData.NoExt;
@@ -205,12 +150,16 @@ namespace PRESENTACION.PAGOS
                 txtEntidadFederativa.Text = contexto.ObjClienteData.EntidadFederativa;
                 txtClave.Text = contexto.ObjClienteData.Clave;
                 cbxEstado.SelectedValue = contexto.ObjClienteData.EstadoId;
+
+                ListarClientesSocio(contexto.ObjClienteData.Clave);
+                ListarAgendaCliente(contexto.ObjClienteData.Clave);
+            }
+            else
+            {
+                MessageBox.Show("No se encontro el registro seleccionado. Vuelva a intentarlo.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-
-
-
 
         private void formClientes_Load(object sender, EventArgs e)
         {
@@ -233,31 +182,6 @@ namespace PRESENTACION.PAGOS
             InicializarModulo();
         }
 
-        private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
-        }
-
-        private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Modificar();
-        }
-
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
-        {
-            if (dgvRegistros.Rows.Count <= 0) return;
-
-            if (string.IsNullOrEmpty(txtBuscar.Text))
-            {
-                contexto.index = -1;
-                return;
-            }
-
-            filtrar(contexto.Column, txtBuscar.Text);
-        }
-
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             if (contexto.ObjClienteData == null)
@@ -272,7 +196,420 @@ namespace PRESENTACION.PAGOS
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Modificar();
+            //eliminar contacto
+            if (dgvAgenda.DataSource == null) return;
+            if (contexto.ObjClienteData == null)
+            {
+                MessageBox.Show("No ha seleccionado ningún cliente.",
+                   "Advertencia",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                return;
+            }
+            EliminarContacto((int)dgvAgenda.CurrentRow.Cells[0].Value);
+            ListarAgendaCliente(contexto.ObjClienteData.Clave);
+        }
+
+        private void EliminarContacto(int contactoId)
+        {
+            try
+            {
+                contexto.ObtenerContacto(contactoId);
+                contexto.EliminarContacto();
+
+                MessageBox.Show("Contacto eliminado de la agenda del cliente correctamente.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);                
+            }
+            catch(Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar eliminar el registro.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("¿Desea generar un layout antes de iniciar la operación?", 
+                "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Generar layout
+                GenerarLayout();
+            }
+
+            //continuar con la exportacion
+            openFileDialog1.Filter = "Archivos de Excel (*.xlsx, *.xls)|*.xlsx;*.xls";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ImportarExcel(openFileDialog1.FileName);
+                return;
+            }
+
+            MessageBox.Show("No se selecciono ningún archivo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+        }
+
+        private void ImportarExcel(string path)
+        {
+            try
+            {
+                contexto.InstanciarListasImportacion();
+                //leer excel
+                using (SLDocument sl = new SLDocument(path))
+                {
+                    //listar clientes
+                    contexto.ListarClientes();
+
+                    row = 2;
+
+                    contexto.InstanciarListasImportacion();
+
+                    while (!string.IsNullOrEmpty(sl.GetCellValueAsString(row, 1)))
+                    {
+                        contexto.InstanciarObjImportacion();
+                        contexto.ObjImportacion.Cliente = sl.GetCellValueAsString(row, 1);
+                        contexto.ObjImportacion.Socio = sl.GetCellValueAsString(row, 2);
+                        contexto.ObjImportacion.Telefono = sl.GetCellValueAsString(row, 3);
+                        contexto.ObjImportacion.Correo = sl.GetCellValueAsString(row, 4);
+                        contexto.ObjImportacion.Direccion = sl.GetCellValueAsString(row, 5);
+                        contexto.LstImportacion.Add(contexto.ObjImportacion);
+                        row++;
+                    }
+
+                    foreach (var item in contexto.LstImportacion)
+                    {
+                        string[] nombreCliente = item.Cliente.Split(',');
+
+                        contexto.ObjClienteData = contexto.LstClientesAux.FirstOrDefault(x => x.Nombres == nombreCliente[0].Trim() && x.Apellidos == nombreCliente[1].Trim());
+
+                        if (contexto.ObjClienteData == null)
+                        {
+                            //crear
+                            contexto.InstanciarPersona();
+                            contexto.InstanciarCliente();
+                            contexto.ObjPersona.Nombres = nombreCliente[0].Trim();
+                            contexto.ObjPersona.Apellidos = nombreCliente[1].Trim();
+                            contexto.ObjCliente.Clave = Global.ObtenerFolio("CLIENTE");
+                            contexto.ObjCliente.ESTADOId = (int)Enumeraciones.EstadosProcesoCliente.ACTIVO;
+                            contexto.Guardar();
+
+                        }
+                        else
+                        {
+                            //existe
+                            contexto.ObjCliente = contexto.ObtenerCliente(contexto.ObjClienteData.Id);
+                            contexto.ObjPersona = contexto.ObtenerPersona(contexto.ObjCliente.PERSONAId);                            
+                        }
+                        //socio
+                        if (!string.IsNullOrEmpty(item.Socio))
+                        {
+                            string[] nombreSocio = item.Socio.Split(',');
+                            if (contexto.ObjClienteData != null)
+                            {                                
+                                contexto.ObjSocios = contexto.BuscarSocioPorNombre(nombreSocio[0].Trim() + " " + nombreSocio[1].Trim(), contexto.ObjClienteData.Id);                                
+                            }
+
+                            if (contexto.ObjSocios == null)
+                            {
+                                contexto.InstanciarSocio();
+                                contexto.ObjSocios.Nombre = nombreSocio[0].Trim() + " " + nombreSocio[1].Trim();
+                                contexto.GuardarSocio();
+                            }
+
+                        }
+
+                        //telefono
+                        if (!string.IsNullOrEmpty(item.Telefono))
+                        {
+                            contexto.InstanciarContactoAgenda();
+                            contexto.ObjAgenda.Tipo = 1;
+                            contexto.ObjAgenda.Valor = item.Telefono;
+                            contexto.GuardarContactoAgenda();
+                        }
+
+                        //correo
+                        if (!string.IsNullOrEmpty(item.Correo))
+                        {
+                            contexto.InstanciarContactoAgenda();
+                            contexto.ObjAgenda.Tipo = 2;
+                            contexto.ObjAgenda.Valor = item.Correo;
+                            contexto.GuardarContactoAgenda();
+                        }
+
+                        //direccion
+                        if (!string.IsNullOrEmpty(item.Direccion))
+                        {
+                            contexto.InstanciarContactoAgenda();
+                            contexto.ObjAgenda.Tipo = 1;
+                            contexto.ObjAgenda.Valor = item.Direccion;
+                            contexto.GuardarContactoAgenda();
+                        }
+
+                    }
+
+                    MessageBox.Show(
+                        "Registros importados correctamente.",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    InicializarModulo();
+
+                }
+            }
+            catch(Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar importar los registros. Ejecuón pausada en el row:"+row,
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                
+            }
+
+        }
+
+        private void GenerarLayout()
+        {
+            return;
+            throw new NotImplementedException();
+        }
+
+        private void txtClave_Click(object sender, EventArgs e)
+        {
+            if (txtClave.Text.Equals("NUEVO"))
+            {
+                txtClave.Clear();
+                txtClave.Focus();
+            }
+                
+        }
+
+        private void txtClave_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtClave.Text.Length < 5 && e.KeyCode == Keys.Enter)
+            {
+                MessageBox.Show("Clave de cliente no válida.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if(e.KeyCode == Keys.Enter)
+            {
+                BuscarClientePorClave(txtClave.Text);
+            }
+        }
+
+        private void BuscarClientePorClave(string clave)
+        {
+            contexto.BuscarClientePorClave(clave);
+            SetDataCliente();
+        }
+
+        private void dgvAgenda_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnAddSocio_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (contexto.ObjClienteData == null)
+                {
+                    MessageBox.Show("Debe cargar la información un cliente para poder agregar Socios.",
+                        "Advertencia", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+                contexto.InstanciarSocio();//AQUI SUSTITUIR ESE INSTANCIAR SOCIOS POR EL QUE SE OCUPA EN LA IMPORTACION
+                contexto.ObjSocios.Nombre = txtSocio.Text;                
+                contexto.GuardarSocio();
+               
+
+                ListarClientesSocio(contexto.ObjClienteData.Clave);
+            }
+            catch(Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            
+
+        }
+
+        private void ListarClientesSocio(string clave)
+        {
+            contexto.ListarClientesSocio(clave);
+            SetSociosClientes();
+            txtSocio.Clear();  
+        }
+
+        private void SetSociosClientes()
+        {
+            dgvSocios.DataSource = contexto.LstClientesSocios;
+            AparienciasSociosClientes();
+            tsTotalSocios.Text = dgvSocios.RowCount.ToString("N0");
+        }
+
+        private void AparienciasSociosClientes()
+        {
+            dgvSocios.Columns[0].Visible = false;
+            dgvSocios.Columns[1].HeaderText = "Nombre";
+            dgvSocios.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void txtSocio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            bus = new busClientes();
+            bus.ShowDialog();
+
+            if (bus.ObjEntidad == null)
+            {
+                MessageBox.Show("No se ha seleccionado ningín registro.", "Advertencia", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            contexto.ObjClienteData = contexto.ObtenerDataCliente(bus.ObjEntidad.Id);
+            contexto.ObjCliente = contexto.ObtenerCliente(bus.ObjEntidad.Id);
+            contexto.ObjPersona = contexto.ObtenerPersona(contexto.ObjCliente.PERSONAId);
+            SetDataCliente();
+        }
+
+        private void modificarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //eliminarsocio
+            try
+            {
+                if (contexto.ObjClienteData == null)
+                {
+                    MessageBox.Show("No ha seleccionado ningún cliente.",
+                   "Advertencia",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                    return;
+                }
+                contexto.ObtenerSocio((int)dgvSocios.CurrentRow.Cells[0].Value);
+                contexto.EliminarSocio();
+
+                MessageBox.Show("Socio del cliente eliminado correctamente.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                ListarClientesSocio(contexto.ObjClienteData.Clave);
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar eliminar el registro.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnTipo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (contexto.ObjClienteData == null)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente para poder abrir el directorio de contacto.", "Advertencia",
+                      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cbxTipoContacto.SelectedIndex == -1)
+                {
+                    MessageBox.Show("No ha seleccionado el tipo de contacto.", "Advertencia",
+                      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                contexto.InstanciarContactoAgenda();
+                contexto.ObjAgenda.Tipo = (int)cbxTipoContacto.SelectedValue;
+                contexto.ObjAgenda.Valor = txtDato.Text;
+                contexto.GuardarContactoAgenda();
+                MessageBox.Show("Se a guardado el registro en agenda del cliente correctamente",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                ListarAgendaCliente(contexto.ObjClienteData.Clave);
+                cbxTipoContacto.SelectedIndex = -1;
+                txtDato.Clear();
+            }
+            catch(Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+           
+        }
+
+        private void ListarAgendaCliente(string claveCliente)
+        {
+            contexto.ListarAgendaContacto(claveCliente);
+            SetAgendaCliente();
+        }
+
+        private void SetAgendaCliente()
+        {
+            dgvAgenda.DataSource = contexto.LstAgendasCliente;
+            AparienciasAgendaCliente();
+            tsTotalContacto.Text = dgvAgenda.RowCount.ToString("N0");
+        }
+
+        private void AparienciasAgendaCliente()
+        {
+            dgvAgenda.Columns[0].Visible = false;//id
+            dgvAgenda.Columns[1].Visible = false;//tipoid
+            dgvAgenda.Columns[2].HeaderText = "TIPO";
+            dgvAgenda.Columns[3].HeaderText = "DATO";
+            dgvAgenda.Columns[4].Visible = false;//relacion id
+            dgvAgenda.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvAgenda.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void txtClave_Leave(object sender, EventArgs e)
+        {
+            if (!cargado) return;
+            if (string.IsNullOrEmpty(txtClave.Text))
+            {
+                if (contexto.ObjCliente == null)
+                {
+                    txtClave.Text = "NUEVO";
+                }
+                else
+                {
+                    txtClave.Text = contexto.ObjCliente.Clave;
+                }
+            }
         }
     }
 }

@@ -12,22 +12,21 @@ namespace CAPADATOS
     using System;
     using System.Collections.Generic;
     
-    public partial class CLIENTE_LOTE
+    public partial class CLIENTELOTE
     {
         public int Id { get; set; }
-        public int LOTEId { get; set; }
+        public string Folio { get; set; }
+        public string FechaArrendamiento { get; set; }
         public int CLIENTEId { get; set; }
-        public System.DateTime FechaRegistro { get; set; }
-        public int USUARIOId { get; set; }
-        public decimal MontoRestante { get; set; }
+        public int LOTEId { get; set; }
+        public int USUARIOOperacionId { get; set; }
         public int NoPagos { get; set; }
-        public bool ExcedePlazoPago { get; set; }
-        public string FechaExcedePlazo { get; set; }
-        public Nullable<decimal> MontoExcedePlazo { get; set; }
-        public Nullable<int> NoPagosExcede { get; set; }
+        public decimal PrecioInicial { get; set; }
+        public int DiaPago { get; set; }
+        public Nullable<System.DateTime> FechaReimpresion { get; set; }
     
-        public virtual LOTE LOTE { get; set; }
         public virtual CLIENTE CLIENTE { get; set; }
-        public virtual USUARIO USUARIOASIGNO { get; set; }
+        public virtual LOTE LOTE { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

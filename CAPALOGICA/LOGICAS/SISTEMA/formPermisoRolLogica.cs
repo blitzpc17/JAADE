@@ -9,35 +9,39 @@ using System.Threading.Tasks;
 
 namespace CAPALOGICA.LOGICAS.SISTEMA
 {
-    public class formPermisoLogica
+    public class formPermisoRolLogica
     {
-        private UsuariosADO contextoUsuario;
+        private RolesADO contextoRol;
         private ModuloPermisoADO contextoPermiso;
         private ModulosADO contextoModulos;
 
-        public List<clsModuloPermiso> LstPermisos;
-        public List<clsModuloPermiso> LstPermisosAux;
+        public List<clsRolPermiso> LstPermisos;
+        public List<clsRolPermiso> LstPermisosAux;
+        public List<ROL> LstRol;
         public clsUsuario ObjUsuario;
         public clsModuloPermiso ObjPermisoData;
         public clsModulo ObjModulo;
         public MODULO_PERMISO ObjPermiso;
         public List<clsUsuario> LstUsuario;
+        public List<int> LstUsuariosIdPermiso;
+
+        public int RolId;
 
         public int index = -1;
         public int indexAux = -1;
         public int Column = 0;
 
 
-        public formPermisoLogica()
+        public formPermisoRolLogica()
         {
-            contextoUsuario = new UsuariosADO();
+            contextoRol = new RolesADO(); 
             contextoPermiso = new ModuloPermisoADO();
             contextoModulos = new ModulosADO();
         }
 
         public void InstanciarPermiso()
         {
-            ObjPermiso = new MODULO_PERMISO();    
+            ObjPermiso = new MODULO_PERMISO();
         }
 
         public void Guardar()
@@ -60,20 +64,37 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             return contextoPermiso.ObtenerModuloPermisoUsuario(idUsuario, idModulo);
         }
 
-        public void ListarPermisosUsuario(int usuarioId)
+        public void ListarPermisosXRol()
         {
-            LstPermisos = contextoPermiso.ListarModuloPermisoUsuario(usuarioId);
+            if (RolId == -1) return;
+            LstPermisos = contextoPermiso.ListarPermisosXRol(RolId);
             LstPermisosAux = LstPermisos;
         }
 
-        public clsUsuario ObtenerDataUsuario(int usuarioId)
-        {
-            return contextoUsuario.ObtenerDataUsuario(usuarioId);
-        }
 
         public clsModulo ObtenerDataModulo(int moduloId)
         {
             return contextoModulos.ObtenerModulo(moduloId);
+        }
+
+        public bool EliminarPermisoXRol(MODULO_PERMISO obj,  List<int> lstUsuarios)
+        {
+            return contextoPermiso.EliminarPermisoXRol(obj, lstUsuarios);
+        }
+
+        public bool InsertarPermisoMasivoRol(MODULO_PERMISO obj,  List<int>lstids)
+        {
+            return contextoPermiso.InsertarPermisoXRol(obj, lstids);
+        }
+
+        public void ListarRoles()
+        {
+            LstRol = contextoRol.Listar();
+        }
+
+        public void ValidarPermisoEnUsuarios(int moduloId, int rolId, bool tienen = false)
+        {
+            LstUsuariosIdPermiso = contextoPermiso.ValidarPermisoEnUsuarios(moduloId, rolId, tienen);
         }
 
 
@@ -83,12 +104,12 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
 
             switch (column)
             {
-                case 2:
+                case 1:
                     index = LstPermisosAux.FindIndex(x => x.NombreModulo.StartsWith(termino));
                     break;
-                case 3:
-                    index = LstPermisosAux.FindIndex(x => x.RutaModulo.ToString().StartsWith(termino));
-                    break;         
+                case 2:
+                    index = LstPermisosAux.FindIndex(x => x.NombreModulo.ToString().StartsWith(termino));
+                    break;
 
 
                 default:
@@ -106,12 +127,12 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             switch (column)
             {
 
-                case 2:
+                case 1:
                     LstPermisosAux = LstPermisos.OrderBy(x => x.NombreModulo).ThenBy(x => x.RutaModulo).ToList();
                     break;
-                case 3:
+                case 2:
                     LstPermisosAux = LstPermisos.OrderBy(x => x.RutaModulo).ThenBy(x => x.NombreModulo).ToList();
-                    break;              
+                    break;
 
                 default:
                     LstPermisosAux = LstPermisos.OrderBy(x => x.NombreModulo).ThenBy(x => x.RutaModulo).ToList();
@@ -120,9 +141,8 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             }
         }
 
-        public bool EliminarPermiso(int moduloId, int usuarioId)
-        {
-            return contextoPermiso.EliminarPermiso(moduloId, usuarioId);
-        }
+
+
+
     }
 }

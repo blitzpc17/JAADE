@@ -125,7 +125,8 @@ namespace CAPADATOS.ADO.PAGOS
 
         public List<PAGO>ListarPagosAsociadosLote(int clienteId, int LoteId)
         {
-            return contexto.PAGO.Where(x=>x.CLIENTEId==clienteId&& x.LOTEId==LoteId).ToList();
+            return null;
+            //return contexto.PAGO.Where(x=>x.CLIENTEId==clienteId&& x.LOTEId==LoteId).ToList();
         }
 
 

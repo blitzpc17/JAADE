@@ -39,8 +39,8 @@
     <ApplicationIcon>JAADE-PNG.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Controls">
-      <HintPath>..\..\SellPoint\Controls\bin\Debug\Controls.dll</HintPath>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.11.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.11.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -75,11 +75,25 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SpreadsheetLight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.5.0\lib\netstandard2.0\SpreadsheetLight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.7.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
@@ -94,6 +108,7 @@
     <Reference Include="Twilio, Version=6.15.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Twilio.6.15.2\lib\net451\Twilio.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUSQUEDA\busClientes.cs">
@@ -144,23 +159,11 @@
     <Compile Include="PAGOS\formAgendaClientes.Designer.cs">
       <DependentUpon>formAgendaClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAGOS\formAsignacionLotes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PAGOS\formAsignacionLotes.Designer.cs">
-      <DependentUpon>formAsignacionLotes.cs</DependentUpon>
-    </Compile>
     <Compile Include="PAGOS\formClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PAGOS\formClientes.Designer.cs">
       <DependentUpon>formClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PAGOS\formPagos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PAGOS\formPagos.Designer.cs">
-      <DependentUpon>formPagos.cs</DependentUpon>
     </Compile>
     <Compile Include="PAGOS\REPORTES\dtTicket.cs">
       <DependentUpon>dtTicket.xsd</DependentUpon>
@@ -175,6 +178,12 @@
     </Compile>
     <Compile Include="PAGOS\REPORTES\repContratoLote.Designer.cs">
       <DependentUpon>repContratoLote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\REPORTES\repPagosGlobal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\REPORTES\repPagosGlobal.Designer.cs">
+      <DependentUpon>repPagosGlobal.cs</DependentUpon>
     </Compile>
     <Compile Include="PAGOS\REPORTES\repTicket.cs">
       <SubType>Form</SubType>
@@ -220,6 +229,12 @@
     <Compile Include="SISTEMA\formPermiso.Designer.cs">
       <DependentUpon>formPermiso.cs</DependentUpon>
     </Compile>
+    <Compile Include="SISTEMA\formPermisoRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SISTEMA\formPermisoRol.Designer.cs">
+      <DependentUpon>formPermisoRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="SISTEMA\formUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,14 +275,8 @@
     <EmbeddedResource Include="PAGOS\formAgendaClientes.resx">
       <DependentUpon>formAgendaClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PAGOS\formAsignacionLotes.resx">
-      <DependentUpon>formAsignacionLotes.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\formClientes.resx">
       <DependentUpon>formClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PAGOS\formPagos.resx">
-      <DependentUpon>formPagos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\repContratoLote.resx">
       <DependentUpon>repContratoLote.cs</DependentUpon>
@@ -304,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SISTEMA\formPermiso.resx">
       <DependentUpon>formPermiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SISTEMA\formPermisoRol.resx">
+      <DependentUpon>formPermisoRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SISTEMA\formUsuarios.resx">
       <DependentUpon>formUsuarios.cs</DependentUpon>
@@ -359,6 +371,8 @@
     <None Include="Resources\permiso.png" />
     <None Include="Resources\calculadora.png" />
     <None Include="Resources\cerrar-sesion.png" />
+    <None Include="Resources\persona.png" />
+    <None Include="Resources\upload.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

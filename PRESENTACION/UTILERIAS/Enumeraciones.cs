@@ -18,7 +18,8 @@ namespace PRESENTACION.UTILERIAS
             ConsecutivoPagos,
             CredencialesFtp,
             CredencialesTwilio,
-            CredencialesCorreo
+            CredencialesCorreo,
+            ConsecutivoContratos
         }
 
         public static Dictionary<string, Image> ListaImagenes()
@@ -33,6 +34,7 @@ namespace PRESENTACION.UTILERIAS
             LstImagenes.Add("seguridad", Properties.Resources._lock);
             LstImagenes.Add("permiso", Properties.Resources.permiso);
             LstImagenes.Add("asignacion", Properties.Resources.asignar);
+            LstImagenes.Add("usuario", Properties.Resources.persona);
 
 
             return LstImagenes;
@@ -40,26 +42,26 @@ namespace PRESENTACION.UTILERIAS
 
         public enum Procesos
         {
-            USUARIO,
-            CLIENTE,
-            LOTE
+            USUARIO = 1,
+            CLIENTE =2,
+            LOTE = 3
         }
 
         public enum EstadosProcesoLote
         {
-            LIBRE,
-            ASIGNADO,
-            VENDIDO
+            LIBRE = 3,
+            ASIGNADO = 4,
+            VENDIDO = 5
         }
         public enum EstadosProcesoUsuario
         {
-            ACTIVO,
-            INACTIVO
+            ACTIVO = 1,
+            INACTIVO = 2
         }
         public enum EstadosProcesoCliente
         {
-            ACTIVO,
-            INACTIVO
+            ACTIVO = 6,
+            INACTIVO = 7
         }
 
 

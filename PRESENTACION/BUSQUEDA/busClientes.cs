@@ -87,18 +87,13 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[8].Visible = false;
             dgvRegistros.Columns[9].Visible = false;
             dgvRegistros.Columns[10].Visible = false;
-            dgvRegistros.Columns[11].HeaderText = "COLONIA";
-            dgvRegistros.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[12].HeaderText = "LOCALIDAD";
-            dgvRegistros.Columns[12].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[13].HeaderText = "MUNICIPIO";
-            dgvRegistros.Columns[13].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[14].HeaderText = "ENTIDAD FED.";
-            dgvRegistros.Columns[14].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[11].Visible = false;
+            dgvRegistros.Columns[12].Visible = false;
+            dgvRegistros.Columns[13].Visible = false;
+            dgvRegistros.Columns[14].Visible = false;
             dgvRegistros.Columns[15].Visible = false;
-            dgvRegistros.Columns[16].Visible = false;
-            dgvRegistros.Columns[17].HeaderText = "ESTADO";
-            dgvRegistros.Columns[17].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[16].HeaderText = "ESTADO";
+            dgvRegistros.Columns[16].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
 
             tsTotalRegistros.Text = contexto.LstClientes.Count.ToString("N0");
@@ -119,9 +114,14 @@ namespace PRESENTACION.BUSQUEDA
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (dgvRegistros.DataSource == null) return;
+            /*if (dgvRegistros.DataSource == null) return;
             if (rowIndexSeleccionado == -1) return;
             rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
+            Close();*/
+
+            if (dgvRegistros.DataSource == null) return;
+            if (rowIndexSeleccionado == -1) return;
             ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
             Close();
         }
@@ -133,20 +133,36 @@ namespace PRESENTACION.BUSQUEDA
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (contexto.Column == e.ColumnIndex) return;
+            /*if (contexto.Column == e.ColumnIndex) return;
             contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+            ordenar(contexto.Column);*/
+
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                ordenar(contexto.Column);
+            }
+            else
+            {
+                rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            }
         }
 
         private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+           /* if (dgvRegistros.DataSource == null) return;
+            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
+            Close();*/
+
             if (dgvRegistros.DataSource == null) return;
             rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
             ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
             Close();
         }
 
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (dgvRegistros.Rows.Count <= 0) return;
 

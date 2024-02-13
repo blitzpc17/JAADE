@@ -16,9 +16,9 @@ namespace CAPADATOS.ADO.PAGOS
             contexto = new DB_JAADEEntities();
         }
 
-        public void Insertar(CLIENTE_LOTE entidad)
+        public void Insertar(CLIENTELOTE entidad)
         {
-            contexto.CLIENTE_LOTE.Add(entidad);
+            contexto.CLIENTELOTE.Add(entidad);
         }
 
         public void Guardar()
@@ -26,19 +26,19 @@ namespace CAPADATOS.ADO.PAGOS
             contexto.SaveChanges();
         }
 
-        public void Eliminar(CLIENTE_LOTE entidad)
+        public void Eliminar(CLIENTELOTE entidad)
         {
-            contexto.CLIENTE_LOTE.Remove(entidad);
+            contexto.CLIENTELOTE.Remove(entidad);
         }
 
-        public List<CLIENTE_LOTE> Listar()
+        public List<CLIENTELOTE> Listar()
         {
-            return contexto.CLIENTE_LOTE.ToList();
+            return contexto.CLIENTELOTE.ToList();
         }
 
-        public CLIENTE_LOTE Obtener(int id)
+        public CLIENTELOTE Obtener(int id)
         {
-            return contexto.CLIENTE_LOTE.FirstOrDefault(x => x.Id == id);
+            return contexto.CLIENTELOTE.FirstOrDefault(x => x.Id == id);
         }
 
         public clsClienteLote ObtenerAsignacion(int id)
@@ -95,9 +95,9 @@ namespace CAPADATOS.ADO.PAGOS
 
         }
 
-        public CLIENTE_LOTE ObtenerAsignacionClienteLote(int idCliente, int idLote)
+        public CLIENTELOTE ObtenerAsignacionClienteLote(int idCliente, int idLote)
         {
-            return contexto.CLIENTE_LOTE.FirstOrDefault(x=>x.CLIENTEId == idCliente && x.LOTEId == idLote);
+            return contexto.CLIENTELOTE.FirstOrDefault(x=>x.CLIENTEId == idCliente && x.LOTEId == idLote);
         }
 
         public void Dispose()

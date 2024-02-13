@@ -33,20 +33,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formModulos));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnModulo = new System.Windows.Forms.Button();
-            this.txtModulo = new Controls.Controles.Txt();
+            this.txtModulo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtIcono = new System.Windows.Forms.TextBox();
+            this.txtRuta = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtIcono = new Controls.Controles.Txt();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtRuta = new Controls.Controles.Txt();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNombre = new Controls.Controles.Txt();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsTotalRegistros = new System.Windows.Forms.ToolStripLabel();
-            this.txtBuscar = new Controls.Controles.Txt();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,12 +65,12 @@
             this.groupBox1.Controls.Add(this.btnModulo);
             this.groupBox1.Controls.Add(this.txtModulo);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtIcono);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtRuta);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtNombre);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(750, 99);
@@ -93,10 +93,11 @@
             // txtModulo
             // 
             this.txtModulo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModulo.Location = new System.Drawing.Point(516, 60);
+            this.txtModulo.Location = new System.Drawing.Point(516, 58);
             this.txtModulo.Name = "txtModulo";
+            this.txtModulo.ReadOnly = true;
             this.txtModulo.Size = new System.Drawing.Size(185, 23);
-            this.txtModulo.TabIndex = 40;
+            this.txtModulo.TabIndex = 32;
             // 
             // label5
             // 
@@ -108,6 +109,22 @@
             this.label5.Text = "Modulo:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtIcono
+            // 
+            this.txtIcono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIcono.Location = new System.Drawing.Point(516, 30);
+            this.txtIcono.Name = "txtIcono";
+            this.txtIcono.Size = new System.Drawing.Size(225, 23);
+            this.txtIcono.TabIndex = 31;
+            // 
+            // txtRuta
+            // 
+            this.txtRuta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRuta.Location = new System.Drawing.Point(131, 59);
+            this.txtRuta.Name = "txtRuta";
+            this.txtRuta.Size = new System.Drawing.Size(225, 23);
+            this.txtRuta.TabIndex = 30;
+            // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -118,13 +135,13 @@
             this.label4.Text = "Icono:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtIcono
+            // txtNombre
             // 
-            this.txtIcono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIcono.Location = new System.Drawing.Point(516, 30);
-            this.txtIcono.Name = "txtIcono";
-            this.txtIcono.Size = new System.Drawing.Size(225, 23);
-            this.txtIcono.TabIndex = 30;
+            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(131, 30);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(225, 23);
+            this.txtNombre.TabIndex = 29;
             // 
             // label3
             // 
@@ -136,14 +153,6 @@
             this.label3.Text = "Ruta:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtRuta
-            // 
-            this.txtRuta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRuta.Location = new System.Drawing.Point(131, 59);
-            this.txtRuta.Name = "txtRuta";
-            this.txtRuta.Size = new System.Drawing.Size(225, 23);
-            this.txtRuta.TabIndex = 20;
-            // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -154,19 +163,14 @@
             this.label2.Text = "Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(131, 30);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(225, 23);
-            this.txtNombre.TabIndex = 10;
-            // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.txtBuscar);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.toolStrip1);
-            this.groupBox2.Controls.Add(this.txtBuscar);
             this.groupBox2.Controls.Add(this.dgvRegistros);
             this.groupBox2.Location = new System.Drawing.Point(12, 117);
             this.groupBox2.Name = "groupBox2";
@@ -174,6 +178,15 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registros";
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(336, 30);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(225, 23);
+            this.txtBuscar.TabIndex = 33;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // label1
             // 
@@ -208,15 +221,6 @@
             this.tsTotalRegistros.Name = "tsTotalRegistros";
             this.tsTotalRegistros.Size = new System.Drawing.Size(13, 22);
             this.tsTotalRegistros.Text = "0";
-            // 
-            // txtBuscar
-            // 
-            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(336, 30);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(225, 23);
-            this.txtBuscar.TabIndex = 10;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // dgvRegistros
             // 
@@ -309,6 +313,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(790, 600);
             this.Name = "formModulos";
             this.Text = "formModulos";
             this.Load += new System.EventHandler(this.formModulos_Load);
@@ -337,17 +342,17 @@
         private System.Windows.Forms.ToolStripLabel tsTotalRegistros;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private Controls.Controles.Txt txtIcono;
         private System.Windows.Forms.Label label3;
-        private Controls.Controles.Txt txtRuta;
         private System.Windows.Forms.Label label2;
-        private Controls.Controles.Txt txtNombre;
         private System.Windows.Forms.Label label1;
-        private Controls.Controles.Txt txtBuscar;
         private System.Windows.Forms.Button btnModulo;
-        private Controls.Controles.Txt txtModulo;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtModulo;
+        private System.Windows.Forms.TextBox txtIcono;
+        private System.Windows.Forms.TextBox txtRuta;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtBuscar;
     }
 }

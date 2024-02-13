@@ -32,29 +32,29 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIMain));
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.sISTEMAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cAPTURAYCONSULTAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eXCEPCIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSysUsuario = new System.Windows.Forms.TextBox();
-            this.txtSysNombre = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSysRol = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.cALCULADORAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cERRARSESIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cATALOGOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aCCESOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mODULOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pERMISOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mODULOSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cONTROLESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cAPTURAYCONSULTAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eXCEPCIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtSysRol = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSysNombre = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSysUsuario = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.cALCULADORAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cERRARSESIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -86,16 +86,63 @@
             this.sISTEMAToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.sISTEMAToolStripMenuItem.Text = "SISTEMA";
             // 
+            // cATALOGOSToolStripMenuItem
+            // 
+            this.cATALOGOSToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.registro;
+            this.cATALOGOSToolStripMenuItem.Name = "cATALOGOSToolStripMenuItem";
+            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cATALOGOSToolStripMenuItem.Text = "CATALOGOS";
+            // 
+            // aCCESOToolStripMenuItem
+            // 
+            this.aCCESOToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mODULOSToolStripMenuItem,
+            this.pERMISOSToolStripMenuItem});
+            this.aCCESOToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.permiso;
+            this.aCCESOToolStripMenuItem.Name = "aCCESOToolStripMenuItem";
+            this.aCCESOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aCCESOToolStripMenuItem.Text = "ACCESO";
+            // 
+            // mODULOSToolStripMenuItem
+            // 
+            this.mODULOSToolStripMenuItem.Name = "mODULOSToolStripMenuItem";
+            this.mODULOSToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.mODULOSToolStripMenuItem.Text = "MODULOS";
+            this.mODULOSToolStripMenuItem.Click += new System.EventHandler(this.mODULOSToolStripMenuItem_Click);
+            // 
+            // pERMISOSToolStripMenuItem
+            // 
+            this.pERMISOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mODULOSToolStripMenuItem1,
+            this.cONTROLESToolStripMenuItem});
+            this.pERMISOSToolStripMenuItem.Name = "pERMISOSToolStripMenuItem";
+            this.pERMISOSToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.pERMISOSToolStripMenuItem.Text = "PERMISOS";
+            // 
+            // mODULOSToolStripMenuItem1
+            // 
+            this.mODULOSToolStripMenuItem1.Name = "mODULOSToolStripMenuItem1";
+            this.mODULOSToolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
+            this.mODULOSToolStripMenuItem1.Text = "MODULOS";
+            this.mODULOSToolStripMenuItem1.Click += new System.EventHandler(this.mODULOSToolStripMenuItem1_Click);
+            // 
+            // cONTROLESToolStripMenuItem
+            // 
+            this.cONTROLESToolStripMenuItem.Name = "cONTROLESToolStripMenuItem";
+            this.cONTROLESToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.cONTROLESToolStripMenuItem.Text = "CONTROLES";
+            // 
             // uSUARIOSToolStripMenuItem
             // 
             this.uSUARIOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cAPTURAYCONSULTAToolStripMenuItem});
             this.uSUARIOSToolStripMenuItem.Name = "uSUARIOSToolStripMenuItem";
-            this.uSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.uSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uSUARIOSToolStripMenuItem.Text = "USUARIOS";
             // 
             // cAPTURAYCONSULTAToolStripMenuItem
             // 
+            this.cAPTURAYCONSULTAToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.persona;
             this.cAPTURAYCONSULTAToolStripMenuItem.Name = "cAPTURAYCONSULTAToolStripMenuItem";
             this.cAPTURAYCONSULTAToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.cAPTURAYCONSULTAToolStripMenuItem.Text = "CAPTURA Y CONSULTA";
@@ -104,7 +151,7 @@
             // eXCEPCIONESToolStripMenuItem
             // 
             this.eXCEPCIONESToolStripMenuItem.Name = "eXCEPCIONESToolStripMenuItem";
-            this.eXCEPCIONESToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.eXCEPCIONESToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eXCEPCIONESToolStripMenuItem.Text = "EXCEPCIONES";
             this.eXCEPCIONESToolStripMenuItem.Click += new System.EventHandler(this.eXCEPCIONESToolStripMenuItem_Click);
             // 
@@ -140,6 +187,58 @@
             this.tabPage1.Text = "USUARIO";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // txtSysRol
+            // 
+            this.txtSysRol.Location = new System.Drawing.Point(10, 204);
+            this.txtSysRol.Name = "txtSysRol";
+            this.txtSysRol.ReadOnly = true;
+            this.txtSysRol.Size = new System.Drawing.Size(200, 25);
+            this.txtSysRol.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 175);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 17);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Rol:";
+            // 
+            // txtSysNombre
+            // 
+            this.txtSysNombre.Location = new System.Drawing.Point(10, 117);
+            this.txtSysNombre.Multiline = true;
+            this.txtSysNombre.Name = "txtSysNombre";
+            this.txtSysNombre.ReadOnly = true;
+            this.txtSysNombre.Size = new System.Drawing.Size(200, 50);
+            this.txtSysNombre.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Nombre:";
+            // 
+            // txtSysUsuario
+            // 
+            this.txtSysUsuario.Location = new System.Drawing.Point(10, 59);
+            this.txtSysUsuario.Name = "txtSysUsuario";
+            this.txtSysUsuario.ReadOnly = true;
+            this.txtSysUsuario.Size = new System.Drawing.Size(200, 25);
+            this.txtSysUsuario.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Usuario:";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.toolStripContainer1);
@@ -164,58 +263,6 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(212, 415);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Usuario:";
-            // 
-            // txtSysUsuario
-            // 
-            this.txtSysUsuario.Location = new System.Drawing.Point(10, 59);
-            this.txtSysUsuario.Name = "txtSysUsuario";
-            this.txtSysUsuario.ReadOnly = true;
-            this.txtSysUsuario.Size = new System.Drawing.Size(200, 25);
-            this.txtSysUsuario.TabIndex = 1;
-            // 
-            // txtSysNombre
-            // 
-            this.txtSysNombre.Location = new System.Drawing.Point(10, 117);
-            this.txtSysNombre.Multiline = true;
-            this.txtSysNombre.Name = "txtSysNombre";
-            this.txtSysNombre.ReadOnly = true;
-            this.txtSysNombre.Size = new System.Drawing.Size(200, 50);
-            this.txtSysNombre.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nombre:";
-            // 
-            // txtSysRol
-            // 
-            this.txtSysRol.Location = new System.Drawing.Point(10, 204);
-            this.txtSysRol.Name = "txtSysRol";
-            this.txtSysRol.ReadOnly = true;
-            this.txtSysRol.Size = new System.Drawing.Size(200, 25);
-            this.txtSysRol.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 175);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Rol:";
             // 
             // menuStrip1
             // 
@@ -255,52 +302,6 @@
             this.cERRARSESIÓNToolStripMenuItem.Text = "CERRAR SESIÓN";
             this.cERRARSESIÓNToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cERRARSESIÓNToolStripMenuItem.Click += new System.EventHandler(this.cERRARSESIÓNToolStripMenuItem_Click);
-            // 
-            // cATALOGOSToolStripMenuItem
-            // 
-            this.cATALOGOSToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.registro;
-            this.cATALOGOSToolStripMenuItem.Name = "cATALOGOSToolStripMenuItem";
-            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.cATALOGOSToolStripMenuItem.Text = "CATALOGOS";
-            // 
-            // aCCESOToolStripMenuItem
-            // 
-            this.aCCESOToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mODULOSToolStripMenuItem,
-            this.pERMISOSToolStripMenuItem});
-            this.aCCESOToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.permiso;
-            this.aCCESOToolStripMenuItem.Name = "aCCESOToolStripMenuItem";
-            this.aCCESOToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.aCCESOToolStripMenuItem.Text = "ACCESO";
-            // 
-            // mODULOSToolStripMenuItem
-            // 
-            this.mODULOSToolStripMenuItem.Name = "mODULOSToolStripMenuItem";
-            this.mODULOSToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.mODULOSToolStripMenuItem.Text = "MODULOS";
-            this.mODULOSToolStripMenuItem.Click += new System.EventHandler(this.mODULOSToolStripMenuItem_Click);
-            // 
-            // pERMISOSToolStripMenuItem
-            // 
-            this.pERMISOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mODULOSToolStripMenuItem1,
-            this.cONTROLESToolStripMenuItem});
-            this.pERMISOSToolStripMenuItem.Name = "pERMISOSToolStripMenuItem";
-            this.pERMISOSToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.pERMISOSToolStripMenuItem.Text = "PERMISOS";
-            // 
-            // mODULOSToolStripMenuItem1
-            // 
-            this.mODULOSToolStripMenuItem1.Name = "mODULOSToolStripMenuItem1";
-            this.mODULOSToolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
-            this.mODULOSToolStripMenuItem1.Text = "MODULOS";
-            this.mODULOSToolStripMenuItem1.Click += new System.EventHandler(this.mODULOSToolStripMenuItem1_Click);
-            // 
-            // cONTROLESToolStripMenuItem
-            // 
-            this.cONTROLESToolStripMenuItem.Name = "cONTROLESToolStripMenuItem";
-            this.cONTROLESToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.cONTROLESToolStripMenuItem.Text = "CONTROLES";
             // 
             // MDIMain
             // 

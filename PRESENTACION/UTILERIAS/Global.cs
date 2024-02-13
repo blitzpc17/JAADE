@@ -99,7 +99,7 @@ namespace PRESENTACION.UTILERIAS
 
         }
 
-        public static bool GuardarExcepcion(Exception ex, string formularioNombre)
+        public static bool GuardarExcepcion(Exception ex, string formularioNombre, string msjAdicional =null)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace PRESENTACION.UTILERIAS
                     {
                         Fecha = FechaServidor(),
                         Formulario = formularioNombre,
-                        Resumen = ex.Message,
+                        Resumen = ex.Message+(msjAdicional!=null?" Mensaje Adicional:"+msjAdicional:""),
                         Detalle = ex.StackTrace,
                         USUARIOId = ObjUsuario.Id
                     }) ;
@@ -299,13 +299,18 @@ namespace PRESENTACION.UTILERIAS
             switch(tipo){
                 case "PAGO":
                     _Prefijo = "PG";
-                    _Longitud = 11;
+                    _Longitud = 9;
                     _NombreVariable = Enumeraciones.VariablesGlobales.ConsecutivoPagos.ToString();
                     break;
                 case "CLIENTE":
                     _Prefijo = "C";
                     _Longitud = 4;
                     _NombreVariable = Enumeraciones.VariablesGlobales.ConsecutivoClientes.ToString();
+                    break;
+                case "CONTRATO":
+                    _Prefijo = "CO";
+                    _Longitud = 7;
+                    _NombreVariable = Enumeraciones.VariablesGlobales.ConsecutivoContratos.ToString();
                     break;
 
                 default: return null;
@@ -339,7 +344,7 @@ namespace PRESENTACION.UTILERIAS
         {
             PERSONA objPersona;
             objPersona = obj.PERSONA;
-            if (objPersona != null) return objPersona.Nombres + " " + objPersona.ApellidoPaterno + " " + objPersona.ApellidoMaterno;
+            if (objPersona != null) return objPersona.Nombres + " " + objPersona.Apellidos;
             return null;
         }
 

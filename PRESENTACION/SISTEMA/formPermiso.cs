@@ -1,6 +1,7 @@
 ﻿using CAPALOGICA.LOGICAS.SISTEMA;
 using PRESENTACION.UTILERIAS;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PRESENTACION.SISTEMA
@@ -266,7 +267,45 @@ namespace PRESENTACION.SISTEMA
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (dgvRegistros.DataSource == null) return;
+                if (dgvRegistros.CurrentRow == null) return;
+                bool result = false;
+                List<string> msjAlert = new List<string>();
+                if (contexto.EliminarPermiso((int)dgvRegistros.CurrentRow.Cells[1].Value, contexto.ObjUsuario.Id))
+                {
+                    result = true;
+                    msjAlert.AddRange(new string[]{ "Aviso", "Permiso revocado correctamente"});
+                }
+                else
+                {
+                    result = false;
+                    msjAlert.AddRange(new string[] {"Advertencia", "Ocurrio un error al intentar revocar los permisos." });
+                }
 
+                MessageBox.Show(msjAlert[1],
+                    msjAlert[0],
+                    MessageBoxButtons.OK,
+                    result ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+
+                if (result)
+                {
+                    ListarRegistros(contexto.ObjUsuario.Id);
+                    contexto.ObjModulo = null;
+                    txtModulo.Clear();  
+                }
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar modificar los registros. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

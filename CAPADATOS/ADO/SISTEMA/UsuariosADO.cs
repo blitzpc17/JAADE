@@ -78,10 +78,11 @@ namespace CAPADATOS.ADO.SISTEMA
 
         public clsUsuario Authenticate(string usuario, string password)
         {
+            
             var query = "SELECT " +
                        "us.Id, us.Alias, us.Password as Contrasena, \r\n" +
-                       "(per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Nombre, \r\n" +
-                       "per.Nombres, per.ApellidoPaterno as Apaterno, per.ApellidoMaterno as Amaterno, \r\n" +
+                       "(per.Nombres + ' ' + per.Apellidos) as Nombre, \r\n" +
+                       "per.Nombres, per.Apellidos as Apellidos, \r\n" +
                        "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n" +
                        "per.CodigoPostal, rl.Id as RolId, rl.Nombre as Rol, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
                        "us.FechaRegistro \r\n" +

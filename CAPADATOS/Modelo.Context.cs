@@ -35,12 +35,14 @@ namespace CAPADATOS
         public virtual DbSet<ESTADO> ESTADO { get; set; }
         public virtual DbSet<ZONA> ZONA { get; set; }
         public virtual DbSet<LOTE> LOTE { get; set; }
-        public virtual DbSet<PAGO> PAGO { get; set; }
-        public virtual DbSet<CLIENTE_LOTE> CLIENTE_LOTE { get; set; }
         public virtual DbSet<PERSONA_AGENDA> PERSONA_AGENDA { get; set; }
         public virtual DbSet<VARIABLEGLOBAL> VARIABLEGLOBAL { get; set; }
         public virtual DbSet<EXCEPCION> EXCEPCION { get; set; }
         public virtual DbSet<CONTROL> CONTROL { get; set; }
         public virtual DbSet<CONTROL_PERMISO> CONTROL_PERMISO { get; set; }
+        public virtual DbSet<SOCIOS> SOCIOS { get; set; }
+        public virtual DbSet<CLIENTES_SOCIOS> CLIENTES_SOCIOS { get; set; }
+        public virtual DbSet<CLIENTELOTE> CLIENTELOTE { get; set; }
+        public virtual DbSet<PAGO> PAGO { get; set; }
     }
 }

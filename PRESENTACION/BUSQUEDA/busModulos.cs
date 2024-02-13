@@ -104,7 +104,6 @@ namespace PRESENTACION.BUSQUEDA
         {
             if (dgvRegistros.DataSource == null) return;
             if (rowIndexSeleccionado == -1) return;
-            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
             ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
             Close();
         }
@@ -124,9 +123,16 @@ namespace PRESENTACION.BUSQUEDA
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                ordenar(contexto.Column);
+            }
+            else
+            {
+                rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            }            
         }
 
         private void busModulos_Load(object sender, EventArgs e)

@@ -59,9 +59,11 @@
     <Compile Include="ADO\LOTES\ZonaADO.cs" />
     <Compile Include="ADO\PAGOS\AsignacionClienteLoteADO.cs" />
     <Compile Include="ADO\PAGOS\ClientesADO.cs" />
+    <Compile Include="ADO\PAGOS\ClienteSocioADO.cs" />
     <Compile Include="ADO\PAGOS\ContactoClienteADO.cs" />
     <Compile Include="ADO\PAGOS\PagosADO.cs" />
     <Compile Include="ADO\PAGOS\Persona_AgendaADO.cs" />
+    <Compile Include="ADO\PAGOS\SociosADO.cs" />
     <Compile Include="ADO\SISTEMA\EstadoADO.cs" />
     <Compile Include="ADO\SISTEMA\ExcepcionADO.cs" />
     <Compile Include="ADO\SISTEMA\ModulosADO.cs" />
@@ -76,7 +78,10 @@
     <Compile Include="CLIENTE.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLIENTE_LOTE.cs">
+    <Compile Include="CLIENTELOTE.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CLIENTES_SOCIOS.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="CONTROL.cs">
@@ -86,8 +91,10 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\clsAgenda.cs" />
+    <Compile Include="Entidades\clsAGENDACLIENTE.cs" />
     <Compile Include="Entidades\clsClienteLote.cs" />
     <Compile Include="Entidades\clsClientes.cs" />
+    <Compile Include="Entidades\clsClientesImportacion.cs" />
     <Compile Include="Entidades\clsContratoParametros.cs" />
     <Compile Include="Entidades\clsCorreo.cs" />
     <Compile Include="Entidades\clsCredencialesCorreo.cs" />
@@ -100,6 +107,7 @@
     <Compile Include="Entidades\clsModuloPermiso.cs" />
     <Compile Include="Entidades\clsModulosAccesoUsuario.cs" />
     <Compile Include="Entidades\clsPago.cs" />
+    <Compile Include="Entidades\clsRolPermiso.cs" />
     <Compile Include="Entidades\clsTicketEncabezado.cs" />
     <Compile Include="Entidades\clsTicketPago.cs" />
     <Compile Include="Entidades\clsTicketPartida.cs" />
@@ -146,6 +154,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ROL.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SOCIOS.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="USUARIO.cs">

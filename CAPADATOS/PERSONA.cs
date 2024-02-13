@@ -16,9 +16,8 @@ namespace CAPADATOS
     {
         public int Id { get; set; }
         public string Nombres { get; set; }
-        public string ApellidoPaterno { get; set; }
-        public string ApellidoMaterno { get; set; }
-        public System.DateTime FechaNacimiento { get; set; }
+        public string Apellidos { get; set; }
+        public Nullable<System.DateTime> FechaNacimiento { get; set; }
         public string Curp { get; set; }
         public string Calle { get; set; }
         public string NoExt { get; set; }

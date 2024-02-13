@@ -14,6 +14,12 @@ namespace CAPADATOS
     
     public partial class CLIENTE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CLIENTE()
+        {
+            this.CLIENTES_SOCIOS = new HashSet<CLIENTES_SOCIOS>();
+        }
+    
         public int Id { get; set; }
         public string Clave { get; set; }
         public int PERSONAId { get; set; }
@@ -21,5 +27,7 @@ namespace CAPADATOS
     
         public virtual PERSONA PERSONA { get; set; }
         public virtual ESTADO ESTADO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENTES_SOCIOS> CLIENTES_SOCIOS { get; set; }
     }
 }

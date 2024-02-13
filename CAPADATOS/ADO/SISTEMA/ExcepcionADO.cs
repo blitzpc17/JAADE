@@ -46,7 +46,7 @@ namespace CAPADATOS.ADO.SISTEMA
         {
             var query = "select \r\n" +
                         "ex.Id, ex.Fecha, ex.Formulario, ex.Resumen, ex.Detalle, ex.USUARIOId, \r\n" +
-                        "(per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as NombreUsuario \r\n" +
+                        "(per.Nombres + ' ' + per.Apellidos) as NombreUsuario \r\n" +
                         "from EXCEPCION ex  \r\n" +
                         "join USUARIO us on ex.USUARIOId = us.Id  \r\n" +
                         "join PERSONA per on us.PERSONAId = per.Id  \r\n" +
@@ -60,7 +60,7 @@ namespace CAPADATOS.ADO.SISTEMA
         {
             var query = "select \r\n" +
                         "ex.Id, ex.Fecha, ex.Formulario, ex.Resumen, ex.Detalle, ex.USUARIOId, \r\n" +
-                        "(per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as NombreUsuario \r\n" +
+                        "(per.Nombres + ' ' + per.Apellidos) as NombreUsuario \r\n" +
                         "from EXCEPCION ex  \r\n" +
                         "join USUARIO us on ex.USUARIOId = us.Id  \r\n" +
                         "join PERSONA per on us.PERSONAId = per.Id  \r\n" +

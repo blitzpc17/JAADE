@@ -43,13 +43,18 @@ namespace PRESENTACION.LOTES
         private void Apariencias()
         {
             dgvRegistros.Columns[0].Visible = false;
+            dgvRegistros.Columns[0].Frozen = true;
             dgvRegistros.Columns[1].HeaderText = "Nombre";
-            dgvRegistros.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[1].Width = 110;
+            dgvRegistros.Columns[1].Frozen = true;
             dgvRegistros.Columns[3].HeaderText = "No. Manzanas";
-            dgvRegistros.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[3].Width = 75;
             dgvRegistros.Columns[4].HeaderText = "No. Lotes";
-            dgvRegistros.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[4].Width = 75;
+            dgvRegistros.Columns[5].HeaderText = "Dirección";
+            dgvRegistros.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvRegistros.Columns[2].Visible = false;
+            dgvRegistros.Columns[2].Frozen = true;
             tsTotalRegistros.Text = contexto.LstZonaAux.Count.ToString("N0");
 
             contexto.Column = 1;
@@ -83,6 +88,7 @@ namespace PRESENTACION.LOTES
             }
             contexto.ObjZona.NoLotes = int.Parse(txtLotes.Text);
             contexto.ObjZona.FechaRegistro = DateTime.Now;
+            contexto.ObjZona.Direccion = txtDomicilio.Text;
 
             contexto.Guardar();
 
@@ -114,6 +120,7 @@ namespace PRESENTACION.LOTES
                 txtNombre.Text = contexto.ObjZona.Nombre.ToString();
                 txtManzanas.Text = (contexto.ObjZona.NoManzanas==null?null:contexto.ObjZona.NoManzanas.ToString()) ;
                 txtLotes.Text = contexto.ObjZona.NoLotes.ToString();
+                txtDomicilio.Text = contexto.ObjZona.Direccion;
             }
         }
 

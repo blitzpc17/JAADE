@@ -15,18 +15,13 @@ namespace CAPADATOS
     public partial class PAGO
     {
         public int Id { get; set; }
-        public string NumeroPago { get; set; }
-        public string NumeroReferencia { get; set; }
-        public System.DateTime FechaEmison { get; set; }
-        public int CLIENTEId { get; set; }
-        public int LOTEId { get; set; }
+        public string Folio { get; set; }
+        public System.DateTime FechaEmision { get; set; }
+        public int ContratoId { get; set; }
+        public int USUARIORecibeId { get; set; }
         public decimal Monto { get; set; }
-        public int USUARIORECIBEPAGOId { get; set; }
-        public decimal SaldoFavor { get; set; }
-        public decimal SaldoContra { get; set; }
     
-        public virtual CLIENTE CLIENTE { get; set; }
-        public virtual LOTE LOTE { get; set; }
         public virtual USUARIO USUARIO { get; set; }
+        public virtual CLIENTELOTE CLIENTELOTE { get; set; }
     }
 }

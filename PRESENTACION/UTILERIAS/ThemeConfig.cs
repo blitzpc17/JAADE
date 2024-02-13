@@ -140,6 +140,33 @@ namespace PRESENTACION.UTILERIAS
                             ((DateTimePicker)ctrlG).Value = DateTime.Now;
                         }
                     }
+                }else if(ctrl is TabControl)
+                {
+                    foreach (Control ctrlp in ((TabControl)ctrl).TabPages)
+                    {
+                        foreach(Control ctrltp in ((TabPage)ctrlp).Controls)
+                        {
+                            if (ctrltp is TextBox)
+                            {
+                                ((TextBox)ctrltp).Clear();
+                            }
+                            else if (ctrltp is DateTimePicker)
+                            {
+                                ((DateTimePicker)ctrltp).Value = DateTime.Now;
+                            }else if(ctrltp is DataGridView)
+                            {
+                                if (((DataGridView)ctrltp).DataSource != null)
+                                {
+                                    ((DataGridView)ctrltp).DataSource = null;
+                                }
+                                else if (((DataGridView)ctrltp).RowCount > 0)
+                                {
+                                    ((DataGridView)ctrltp).Rows.Clear();
+                                }
+                            }
+                        }
+                        
+                    }
                 }
             }
         }
