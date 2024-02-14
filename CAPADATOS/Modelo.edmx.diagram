@@ -49,6 +49,7 @@
         <EntityTypeShape EntityType="DB_JAADEModel.PAGO" Width="1.5" PointX="8.25" PointY="9.125" />
         <AssociationConnector Association="DB_JAADEModel.PAGOUSUARIO" />
         <AssociationConnector Association="DB_JAADEModel.PAGOCLIENTELOTE" />
+        <AssociationConnector Association="DB_JAADEModel.CLIENTELOTESOCIOS" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

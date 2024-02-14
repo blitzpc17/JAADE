@@ -86,7 +86,7 @@ namespace PRESENTACION.PAGOS
                 {
                     contexto.InstanciarPersona();
                     contexto.InstanciarCliente();
-                    contexto.ObjCliente.Clave = Global.ObtenerFolio("CLIENTE");
+                    contexto.ObjCliente.Clave = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.CLIENTE);
                 }
 
                 contexto.ObjPersona.Nombres = txtNombre.Text;
@@ -180,19 +180,7 @@ namespace PRESENTACION.PAGOS
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             InicializarModulo();
-        }
-
-        private void btnAgenda_Click(object sender, EventArgs e)
-        {
-            if (contexto.ObjClienteData == null)
-            {
-                MessageBox.Show("Debe seleccionar un cliente para poder abrir el directorio de contacto.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            var formAgenda = new formAgendaClientes(contexto.ObjCliente.PERSONAId);
-            formAgenda.ShowDialog();
-        }
+        }       
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -299,7 +287,7 @@ namespace PRESENTACION.PAGOS
                             contexto.InstanciarCliente();
                             contexto.ObjPersona.Nombres = nombreCliente[0].Trim();
                             contexto.ObjPersona.Apellidos = nombreCliente[1].Trim();
-                            contexto.ObjCliente.Clave = Global.ObtenerFolio("CLIENTE");
+                            contexto.ObjCliente.Clave = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.CLIENTE);
                             contexto.ObjCliente.ESTADOId = (int)Enumeraciones.EstadosProcesoCliente.ACTIVO;
                             contexto.Guardar();
 

@@ -16,7 +16,7 @@ namespace CAPADATOS
     {
         public int Id { get; set; }
         public string Folio { get; set; }
-        public string FechaArrendamiento { get; set; }
+        public System.DateTime FechaArrendamiento { get; set; }
         public int CLIENTEId { get; set; }
         public int LOTEId { get; set; }
         public int USUARIOOperacionId { get; set; }
@@ -24,9 +24,11 @@ namespace CAPADATOS
         public decimal PrecioInicial { get; set; }
         public int DiaPago { get; set; }
         public Nullable<System.DateTime> FechaReimpresion { get; set; }
+        public Nullable<int> SOCIOSId { get; set; }
     
         public virtual CLIENTE CLIENTE { get; set; }
         public virtual LOTE LOTE { get; set; }
         public virtual USUARIO USUARIO { get; set; }
+        public virtual SOCIOS SOCIOS { get; set; }
     }
 }

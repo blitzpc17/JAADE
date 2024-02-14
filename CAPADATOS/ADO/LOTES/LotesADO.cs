@@ -97,6 +97,11 @@ namespace CAPADATOS.ADO.LOTES
             return contexto.Database.SqlQuery<clsLotes>(query).FirstOrDefault();
         }
 
+        public LOTE ObtenerLoteIdentificador(string claveLote)
+        {
+            return contexto.LOTE.FirstOrDefault(x=>x.Identificador == claveLote);
+        }
+
         public clsInformacionPagoLote ObtenerDataPagoLote(int idCliente, int idLote)
         {
             string query = "SELECT \r\n" +

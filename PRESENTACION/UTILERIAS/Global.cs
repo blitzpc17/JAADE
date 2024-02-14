@@ -291,23 +291,23 @@ namespace PRESENTACION.UTILERIAS
             }
         }
 
-        public static string ObtenerFolio(string tipo)
+        public static string ObtenerFolio(Enumeraciones.ProcesoFolio tipo)
         {
             string _Prefijo, _NombreVariable;
             int _Longitud;
             
             switch(tipo){
-                case "PAGO":
+                case Enumeraciones.ProcesoFolio.PAGO:
                     _Prefijo = "PG";
                     _Longitud = 9;
                     _NombreVariable = Enumeraciones.VariablesGlobales.ConsecutivoPagos.ToString();
                     break;
-                case "CLIENTE":
+                case Enumeraciones.ProcesoFolio.CLIENTE:
                     _Prefijo = "C";
                     _Longitud = 4;
                     _NombreVariable = Enumeraciones.VariablesGlobales.ConsecutivoClientes.ToString();
                     break;
-                case "CONTRATO":
+                case Enumeraciones.ProcesoFolio.CONTRATO:
                     _Prefijo = "CO";
                     _Longitud = 7;
                     _NombreVariable = Enumeraciones.VariablesGlobales.ConsecutivoContratos.ToString();
@@ -340,12 +340,13 @@ namespace PRESENTACION.UTILERIAS
             return FechaFinal.Year - FechaInicial.Year * 12 + FechaFinal.Month - FechaInicial.Month ;
         }
 
-        public static string ObtenerNombreUsuario(USUARIO obj)
+        public static string ObtenerNombreUsuario(clsUsuario obj)
         {
-            PERSONA objPersona;
+            /*PERSONA objPersona;
             objPersona = obj.PERSONA;
             if (objPersona != null) return objPersona.Nombres + " " + objPersona.Apellidos;
-            return null;
+            return null;*/
+            return obj.Nombre;
         }
 
 

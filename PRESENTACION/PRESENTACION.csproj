@@ -117,6 +117,12 @@
     <Compile Include="BUSQUEDA\busClientes.Designer.cs">
       <DependentUpon>busClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="BUSQUEDA\busContratos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUSQUEDA\busContratos.Designer.cs">
+      <DependentUpon>busContratos.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUSQUEDA\busLotesZona.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,17 +159,23 @@
     <Compile Include="LOTES\formZonas.Designer.cs">
       <DependentUpon>formZonas.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAGOS\formAgendaClientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PAGOS\formAgendaClientes.Designer.cs">
-      <DependentUpon>formAgendaClientes.cs</DependentUpon>
-    </Compile>
     <Compile Include="PAGOS\formClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PAGOS\formClientes.Designer.cs">
       <DependentUpon>formClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\formContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\formContrato.Designer.cs">
+      <DependentUpon>formContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\formPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\formPago.Designer.cs">
+      <DependentUpon>formPago.cs</DependentUpon>
     </Compile>
     <Compile Include="PAGOS\REPORTES\dtTicket.cs">
       <DependentUpon>dtTicket.xsd</DependentUpon>
@@ -272,11 +284,11 @@
     <EmbeddedResource Include="LOTES\formZonas.resx">
       <DependentUpon>formZonas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PAGOS\formAgendaClientes.resx">
-      <DependentUpon>formAgendaClientes.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\formClientes.resx">
       <DependentUpon>formClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\formContrato.resx">
+      <DependentUpon>formContrato.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\repContratoLote.resx">
       <DependentUpon>repContratoLote.cs</DependentUpon>
@@ -373,6 +385,7 @@
     <None Include="Resources\cerrar-sesion.png" />
     <None Include="Resources\persona.png" />
     <None Include="Resources\upload.png" />
+    <None Include="Resources\contrato.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

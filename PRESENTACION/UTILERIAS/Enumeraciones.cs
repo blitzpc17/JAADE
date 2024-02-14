@@ -40,6 +40,13 @@ namespace PRESENTACION.UTILERIAS
             return LstImagenes;
         }
 
+        public enum ProcesoFolio
+        {            
+            PAGO,
+            CLIENTE,
+            CONTRATO
+        }
+
         public enum Procesos
         {
             USUARIO = 1,

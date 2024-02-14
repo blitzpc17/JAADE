@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/12/2024 00:01:54
+-- Date Created: 02/14/2024 15:32:21
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -91,6 +91,9 @@ IF OBJECT_ID(N'[dbo].[FK_PAGOUSUARIO]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_PAGOCLIENTELOTE]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PAGO] DROP CONSTRAINT [FK_PAGOCLIENTELOTE];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTESOCIOS]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTESOCIOS];
 GO
 
 -- --------------------------------------------------
@@ -344,14 +347,15 @@ GO
 CREATE TABLE [dbo].[CLIENTELOTE] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Folio] nchar(9)  NOT NULL,
-    [FechaArrendamiento] nvarchar(max)  NOT NULL,
+    [FechaArrendamiento] datetime  NOT NULL,
     [CLIENTEId] int  NOT NULL,
     [LOTEId] int  NOT NULL,
     [USUARIOOperacionId] int  NOT NULL,
     [NoPagos] int  NOT NULL,
     [PrecioInicial] decimal(18,7)  NOT NULL,
     [DiaPago] int  NOT NULL,
-    [FechaReimpresion] datetime  NULL
+    [FechaReimpresion] datetime  NULL,
+    [SOCIOSId] int  NULL
 );
 GO
 
@@ -861,6 +865,21 @@ GO
 CREATE INDEX [IX_FK_PAGOCLIENTELOTE]
 ON [dbo].[PAGO]
     ([ContratoId]);
+GO
+
+-- Creating foreign key on [SOCIOSId] in table 'CLIENTELOTE'
+ALTER TABLE [dbo].[CLIENTELOTE]
+ADD CONSTRAINT [FK_CLIENTELOTESOCIOS]
+    FOREIGN KEY ([SOCIOSId])
+    REFERENCES [dbo].[SOCIOS]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTESOCIOS'
+CREATE INDEX [IX_FK_CLIENTELOTESOCIOS]
+ON [dbo].[CLIENTELOTE]
+    ([SOCIOSId]);
 GO
 
 -- --------------------------------------------------

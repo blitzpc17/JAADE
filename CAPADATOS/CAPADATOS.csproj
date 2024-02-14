@@ -57,10 +57,10 @@
   <ItemGroup>
     <Compile Include="ADO\LOTES\LotesADO.cs" />
     <Compile Include="ADO\LOTES\ZonaADO.cs" />
-    <Compile Include="ADO\PAGOS\AsignacionClienteLoteADO.cs" />
     <Compile Include="ADO\PAGOS\ClientesADO.cs" />
     <Compile Include="ADO\PAGOS\ClienteSocioADO.cs" />
     <Compile Include="ADO\PAGOS\ContactoClienteADO.cs" />
+    <Compile Include="ADO\PAGOS\ContratoLoteADO.cs" />
     <Compile Include="ADO\PAGOS\PagosADO.cs" />
     <Compile Include="ADO\PAGOS\Persona_AgendaADO.cs" />
     <Compile Include="ADO\PAGOS\SociosADO.cs" />
@@ -95,6 +95,7 @@
     <Compile Include="Entidades\clsClienteLote.cs" />
     <Compile Include="Entidades\clsClientes.cs" />
     <Compile Include="Entidades\clsClientesImportacion.cs" />
+    <Compile Include="Entidades\clsContratoCliente.cs" />
     <Compile Include="Entidades\clsContratoParametros.cs" />
     <Compile Include="Entidades\clsCorreo.cs" />
     <Compile Include="Entidades\clsCredencialesCorreo.cs" />

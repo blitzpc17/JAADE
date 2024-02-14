@@ -47,8 +47,8 @@
     <Compile Include="LOGICAS\BUSQUEDA\busUsuariosLogica.cs" />
     <Compile Include="LOGICAS\LOTES\formLotesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\busClientesLogica.cs" />
-    <Compile Include="LOGICAS\PAGOS\formAgendaClienteLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formClientesLogica.cs" />
+    <Compile Include="LOGICAS\PAGOS\formContratoLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catEstadosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catRolesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\clsDatosJaade.cs" />
