@@ -51,6 +51,7 @@
             this.tsTotalRegistros = new System.Windows.Forms.ToolStripLabel();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
             this.btnImportar = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -70,7 +71,7 @@
             this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(110, 40);
-            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.TabIndex = 50;
             this.btnCancelar.Text = "     Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -87,7 +88,7 @@
             this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(110, 40);
-            this.btnGuardar.TabIndex = 12;
+            this.btnGuardar.TabIndex = 40;
             this.btnGuardar.Text = "     Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -166,7 +167,7 @@
             this.txtDomicilio.Multiline = true;
             this.txtDomicilio.Name = "txtDomicilio";
             this.txtDomicilio.Size = new System.Drawing.Size(225, 46);
-            this.txtDomicilio.TabIndex = 28;
+            this.txtDomicilio.TabIndex = 40;
             // 
             // txtNombre
             // 
@@ -175,6 +176,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(225, 23);
             this.txtNombre.TabIndex = 28;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // label3
             // 
@@ -213,7 +215,7 @@
             this.groupBox2.Location = new System.Drawing.Point(11, 189);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(366, 275);
-            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registros";
             // 
@@ -260,7 +262,9 @@
             this.dgvRegistros.RowHeadersVisible = false;
             this.dgvRegistros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRegistros.Size = new System.Drawing.Size(344, 214);
-            this.dgvRegistros.TabIndex = 6;
+            this.dgvRegistros.TabIndex = 10;
+            this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
+            this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
             // 
             // btnImportar
             // 
@@ -274,9 +278,14 @@
             this.btnImportar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Size = new System.Drawing.Size(110, 40);
-            this.btnImportar.TabIndex = 43;
+            this.btnImportar.TabIndex = 30;
             this.btnImportar.Text = "     Importar";
             this.btnImportar.UseVisualStyleBackColor = true;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // formZonas
             // 
@@ -329,5 +338,6 @@
         private System.Windows.Forms.TextBox txtManzanas;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Button btnImportar;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

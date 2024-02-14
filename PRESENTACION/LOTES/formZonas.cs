@@ -1,5 +1,6 @@
 ﻿using CAPALOGICA.LOGICAS.SISTEMA;
 using PRESENTACION.UTILERIAS;
+using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace PRESENTACION.LOTES
     public partial class formZonas : Form
     {
         private formZonaLogica contexto;
+        private int row = 0;
 
         public formZonas()
         {
@@ -46,15 +48,13 @@ namespace PRESENTACION.LOTES
             dgvRegistros.Columns[0].Frozen = true;
             dgvRegistros.Columns[1].HeaderText = "Nombre";
             dgvRegistros.Columns[1].Width = 110;
-            dgvRegistros.Columns[1].Frozen = true;
             dgvRegistros.Columns[3].HeaderText = "No. Manzanas";
             dgvRegistros.Columns[3].Width = 75;
             dgvRegistros.Columns[4].HeaderText = "No. Lotes";
             dgvRegistros.Columns[4].Width = 75;
             dgvRegistros.Columns[5].HeaderText = "Dirección";
-            dgvRegistros.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[5].Width = 350;
             dgvRegistros.Columns[2].Visible = false;
-            dgvRegistros.Columns[2].Frozen = true;
             tsTotalRegistros.Text = contexto.LstZonaAux.Count.ToString("N0");
 
             contexto.Column = 1;
@@ -199,6 +199,99 @@ namespace PRESENTACION.LOTES
             {
                 EliminarRegistro();
                 InicializarForm();
+            }
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            ImportarLayout();
+        }
+
+        private void ImportarLayout()
+        {
+            openFileDialog1.Filter = "Archivos de Excel (*.xlsx, *.xls)|*.xlsx;*.xls";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ImportarExcel(openFileDialog1.FileName);
+                return;
+            }
+
+            MessageBox.Show("No se selecciono ningún archivo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+        }
+
+        private void ImportarExcel(string fileName)
+        {
+            try
+            {
+                contexto.InstanciarListaImportacion();
+                //leer excel
+                using (SLDocument sl = new SLDocument(fileName))
+                {
+                    row = 2;
+
+                    while (!string.IsNullOrEmpty(sl.GetCellValueAsString(row, 1)))
+                    {
+                        contexto.InstanciarZona();
+                        contexto.ObjZona.Nombre = sl.GetCellValueAsString(row, 1);
+                        contexto.ObjZona.NoManzanas = Convert.ToInt32(sl.GetCellValueAsString(row, 2));
+                        contexto.ObjZona.NoLotes = Convert.ToInt32(sl.GetCellValueAsString(row, 3));
+                        contexto.ObjZona.Direccion = sl.GetCellValueAsString(row, 4);                       
+                        contexto.LstZonaAux.Add(contexto.ObjZona);
+                        row++;
+                    }
+
+                    foreach (var item in contexto.LstZonaAux)
+                    {
+                        contexto.ObjZona = contexto.ObtenerZonaNombre(item.Nombre);
+
+                        if (contexto.ObjZona == null)
+                        {
+                            //crear
+                            contexto.InstanciarZona();
+                            contexto.ObjZona.Nombre = item.Nombre;
+                            contexto.ObjZona.NoLotes = item.NoLotes;
+                            contexto.ObjZona.NoManzanas = item.NoManzanas;
+                            contexto.ObjZona.Direccion = item.Direccion;
+                            contexto.ObjZona.FechaRegistro = Global.FechaServidor();
+                            contexto.Guardar();
+
+                        }
+                        else
+                        {
+                            //existe
+                            contexto.ObjZona.Nombre = item.Nombre;
+                            contexto.ObjZona.NoLotes = item.NoLotes;
+                            contexto.ObjZona.NoManzanas = item.NoManzanas;
+                            contexto.ObjZona.Direccion = item.Direccion;
+                            contexto.Guardar();
+                        }
+                      
+
+                    }
+
+                    MessageBox.Show(
+                        "Registros importados correctamente.",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    InicializarForm();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar importar los registros. Ejecuón pausada en el row:" + row,
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
             }
         }
     }

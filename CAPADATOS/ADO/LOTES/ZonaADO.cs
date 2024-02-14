@@ -41,12 +41,9 @@ namespace CAPADATOS.ADO.LOTES
             return contexto.ZONA.FirstOrDefault(x => x.Id == id);
         }
 
-
-
-
-
-
-
-
+        public ZONA ObtenerZonaNombre(string nombreZona)
+        {
+            return contexto.ZONA.FirstOrDefault(x => x.Nombre == nombreZona);
+        }
     }
 }

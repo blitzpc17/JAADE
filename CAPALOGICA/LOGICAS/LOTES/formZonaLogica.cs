@@ -50,6 +50,10 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
         {
             return contextoZona.Obtener(id);
         }
+        public ZONA ObtenerZonaNombre(string nombreZona)
+        {
+            return contextoZona.ObtenerZonaNombre(nombreZona);
+        }
 
         public void Eliminar(ZONA entidad)
         {
@@ -91,6 +95,11 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
                     break;
 
             }
+        }
+
+        public void InstanciarListaImportacion()
+        {
+            LstZonaAux = new List<ZONA>();
         }
     }
 }
