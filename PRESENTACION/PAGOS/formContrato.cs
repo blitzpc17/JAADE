@@ -189,7 +189,20 @@ namespace PRESENTACION.PAGOS
             }
 
             contexto.ObjLote = contexto.ObtenerLote(busLoteZona.ObjEntidad.Id);
-            SetDataLote();
+            if(contexto.ObjLote.ESTADOId == (int)Enumeraciones.EstadosProcesoLote.LIBRE)
+            {
+                SetDataLote();
+            }
+            else
+            {
+                MessageBox.Show("No se puede seleccionar el lote "+contexto.ObjLote.Identificador+", " +
+                    "porque su estado es "+contexto.ObjLote.ESTADO.Nombre+".", "Advertencia",
+                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                contexto.ObjLote = null;
+                txtClaveLote.Clear();
+                return;
+            }
+            
 
         }
 
@@ -209,7 +222,6 @@ namespace PRESENTACION.PAGOS
             }
             if (e.KeyCode == Keys.Enter)
             {
-                //BuscarClientePorClave(txtClave.Text);
                 BuscarContratoFolio(txtFolioContrato.Text);
             }
         }
@@ -231,8 +243,25 @@ namespace PRESENTACION.PAGOS
 
         private void SetDataContrato()
         {
+            //set socios
+            LlenarCbxSocios(contexto.ObjContratoData.ClaveCliente);
             contexto.ObjCliente = contexto.BuscarClientePorClave(contexto.ObjContratoData.ClaveCliente);
             contexto.ObjLote = contexto.BuscarLotePorClave(contexto.ObjContratoData.ClaveLote);
+
+            txtFolioContrato.Text = contexto.ObjContratoData.Folio;
+            txtClaveCliente.Text = contexto.ObjContratoData.ClaveCliente;
+            txtNombreCliente.Text = contexto.ObjContratoData.ClienteNombre;
+            cbxZona.SelectedValue = contexto.ObjContratoData.ZonaLoteId;
+            cbxSocios.SelectedValue = contexto.ObjContratoData.SocioId;
+            txtClaveLote.Text = contexto.ObjContratoData.ClaveLote;
+            txtPrecio.Text = contexto.ObjContratoData.PrecioLote.ToString("N2");
+            txtNoPagos.Text = contexto.ObjContratoData.NoPagos.ToString("N0");
+            txtDiaPago.Text = contexto.ObjContratoData.DiaPago.ToString("N0");
+            txtFechaEmision.Text = contexto.ObjContratoData.FechaEmision.ToString("dd/MM/yyyy HH:mm:ss");
+            txtRealizo.Text = contexto.ObjContratoData.UsuarioRealizo;
+            txtFechaReimpresion.Text = contexto.ObjContratoData.FechaReImpresion == null ? 
+                Convert.ToDateTime(contexto.ObjContratoData.FechaReImpresion).ToString("dd/MM/yyyy HH:mm:ss") : "";
+
 
         }
 
@@ -297,59 +326,87 @@ namespace PRESENTACION.PAGOS
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            string[] msjErr = null;
-            //validaciones
-            if(contexto.ObjCliente== null)
+            try
             {
-                msjErr = new string[2];
-                msjErr[0] = "Advertencia";
-                msjErr[1] = "No ha seleccionado ningún cliente.";
-            }else if (contexto.ObjLote == null)
-            {
-                msjErr = new string[2];
-                msjErr[0] = "Advertencia";
-                msjErr[1] = "No ha seleccionado ningún lote.";
-            }else if (string.IsNullOrEmpty(txtNoPagos.Text))
-            {
-                msjErr = new string[2];
-                msjErr[0] = "Advertencia";
-                msjErr[1] = "No ha definido el No. de Pagos.";
-            }
-            else if (string.IsNullOrEmpty(txtDiaPago.Text))
-            {
-                msjErr = new string[2];
-                msjErr[0] = "Advertencia";
-                msjErr[1] = "No ha definido un día de Pago.";
-            }
+                string[] msjErr = null;
+                string[] msjSuccess = new string[2];
+                //validaciones
+                if (contexto.ObjCliente == null)
+                {
+                    msjErr = new string[2];
+                    msjErr[0] = "Advertencia";
+                    msjErr[1] = "No ha seleccionado ningún cliente.";
+                }
+                else if (contexto.ObjLote == null)
+                {
+                    msjErr = new string[2];
+                    msjErr[0] = "Advertencia";
+                    msjErr[1] = "No ha seleccionado ningún lote.";
+                }
+                else if (string.IsNullOrEmpty(txtNoPagos.Text))
+                {
+                    msjErr = new string[2];
+                    msjErr[0] = "Advertencia";
+                    msjErr[1] = "No ha definido el No. de Pagos.";
+                }
+                else if (string.IsNullOrEmpty(txtDiaPago.Text))
+                {
+                    msjErr = new string[2];
+                    msjErr[0] = "Advertencia";
+                    msjErr[1] = "No ha definido un día de Pago.";
+                }
 
 
-            if (msjErr!=null && msjErr.Length > 0)
-            {
-                MessageBox.Show(msjErr[1],
-                    msjErr[0],
+                if (msjErr != null && msjErr.Length > 0)
+                {
+                    MessageBox.Show(msjErr[1],
+                        msjErr[0],
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+
+                if (contexto.ObjContratoData == null)
+                {
+                    //insert
+                    contexto.InstanciarContrato();
+                    contexto.ObjContrato.Folio = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.CONTRATO);
+                    contexto.ObjContrato.FechaArrendamiento = Global.FechaServidor();
+                    msjSuccess[0] = "Se ha generado el contrato " + contexto.ObjContrato.Folio;
+                }
+                else
+                {
+                    msjSuccess[0] = "Se ha modificado el contrato " + contexto.ObjContrato.Folio;
+                }
+
+                contexto.ObjContrato.CLIENTEId = contexto.ObjCliente.Id;
+                contexto.ObjContrato.SOCIOSId = (int)cbxSocios.SelectedValue;
+                contexto.ObjContrato.LOTEId = contexto.ObjLote.Id;
+                contexto.ObjContrato.PrecioInicial = contexto.ObjLote.Precio;
+                contexto.ObjContrato.DiaPago = Convert.ToInt32(txtDiaPago.Text);
+                contexto.ObjContrato.NoPagos = Convert.ToInt32(txtNoPagos.Text);
+                contexto.ObjContrato.USUARIOOperacionId = Global.ObjUsuario.Id;
+
+                contexto.Guardar();
+                msjSuccess[1] = "Aviso";
+                MessageBox.Show(
+                    msjSuccess[0],
+                    msjSuccess[1],
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
+                    MessageBoxIcon.Information
+                    );
+                InicializarModulo();
             }
-
-
-            if (contexto.ObjContratoData == null)
+            catch (Exception ex)
             {
-                //insert
-                contexto.InstanciarContrato();
-                contexto.ObjContrato.Folio = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.CONTRATO);
-                contexto.ObjContrato.FechaArrendamiento = Global.FechaServidor();
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar guardar el registro. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-
-            contexto.ObjContrato.CLIENTEId = contexto.ObjCliente.Id;
-            contexto.ObjContrato.SOCIOSId = (int)cbxSocios.SelectedValue;
-            contexto.ObjContrato.LOTEId = contexto.ObjLote.Id;
-            contexto.ObjContrato.PrecioInicial = contexto.ObjLote.Precio;
-            contexto.ObjContrato.DiaPago = Convert.ToInt32(txtDiaPago.Text);
-            contexto.ObjContrato.NoPagos = Convert.ToInt32(txtNoPagos.Text);            
-            contexto.ObjContrato.USUARIOOperacionId = Global.ObjUsuario.Id;
-
-            contexto.Guardar();
 
 
         }

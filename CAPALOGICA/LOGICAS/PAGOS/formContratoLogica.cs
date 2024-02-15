@@ -99,6 +99,7 @@ namespace CAPALOGICA.LOGICAS.PAGOS
             {
                 ObjContrato = contextoContrato.Obtener(ObjContratoData.ContratoId);
             }
+          
         }
     }
 }

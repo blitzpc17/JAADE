@@ -17,7 +17,7 @@ namespace CAPADATOS.Entidades
         public string ZonaLote { get; set; }
         public int LoteId { get; set; }
         public int ZonaLoteId { get; set; }
-        public List<SOCIOS> ListaSocios { get; set; }
+        public int SocioId { get; set; }
         public decimal PrecioLote { get; set; }
         public int NoPagos { get; set; }
         public int DiaPago { get; set; }
