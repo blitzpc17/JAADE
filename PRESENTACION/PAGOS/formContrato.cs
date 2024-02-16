@@ -16,10 +16,11 @@ namespace PRESENTACION.PAGOS
     public partial class formContrato : Form
     {
         private bool cargado = false;
+        private bool nuevoContrato = false;
         private formContratoLogica contexto;
         private busClientes busCliente;
         private busLotesZona busLoteZona;
-        private busContratos busContato;
+        private busContratos busContrato;
 
         public formContrato()
         {
@@ -39,6 +40,9 @@ namespace PRESENTACION.PAGOS
                 DatosModulo();
                 txtFolioContrato.Text = @"NUEVO";
                 cargado = true;
+                nuevoContrato = false;
+                txtContratoReubidado.Enabled = false;
+                btnBusContratoReubicado.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -69,10 +73,16 @@ namespace PRESENTACION.PAGOS
         public void ListarCatalogos()
         {
             contexto.ListarCatalogos();
+
             cbxZona.DataSource = contexto.LstZonas;
             cbxZona.DisplayMember = "Nombre";
             cbxZona.ValueMember = "Id";
             cbxZona.SelectedIndex = -1;
+
+            cbxEstado.DataSource = contexto.LstEstados;
+            cbxEstado.DisplayMember = "Nombre";
+            cbxEstado.ValueMember = "Id";
+            cbxEstado.SelectedIndex = -1;
 
         }
 
@@ -128,20 +138,18 @@ namespace PRESENTACION.PAGOS
         }
 
         private void btnBuscarContrato_Click(object sender, EventArgs e)
-        {/*
-            bus = new busClientes();
-            bus.ShowDialog();
+        {
+            busContrato = new busContratos();
+            busContrato.ShowDialog();
 
-            if (bus.ObjEntidad == null)
+            if (busContrato.ObjEntidad == null)
             {
                 MessageBox.Show("No se ha seleccionado ningín registro.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            contexto.ObjClienteData = contexto.ObtenerDataCliente(bus.ObjEntidad.Id);
-            contexto.ObjCliente = contexto.ObtenerCliente(bus.ObjEntidad.Id);
-            contexto.ObjPersona = contexto.ObtenerPersona(contexto.ObjCliente.PERSONAId);
-            SetDataCliente();*/
+            contexto.BuscarContratoFolio(busContrato.ObjEntidad.Folio);
+            SetDataContrato();
         }
 
         private void btnNombreCliente_Click(object sender, EventArgs e)
@@ -244,9 +252,7 @@ namespace PRESENTACION.PAGOS
         private void SetDataContrato()
         {
             //set socios
-            LlenarCbxSocios(contexto.ObjContratoData.ClaveCliente);
-            contexto.ObjCliente = contexto.BuscarClientePorClave(contexto.ObjContratoData.ClaveCliente);
-            contexto.ObjLote = contexto.BuscarLotePorClave(contexto.ObjContratoData.ClaveLote);
+            LlenarCbxSocios(contexto.ObjContratoData.ClaveCliente);           
 
             txtFolioContrato.Text = contexto.ObjContratoData.Folio;
             txtClaveCliente.Text = contexto.ObjContratoData.ClaveCliente;
@@ -261,6 +267,21 @@ namespace PRESENTACION.PAGOS
             txtRealizo.Text = contexto.ObjContratoData.UsuarioRealizo;
             txtFechaReimpresion.Text = contexto.ObjContratoData.FechaReImpresion == null ? 
                 Convert.ToDateTime(contexto.ObjContratoData.FechaReImpresion).ToString("dd/MM/yyyy HH:mm:ss") : "";
+            txtPagoInicial.Text = contexto.ObjContratoData.PagoInicial.ToString("N2");
+            txtPagosGracia.Text = contexto.ObjContratoData.NoPagosGracia.ToString("N0");
+            txtObservacion.Text = contexto.ObjContratoData.Observacion;
+            cbxEstado.SelectedValue = contexto.ObjContratoData.EstadoId;
+
+            contexto.ObjCliente = contexto.BuscarClientePorClave(contexto.ObjContratoData.ClaveCliente);
+            contexto.ObjLote = contexto.BuscarLotePorClave(contexto.ObjContratoData.ClaveLote);
+
+            if (contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.PERIODOGRACIA)
+            {
+                CalcularMontoGracia(contexto.ObjContratoData.Folio);
+                txtMontoGracia.Text = contexto.ObjMontoGraciaData.MontoGracia.ToString("N0");
+                txtMensualidadGracia.Text = contexto.ObjMontoGraciaData.MontoMensualGracia.ToString("N2");
+
+            }
 
 
         }
@@ -300,7 +321,9 @@ namespace PRESENTACION.PAGOS
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            cargado = false;
             SetDataLote();
+            cargado = true;
             cbxZona.SelectedValue = contexto.ObjLote.ZONAId;
         }
 
@@ -320,6 +343,7 @@ namespace PRESENTACION.PAGOS
 
         private void cbxZona_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (!cargado) return;
             contexto.ObjLote = null;
             txtClaveLote.Clear();
         }
@@ -355,6 +379,24 @@ namespace PRESENTACION.PAGOS
                     msjErr[0] = "Advertencia";
                     msjErr[1] = "No ha definido un día de Pago.";
                 }
+                else if (string.IsNullOrEmpty(txtPagoInicial.Text))
+                {
+                    msjErr = new string[2];
+                    msjErr[0] = "Advertencia";
+                    msjErr[1] = "No ha ingresado el pago inicial.";
+                }
+                else if (string.IsNullOrEmpty(txtPagosGracia.Text))
+                {
+                    msjErr = new string[2];
+                    msjErr[0] = "Advertencia";
+                    msjErr[1] = "No ha ingresado el No. Pago de gracia.";
+                }
+                else if (contexto.ObjContratoData != null &&cbxEstado.SelectedIndex==-1)
+                {
+                    msjErr = new string[2];
+                    msjErr[0] = "Advertencia";
+                    msjErr[1] = "No ha seleccionado el estado del contrato.";
+                }
 
 
                 if (msjErr != null && msjErr.Length > 0)
@@ -366,6 +408,53 @@ namespace PRESENTACION.PAGOS
                     return;
                 }
 
+                if(contexto.ObjContratoData!=null && (int)cbxEstado.SelectedValue == (int)Enumeraciones.EstadosProcesoContratos.TERMINADO)
+                {
+                    if (MessageBox.Show("Se va a cambiar el contrato a estado "
+                        + Enumeraciones.EstadosProcesoContratos.TERMINADO + ", el lote asignado "
+                        + contexto.ObjContratoData.ClaveLote + " será liberado para una nueva venta. ¿Desea continuar?",
+                        "Advertencia",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+                    //liberar lote al confirmar
+                    contexto.ObjLote.ESTADOId = (int)Enumeraciones.EstadosProcesoLote.LIBRE;
+                    contexto.GuardarLote();
+                    msjSuccess[0] = "Se ha cambiado el estado del contrato "
+                        + contexto.ObjContratoData.Folio + " a TERMINADO, se libero el lote asociado. " +
+                        contexto.ObjContratoData.ClaveLote;
+
+                }
+                else if (contexto.ObjContratoData != null && (int)cbxEstado.SelectedValue == (int)Enumeraciones.EstadosProcesoContratos.PERIODOGRACIA)
+                {
+                    if (MessageBox.Show("Se va a cambiar el contrato a estado "
+                        + Enumeraciones.EstadosProcesoContratos.PERIODOGRACIA + ", Se calculará el nuevo total a pagar y el monto por mensualidad. ¿Desea continuar?",
+                        "Advertencia",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+
+                    CalcularMontoGracia(contexto.ObjContratoData.Folio);
+                    msjSuccess[0] = "Se ha cambiado el estado del contrato "
+                        + contexto.ObjContratoData.Folio + " \r\na PERIODO DE GRACIA: \r\n\r\n" +
+                        "MONTO NUEVO TOTAL A PAGAR($):" + contexto.ObjMontoGraciaData.MontoGracia.ToString("N2") + "\r\n\r\n" +
+                        "MENSUALIDAD A PAGAR ($): " + contexto.ObjMontoGraciaData.MontoMensualGracia.ToString("N2");
+
+
+                }
+                else if (contexto.ObjContratoData != null && (int)cbxEstado.SelectedValue == (int)Enumeraciones.EstadosProcesoContratos.RECISION)
+                {
+                    if (MessageBox.Show("Se va a cambiar el contrato a estado "
+                        + Enumeraciones.EstadosProcesoContratos.RECISION + ", ¿Desea continuar?",
+                        "Advertencia",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+                    
+                        CalcularMontoGracia(contexto.ObjContratoData.Folio);
+
+                        msjSuccess[0] = "RECISIÓN del contrato " + contexto.ObjContratoData.Folio + "\r\nrealizada correctamente. \r\n\r\n" +
+                            "PROCEDE RECISIÓN: " +( ((contexto.ObjContratoData.NoPagos-contexto.ObjMontoGraciaData.NoPagosDados)>2)?"NO":"SI") + "\r\n" +
+                            "MONTO A REGRESAR:" + ( ((contexto.ObjContratoData.NoPagos - contexto.ObjMontoGraciaData.NoPagosDados) > 2) ? "0": (contexto.ObjMontoGraciaData.MontoAcumuladoDado*Convert.ToDecimal(0.5)).ToString("N2"));
+                           
+                    
+
+                }
+
 
                 if (contexto.ObjContratoData == null)
                 {
@@ -373,11 +462,26 @@ namespace PRESENTACION.PAGOS
                     contexto.InstanciarContrato();
                     contexto.ObjContrato.Folio = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.CONTRATO);
                     contexto.ObjContrato.FechaArrendamiento = Global.FechaServidor();
+                    contexto.ObjContrato.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.VIGENTE;
                     msjSuccess[0] = "Se ha generado el contrato " + contexto.ObjContrato.Folio;
+                    contexto.ObjContrato.PagoInicial = Convert.ToDecimal(txtPagoInicial.Text);
+                    contexto.ObjContrato.NoPagosGracia = Convert.ToInt32(txtPagosGracia.Text);
+                    nuevoContrato = true;
                 }
                 else
                 {
-                    msjSuccess[0] = "Se ha modificado el contrato " + contexto.ObjContrato.Folio;
+                    contexto.ObjContrato.ESTADOId = (int)cbxEstado.SelectedValue;
+
+                    if (string.IsNullOrEmpty(msjSuccess[0]))
+                    {
+                        msjSuccess[0] = "Se han modificado los datos del contrato " + contexto.ObjContrato.Folio + " correctamente.";
+                    }
+
+                    if(contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.PERIODOGRACIA)
+                    {
+                        contexto.ObjContrato.MontoGracia = contexto.ObjMontoGraciaData.MontoGracia;
+                    }
+                    
                 }
 
                 contexto.ObjContrato.CLIENTEId = contexto.ObjCliente.Id;
@@ -387,8 +491,25 @@ namespace PRESENTACION.PAGOS
                 contexto.ObjContrato.DiaPago = Convert.ToInt32(txtDiaPago.Text);
                 contexto.ObjContrato.NoPagos = Convert.ToInt32(txtNoPagos.Text);
                 contexto.ObjContrato.USUARIOOperacionId = Global.ObjUsuario.Id;
+                contexto.ObjContrato.Observacion = txtObservacion.Text;
+                
 
                 contexto.Guardar();
+                if (nuevoContrato)
+                {
+                    //crear pagoinicial en pago
+                    contexto.InstanciarPago();
+                    contexto.ObjPago.Folio = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.PAGO);
+                    contexto.ObjPago.Monto = contexto.ObjContrato.PagoInicial;
+                    contexto.ObjPago.FechaEmision = Global.FechaServidor();
+                    contexto.ObjPago.ContratoId = contexto.ObjContrato.Id;
+                    contexto.ObjPago.USUARIORecibeId = Global.ObjUsuario.Id;
+                    contexto.ObjPago.NoPago = 1;
+                    contexto.GuardarPago();
+
+                    msjSuccess[0] += " Se ha generado el pago inicial folio de seguimiento " + contexto.ObjPago.Folio + ".";
+
+                }
                 msjSuccess[1] = "Aviso";
                 MessageBox.Show(
                     msjSuccess[0],
@@ -411,9 +532,37 @@ namespace PRESENTACION.PAGOS
 
         }
 
+        private void CalcularMontoGracia(string folioContrato)
+        {
+           contexto.CalcularMontoGracia(folioContrato);
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             InicializarModulo();
+        }
+
+        private void formContrato_Shown(object sender, EventArgs e)
+        {
+            ThemeConfig.ThemeControls(this);
+            this.MaximizeBox = false;
+        }
+
+        private void cbxEstado_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (!cargado) return;
+
+            if((int)cbxEstado.SelectedValue == (int)Enumeraciones.EstadosProcesoContratos.REUBICADO)
+            {
+                txtContratoReubidado.Enabled = true;
+                btnBusContratoReubicado.Enabled = true;
+            }
+            else
+            {
+                txtContratoReubidado.Enabled = false;
+                btnBusContratoReubicado.Enabled = false;
+            }
+
         }
     }
 }

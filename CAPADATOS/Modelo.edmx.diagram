@@ -50,6 +50,8 @@
         <AssociationConnector Association="DB_JAADEModel.PAGOUSUARIO" />
         <AssociationConnector Association="DB_JAADEModel.PAGOCLIENTELOTE" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTESOCIOS" />
+        <AssociationConnector Association="DB_JAADEModel.CLIENTELOTEESTADO" />
+        <AssociationConnector Association="DB_JAADEModel.PAGOCLIENTELOTEREUBICADO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

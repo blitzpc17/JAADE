@@ -1,6 +1,7 @@
 ﻿using CAPADATOS;
 using CAPADATOS.ADO.LOTES;
 using CAPADATOS.ADO.PAGOS;
+using CAPADATOS.ADO.SISTEMA;
 using CAPADATOS.Entidades;
 using System;
 using System.Collections.Generic;
@@ -17,28 +18,39 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         private ContratoLoteADO contextoContrato;
         private ZonaADO contextoZona;
         private LotesADO contextoLote;
+        private EstadoADO contextoEstados;
+        private PagoADO contextoPago;
 
         public CLIENTELOTE ObjContrato;
         public clsClientes ObjCliente;
         public LOTE ObjLote;
         public SOCIOS ObjSocio;
         public clsContratoCliente ObjContratoData;
+        public clsObjMontoGracia ObjMontoGraciaData;
+
+        public PAGO ObjPago;
 
         public List<SOCIOS> LstSociosCliente;
         public List<SOCIOS> LstSociosClienteContrato;//cuando ya esta asignado el cliente al contrato y lote.
         public List<ZONA> LstZonas;
+
+        public List<ESTADO> LstEstados;
+
         public formContratoLogica()
         {
             contextoClientes = new ClientesADO();
             contextoSocios = new SociosADO();
             contextoContrato = new ContratoLoteADO();
             contextoZona = new ZonaADO();
-            contextoLote = new LotesADO();  
+            contextoLote = new LotesADO(); 
+            contextoEstados = new EstadoADO();
+            contextoPago = new PagoADO();   
         }
         
         public void ListarCatalogos()
         {
             LstZonas = contextoZona.Listar();
+            LstEstados = contextoEstados.Listar().Where(x=>x.Proceso=="CONTRATO").ToList();
         }
 
         public void InstanciarContrato()
@@ -100,6 +112,26 @@ namespace CAPALOGICA.LOGICAS.PAGOS
                 ObjContrato = contextoContrato.Obtener(ObjContratoData.ContratoId);
             }
           
+        }
+
+        public void InstanciarPago(){
+            ObjPago = new PAGO();
+        }
+
+        public void GuardarPago()
+        {
+            contextoPago.Insertar(ObjPago);
+            contextoPago.Guardar();
+        }
+
+        public void GuardarLote()
+        {
+            contextoLote.Guardar();
+        }
+
+        public void CalcularMontoGracia(string folioContrato)
+        {
+            ObjMontoGraciaData = contextoContrato.CalcularMontoGracia(folioContrato);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
 {
     public class busPagosLogica
     {
-        private PagosADO contexto;
+        private PagoADO contexto;
         public List<clsPago> LstPagos;
         public List<clsPago> LstPagosAux;
 
@@ -22,17 +22,18 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
 
         public busPagosLogica()
         {
-            contexto = new PagosADO();
+            contexto = new PagoADO();
         }
 
         public void ListarRegistros(int? clienteId)
         {
-            LstPagos = contexto.ListarPagos(clienteId );
+           // LstPagos = contexto.listar(clienteId );
         }
 
         public clsPago ObtenerRegistro(int id)
         {
-            return contexto.ObtenerDataPago(id);
+            return null;
+            //return contexto.ObtenerDataPago(id);
         }
 
         public bool Filtrar(int column, string termino)

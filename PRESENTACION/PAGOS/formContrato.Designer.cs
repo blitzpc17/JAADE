@@ -30,6 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formContrato));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtContratoReubidado = new System.Windows.Forms.TextBox();
+            this.btnBusContratoReubicado = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cbxEstado = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtPagosGracia = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtPagoInicial = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbxZona = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.cbxSocios = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtFechaReimpresion = new System.Windows.Forms.TextBox();
@@ -44,9 +56,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnBusLotes = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnNombreCliente = new System.Windows.Forms.Button();
             this.txtNombreCliente = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnBuscarContrato = new System.Windows.Forms.Button();
             this.txtFolioContrato = new System.Windows.Forms.TextBox();
             this.txtDiaPago = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -54,12 +69,12 @@
             this.btnImportar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnBusLotes = new System.Windows.Forms.Button();
-            this.btnNombreCliente = new System.Windows.Forms.Button();
-            this.btnBuscarContrato = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbxZona = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.txtMontoGracia = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtMensualidadGracia = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +83,21 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.txtObservacion);
+            this.groupBox1.Controls.Add(this.txtMensualidadGracia);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.txtMontoGracia);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.txtContratoReubidado);
+            this.groupBox1.Controls.Add(this.btnBusContratoReubicado);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.cbxEstado);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.txtPagosGracia);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.txtPagoInicial);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.cbxZona);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
@@ -97,10 +127,127 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(379, 370);
+            this.groupBox1.Size = new System.Drawing.Size(379, 610);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contrato";
+            // 
+            // txtContratoReubidado
+            // 
+            this.txtContratoReubidado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContratoReubidado.Location = new System.Drawing.Point(131, 406);
+            this.txtContratoReubidado.MaxLength = 9;
+            this.txtContratoReubidado.Name = "txtContratoReubidado";
+            this.txtContratoReubidado.Size = new System.Drawing.Size(185, 23);
+            this.txtContratoReubidado.TabIndex = 180;
+            // 
+            // btnBusContratoReubicado
+            // 
+            this.btnBusContratoReubicado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBusContratoReubicado.Image = global::PRESENTACION.Properties.Resources.lupa;
+            this.btnBusContratoReubicado.Location = new System.Drawing.Point(328, 406);
+            this.btnBusContratoReubicado.Name = "btnBusContratoReubicado";
+            this.btnBusContratoReubicado.Size = new System.Drawing.Size(28, 28);
+            this.btnBusContratoReubicado.TabIndex = 190;
+            this.btnBusContratoReubicado.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(10, 406);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(115, 23);
+            this.label16.TabIndex = 197;
+            this.label16.Text = "Reubicar:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cbxEstado
+            // 
+            this.cbxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxEstado.FormattingEnabled = true;
+            this.cbxEstado.Location = new System.Drawing.Point(131, 377);
+            this.cbxEstado.Name = "cbxEstado";
+            this.cbxEstado.Size = new System.Drawing.Size(225, 23);
+            this.cbxEstado.TabIndex = 170;
+            this.cbxEstado.SelectedValueChanged += new System.EventHandler(this.cbxEstado_SelectedValueChanged);
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(10, 377);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(115, 23);
+            this.label14.TabIndex = 194;
+            this.label14.Text = "Estado:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtPagosGracia
+            // 
+            this.txtPagosGracia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPagosGracia.Location = new System.Drawing.Point(131, 291);
+            this.txtPagosGracia.Name = "txtPagosGracia";
+            this.txtPagosGracia.Size = new System.Drawing.Size(225, 23);
+            this.txtPagosGracia.TabIndex = 140;
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(10, 291);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(115, 23);
+            this.label12.TabIndex = 192;
+            this.label12.Text = "No. Pagos Gracia:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtPagoInicial
+            // 
+            this.txtPagoInicial.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPagoInicial.Location = new System.Drawing.Point(131, 262);
+            this.txtPagoInicial.Name = "txtPagoInicial";
+            this.txtPagoInicial.Size = new System.Drawing.Size(225, 23);
+            this.txtPagoInicial.TabIndex = 130;
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(10, 262);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(115, 23);
+            this.label11.TabIndex = 190;
+            this.label11.Text = "Pago Inicial($):";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cbxZona
+            // 
+            this.cbxZona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxZona.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxZona.FormattingEnabled = true;
+            this.cbxZona.Location = new System.Drawing.Point(131, 88);
+            this.cbxZona.Name = "cbxZona";
+            this.cbxZona.Size = new System.Drawing.Size(225, 23);
+            this.cbxZona.TabIndex = 60;
+            this.cbxZona.SelectedValueChanged += new System.EventHandler(this.cbxZona_SelectedValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(10, 88);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(115, 23);
+            this.label10.TabIndex = 188;
+            this.label10.Text = "Zona:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(247, 233);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(109, 23);
+            this.label9.TabIndex = 186;
+            this.label9.Text = "de cada mes.";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbxSocios
             // 
@@ -110,7 +257,7 @@
             this.cbxSocios.Location = new System.Drawing.Point(131, 146);
             this.cbxSocios.Name = "cbxSocios";
             this.cbxSocios.Size = new System.Drawing.Size(225, 23);
-            this.cbxSocios.TabIndex = 100;
+            this.cbxSocios.TabIndex = 90;
             // 
             // label15
             // 
@@ -125,16 +272,16 @@
             // txtFechaReimpresion
             // 
             this.txtFechaReimpresion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaReimpresion.Location = new System.Drawing.Point(131, 320);
+            this.txtFechaReimpresion.Location = new System.Drawing.Point(131, 569);
             this.txtFechaReimpresion.Name = "txtFechaReimpresion";
             this.txtFechaReimpresion.ReadOnly = true;
             this.txtFechaReimpresion.Size = new System.Drawing.Size(225, 23);
-            this.txtFechaReimpresion.TabIndex = 160;
+            this.txtFechaReimpresion.TabIndex = 230;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(10, 320);
+            this.label8.Location = new System.Drawing.Point(10, 569);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 23);
             this.label8.TabIndex = 183;
@@ -164,16 +311,16 @@
             // txtRealizo
             // 
             this.txtRealizo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRealizo.Location = new System.Drawing.Point(131, 291);
+            this.txtRealizo.Location = new System.Drawing.Point(131, 540);
             this.txtRealizo.Name = "txtRealizo";
             this.txtRealizo.ReadOnly = true;
             this.txtRealizo.Size = new System.Drawing.Size(225, 23);
-            this.txtRealizo.TabIndex = 150;
+            this.txtRealizo.TabIndex = 220;
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(10, 291);
+            this.label7.Location = new System.Drawing.Point(10, 540);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(115, 23);
             this.label7.TabIndex = 179;
@@ -183,16 +330,16 @@
             // txtFechaEmision
             // 
             this.txtFechaEmision.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaEmision.Location = new System.Drawing.Point(131, 262);
+            this.txtFechaEmision.Location = new System.Drawing.Point(131, 511);
             this.txtFechaEmision.Name = "txtFechaEmision";
             this.txtFechaEmision.ReadOnly = true;
             this.txtFechaEmision.Size = new System.Drawing.Size(225, 23);
-            this.txtFechaEmision.TabIndex = 140;
+            this.txtFechaEmision.TabIndex = 210;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(10, 262);
+            this.label6.Location = new System.Drawing.Point(10, 511);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(115, 23);
             this.label6.TabIndex = 177;
@@ -205,7 +352,7 @@
             this.txtNoPagos.Location = new System.Drawing.Point(131, 204);
             this.txtNoPagos.Name = "txtNoPagos";
             this.txtNoPagos.Size = new System.Drawing.Size(225, 23);
-            this.txtNoPagos.TabIndex = 120;
+            this.txtNoPagos.TabIndex = 110;
             this.txtNoPagos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNoPagos_KeyPress);
             // 
             // label5
@@ -225,7 +372,7 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.ReadOnly = true;
             this.txtPrecio.Size = new System.Drawing.Size(225, 23);
-            this.txtPrecio.TabIndex = 110;
+            this.txtPrecio.TabIndex = 100;
             // 
             // label4
             // 
@@ -237,6 +384,17 @@
             this.label4.Text = "Precio($):";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnBusLotes
+            // 
+            this.btnBusLotes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBusLotes.Image = global::PRESENTACION.Properties.Resources.lupa;
+            this.btnBusLotes.Location = new System.Drawing.Point(328, 117);
+            this.btnBusLotes.Name = "btnBusLotes";
+            this.btnBusLotes.Size = new System.Drawing.Size(28, 28);
+            this.btnBusLotes.TabIndex = 80;
+            this.btnBusLotes.UseVisualStyleBackColor = true;
+            this.btnBusLotes.Click += new System.EventHandler(this.btnBusLotes_Click);
+            // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -246,6 +404,17 @@
             this.label3.TabIndex = 170;
             this.label3.Text = "Lote:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnNombreCliente
+            // 
+            this.btnNombreCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNombreCliente.Image = global::PRESENTACION.Properties.Resources.lupa;
+            this.btnNombreCliente.Location = new System.Drawing.Point(328, 59);
+            this.btnNombreCliente.Name = "btnNombreCliente";
+            this.btnNombreCliente.Size = new System.Drawing.Size(28, 28);
+            this.btnNombreCliente.TabIndex = 50;
+            this.btnNombreCliente.UseVisualStyleBackColor = true;
+            this.btnNombreCliente.Click += new System.EventHandler(this.btnNombreCliente_Click);
             // 
             // txtNombreCliente
             // 
@@ -267,6 +436,17 @@
             this.label2.Text = "Cliente:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnBuscarContrato
+            // 
+            this.btnBuscarContrato.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscarContrato.Image = global::PRESENTACION.Properties.Resources.lupa;
+            this.btnBuscarContrato.Location = new System.Drawing.Point(328, 30);
+            this.btnBuscarContrato.Name = "btnBuscarContrato";
+            this.btnBuscarContrato.Size = new System.Drawing.Size(28, 28);
+            this.btnBuscarContrato.TabIndex = 20;
+            this.btnBuscarContrato.UseVisualStyleBackColor = true;
+            this.btnBuscarContrato.Click += new System.EventHandler(this.btnBuscarContrato_Click);
+            // 
             // txtFolioContrato
             // 
             this.txtFolioContrato.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -284,7 +464,7 @@
             this.txtDiaPago.Location = new System.Drawing.Point(131, 233);
             this.txtDiaPago.Name = "txtDiaPago";
             this.txtDiaPago.Size = new System.Drawing.Size(110, 23);
-            this.txtDiaPago.TabIndex = 130;
+            this.txtDiaPago.TabIndex = 120;
             this.txtDiaPago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiaPago_KeyPress);
             // 
             // label13
@@ -314,7 +494,7 @@
             this.btnImportar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImportar.Image = global::PRESENTACION.Properties.Resources.contrato;
             this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(12, 388);
+            this.btnImportar.Location = new System.Drawing.Point(12, 628);
             this.btnImportar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnImportar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnImportar.Name = "btnImportar";
@@ -330,7 +510,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(281, 388);
+            this.btnCancelar.Location = new System.Drawing.Point(281, 628);
             this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.Name = "btnCancelar";
@@ -347,7 +527,7 @@
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.guardar_el_archivo;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(165, 388);
+            this.btnGuardar.Location = new System.Drawing.Point(165, 628);
             this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.Name = "btnGuardar";
@@ -357,75 +537,69 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // btnBusLotes
+            // txtMontoGracia
             // 
-            this.btnBusLotes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBusLotes.Image = global::PRESENTACION.Properties.Resources.lupa;
-            this.btnBusLotes.Location = new System.Drawing.Point(328, 117);
-            this.btnBusLotes.Name = "btnBusLotes";
-            this.btnBusLotes.Size = new System.Drawing.Size(28, 28);
-            this.btnBusLotes.TabIndex = 90;
-            this.btnBusLotes.UseVisualStyleBackColor = true;
-            this.btnBusLotes.Click += new System.EventHandler(this.btnBusLotes_Click);
+            this.txtMontoGracia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMontoGracia.Location = new System.Drawing.Point(131, 319);
+            this.txtMontoGracia.Name = "txtMontoGracia";
+            this.txtMontoGracia.ReadOnly = true;
+            this.txtMontoGracia.Size = new System.Drawing.Size(225, 23);
+            this.txtMontoGracia.TabIndex = 150;
             // 
-            // btnNombreCliente
+            // label17
             // 
-            this.btnNombreCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNombreCliente.Image = global::PRESENTACION.Properties.Resources.lupa;
-            this.btnNombreCliente.Location = new System.Drawing.Point(328, 59);
-            this.btnNombreCliente.Name = "btnNombreCliente";
-            this.btnNombreCliente.Size = new System.Drawing.Size(28, 28);
-            this.btnNombreCliente.TabIndex = 50;
-            this.btnNombreCliente.UseVisualStyleBackColor = true;
-            this.btnNombreCliente.Click += new System.EventHandler(this.btnNombreCliente_Click);
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(10, 319);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(115, 23);
+            this.label17.TabIndex = 202;
+            this.label17.Text = "Monto Gracia($):";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnBuscarContrato
+            // txtMensualidadGracia
             // 
-            this.btnBuscarContrato.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscarContrato.Image = global::PRESENTACION.Properties.Resources.lupa;
-            this.btnBuscarContrato.Location = new System.Drawing.Point(328, 30);
-            this.btnBuscarContrato.Name = "btnBuscarContrato";
-            this.btnBuscarContrato.Size = new System.Drawing.Size(28, 28);
-            this.btnBuscarContrato.TabIndex = 20;
-            this.btnBuscarContrato.UseVisualStyleBackColor = true;
-            this.btnBuscarContrato.Click += new System.EventHandler(this.btnBuscarContrato_Click);
+            this.txtMensualidadGracia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMensualidadGracia.Location = new System.Drawing.Point(131, 348);
+            this.txtMensualidadGracia.Name = "txtMensualidadGracia";
+            this.txtMensualidadGracia.ReadOnly = true;
+            this.txtMensualidadGracia.Size = new System.Drawing.Size(225, 23);
+            this.txtMensualidadGracia.TabIndex = 160;
             // 
-            // label9
+            // label18
             // 
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(247, 233);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(109, 23);
-            this.label9.TabIndex = 186;
-            this.label9.Text = "de cada mes.";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(10, 348);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(115, 23);
+            this.label18.TabIndex = 204;
+            this.label18.Text = "Mens. Gracia ($):";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cbxZona
+            // label19
             // 
-            this.cbxZona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxZona.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxZona.FormattingEnabled = true;
-            this.cbxZona.Location = new System.Drawing.Point(131, 88);
-            this.cbxZona.Name = "cbxZona";
-            this.cbxZona.Size = new System.Drawing.Size(225, 23);
-            this.cbxZona.TabIndex = 60;
-            this.cbxZona.SelectedValueChanged += new System.EventHandler(this.cbxZona_SelectedValueChanged);
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(10, 438);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(115, 23);
+            this.label19.TabIndex = 224;
+            this.label19.Text = "Observación:";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label10
+            // txtObservacion
             // 
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(10, 88);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(115, 23);
-            this.label10.TabIndex = 188;
-            this.label10.Text = "Zona:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtObservacion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservacion.Location = new System.Drawing.Point(131, 438);
+            this.txtObservacion.MaxLength = 2500;
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(225, 67);
+            this.txtObservacion.TabIndex = 200;
             // 
             // formContrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 440);
+            this.ClientSize = new System.Drawing.Size(403, 680);
             this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
@@ -434,6 +608,7 @@
             this.Name = "formContrato";
             this.Text = "formContrato";
             this.Load += new System.EventHandler(this.formContrato_Load);
+            this.Shown += new System.EventHandler(this.formContrato_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -473,5 +648,20 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbxZona;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cbxEstado;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtPagosGracia;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtPagoInicial;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtContratoReubidado;
+        private System.Windows.Forms.Button btnBusContratoReubicado;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtMontoGracia;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtMensualidadGracia;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtObservacion;
     }
 }

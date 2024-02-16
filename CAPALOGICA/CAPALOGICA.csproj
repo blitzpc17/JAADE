@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LOGICAS\BUSQUEDA\busContratoLogica.cs" />
     <Compile Include="LOGICAS\BUSQUEDA\busLotesZonaLogica.cs" />
     <Compile Include="LOGICAS\BUSQUEDA\busModulosLogica.cs" />
     <Compile Include="LOGICAS\BUSQUEDA\busPagosLogica.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="LOGICAS\PAGOS\busClientesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formClientesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formContratoLogica.cs" />
+    <Compile Include="LOGICAS\PAGOS\formPagoLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catEstadosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catRolesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\clsDatosJaade.cs" />

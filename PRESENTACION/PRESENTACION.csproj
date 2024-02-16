@@ -177,6 +177,18 @@
     <Compile Include="PAGOS\formPago.Designer.cs">
       <DependentUpon>formPago.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAGOS\Importaciones\formImportContratos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\Importaciones\formImportContratos.Designer.cs">
+      <DependentUpon>formImportContratos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAGOS\Importaciones\formImportPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\Importaciones\formImportPagos.Designer.cs">
+      <DependentUpon>formImportPagos.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAGOS\REPORTES\dtTicket.cs">
       <DependentUpon>dtTicket.xsd</DependentUpon>
     </Compile>
@@ -266,6 +278,9 @@
     <EmbeddedResource Include="BUSQUEDA\busClientes.resx">
       <DependentUpon>busClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BUSQUEDA\busContratos.resx">
+      <DependentUpon>busContratos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUSQUEDA\busLotesZona.resx">
       <DependentUpon>busLotesZona.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\formContrato.resx">
       <DependentUpon>formContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\formPago.resx">
+      <DependentUpon>formPago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\repContratoLote.resx">
       <DependentUpon>repContratoLote.cs</DependentUpon>

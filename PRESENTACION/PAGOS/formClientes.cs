@@ -11,7 +11,6 @@ namespace PRESENTACION.PAGOS
     public partial class formClientes : Form
     {
         private formClientesLogica contexto;
-        private string msjErrorImport = null;
         private bool cargado = false;
         private busClientes bus;
         private int row = 0;//rowimport

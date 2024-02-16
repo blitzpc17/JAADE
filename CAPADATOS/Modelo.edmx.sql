@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/14/2024 15:32:21
+-- Date Created: 02/16/2024 15:29:48
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -94,6 +94,12 @@ IF OBJECT_ID(N'[dbo].[FK_PAGOCLIENTELOTE]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTESOCIOS]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTESOCIOS];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTEESTADO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTEESTADO];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PAGOCLIENTELOTEREUBICADO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PAGO] DROP CONSTRAINT [FK_PAGOCLIENTELOTEREUBICADO];
 GO
 
 -- --------------------------------------------------
@@ -355,7 +361,12 @@ CREATE TABLE [dbo].[CLIENTELOTE] (
     [PrecioInicial] decimal(18,7)  NOT NULL,
     [DiaPago] int  NOT NULL,
     [FechaReimpresion] datetime  NULL,
-    [SOCIOSId] int  NULL
+    [SOCIOSId] int  NULL,
+    [PagoInicial] decimal(18,7)  NOT NULL,
+    [ESTADOId] int  NOT NULL,
+    [NoPagosGracia] int  NOT NULL,
+    [Observacion] nvarchar(2500)  NULL,
+    [MontoGracia] decimal(18,7)  NULL
 );
 GO
 
@@ -366,7 +377,10 @@ CREATE TABLE [dbo].[PAGO] (
     [FechaEmision] datetime  NOT NULL,
     [ContratoId] int  NOT NULL,
     [USUARIORecibeId] int  NOT NULL,
-    [Monto] decimal(18,7)  NOT NULL
+    [Monto] decimal(18,7)  NOT NULL,
+    [FechaReimpresion] datetime  NULL,
+    [NoPago] int  NOT NULL,
+    [ContratoReubicadoId] int  NULL
 );
 GO
 
@@ -880,6 +894,36 @@ GO
 CREATE INDEX [IX_FK_CLIENTELOTESOCIOS]
 ON [dbo].[CLIENTELOTE]
     ([SOCIOSId]);
+GO
+
+-- Creating foreign key on [ESTADOId] in table 'CLIENTELOTE'
+ALTER TABLE [dbo].[CLIENTELOTE]
+ADD CONSTRAINT [FK_CLIENTELOTEESTADO]
+    FOREIGN KEY ([ESTADOId])
+    REFERENCES [dbo].[ESTADO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTEESTADO'
+CREATE INDEX [IX_FK_CLIENTELOTEESTADO]
+ON [dbo].[CLIENTELOTE]
+    ([ESTADOId]);
+GO
+
+-- Creating foreign key on [ContratoReubicadoId] in table 'PAGO'
+ALTER TABLE [dbo].[PAGO]
+ADD CONSTRAINT [FK_PAGOCLIENTELOTEREUBICADO]
+    FOREIGN KEY ([ContratoReubicadoId])
+    REFERENCES [dbo].[CLIENTELOTE]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PAGOCLIENTELOTEREUBICADO'
+CREATE INDEX [IX_FK_PAGOCLIENTELOTEREUBICADO]
+ON [dbo].[PAGO]
+    ([ContratoReubicadoId]);
 GO
 
 -- --------------------------------------------------

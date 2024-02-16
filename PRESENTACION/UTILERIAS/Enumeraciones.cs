@@ -71,6 +71,15 @@ namespace PRESENTACION.UTILERIAS
             INACTIVO = 7
         }
 
+        public enum EstadosProcesoContratos
+        {
+            VIGENTE = 8,
+            PERIODOGRACIA = 9,
+            TERMINADO = 10,
+            RECISION = 11,
+            REUBICADO = 12
+        }
+
 
     }
 }

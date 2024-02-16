@@ -25,10 +25,16 @@ namespace CAPADATOS
         public int DiaPago { get; set; }
         public Nullable<System.DateTime> FechaReimpresion { get; set; }
         public Nullable<int> SOCIOSId { get; set; }
+        public decimal PagoInicial { get; set; }
+        public int ESTADOId { get; set; }
+        public int NoPagosGracia { get; set; }
+        public string Observacion { get; set; }
+        public Nullable<decimal> MontoGracia { get; set; }
     
         public virtual CLIENTE CLIENTE { get; set; }
         public virtual LOTE LOTE { get; set; }
         public virtual USUARIO USUARIO { get; set; }
         public virtual SOCIOS SOCIOS { get; set; }
+        public virtual ESTADO ESTADO { get; set; }
     }
 }

@@ -61,7 +61,7 @@
     <Compile Include="ADO\PAGOS\ClienteSocioADO.cs" />
     <Compile Include="ADO\PAGOS\ContactoClienteADO.cs" />
     <Compile Include="ADO\PAGOS\ContratoLoteADO.cs" />
-    <Compile Include="ADO\PAGOS\PagosADO.cs" />
+    <Compile Include="ADO\PAGOS\PagoADO.cs" />
     <Compile Include="ADO\PAGOS\Persona_AgendaADO.cs" />
     <Compile Include="ADO\PAGOS\SociosADO.cs" />
     <Compile Include="ADO\SISTEMA\EstadoADO.cs" />
@@ -107,7 +107,9 @@
     <Compile Include="Entidades\clsModulo.cs" />
     <Compile Include="Entidades\clsModuloPermiso.cs" />
     <Compile Include="Entidades\clsModulosAccesoUsuario.cs" />
+    <Compile Include="Entidades\clsObjMontoGracia.cs" />
     <Compile Include="Entidades\clsPago.cs" />
+    <Compile Include="Entidades\clsPagoData.cs" />
     <Compile Include="Entidades\clsRolPermiso.cs" />
     <Compile Include="Entidades\clsTicketEncabezado.cs" />
     <Compile Include="Entidades\clsTicketPago.cs" />
