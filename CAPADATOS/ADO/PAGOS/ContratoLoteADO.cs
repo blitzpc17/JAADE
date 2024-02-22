@@ -1,6 +1,7 @@
 ﻿using CAPADATOS.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +19,28 @@ namespace CAPADATOS.ADO.PAGOS
 
         public void Insertar(CLIENTELOTE entidad)
         {
-            contexto.CLIENTELOTE.Add(entidad);
+            try
+            {
+                contexto.CLIENTELOTE.Add(entidad);
+            }
+            catch (DbUpdateException ex)
+            {
+                throw;
+            }
+            
         }
 
         public void Guardar()
         {
-            contexto.SaveChanges();
+            try
+            {
+                contexto.SaveChanges();
+            }
+            catch(DbUpdateException ex)
+            {
+                throw;
+            }
+            
         }
 
         public void Eliminar(CLIENTELOTE entidad)
@@ -39,7 +56,8 @@ namespace CAPADATOS.ADO.PAGOS
         public CLIENTELOTE Obtener(int id)
         {
             return contexto.CLIENTELOTE.FirstOrDefault(x => x.Id == id);
-        }
+        }        
+
         public void Dispose()
         {
             contexto.Dispose();

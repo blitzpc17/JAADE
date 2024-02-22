@@ -77,6 +77,11 @@ namespace CAPADATOS.ADO.LOTES
             return contexto.LOTE.FirstOrDefault(x => x.Id == id);
         }
 
+        public LOTE ObtenerXIdentificador(string identificador)
+        {
+            return contexto.LOTE.FirstOrDefault(x => x.Identificador == identificador);
+        }
+
         public int ObtenerUltimoLote(int zonaId)
         {            
             return contexto.LOTE.Where(x => x.ZONAId == zonaId).Count();
@@ -128,8 +133,9 @@ namespace CAPADATOS.ADO.LOTES
             return contexto.Database.SqlQuery<clsInformacionPagoLote>(query).FirstOrDefault();
         }
 
-       
-
-
+        public string ObtenerIdentificadorUltimoLote(int zonaId)
+        {
+            return contexto.LOTE.Where(x => x.ZONAId == zonaId).OrderByDescending(x=>x.Id).Select(x=>x.Identificador).FirstOrDefault();
+        }
     }
 }

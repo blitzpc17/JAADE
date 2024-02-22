@@ -405,6 +405,8 @@
     <None Include="Resources\upload.png" />
     <None Include="Resources\contrato.png" />
     <None Include="Resources\excel.png" />
+    <None Include="Resources\subir16.png" />
+    <None Include="Resources\subir.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -98,6 +98,7 @@
     <Compile Include="Entidades\clsClientes.cs" />
     <Compile Include="Entidades\clsClientesImportacion.cs" />
     <Compile Include="Entidades\clsContratoCliente.cs" />
+    <Compile Include="Entidades\clsCONTRATOIMPORTACION.cs" />
     <Compile Include="Entidades\clsContratoParametros.cs" />
     <Compile Include="Entidades\clsCorreo.cs" />
     <Compile Include="Entidades\clsCredencialesCorreo.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Entidades\clsFormatoFechaEscrito.cs" />
     <Compile Include="Entidades\clsInformacionContratoPago.cs" />
     <Compile Include="Entidades\clsInformacionPagoLote.cs" />
+    <Compile Include="Entidades\clsLoteImportacion.cs" />
     <Compile Include="Entidades\clsLotes.cs" />
     <Compile Include="Entidades\clsModulo.cs" />
     <Compile Include="Entidades\clsModuloPermiso.cs" />

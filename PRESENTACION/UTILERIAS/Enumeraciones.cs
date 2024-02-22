@@ -35,6 +35,7 @@ namespace PRESENTACION.UTILERIAS
             LstImagenes.Add("permiso", Properties.Resources.permiso);
             LstImagenes.Add("asignacion", Properties.Resources.asignar);
             LstImagenes.Add("usuario", Properties.Resources.persona);
+            LstImagenes.Add("subir16", Properties.Resources.subir16);
 
 
             return LstImagenes;

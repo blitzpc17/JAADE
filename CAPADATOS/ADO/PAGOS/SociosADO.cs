@@ -71,5 +71,18 @@ namespace CAPADATOS.ADO.PAGOS
                              "WHERE CLI.Clave = '"+clave+"';";
             return contexto.Database.SqlQuery<SOCIOS>(query).ToList();
         }
+
+        public SOCIOS ObtenerSocioXNombres(int clienteId, string nombre)
+        {
+            string query = "select \r\n"+
+                            "s.* \r\n"+
+                            "from CLIENTE cli \r\n"+
+                            "left \r\n"+
+                            "join CLIENTES_SOCIOS cs on cli.Id = cs.CLIENTEId \r\n"+
+                            "left \r\n"+
+                            "join SOCIOS s on cs.SOCIOSId = s.Id \r\n"+
+                            "where cli.Id = "+clienteId+" and(s.Nombre = '"+nombre+"') ";
+            return contexto.Database.SqlQuery<SOCIOS>(query).FirstOrDefault();
+        }
     }
 }

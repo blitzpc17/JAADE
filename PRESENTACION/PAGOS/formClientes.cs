@@ -222,15 +222,7 @@ namespace PRESENTACION.PAGOS
         }
 
         private void btnImportar_Click(object sender, EventArgs e)
-        {
-            /*if(MessageBox.Show("¿Desea generar un layout antes de iniciar la operación?", 
-                "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                //Generar layout
-                GenerarLayout();
-            }*/
-
-            //continuar con la exportacion
+        {          
             openFileDialog1.Filter = "Archivos de Excel (*.xlsx, *.xls)|*.xlsx;*.xls";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
@@ -353,6 +345,7 @@ namespace PRESENTACION.PAGOS
                     InicializarModulo();
 
                 }
+            
             }
             catch(Exception ex)
             {

@@ -55,6 +55,11 @@ namespace CAPADATOS.ADO.PAGOS
             return contexto.CLIENTE.FirstOrDefault(x => x.Id == id);
         }
 
+        public CLIENTE ObtenerXClave(string clave)
+        {
+            return contexto.CLIENTE.FirstOrDefault(x => x.Clave == clave);
+        }
+
         public clsClientes ObtenerDataCliente(int id)
         {
             var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.Apellidos) as Cliente, \r\n"+
