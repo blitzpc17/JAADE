@@ -150,7 +150,7 @@
             this.label4.Size = new System.Drawing.Size(115, 23);
             this.label4.TabIndex = 29;
             this.label4.Text = "Dirección:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtManzanas
             // 
@@ -186,7 +186,7 @@
             this.label3.Size = new System.Drawing.Size(115, 23);
             this.label3.TabIndex = 10;
             this.label3.Text = "Lotes:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
@@ -196,7 +196,7 @@
             this.label2.Size = new System.Drawing.Size(115, 23);
             this.label2.TabIndex = 8;
             this.label2.Text = "Manzanas:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -206,7 +206,7 @@
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 6;
             this.label1.Text = "Nombre:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // groupBox2
             // 

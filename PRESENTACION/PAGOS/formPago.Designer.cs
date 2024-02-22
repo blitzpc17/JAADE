@@ -33,6 +33,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtSaldoPendiente = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtPrecioLote = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtNoPago = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.txtEstadoPagoCliente = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtZona = new System.Windows.Forms.TextBox();
@@ -45,7 +51,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtFechaEmision = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtNoPago = new System.Windows.Forms.TextBox();
+            this.txtSaldoFavor = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMontoRecibido = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,6 +62,10 @@
             this.txtDiaPago = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtMensualidad = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +76,7 @@
             this.btnImportar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImportar.Image = global::PRESENTACION.Properties.Resources.ticket;
             this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(12, 398);
+            this.btnImportar.Location = new System.Drawing.Point(12, 569);
             this.btnImportar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnImportar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnImportar.Name = "btnImportar";
@@ -83,7 +93,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(281, 398);
+            this.btnCancelar.Location = new System.Drawing.Point(281, 569);
             this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.Name = "btnCancelar";
@@ -100,7 +110,7 @@
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.guardar_el_archivo;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(165, 398);
+            this.btnGuardar.Location = new System.Drawing.Point(165, 569);
             this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.Name = "btnGuardar";
@@ -115,6 +125,16 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtObservacion);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.txtMensualidad);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.txtSaldoPendiente);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.txtPrecioLote);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.txtNoPago);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.txtEstadoPagoCliente);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txtZona);
@@ -127,7 +147,7 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtFechaEmision);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtNoPago);
+            this.groupBox1.Controls.Add(this.txtSaldoFavor);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtMontoRecibido);
             this.groupBox1.Controls.Add(this.label4);
@@ -140,29 +160,86 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(379, 380);
+            this.groupBox1.Size = new System.Drawing.Size(379, 551);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del pago";
             // 
+            // txtSaldoPendiente
+            // 
+            this.txtSaldoPendiente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSaldoPendiente.Location = new System.Drawing.Point(131, 175);
+            this.txtSaldoPendiente.Name = "txtSaldoPendiente";
+            this.txtSaldoPendiente.ReadOnly = true;
+            this.txtSaldoPendiente.Size = new System.Drawing.Size(225, 23);
+            this.txtSaldoPendiente.TabIndex = 90;
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(10, 175);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(115, 23);
+            this.label14.TabIndex = 198;
+            this.label14.Text = "Saldo Pendiente ($):";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtPrecioLote
+            // 
+            this.txtPrecioLote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioLote.Location = new System.Drawing.Point(131, 146);
+            this.txtPrecioLote.Name = "txtPrecioLote";
+            this.txtPrecioLote.ReadOnly = true;
+            this.txtPrecioLote.Size = new System.Drawing.Size(225, 23);
+            this.txtPrecioLote.TabIndex = 80;
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(10, 146);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(115, 23);
+            this.label12.TabIndex = 196;
+            this.label12.Text = "Precio Lote ($):";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtNoPago
+            // 
+            this.txtNoPago.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoPago.Location = new System.Drawing.Point(131, 262);
+            this.txtNoPago.Name = "txtNoPago";
+            this.txtNoPago.ReadOnly = true;
+            this.txtNoPago.Size = new System.Drawing.Size(225, 23);
+            this.txtNoPago.TabIndex = 130;
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(10, 262);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(115, 23);
+            this.label11.TabIndex = 194;
+            this.label11.Text = "No. Pago:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtEstadoPagoCliente
             // 
             this.txtEstadoPagoCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstadoPagoCliente.Location = new System.Drawing.Point(131, 262);
+            this.txtEstadoPagoCliente.Location = new System.Drawing.Point(131, 440);
             this.txtEstadoPagoCliente.Name = "txtEstadoPagoCliente";
             this.txtEstadoPagoCliente.ReadOnly = true;
             this.txtEstadoPagoCliente.Size = new System.Drawing.Size(225, 23);
-            this.txtEstadoPagoCliente.TabIndex = 120;
+            this.txtEstadoPagoCliente.TabIndex = 180;
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(10, 262);
+            this.label10.Location = new System.Drawing.Point(10, 440);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(115, 23);
             this.label10.TabIndex = 190;
-            this.label10.Text = "Comp. Pago:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label10.Text = "Comportamiento:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtZona
             // 
@@ -197,21 +274,21 @@
             // txtFechaReimpresion
             // 
             this.txtFechaReimpresion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaReimpresion.Location = new System.Drawing.Point(131, 291);
+            this.txtFechaReimpresion.Location = new System.Drawing.Point(131, 469);
             this.txtFechaReimpresion.Name = "txtFechaReimpresion";
             this.txtFechaReimpresion.ReadOnly = true;
             this.txtFechaReimpresion.Size = new System.Drawing.Size(225, 23);
-            this.txtFechaReimpresion.TabIndex = 140;
+            this.txtFechaReimpresion.TabIndex = 190;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(10, 291);
+            this.label8.Location = new System.Drawing.Point(10, 469);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 23);
             this.label8.TabIndex = 183;
             this.label8.Text = "F. Reimpresión:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtFolioContrato
             // 
@@ -227,77 +304,77 @@
             // txtRecibePago
             // 
             this.txtRecibePago.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecibePago.Location = new System.Drawing.Point(131, 233);
+            this.txtRecibePago.Location = new System.Drawing.Point(131, 411);
             this.txtRecibePago.Name = "txtRecibePago";
             this.txtRecibePago.ReadOnly = true;
             this.txtRecibePago.Size = new System.Drawing.Size(225, 23);
-            this.txtRecibePago.TabIndex = 130;
+            this.txtRecibePago.TabIndex = 170;
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(10, 233);
+            this.label7.Location = new System.Drawing.Point(10, 411);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(115, 23);
             this.label7.TabIndex = 179;
             this.label7.Text = "Recibe:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtFechaEmision
             // 
             this.txtFechaEmision.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaEmision.Location = new System.Drawing.Point(131, 204);
+            this.txtFechaEmision.Location = new System.Drawing.Point(131, 382);
             this.txtFechaEmision.Name = "txtFechaEmision";
             this.txtFechaEmision.ReadOnly = true;
             this.txtFechaEmision.Size = new System.Drawing.Size(225, 23);
-            this.txtFechaEmision.TabIndex = 100;
+            this.txtFechaEmision.TabIndex = 160;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(10, 204);
+            this.label6.Location = new System.Drawing.Point(10, 382);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(115, 23);
             this.label6.TabIndex = 177;
             this.label6.Text = "Fecha Emisión:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtNoPago
+            // txtSaldoFavor
             // 
-            this.txtNoPago.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoPago.Location = new System.Drawing.Point(131, 146);
-            this.txtNoPago.Name = "txtNoPago";
-            this.txtNoPago.ReadOnly = true;
-            this.txtNoPago.Size = new System.Drawing.Size(225, 23);
-            this.txtNoPago.TabIndex = 80;
+            this.txtSaldoFavor.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSaldoFavor.Location = new System.Drawing.Point(131, 204);
+            this.txtSaldoFavor.Name = "txtSaldoFavor";
+            this.txtSaldoFavor.ReadOnly = true;
+            this.txtSaldoFavor.Size = new System.Drawing.Size(225, 23);
+            this.txtSaldoFavor.TabIndex = 100;
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 146);
+            this.label5.Location = new System.Drawing.Point(10, 204);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(115, 23);
             this.label5.TabIndex = 175;
-            this.label5.Text = "No Pago:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Text = "Saldo a favor ($):";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtMontoRecibido
             // 
             this.txtMontoRecibido.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoRecibido.Location = new System.Drawing.Point(131, 175);
+            this.txtMontoRecibido.Location = new System.Drawing.Point(131, 291);
             this.txtMontoRecibido.Name = "txtMontoRecibido";
             this.txtMontoRecibido.Size = new System.Drawing.Size(225, 23);
-            this.txtMontoRecibido.TabIndex = 90;
+            this.txtMontoRecibido.TabIndex = 140;
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 175);
+            this.label4.Location = new System.Drawing.Point(10, 291);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 23);
             this.label4.TabIndex = 173;
-            this.label4.Text = "Monto($):";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Text = "Monto recibido ($):";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnBuscarContrato
             // 
@@ -318,7 +395,7 @@
             this.label3.Size = new System.Drawing.Size(115, 23);
             this.label3.TabIndex = 170;
             this.label3.Text = "Contrato:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnBuscarPago
             // 
@@ -359,7 +436,7 @@
             this.label13.Size = new System.Drawing.Size(115, 23);
             this.label13.TabIndex = 163;
             this.label13.Text = "Folio:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -369,19 +446,57 @@
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 162;
             this.label1.Text = "Día pago:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMensualidad
+            // 
+            this.txtMensualidad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMensualidad.Location = new System.Drawing.Point(131, 233);
+            this.txtMensualidad.Name = "txtMensualidad";
+            this.txtMensualidad.ReadOnly = true;
+            this.txtMensualidad.Size = new System.Drawing.Size(225, 23);
+            this.txtMensualidad.TabIndex = 120;
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(10, 233);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(115, 23);
+            this.label15.TabIndex = 200;
+            this.label15.Text = "Mensualidad ($):";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtObservacion
+            // 
+            this.txtObservacion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservacion.Location = new System.Drawing.Point(131, 320);
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(225, 56);
+            this.txtObservacion.TabIndex = 150;
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(10, 320);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(115, 23);
+            this.label16.TabIndex = 204;
+            this.label16.Text = "Observación:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // formPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 450);
+            this.ClientSize = new System.Drawing.Size(403, 621);
             this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(419, 489);
+            this.MinimumSize = new System.Drawing.Size(419, 660);
             this.Name = "formPago";
             this.Text = "formPago";
             this.Load += new System.EventHandler(this.formPago_Load);
@@ -408,7 +523,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtFechaEmision;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtNoPago;
+        private System.Windows.Forms.TextBox txtSaldoFavor;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtMontoRecibido;
         private System.Windows.Forms.Label label4;
@@ -421,5 +536,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEstadoPagoCliente;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtNoPago;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtSaldoPendiente;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtPrecioLote;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtObservacion;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtMensualidad;
+        private System.Windows.Forms.Label label15;
     }
 }

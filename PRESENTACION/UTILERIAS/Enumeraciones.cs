@@ -74,10 +74,11 @@ namespace PRESENTACION.UTILERIAS
         public enum EstadosProcesoContratos
         {
             VIGENTE = 8,
-            PERIODOGRACIA = 9,
+            ATRASADO = 9,
             TERMINADO = 10,
             RECISION = 11,
-            REUBICADO = 12
+            REUBICADO = 12,
+            CANCELADO = 13
         }
 
 

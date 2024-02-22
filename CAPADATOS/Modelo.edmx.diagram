@@ -46,12 +46,12 @@
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTECLIENTE" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTELOTE" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTEUSUARIO" />
-        <EntityTypeShape EntityType="DB_JAADEModel.PAGO" Width="1.5" PointX="8.25" PointY="9.125" />
+        <EntityTypeShape EntityType="DB_JAADEModel.PAGO" Width="1.5" PointX="8" PointY="9.625" />
         <AssociationConnector Association="DB_JAADEModel.PAGOUSUARIO" />
         <AssociationConnector Association="DB_JAADEModel.PAGOCLIENTELOTE" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTESOCIOS" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTEESTADO" />
-        <AssociationConnector Association="DB_JAADEModel.PAGOCLIENTELOTEREUBICADO" />
+        <AssociationConnector Association="DB_JAADEModel.CLIENTELOTECLIENTELOTEREUBICADO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

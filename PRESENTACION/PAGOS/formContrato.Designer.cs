@@ -30,6 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formContrato));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.txtMensualidadGracia = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtMontoGracia = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.txtContratoReubidado = new System.Windows.Forms.TextBox();
             this.btnBusContratoReubicado = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
@@ -69,12 +75,6 @@
             this.btnImportar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.txtMontoGracia = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtMensualidadGracia = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtObservacion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,6 +132,64 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contrato";
             // 
+            // label19
+            // 
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(10, 438);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(115, 23);
+            this.label19.TabIndex = 224;
+            this.label19.Text = "Observación:";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtObservacion
+            // 
+            this.txtObservacion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservacion.Location = new System.Drawing.Point(131, 438);
+            this.txtObservacion.MaxLength = 2500;
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(225, 67);
+            this.txtObservacion.TabIndex = 200;
+            // 
+            // txtMensualidadGracia
+            // 
+            this.txtMensualidadGracia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMensualidadGracia.Location = new System.Drawing.Point(131, 348);
+            this.txtMensualidadGracia.Name = "txtMensualidadGracia";
+            this.txtMensualidadGracia.ReadOnly = true;
+            this.txtMensualidadGracia.Size = new System.Drawing.Size(225, 23);
+            this.txtMensualidadGracia.TabIndex = 160;
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(10, 348);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(115, 23);
+            this.label18.TabIndex = 204;
+            this.label18.Text = "Mens. Gracia ($):";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMontoGracia
+            // 
+            this.txtMontoGracia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMontoGracia.Location = new System.Drawing.Point(131, 319);
+            this.txtMontoGracia.Name = "txtMontoGracia";
+            this.txtMontoGracia.ReadOnly = true;
+            this.txtMontoGracia.Size = new System.Drawing.Size(225, 23);
+            this.txtMontoGracia.TabIndex = 150;
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(10, 319);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(115, 23);
+            this.label17.TabIndex = 202;
+            this.label17.Text = "Monto Gracia ($):";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtContratoReubidado
             // 
             this.txtContratoReubidado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -159,7 +217,7 @@
             this.label16.Size = new System.Drawing.Size(115, 23);
             this.label16.TabIndex = 197;
             this.label16.Text = "Reubicar:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbxEstado
             // 
@@ -180,7 +238,7 @@
             this.label14.Size = new System.Drawing.Size(115, 23);
             this.label14.TabIndex = 194;
             this.label14.Text = "Estado:";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtPagosGracia
             // 
@@ -198,7 +256,7 @@
             this.label12.Size = new System.Drawing.Size(115, 23);
             this.label12.TabIndex = 192;
             this.label12.Text = "No. Pagos Gracia:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtPagoInicial
             // 
@@ -215,8 +273,8 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(115, 23);
             this.label11.TabIndex = 190;
-            this.label11.Text = "Pago Inicial($):";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label11.Text = "Pago Inicial ($):";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbxZona
             // 
@@ -237,7 +295,7 @@
             this.label10.Size = new System.Drawing.Size(115, 23);
             this.label10.TabIndex = 188;
             this.label10.Text = "Zona:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label9
             // 
@@ -267,7 +325,7 @@
             this.label15.Size = new System.Drawing.Size(115, 23);
             this.label15.TabIndex = 185;
             this.label15.Text = "Socio:";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtFechaReimpresion
             // 
@@ -286,7 +344,7 @@
             this.label8.Size = new System.Drawing.Size(115, 23);
             this.label8.TabIndex = 183;
             this.label8.Text = "F. Reimpresión:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtClaveLote
             // 
@@ -325,7 +383,7 @@
             this.label7.Size = new System.Drawing.Size(115, 23);
             this.label7.TabIndex = 179;
             this.label7.Text = "Realizó:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtFechaEmision
             // 
@@ -344,7 +402,7 @@
             this.label6.Size = new System.Drawing.Size(115, 23);
             this.label6.TabIndex = 177;
             this.label6.Text = "Fecha Emisión:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtNoPagos
             // 
@@ -363,7 +421,7 @@
             this.label5.Size = new System.Drawing.Size(115, 23);
             this.label5.TabIndex = 175;
             this.label5.Text = "No Pagos:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtPrecio
             // 
@@ -381,8 +439,8 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 23);
             this.label4.TabIndex = 173;
-            this.label4.Text = "Precio($):";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Text = "Precio ($):";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnBusLotes
             // 
@@ -403,7 +461,7 @@
             this.label3.Size = new System.Drawing.Size(115, 23);
             this.label3.TabIndex = 170;
             this.label3.Text = "Lote:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnNombreCliente
             // 
@@ -434,7 +492,7 @@
             this.label2.Size = new System.Drawing.Size(115, 23);
             this.label2.TabIndex = 167;
             this.label2.Text = "Cliente:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnBuscarContrato
             // 
@@ -475,7 +533,7 @@
             this.label13.Size = new System.Drawing.Size(115, 23);
             this.label13.TabIndex = 163;
             this.label13.Text = "Folio:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -485,7 +543,7 @@
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 162;
             this.label1.Text = "Día pago:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnImportar
             // 
@@ -502,6 +560,7 @@
             this.btnImportar.TabIndex = 20;
             this.btnImportar.Text = "     Generar";
             this.btnImportar.UseVisualStyleBackColor = true;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // btnCancelar
             // 
@@ -536,64 +595,6 @@
             this.btnGuardar.Text = "     Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // txtMontoGracia
-            // 
-            this.txtMontoGracia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoGracia.Location = new System.Drawing.Point(131, 319);
-            this.txtMontoGracia.Name = "txtMontoGracia";
-            this.txtMontoGracia.ReadOnly = true;
-            this.txtMontoGracia.Size = new System.Drawing.Size(225, 23);
-            this.txtMontoGracia.TabIndex = 150;
-            // 
-            // label17
-            // 
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(10, 319);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(115, 23);
-            this.label17.TabIndex = 202;
-            this.label17.Text = "Monto Gracia($):";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtMensualidadGracia
-            // 
-            this.txtMensualidadGracia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMensualidadGracia.Location = new System.Drawing.Point(131, 348);
-            this.txtMensualidadGracia.Name = "txtMensualidadGracia";
-            this.txtMensualidadGracia.ReadOnly = true;
-            this.txtMensualidadGracia.Size = new System.Drawing.Size(225, 23);
-            this.txtMensualidadGracia.TabIndex = 160;
-            // 
-            // label18
-            // 
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(10, 348);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(115, 23);
-            this.label18.TabIndex = 204;
-            this.label18.Text = "Mens. Gracia ($):";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label19
-            // 
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(10, 438);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(115, 23);
-            this.label19.TabIndex = 224;
-            this.label19.Text = "Observación:";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtObservacion
-            // 
-            this.txtObservacion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservacion.Location = new System.Drawing.Point(131, 438);
-            this.txtObservacion.MaxLength = 2500;
-            this.txtObservacion.Multiline = true;
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(225, 67);
-            this.txtObservacion.TabIndex = 200;
             // 
             // formContrato
             // 

@@ -1,4 +1,8 @@
-﻿using CAPALOGICA.LOGICAS.PAGOS;
+﻿using CAPADATOS.Entidades;
+using CAPALOGICA.LOGICAS.PAGOS;
+using CAPALOGICA.LOGICAS.SISTEMA;
+using Microsoft.Reporting.WinForms;
+using Newtonsoft.Json;
 using PRESENTACION.BUSQUEDA;
 using PRESENTACION.UTILERIAS;
 using System;
@@ -62,7 +66,7 @@ namespace PRESENTACION.PAGOS
             txtFechaEmision.Text = Global.FechaServidor().ToString("dd/MM/yyyy HH:mm:ss");
             txtRealizo.Text = Global.ObtenerNombreUsuario(Global.ObjUsuario);
             txtFechaReimpresion.Text = (contexto.ObjContratoData == null 
-                || contexto.ObjContratoData.FechaReImpresion==null) ? "" : Convert.ToDateTime(contexto.ObjContratoData.FechaReImpresion).ToString("dd/MM/yyyy HH:mm:ss");
+                || contexto.ObjContratoData.FechaReimpresion==null) ? "" : Convert.ToDateTime(contexto.ObjContratoData.FechaReimpresion).ToString("dd/MM/yyyy HH:mm:ss");
         }
 
         public void LimpiarControles()
@@ -132,7 +136,7 @@ namespace PRESENTACION.PAGOS
                 }
                 else
                 {
-                    txtFolioContrato.Text = contexto.ObjContratoData.Folio;
+                    txtFolioContrato.Text = contexto.ObjContratoData.NoReferencia;
                 }
             }
         }
@@ -144,11 +148,11 @@ namespace PRESENTACION.PAGOS
 
             if (busContrato.ObjEntidad == null)
             {
-                MessageBox.Show("No se ha seleccionado ningín registro.", "Advertencia",
+                MessageBox.Show("No se ha seleccionado ningún registro.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            contexto.BuscarContratoFolio(busContrato.ObjEntidad.Folio);
+            contexto.BuscarContratoFolio(busContrato.ObjEntidad.NoReferencia);
             SetDataContrato();
         }
 
@@ -254,34 +258,51 @@ namespace PRESENTACION.PAGOS
             //set socios
             LlenarCbxSocios(contexto.ObjContratoData.ClaveCliente);           
 
-            txtFolioContrato.Text = contexto.ObjContratoData.Folio;
+            txtFolioContrato.Text = contexto.ObjContratoData.NoReferencia;
             txtClaveCliente.Text = contexto.ObjContratoData.ClaveCliente;
-            txtNombreCliente.Text = contexto.ObjContratoData.ClienteNombre;
-            cbxZona.SelectedValue = contexto.ObjContratoData.ZonaLoteId;
-            cbxSocios.SelectedValue = contexto.ObjContratoData.SocioId;
-            txtClaveLote.Text = contexto.ObjContratoData.ClaveLote;
+            txtNombreCliente.Text = contexto.ObjContratoData.NombreCliente;
+            cbxZona.SelectedValue = contexto.ObjContratoData.ZonaId;
+            if (contexto.ObjContratoData.SocioId != null)
+            {
+                cbxSocios.SelectedValue = contexto.ObjContratoData.SocioId;
+            }
+            else
+            {
+                cbxSocios.SelectedIndex = -1;
+            }
+            
+            txtClaveLote.Text = contexto.ObjContratoData.IdentificadorLote;
             txtPrecio.Text = contexto.ObjContratoData.PrecioLote.ToString("N2");
             txtNoPagos.Text = contexto.ObjContratoData.NoPagos.ToString("N0");
             txtDiaPago.Text = contexto.ObjContratoData.DiaPago.ToString("N0");
             txtFechaEmision.Text = contexto.ObjContratoData.FechaEmision.ToString("dd/MM/yyyy HH:mm:ss");
-            txtRealizo.Text = contexto.ObjContratoData.UsuarioRealizo;
-            txtFechaReimpresion.Text = contexto.ObjContratoData.FechaReImpresion == null ? 
-                Convert.ToDateTime(contexto.ObjContratoData.FechaReImpresion).ToString("dd/MM/yyyy HH:mm:ss") : "";
+            txtRealizo.Text = contexto.ObjContratoData.UsuarioOperacionNombre;
+            txtFechaReimpresion.Text = contexto.ObjContratoData.FechaReimpresion == null ? 
+                Convert.ToDateTime(contexto.ObjContratoData.FechaReimpresion).ToString("dd/MM/yyyy HH:mm:ss") : "";
             txtPagoInicial.Text = contexto.ObjContratoData.PagoInicial.ToString("N2");
             txtPagosGracia.Text = contexto.ObjContratoData.NoPagosGracia.ToString("N0");
             txtObservacion.Text = contexto.ObjContratoData.Observacion;
             cbxEstado.SelectedValue = contexto.ObjContratoData.EstadoId;
+            if (contexto.ObjContratoData.MontoGracia != null)
+            {
+                txtMontoGracia.Text = Convert.ToDecimal(contexto.ObjContratoData.MontoGracia).ToString("N2");
+            }
+
+            if (contexto.ObjContratoData.MontoGracia != null)
+            {
+                txtMensualidadGracia.Text = (Convert.ToDecimal(contexto.ObjContratoData.MontoGracia) / contexto.ObjContratoData.NoPagos).ToString("N2");
+            }
+           
+
+            if (contexto.ObjContratoData.ContratoReubicadoId != null)
+            {
+                txtContratoReubidado.Text = contexto.ObjContratoData.ContratoReubicado;
+            }
 
             contexto.ObjCliente = contexto.BuscarClientePorClave(contexto.ObjContratoData.ClaveCliente);
-            contexto.ObjLote = contexto.BuscarLotePorClave(contexto.ObjContratoData.ClaveLote);
+            contexto.ObjLote = contexto.BuscarLotePorClave(contexto.ObjContratoData.IdentificadorLote);
 
-            if (contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.PERIODOGRACIA)
-            {
-                CalcularMontoGracia(contexto.ObjContratoData.Folio);
-                txtMontoGracia.Text = contexto.ObjMontoGraciaData.MontoGracia.ToString("N0");
-                txtMensualidadGracia.Text = contexto.ObjMontoGraciaData.MontoMensualGracia.ToString("N2");
-
-            }
+            
 
 
         }
@@ -407,20 +428,20 @@ namespace PRESENTACION.PAGOS
                         MessageBoxIcon.Warning);
                     return;
                 }
-
+                /*
                 if(contexto.ObjContratoData!=null && (int)cbxEstado.SelectedValue == (int)Enumeraciones.EstadosProcesoContratos.TERMINADO)
                 {
                     if (MessageBox.Show("Se va a cambiar el contrato a estado "
                         + Enumeraciones.EstadosProcesoContratos.TERMINADO + ", el lote asignado "
-                        + contexto.ObjContratoData.ClaveLote + " será liberado para una nueva venta. ¿Desea continuar?",
+                        + contexto.ObjContratoData.IdentificadorLote + " será liberado para una nueva venta. ¿Desea continuar?",
                         "Advertencia",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
                     //liberar lote al confirmar
                     contexto.ObjLote.ESTADOId = (int)Enumeraciones.EstadosProcesoLote.LIBRE;
                     contexto.GuardarLote();
                     msjSuccess[0] = "Se ha cambiado el estado del contrato "
-                        + contexto.ObjContratoData.Folio + " a TERMINADO, se libero el lote asociado. " +
-                        contexto.ObjContratoData.ClaveLote;
+                        + contexto.ObjContratoData.NoReferencia + " a TERMINADO, se libero el lote asociado. " +
+                        contexto.ObjContratoData.IdentificadorLote;
 
                 }
                 else if (contexto.ObjContratoData != null && (int)cbxEstado.SelectedValue == (int)Enumeraciones.EstadosProcesoContratos.PERIODOGRACIA)
@@ -430,9 +451,9 @@ namespace PRESENTACION.PAGOS
                         "Advertencia",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
-                    CalcularMontoGracia(contexto.ObjContratoData.Folio);
+                    CalcularMontoGracia(contexto.ObjContratoData.NoReferencia);
                     msjSuccess[0] = "Se ha cambiado el estado del contrato "
-                        + contexto.ObjContratoData.Folio + " \r\na PERIODO DE GRACIA: \r\n\r\n" +
+                        + contexto.ObjContratoData.NoReferencia + " \r\na PERIODO DE GRACIA: \r\n\r\n" +
                         "MONTO NUEVO TOTAL A PAGAR($):" + contexto.ObjMontoGraciaData.MontoGracia.ToString("N2") + "\r\n\r\n" +
                         "MENSUALIDAD A PAGAR ($): " + contexto.ObjMontoGraciaData.MontoMensualGracia.ToString("N2");
 
@@ -445,15 +466,15 @@ namespace PRESENTACION.PAGOS
                         "Advertencia",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
                     
-                        CalcularMontoGracia(contexto.ObjContratoData.Folio);
+                        CalcularMontoGracia(contexto.ObjContratoData.NoReferencia);
 
-                        msjSuccess[0] = "RECISIÓN del contrato " + contexto.ObjContratoData.Folio + "\r\nrealizada correctamente. \r\n\r\n" +
+                        msjSuccess[0] = "RECISIÓN del contrato " + contexto.ObjContratoData.NoReferencia + "\r\nrealizada correctamente. \r\n\r\n" +
                             "PROCEDE RECISIÓN: " +( ((contexto.ObjContratoData.NoPagos-contexto.ObjMontoGraciaData.NoPagosDados)>2)?"NO":"SI") + "\r\n" +
                             "MONTO A REGRESAR:" + ( ((contexto.ObjContratoData.NoPagos - contexto.ObjMontoGraciaData.NoPagosDados) > 2) ? "0": (contexto.ObjMontoGraciaData.MontoAcumuladoDado*Convert.ToDecimal(0.5)).ToString("N2"));
                            
                     
 
-                }
+                }*/
 
 
                 if (contexto.ObjContratoData == null)
@@ -477,7 +498,7 @@ namespace PRESENTACION.PAGOS
                         msjSuccess[0] = "Se han modificado los datos del contrato " + contexto.ObjContrato.Folio + " correctamente.";
                     }
 
-                    if(contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.PERIODOGRACIA)
+                    if(contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
                     {
                         contexto.ObjContrato.MontoGracia = contexto.ObjMontoGraciaData.MontoGracia;
                     }
@@ -563,6 +584,76 @@ namespace PRESENTACION.PAGOS
                 btnBusContratoReubicado.Enabled = false;
             }
 
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            if (contexto.ObjContratoData == null)
+            {
+                MessageBox.Show(
+                  "No se ha cargado ningún registro. Intentelo nuevamente.",
+                  "Advertencia",
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Warning);
+                return;
+            }
+
+            GenerarReporte();
+
+
+
+
+        }
+
+        private void GenerarReporte()
+        {
+            contexto.ObtenerDatosContratoImpreso(contexto.ObjContratoData.NoReferencia);
+            DateTime _FechaReimpresion = Global.FechaServidor();
+            clsDatosJaade ObjDatosJaade = JsonConvert.DeserializeObject<clsDatosJaade>(Global.DevulveVariableGlobal(Enumeraciones.VariablesGlobales.DomicilioJaade));
+            clsFormatoFechaEscrito fechaData = Global.ObtenerFechaEscrita(contexto.ObjContratoImpresoData.FechaEmision);
+            string NoLote = contexto.ObjContratoImpresoData.IdentificadorLote.Split(' ')[0].Substring(2);
+            
+            var repContrato = new REPORTES.repContratoLote();
+            
+            repContrato.InstanciarListaParametros();
+            //llenar parametros
+            repContrato.parametros.Add(new ReportParameter("HORA", fechaData.Hora.ToUpper() ));
+            repContrato.parametros.Add(new ReportParameter("DIA", fechaData.Dia.ToUpper()));
+            repContrato.parametros.Add(new ReportParameter("MES", fechaData.Mes.ToUpper()));
+            repContrato.parametros.Add(new ReportParameter("ANIO", fechaData.Anio.ToUpper()));
+            repContrato.parametros.Add(new ReportParameter("CLIENTE", contexto.ObjContratoImpresoData.NombreCliente));
+            repContrato.parametros.Add(new ReportParameter("CALLEJAADE", ObjDatosJaade.Calle));
+            repContrato.parametros.Add(new ReportParameter("NOEXTJAADE", ObjDatosJaade.NoExt));
+            repContrato.parametros.Add(new ReportParameter("NOINTJAADE", ObjDatosJaade.NoInt));
+            repContrato.parametros.Add(new ReportParameter("COLONIAJAADE", ObjDatosJaade.Colonia));
+            repContrato.parametros.Add(new ReportParameter("LOCALIDADJAADE", ObjDatosJaade.Localidad));
+            repContrato.parametros.Add(new ReportParameter("MUNICIPIOJAADE", ObjDatosJaade.Municipio));
+            repContrato.parametros.Add(new ReportParameter("ESTADOJAADE", ObjDatosJaade.Estado));
+            repContrato.parametros.Add(new ReportParameter("TELEFONOJAADE", ObjDatosJaade.Telefono));
+            repContrato.parametros.Add(new ReportParameter("DOMICILIOCLIENTE", contexto.ObjContratoImpresoData.DomicilioCliente ));
+            repContrato.parametros.Add(new ReportParameter("CODIGOLOTE", contexto.ObjContratoImpresoData.IdentificadorLote));            
+            repContrato.parametros.Add(new ReportParameter("MANZANA", contexto.ObjContratoImpresoData.Manzana == null ? "S/M" : contexto.ObjContratoImpresoData.Manzana.ToString()));
+            repContrato.parametros.Add(new ReportParameter("ZONA", contexto.ObjContratoImpresoData.ClaveZona+ ' '+ contexto.ObjContratoImpresoData.DomicilioZona));
+            repContrato.parametros.Add(new ReportParameter("MNORTE", contexto.ObjContratoImpresoData.MNorte.ToString("N2")));
+            repContrato.parametros.Add(new ReportParameter("MSUR", contexto.ObjContratoImpresoData.MSur.ToString("N2")));
+            repContrato.parametros.Add(new ReportParameter("MESTE", contexto.ObjContratoImpresoData.MEste.ToString("N2")));
+            repContrato.parametros.Add(new ReportParameter("MOESTE", contexto.ObjContratoImpresoData.MOeste.ToString("N2")));
+            repContrato.parametros.Add(new ReportParameter("CNORTE", contexto.ObjContratoImpresoData.CNorte));
+            repContrato.parametros.Add(new ReportParameter("CSUR", contexto.ObjContratoImpresoData.CSur));
+            repContrato.parametros.Add(new ReportParameter("CESTE", contexto.ObjContratoImpresoData.CEste));
+            repContrato.parametros.Add(new ReportParameter("COESTE", contexto.ObjContratoImpresoData.COeste));
+            repContrato.parametros.Add(new ReportParameter("TITULARVENTAJAADE", ObjDatosJaade.TitularVenta));
+            repContrato.parametros.Add(new ReportParameter("NOMBRECLIENTE", contexto.ObjContratoImpresoData.NombreCliente));
+            repContrato.parametros.Add(new ReportParameter("PRECIOLOTE", contexto.ObjContratoImpresoData.PrecioLote.ToString("N2")));
+            repContrato.parametros.Add(new ReportParameter("PAGOINICIAL", contexto.ObjContratoImpresoData.PagoInicial.ToString("N2")));
+            repContrato.parametros.Add(new ReportParameter("NOPAGOS", contexto.ObjContratoImpresoData.NoPagos.ToString("N0")));
+            repContrato.parametros.Add(new ReportParameter("DIAPAGO", contexto.ObjContratoImpresoData.DiaPago.ToString("N0")));
+            repContrato.parametros.Add(new ReportParameter("MONTOPAGOMENSUAL", ((contexto.ObjContratoImpresoData.PrecioLote-contexto.ObjContratoImpresoData.PagoInicial)/contexto.ObjContratoImpresoData.NoPagos).ToString("N2") ));
+            repContrato.parametros.Add(new ReportParameter("MINUTO", fechaData.Minuto.ToString()));
+            repContrato.parametros.Add(new ReportParameter("NOLOTE", NoLote));
+
+
+            repContrato.ShowDialog();
         }
     }
 }

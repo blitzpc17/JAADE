@@ -27,6 +27,7 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public SOCIOS ObjSocio;
         public clsContratoCliente ObjContratoData;
         public clsObjMontoGracia ObjMontoGraciaData;
+        public clsArrendamientoLoteData ObjContratoImpresoData;
 
         public PAGO ObjPago;
 
@@ -133,5 +134,13 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         {
             ObjMontoGraciaData = contextoContrato.CalcularMontoGracia(folioContrato);
         }
+
+        public void ObtenerDatosContratoImpreso(string folioContrato)
+        {
+            ObjContratoImpresoData = contextoContrato.ObtenerDatosContratoImpreso(folioContrato);
+        }
+
+
+
     }
 }

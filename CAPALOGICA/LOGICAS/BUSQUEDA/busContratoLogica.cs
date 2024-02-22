@@ -45,27 +45,27 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
             switch (column)
             {
                 case 1:
-                    index = LstContratosAux.FindIndex(x => x.Folio.StartsWith(termino));
+                    index = LstContratosAux.FindIndex(x => x.NoReferencia.StartsWith(termino));
                     break;
 
                 case 4:
-                    index = LstContratosAux.FindIndex(x => x.ClaveCliente.ToString().StartsWith(termino));
+                    index = LstContratosAux.FindIndex(x => x.ClaveCliente.StartsWith(termino));
                     break;
 
                 case 5:
-                    index = LstContratosAux.FindIndex(x => x.ClienteNombre.StartsWith(termino));
+                    index = LstContratosAux.FindIndex(x => x.NombreCliente.StartsWith(termino));
                     break;
 
                 case 7:
-                    index = LstContratosAux.FindIndex(x => x.Estado.StartsWith(termino));
-                    break;
-
-                case 8:
-                    index = LstContratosAux.FindIndex(x => x.ClaveLote.StartsWith(termino));
+                    index = LstContratosAux.FindIndex(x => x.IdentificadorLote.StartsWith(termino));
                     break;
 
                 case 9:
-                    index = LstContratosAux.FindIndex(x => x.ZonaLote.StartsWith(termino));
+                    index = LstContratosAux.FindIndex(x => x.NombreZona.StartsWith(termino));
+                    break;
+
+                case 11:
+                    index = LstContratosAux.FindIndex(x => x.NombreEstado.StartsWith(termino));
                     break;
 
                 default:
@@ -84,52 +84,53 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
             {
                 //6
                 case 1:
-                    LstContratosAux = LstContratos.OrderBy(x => x.Folio).
-                        ThenBy(x => x.ClaveCliente).ThenBy(x => x.ClienteNombre).
-                        ThenBy(x=>x.Estado).ThenBy(x=>x.ClaveLote).
-                        ThenBy(x=>x.ZonaLote).ToList();
+                    LstContratosAux = LstContratos.OrderBy(x => x.NoReferencia).
+                        ThenBy(x => x.FechaEmision).ThenBy(x => x.ClaveCliente).
+                        ThenBy(x=>x.NombreCliente).ThenBy(x=>x.IdentificadorLote).
+                        ThenBy(x=>x.NombreZona).ThenBy(x=>x.NombreEstado).ToList();
                     break;
 
                 case 4:
-                    LstContratosAux = LstContratos.OrderBy(x => x.ClaveCliente).
-                        ThenBy(x => x.ClienteNombre).ThenBy(x => x.Estado).
-                        ThenBy(x => x.ClaveLote).ThenBy(x => x.ZonaLote).
-                        ThenBy(x => x.Folio).ToList();
+                    LstContratosAux = LstContratos.OrderBy(x => x.FechaEmision).
+                        ThenBy(x => x.ClaveCliente).ThenBy(x => x.NombreCliente).
+                        ThenBy(x => x.IdentificadorLote).ThenBy(x => x.NombreZona).
+                        ThenBy(x => x.NombreEstado).ThenBy(x => x.NoReferencia).ToList();
                     break;
 
                 case 5:
-                    LstContratosAux = LstContratos.OrderBy(x => x.ClienteNombre).
-                        ThenBy(x => x.Estado).ThenBy(x => x.ClaveLote).
-                        ThenBy(x => x.ZonaLote).ThenBy(x => x.Folio).
-                        ThenBy(x => x.ClaveCliente).ToList();
+                    LstContratosAux = LstContratos.OrderBy(x => x.ClaveCliente).
+                        ThenBy(x => x.NombreCliente).ThenBy(x => x.IdentificadorLote).
+                        ThenBy(x => x.NombreZona).ThenBy(x => x.NombreEstado).
+                        ThenBy(x => x.NoReferencia).ThenBy(x => x.FechaEmision).ToList();
                     break;
 
                 case 7:
-                    LstContratosAux = LstContratos.OrderBy(x => x.Estado).
-                        ThenBy(x => x.ClaveLote).ThenBy(x => x.ZonaLote).
-                        ThenBy(x => x.Folio).ThenBy(x => x.ClaveCliente).
-                        ThenBy(x => x.ClienteNombre).ToList();
+                    LstContratosAux = LstContratos.OrderBy(x => x.NombreCliente).
+                        ThenBy(x => x.IdentificadorLote).ThenBy(x => x.NombreZona).
+                        ThenBy(x => x.NombreEstado).ThenBy(x => x.NoReferencia).
+                        ThenBy(x => x.FechaEmision).ThenBy(x => x.ClaveCliente).ToList();
                     break;
 
                 case 8:
-                    LstContratosAux = LstContratos.OrderBy(x => x.ClaveLote).
-                        ThenBy(x => x.ZonaLote).ThenBy(x => x.Folio).
-                        ThenBy(x => x.ClaveCliente).ThenBy(x => x.ClienteNombre).
-                        ThenBy(x => x.Estado).ToList();
+                    LstContratosAux = LstContratos.OrderBy(x => x.NombreEstado).
+                        ThenBy(x => x.NoReferencia).ThenBy(x => x.FechaEmision).
+                        ThenBy(x => x.ClaveCliente). ThenBy(x => x.NombreCliente).
+                        ThenBy(x => x.IdentificadorLote).ThenBy(x => x.NombreZona).ToList();
                     break;
 
                 case 9:
-                    LstContratosAux = LstContratos.OrderBy(x => x.ZonaLote).
-                        ThenBy(x => x.Folio).ThenBy(x => x.ClaveCliente).
-                        ThenBy(x => x.ClienteNombre).ThenBy(x => x.Estado).
-                        ThenBy(x => x.ClaveLote).ToList();
+                    LstContratosAux = LstContratos.OrderBy(x => x.NombreEstado).
+                       ThenBy(x => x.NoReferencia).ThenBy(x => x.FechaEmision).
+                       ThenBy(x => x.ClaveCliente).ThenBy(x => x.NombreCliente).
+                       ThenBy(x => x.IdentificadorLote).ThenBy(x => x.NombreZona).ToList();
                     break;
 
 
                 default:
-                    LstContratosAux = LstContratos.OrderBy(x => x.Folio).
-                       ThenBy(x => x.ClaveCliente).ThenBy(x => x.ClienteNombre).
-                       ThenBy(x => x.Estado).ThenBy(x => x.ClaveLote).ThenBy(x => x.ZonaLote).ToList();
+                    LstContratosAux = LstContratos.OrderBy(x => x.NoReferencia).
+                        ThenBy(x => x.FechaEmision).ThenBy(x => x.ClaveCliente).
+                        ThenBy(x => x.NombreCliente).ThenBy(x => x.IdentificadorLote).
+                        ThenBy(x => x.NombreZona).ThenBy(x => x.NombreEstado).ToList();
                     break;
 
             }

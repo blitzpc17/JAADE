@@ -5,11 +5,13 @@ using CAPALOGICA.LOGICAS.SISTEMA;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
@@ -349,7 +351,134 @@ namespace PRESENTACION.UTILERIAS
             return obj.Nombre;
         }
 
+        public static clsFormatoFechaEscrito ObtenerFechaEscrita(DateTime fecha)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
+            clsFormatoFechaEscrito ObjData = new clsFormatoFechaEscrito();
 
-        
+            DateTime _fecha = fecha.Date;
+            TimeSpan _tiempo = fecha.TimeOfDay;
+
+            int _dia = _fecha.Day;
+            int _mes = _fecha.Month;  
+            int _anio = _fecha.Year;
+            int _hora = _tiempo.Hours;
+            int _minuto = _tiempo.Minutes;
+
+            ObjData.Dia = ConvertirCantidadEnLetras(_dia);
+            ObjData.Mes = MesEnLetras(_mes);
+            ObjData.Anio = ConvertirCantidadEnLetras(_anio);
+            ObjData.Hora = ConvertirCantidadEnLetras(_hora);
+            ObjData.Minuto = ConvertirCantidadEnLetras(_minuto);
+
+            return ObjData;
+                
+        }
+
+        public static string ConvertirCantidadEnLetras(decimal cantidad)
+        {
+            if (cantidad == 0)
+                return "cero";
+
+            if (cantidad < 0)
+                return "menos " + ConvertirCantidadEnLetras(Math.Abs(cantidad));
+
+            string[] grupos = { "", "mil", "millón", "mil millones", "billón", "mil billones" };
+
+            int grupo = 0;
+            string cantidadEnLetras = "";
+
+            while (cantidad > 0)
+            {
+                int grupoActual = (int)(cantidad % 1000);
+                if (grupoActual > 0)
+                {
+                    if (cantidadEnLetras.Length > 0)
+                        cantidadEnLetras = " " + cantidadEnLetras;
+
+                    cantidadEnLetras = ConvertirGrupoEnLetras(grupoActual) + " " + grupos[grupo] + cantidadEnLetras;
+                }
+
+                cantidad = cantidad / 1000;
+                grupo++;
+            }
+
+            return cantidadEnLetras.Trim();
+        }
+
+        public static string ConvertirGrupoEnLetras(int numero)
+        {
+            string[] unidades = { "", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve" };
+            string[] decenas = { "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve" };
+            string[] decenas2 = { "veinti", "treinta ", "cuarenta ", "cincuenta", "sesenta", "setenta", "ochenta", "noventa" };
+            string[] centenas = { "", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos" };
+
+            string resultado = "";
+
+            if (numero >= 100)
+            {
+                resultado += centenas[numero / 100];
+                numero %= 100;
+            }
+
+            if (numero >= 10 && numero <= 19)
+            {
+                if (resultado.Length > 0)
+                    resultado += " ";
+
+                resultado += decenas[numero - 10];
+                return resultado;
+            }
+
+            if (numero >= 20)
+            {
+               /* if (resultado.Length > 0)
+                    resultado += " ";*/
+
+                if(numero>=30 && numero%10 == 0)
+                {
+                    resultado += decenas2[numero / 10 - 2] + " y ";
+                }
+                else
+                {                    
+                    resultado += decenas2[numero / 10 - 2];
+                }
+                
+                numero %= 10;
+            }
+
+            if (numero >= 1 && numero <= 9)
+            {
+                if (resultado.Length > 0)
+                    resultado += " ";
+
+                resultado += unidades[numero];
+            }
+
+            return resultado;
+        }
+
+        public static string MesEnLetras(int mes)
+        {
+            switch (mes)
+            {
+                case 1: return "ENERO";
+                case 2: return "FEBRERO";
+                case 3: return "MARZO";
+                case 4: return "ABRIL";
+                case 5: return "MAYO";
+                case 6: return "JUNIO";
+                case 7: return "JULIO";
+                case 8: return "AGOSTO";
+                case 9: return "SEPTIEMBRE";
+                case 10: return "OCTUBRE";
+                case 11: return "MOVIEMBRE";
+                case 12: return "DICIEMBRE";
+                default: return null;
+            }
+        }
+
+
+
     }
 }

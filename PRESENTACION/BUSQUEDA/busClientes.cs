@@ -76,7 +76,7 @@ namespace PRESENTACION.BUSQUEDA
             if (dgvRegistros.DataSource == null) return;
             dgvRegistros.Columns[0].Visible = false;
             dgvRegistros.Columns[1].HeaderText = "CLAVE";
-            dgvRegistros.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[1].Width = 90;
             dgvRegistros.Columns[2].HeaderText = "NOMBRE";
             dgvRegistros.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvRegistros.Columns[3].Visible = false;
@@ -93,7 +93,7 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[14].Visible = false;
             dgvRegistros.Columns[15].Visible = false;
             dgvRegistros.Columns[16].HeaderText = "ESTADO";
-            dgvRegistros.Columns[16].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[16].Width = 100;
 
 
             tsTotalRegistros.Text = contexto.LstClientes.Count.ToString("N0");

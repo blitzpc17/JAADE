@@ -11,8 +11,8 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
     public class busPagosLogica
     {
         private PagoADO contexto;
-        public List<clsPago> LstPagos;
-        public List<clsPago> LstPagosAux;
+        public List<clsBusquedaPago> LstPagos;
+        public List<clsBusquedaPago> LstPagosAux;
 
         public int index = -1;
         public int indexAux = -1;
@@ -25,15 +25,14 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
             contexto = new PagoADO();
         }
 
-        public void ListarRegistros(int? clienteId)
+        public void ListarRegistros(string folioContrato)
         {
-           // LstPagos = contexto.listar(clienteId );
+            LstPagos = contexto.ListarPagosContrato(folioContrato);
         }
 
-        public clsPago ObtenerRegistro(int id)
+        public clsBusquedaPago ObtenerRegistro(string folio)
         {
-            return null;
-            //return contexto.ObtenerDataPago(id);
+            return LstPagosAux.FirstOrDefault(x=>x.Folio == folio );
         }
 
         public bool Filtrar(int column, string termino)
@@ -43,28 +42,26 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
             switch (column)
             {
                 case 1:
-                    index = LstPagosAux.FindIndex(x => x.NumeroReferencia.StartsWith(termino));
+                    index = LstPagosAux.FindIndex(x => x.Folio.StartsWith(termino));
                     break;
 
                 case 4:
+                    index = LstPagosAux.FindIndex(x => x.Contrato.StartsWith(termino));
+                    break;
+
+                case 5:
                     index = LstPagosAux.FindIndex(x => x.Cliente.StartsWith(termino));
                     break;
 
                 case 6:
-                    index = LstPagosAux.FindIndex(x => x.IdentificadorLote.StartsWith(termino));
-                    break;
-
-                case 8:
                     index = LstPagosAux.FindIndex(x => x.Zona.StartsWith(termino));
                     break;
 
-                case 9:
-                    index = LstPagosAux.FindIndex(x => x.Manzana.ToString().StartsWith(termino));
+                case 7:
+                    index = LstPagosAux.FindIndex(x => x.Identificador.ToString().StartsWith(termino));
                     break;
 
-                case 11:
-                    index = LstPagosAux.FindIndex(x => x.Usuario.StartsWith(termino));
-                    break;
+              
 
                 default:
                     index = -1;
@@ -82,40 +79,38 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
             {
 
                 case 1:
-                    LstPagosAux = LstPagos.OrderBy(x => x.NumeroReferencia)
-                        .ThenBy(x=>x.Cliente).ThenBy(x => x.IdentificadorLote).ThenBy(x=>x.Zona).ThenBy(x=>x.Manzana)
-                        .ThenBy(x=>x.Usuario).ToList();
+                    LstPagosAux = LstPagos.OrderBy(x => x.Folio)
+                        .ThenBy(x=>x.Contrato).ThenBy(x => x.Cliente)
+                        .ThenBy(x=>x.Zona).ThenBy(x=>x.Identificador).ToList();
                     break;
                 case 4:
-                    LstPagosAux = LstPagos.OrderBy(x => x.Cliente)
-                       .ThenBy(x => x.NumeroReferencia).ThenBy(x => x.IdentificadorLote).ThenBy(x => x.Zona).ThenBy(x => x.Manzana)
-                       .ThenBy(x => x.Usuario).ToList();
+                    LstPagosAux = LstPagos.OrderBy(x => x.Contrato)
+                        .ThenBy(x => x.Cliente).ThenBy(x => x.Zona)
+                        .ThenBy(x => x.Identificador).ThenBy(x => x.Folio).ToList();
                     break;
                 case 6:
-                    LstPagosAux = LstPagos.OrderBy(x => x.IdentificadorLote).ThenBy(x => x.Cliente)
-                                    .ThenBy(x => x.NumeroReferencia).ThenBy(x => x.Zona).ThenBy(x => x.Manzana)
-                                    .ThenBy(x => x.Usuario).ToList();
+                    LstPagosAux = LstPagos.OrderBy(x => x.Cliente)
+                      .ThenBy(x => x.Zona).ThenBy(x => x.Identificador)
+                      .ThenBy(x => x.Folio).ThenBy(x => x.Contrato).ToList();
                     break;
                 case 8:
-                    LstPagosAux = LstPagos.OrderBy(x => x.Zona).ThenBy(x => x.IdentificadorLote).ThenBy(x => x.Cliente)
-                                    .ThenBy(x => x.NumeroReferencia).ThenBy(x => x.Manzana)
-                                    .ThenBy(x => x.Usuario).ToList();
+                    LstPagosAux = LstPagos.OrderBy(x => x.Zona)
+                        .ThenBy(x => x.Identificador).ThenBy(x => x.Folio)
+                        .ThenBy(x => x.Contrato).ThenBy(x => x.Cliente)
+                        .ToList();
                     break;
                 case 9:
-                    LstPagosAux = LstPagos.OrderBy(x => x.Manzana).ThenBy(x => x.Zona).ThenBy(x => x.IdentificadorLote).ThenBy(x => x.Cliente)
-                                    .ThenBy(x => x.NumeroReferencia)
-                                    .ThenBy(x => x.Usuario).ToList();
+                    LstPagosAux = LstPagos.OrderBy(x => x.Identificador)
+                        .ThenBy(x => x.Folio)
+                        .ThenBy(x => x.Contrato).ThenBy(x => x.Cliente)
+                        .ThenBy(x => x.Zona).ToList();
                     break;
-                case 11:
-                    LstPagosAux = LstPagos.OrderBy(x => x.Usuario).ThenBy(x => x.Manzana).ThenBy(x => x.Zona).ThenBy(x => x.IdentificadorLote).ThenBy(x => x.Cliente)
-                                    .ThenBy(x => x.NumeroReferencia)
-                                    .ToList();
-                    break;
+               
 
                 default:
-                    LstPagosAux = LstPagos.OrderBy(x => x.NumeroReferencia)
-                .ThenBy(x => x.Cliente).ThenBy(x => x.IdentificadorLote).ThenBy(x => x.Zona).ThenBy(x => x.Manzana)
-                .ThenBy(x => x.Usuario).ToList();
+                    LstPagosAux = LstPagos.OrderBy(x => x.Folio)
+                      .ThenBy(x => x.Contrato).ThenBy(x => x.Cliente)
+                      .ThenBy(x => x.Zona).ThenBy(x => x.Identificador).ToList();
                     break;
 
             }

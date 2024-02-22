@@ -18,14 +18,14 @@ namespace CAPADATOS
         public string Folio { get; set; }
         public System.DateTime FechaEmision { get; set; }
         public int ContratoId { get; set; }
-        public int USUARIORecibeId { get; set; }
-        public decimal Monto { get; set; }
-        public Nullable<System.DateTime> FechaReimpresion { get; set; }
         public int NoPago { get; set; }
-        public Nullable<int> ContratoReubicadoId { get; set; }
+        public decimal Monto { get; set; }
+        public string Observacion { get; set; }
+        public int USUARIORecibeId { get; set; }
+        public Nullable<System.DateTime> FechaReimpresion { get; set; }
+        public bool PagoOrdinario { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }
         public virtual CLIENTELOTE CLIENTELOTE { get; set; }
-        public virtual CLIENTELOTE CLIENTELOTEREUBICADO { get; set; }
     }
 }

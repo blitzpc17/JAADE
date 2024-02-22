@@ -133,9 +133,9 @@
       <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
       <End Role="ESTADO" EntitySet="ESTADO" />
     </AssociationSet>
-    <AssociationSet Name="PAGOCLIENTELOTEREUBICADO" Association="DB_JAADEModel.Store.PAGOCLIENTELOTEREUBICADO">
-      <End Role="PAGO" EntitySet="PAGO" />
+    <AssociationSet Name="CLIENTELOTECLIENTELOTEREUBICADO" Association="DB_JAADEModel.Store.CLIENTELOTECLIENTELOTEREUBICADO">
       <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+      <End Role="CLIENTELOTE1" EntitySet="CLIENTELOTE" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="USUARIO">
@@ -327,18 +327,20 @@
     <Property Name="Folio" Type="nchar" Nullable="false" MaxLength="9" />
     <Property Name="FechaArrendamiento" Type="datetime" Nullable="false" />
     <Property Name="CLIENTEId" Type="int" Nullable="false" />
+    <Property Name="SOCIOSId" Type="int" Nullable="true" />
     <Property Name="LOTEId" Type="int" Nullable="false" />
-    <Property Name="USUARIOOperacionId" Type="int" Nullable="false" />
     <Property Name="NoPagos" Type="int" Nullable="false" />
     <Property Name="PrecioInicial" Type="decimal" Nullable="false" Precision="18" Scale="7" />
     <Property Name="DiaPago" Type="int" Nullable="false" />
-    <Property Name="FechaReimpresion" Type="datetime" Nullable="true" />
-    <Property Name="SOCIOSId" Type="int" Nullable="true" />
     <Property Name="PagoInicial" Type="decimal" Nullable="false" Precision="18" Scale="7" />
-    <Property Name="ESTADOId" Type="int" Nullable="false" />
     <Property Name="NoPagosGracia" Type="int" Nullable="false" />
-    <Property Name="Observacion" Type="nvarchar" Nullable="true" MaxLength="2500" />
     <Property Name="MontoGracia" Type="decimal" Nullable="true" Precision="18" Scale="7" />
+    <Property Name="ESTADOId" Type="int" Nullable="false" />
+    <Property Name="Observacion" Type="nvarchar" Nullable="true" MaxLength="2500" />
+    <Property Name="USUARIOOperacionId" Type="int" Nullable="false" />
+    <Property Name="FechaReimpresion" Type="datetime" Nullable="true" />
+    <Property Name="CLIENTELOTEId" Type="int" Nullable="true" />
+    <Property Name="FechaInicioProrroga" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="PAGO">
     <Key>
@@ -348,11 +350,12 @@
     <Property Name="Folio" Type="nchar" Nullable="false" MaxLength="11" />
     <Property Name="FechaEmision" Type="datetime" Nullable="false" />
     <Property Name="ContratoId" Type="int" Nullable="false" />
-    <Property Name="USUARIORecibeId" Type="int" Nullable="false" />
-    <Property Name="Monto" Type="decimal" Nullable="false" Precision="18" Scale="7" />
-    <Property Name="FechaReimpresion" Type="datetime" Nullable="true" />
     <Property Name="NoPago" Type="int" Nullable="false" />
-    <Property Name="ContratoReubicadoId" Type="int" Nullable="true" />
+    <Property Name="Monto" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="Observacion" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="USUARIORecibeId" Type="int" Nullable="false" />
+    <Property Name="FechaReimpresion" Type="datetime" Nullable="true" />
+    <Property Name="PagoOrdinario" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="USUARIOESTADO">
     <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="*" />
@@ -678,15 +681,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="PAGOCLIENTELOTEREUBICADO">
-    <End Role="PAGO" Type="DB_JAADEModel.Store.PAGO" Multiplicity="*" />
-    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="0..1" />
+  <Association Name="CLIENTELOTECLIENTELOTEREUBICADO">
+    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="*" />
+    <End Role="CLIENTELOTE1" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="0..1" />
     <ReferentialConstraint>
-      <Principal Role="CLIENTELOTE">
+      <Principal Role="CLIENTELOTE1">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="PAGO">
-        <PropertyRef Name="ContratoReubicadoId" />
+      <Dependent Role="CLIENTELOTE">
+        <PropertyRef Name="CLIENTELOTEId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -822,9 +825,9 @@
             <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
             <End Role="ESTADO" EntitySet="ESTADO" />
           </AssociationSet>
-          <AssociationSet Name="PAGOCLIENTELOTEREUBICADO" Association="DB_JAADEModel.PAGOCLIENTELOTEREUBICADO">
-            <End Role="PAGO" EntitySet="PAGO" />
+          <AssociationSet Name="CLIENTELOTECLIENTELOTEREUBICADO" Association="DB_JAADEModel.CLIENTELOTECLIENTELOTEREUBICADO">
             <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+            <End Role="CLIENTELOTE1" EntitySet="CLIENTELOTE" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="USUARIO">
@@ -1278,22 +1281,25 @@
           <NavigationProperty Name="CLIENTE" Relationship="DB_JAADEModel.CLIENTELOTECLIENTE" FromRole="CLIENTELOTE" ToRole="CLIENTE" />
           <Property Name="FechaArrendamiento" Type="DateTime" Nullable="false" />
           <Property Name="CLIENTEId" Type="Int32" Nullable="false" />
+          <Property Name="SOCIOSId" Type="Int32" Nullable="true" />
           <Property Name="LOTEId" Type="Int32" Nullable="false" />
-          <Property Name="USUARIOOperacionId" Type="Int32" Nullable="false" />
           <Property Name="NoPagos" Type="Int32" Nullable="false" />
           <Property Name="PrecioInicial" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
           <NavigationProperty Name="LOTE" Relationship="DB_JAADEModel.CLIENTELOTELOTE" FromRole="CLIENTELOTE" ToRole="LOTE" />
           <NavigationProperty Name="USUARIO" Relationship="DB_JAADEModel.CLIENTELOTEUSUARIO" FromRole="CLIENTELOTE" ToRole="USUARIO" />
           <Property Name="DiaPago" Type="Int32" Nullable="false" />
-          <Property Name="FechaReimpresion" Type="DateTime" Nullable="true" />
-          <NavigationProperty Name="SOCIOS" Relationship="DB_JAADEModel.CLIENTELOTESOCIOS" FromRole="CLIENTELOTE" ToRole="SOCIOS" />
-          <Property Name="SOCIOSId" Type="Int32" Nullable="true" />
           <Property Name="PagoInicial" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <NavigationProperty Name="SOCIOS" Relationship="DB_JAADEModel.CLIENTELOTESOCIOS" FromRole="CLIENTELOTE" ToRole="SOCIOS" />
           <NavigationProperty Name="ESTADO" Relationship="DB_JAADEModel.CLIENTELOTEESTADO" FromRole="CLIENTELOTE" ToRole="ESTADO" />
-          <Property Name="ESTADOId" Type="Int32" Nullable="false" />
           <Property Name="NoPagosGracia" Type="Int32" Nullable="false" />
-          <Property Name="Observacion" Type="String" Unicode="true" Nullable="true" FixedLength="false" MaxLength="2500" />
           <Property Name="MontoGracia" Type="Decimal" Nullable="true" Scale="7" Precision="18" />
+          <Property Name="ESTADOId" Type="Int32" Nullable="false" />
+          <Property Name="Observacion" Type="String" Unicode="true" Nullable="true" FixedLength="false" MaxLength="2500" />
+          <Property Name="USUARIOOperacionId" Type="Int32" Nullable="false" />
+          <Property Name="FechaReimpresion" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="CLIENTELOTEREUBICADO" Relationship="DB_JAADEModel.CLIENTELOTECLIENTELOTEREUBICADO" FromRole="CLIENTELOTE" ToRole="CLIENTELOTE1" />
+          <Property Name="CLIENTELOTEId" Type="Int32" Nullable="true" />
+          <Property Name="FechaInicioProrroga" Type="DateTime" Nullable="true" />
         </EntityType>
         <Association Name="CLIENTELOTECLIENTE">
           <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="*" />
@@ -1340,13 +1346,13 @@
           <Property Name="FechaEmision" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="USUARIO" Relationship="DB_JAADEModel.PAGOUSUARIO" FromRole="PAGO" ToRole="USUARIO" />
           <Property Name="ContratoId" Type="Int32" Nullable="false" />
-          <Property Name="USUARIORecibeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CLIENTELOTE" Relationship="DB_JAADEModel.PAGOCLIENTELOTE" FromRole="PAGO" ToRole="CLIENTELOTE" />
-          <Property Name="Monto" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
-          <Property Name="FechaReimpresion" Type="DateTime" Nullable="true" />
           <Property Name="NoPago" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CLIENTELOTEREUBICADO" Relationship="DB_JAADEModel.PAGOCLIENTELOTEREUBICADO" FromRole="PAGO" ToRole="CLIENTELOTE" />
-          <Property Name="ContratoReubicadoId" Type="Int32" Nullable="true" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <Property Name="Observacion" Type="String" FixedLength="false" MaxLength="Max" Nullable="true" />
+          <Property Name="USUARIORecibeId" Type="Int32" Nullable="false" />
+          <Property Name="FechaReimpresion" Type="DateTime" Nullable="true" />
+          <Property Name="PagoOrdinario" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="PAGOUSUARIO">
           <End Type="DB_JAADEModel.PAGO" Role="PAGO" Multiplicity="*" />
@@ -1396,15 +1402,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PAGOCLIENTELOTEREUBICADO">
-          <End Type="DB_JAADEModel.PAGO" Role="PAGO" Multiplicity="*" />
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="0..1" />
+        <Association Name="CLIENTELOTECLIENTELOTEREUBICADO">
+          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE1" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="CLIENTELOTE">
+            <Principal Role="CLIENTELOTE1">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PAGO">
-              <PropertyRef Name="ContratoReubicadoId" />
+            <Dependent Role="CLIENTELOTE">
+              <PropertyRef Name="CLIENTELOTEId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1619,18 +1625,20 @@
           <ScalarProperty Name="Folio" ColumnName="Folio" />
           <ScalarProperty Name="FechaArrendamiento" ColumnName="FechaArrendamiento" />
           <ScalarProperty Name="CLIENTEId" ColumnName="CLIENTEId" />
+          <ScalarProperty Name="SOCIOSId" ColumnName="SOCIOSId" />
           <ScalarProperty Name="LOTEId" ColumnName="LOTEId" />
-          <ScalarProperty Name="USUARIOOperacionId" ColumnName="USUARIOOperacionId" />
           <ScalarProperty Name="NoPagos" ColumnName="NoPagos" />
           <ScalarProperty Name="PrecioInicial" ColumnName="PrecioInicial" />
           <ScalarProperty Name="DiaPago" ColumnName="DiaPago" />
-          <ScalarProperty Name="FechaReimpresion" ColumnName="FechaReimpresion" />
-          <ScalarProperty Name="SOCIOSId" ColumnName="SOCIOSId" />
           <ScalarProperty Name="PagoInicial" ColumnName="PagoInicial" />
-          <ScalarProperty Name="ESTADOId" ColumnName="ESTADOId" />
           <ScalarProperty Name="NoPagosGracia" ColumnName="NoPagosGracia" />
-          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
           <ScalarProperty Name="MontoGracia" ColumnName="MontoGracia" />
+          <ScalarProperty Name="ESTADOId" ColumnName="ESTADOId" />
+          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+          <ScalarProperty Name="USUARIOOperacionId" ColumnName="USUARIOOperacionId" />
+          <ScalarProperty Name="FechaReimpresion" ColumnName="FechaReimpresion" />
+          <ScalarProperty Name="CLIENTELOTEId" ColumnName="CLIENTELOTEId" />
+          <ScalarProperty Name="FechaInicioProrroga" ColumnName="FechaInicioProrroga" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1641,11 +1649,12 @@
           <ScalarProperty Name="Folio" ColumnName="Folio" />
           <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
           <ScalarProperty Name="ContratoId" ColumnName="ContratoId" />
-          <ScalarProperty Name="USUARIORecibeId" ColumnName="USUARIORecibeId" />
-          <ScalarProperty Name="Monto" ColumnName="Monto" />
-          <ScalarProperty Name="FechaReimpresion" ColumnName="FechaReimpresion" />
           <ScalarProperty Name="NoPago" ColumnName="NoPago" />
-          <ScalarProperty Name="ContratoReubicadoId" ColumnName="ContratoReubicadoId" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+          <ScalarProperty Name="USUARIORecibeId" ColumnName="USUARIORecibeId" />
+          <ScalarProperty Name="FechaReimpresion" ColumnName="FechaReimpresion" />
+          <ScalarProperty Name="PagoOrdinario" ColumnName="PagoOrdinario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

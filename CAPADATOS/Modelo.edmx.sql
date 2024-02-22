@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/16/2024 15:29:48
+-- Date Created: 02/21/2024 14:06:58
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -98,8 +98,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTEESTADO]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTEESTADO];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PAGOCLIENTELOTEREUBICADO]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PAGO] DROP CONSTRAINT [FK_PAGOCLIENTELOTEREUBICADO];
+IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTECLIENTELOTEREUBICADO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTECLIENTELOTEREUBICADO];
 GO
 
 -- --------------------------------------------------
@@ -355,18 +355,20 @@ CREATE TABLE [dbo].[CLIENTELOTE] (
     [Folio] nchar(9)  NOT NULL,
     [FechaArrendamiento] datetime  NOT NULL,
     [CLIENTEId] int  NOT NULL,
+    [SOCIOSId] int  NULL,
     [LOTEId] int  NOT NULL,
-    [USUARIOOperacionId] int  NOT NULL,
     [NoPagos] int  NOT NULL,
     [PrecioInicial] decimal(18,7)  NOT NULL,
     [DiaPago] int  NOT NULL,
-    [FechaReimpresion] datetime  NULL,
-    [SOCIOSId] int  NULL,
     [PagoInicial] decimal(18,7)  NOT NULL,
-    [ESTADOId] int  NOT NULL,
     [NoPagosGracia] int  NOT NULL,
+    [MontoGracia] decimal(18,7)  NULL,
+    [ESTADOId] int  NOT NULL,
     [Observacion] nvarchar(2500)  NULL,
-    [MontoGracia] decimal(18,7)  NULL
+    [USUARIOOperacionId] int  NOT NULL,
+    [FechaReimpresion] datetime  NULL,
+    [CLIENTELOTEId] int  NULL,
+    [FechaInicioProrroga] datetime  NULL
 );
 GO
 
@@ -376,11 +378,12 @@ CREATE TABLE [dbo].[PAGO] (
     [Folio] nchar(11)  NOT NULL,
     [FechaEmision] datetime  NOT NULL,
     [ContratoId] int  NOT NULL,
-    [USUARIORecibeId] int  NOT NULL,
-    [Monto] decimal(18,7)  NOT NULL,
-    [FechaReimpresion] datetime  NULL,
     [NoPago] int  NOT NULL,
-    [ContratoReubicadoId] int  NULL
+    [Monto] decimal(18,7)  NOT NULL,
+    [Observacion] nvarchar(max)  NULL,
+    [USUARIORecibeId] int  NOT NULL,
+    [FechaReimpresion] datetime  NULL,
+    [PagoOrdinario] bit  NOT NULL
 );
 GO
 
@@ -911,19 +914,19 @@ ON [dbo].[CLIENTELOTE]
     ([ESTADOId]);
 GO
 
--- Creating foreign key on [ContratoReubicadoId] in table 'PAGO'
-ALTER TABLE [dbo].[PAGO]
-ADD CONSTRAINT [FK_PAGOCLIENTELOTEREUBICADO]
-    FOREIGN KEY ([ContratoReubicadoId])
+-- Creating foreign key on [CLIENTELOTEId] in table 'CLIENTELOTE'
+ALTER TABLE [dbo].[CLIENTELOTE]
+ADD CONSTRAINT [FK_CLIENTELOTECLIENTELOTEREUBICADO]
+    FOREIGN KEY ([CLIENTELOTEId])
     REFERENCES [dbo].[CLIENTELOTE]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_PAGOCLIENTELOTEREUBICADO'
-CREATE INDEX [IX_FK_PAGOCLIENTELOTEREUBICADO]
-ON [dbo].[PAGO]
-    ([ContratoReubicadoId]);
+-- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTECLIENTELOTEREUBICADO'
+CREATE INDEX [IX_FK_CLIENTELOTECLIENTELOTEREUBICADO]
+ON [dbo].[CLIENTELOTE]
+    ([CLIENTELOTEId]);
 GO
 
 -- --------------------------------------------------

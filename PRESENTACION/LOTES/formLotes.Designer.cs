@@ -112,7 +112,7 @@
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 8;
             this.label1.Text = "Buscar:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // toolStrip1
             // 
@@ -322,7 +322,7 @@
             this.label15.Size = new System.Drawing.Size(115, 23);
             this.label15.TabIndex = 73;
             this.label15.Text = "Fecha Registro:";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbxManzana
             // 
@@ -344,7 +344,7 @@
             this.label14.Size = new System.Drawing.Size(115, 23);
             this.label14.TabIndex = 71;
             this.label14.Text = "Manzana:";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnModulo
             // 
@@ -366,7 +366,7 @@
             this.label10.Size = new System.Drawing.Size(115, 23);
             this.label10.TabIndex = 68;
             this.label10.Text = "C. Este:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
             // 
@@ -376,7 +376,7 @@
             this.label11.Size = new System.Drawing.Size(115, 23);
             this.label11.TabIndex = 66;
             this.label11.Text = "C. Oeste:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label12
             // 
@@ -386,7 +386,7 @@
             this.label12.Size = new System.Drawing.Size(115, 23);
             this.label12.TabIndex = 64;
             this.label12.Text = "C. Sur:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label13
             // 
@@ -396,7 +396,7 @@
             this.label13.Size = new System.Drawing.Size(115, 23);
             this.label13.TabIndex = 62;
             this.label13.Text = "C. Norte:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label9
             // 
@@ -406,7 +406,7 @@
             this.label9.Size = new System.Drawing.Size(115, 23);
             this.label9.TabIndex = 60;
             this.label9.Text = "M. Este:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
             // 
@@ -416,7 +416,7 @@
             this.label8.Size = new System.Drawing.Size(115, 23);
             this.label8.TabIndex = 58;
             this.label8.Text = "M. Oeste:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label5
             // 
@@ -426,7 +426,7 @@
             this.label5.Size = new System.Drawing.Size(115, 23);
             this.label5.TabIndex = 56;
             this.label5.Text = "M. Sur:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbxZona
             // 
@@ -448,7 +448,7 @@
             this.label7.Size = new System.Drawing.Size(115, 23);
             this.label7.TabIndex = 53;
             this.label7.Text = "Lotes Dinamicos:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
             // 
@@ -458,7 +458,7 @@
             this.label6.Size = new System.Drawing.Size(115, 23);
             this.label6.TabIndex = 51;
             this.label6.Text = "Precio:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
@@ -468,7 +468,7 @@
             this.label4.Size = new System.Drawing.Size(115, 23);
             this.label4.TabIndex = 12;
             this.label4.Text = "M. Norte:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -478,7 +478,7 @@
             this.label3.Size = new System.Drawing.Size(115, 23);
             this.label3.TabIndex = 10;
             this.label3.Text = "Zona:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
@@ -488,7 +488,7 @@
             this.label2.Size = new System.Drawing.Size(115, 23);
             this.label2.TabIndex = 8;
             this.label2.Text = "Identificador:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnCancelar
             // 

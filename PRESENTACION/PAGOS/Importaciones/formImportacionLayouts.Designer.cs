@@ -1,6 +1,6 @@
-﻿namespace PRESENTACION.BUSQUEDA
+﻿namespace PRESENTACION.PAGOS.Importaciones
 {
-    partial class busModulos
+    partial class formImportacionLayouts
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(busModulos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formImportacionLayouts));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.cbxTipo = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsTotalRegistros = new System.Windows.Forms.ToolStripLabel();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnLayout = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
@@ -46,8 +48,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtBuscar);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cbxTipo);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.toolStrip1);
             this.groupBox1.Controls.Add(this.dgvRegistros);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -55,26 +57,33 @@
             this.groupBox1.Size = new System.Drawing.Size(750, 380);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Registros";
+            this.groupBox1.Text = "Importaciones";
             // 
-            // txtBuscar
+            // cbxTipo
             // 
-            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(326, 30);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(225, 23);
-            this.txtBuscar.TabIndex = 26;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            this.cbxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTipo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxTipo.FormattingEnabled = true;
+            this.cbxTipo.Items.AddRange(new object[] {
+            "CLIENTES",
+            "ZONAS",
+            "LOTES",
+            "CONTRATOS",
+            "PAGOS"});
+            this.cbxTipo.Location = new System.Drawing.Point(145, 36);
+            this.cbxTipo.Name = "cbxTipo";
+            this.cbxTipo.Size = new System.Drawing.Size(225, 23);
+            this.cbxTipo.TabIndex = 189;
             // 
-            // label1
+            // label10
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(205, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 23);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Buscar:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(24, 36);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(115, 23);
+            this.label10.TabIndex = 190;
+            this.label10.Text = "Tipo:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // toolStrip1
             // 
@@ -85,14 +94,14 @@
             this.toolStrip1.Location = new System.Drawing.Point(3, 352);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(744, 25);
-            this.toolStrip1.TabIndex = 22;
+            this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(102, 22);
-            this.toolStripLabel1.Text = "Total de Registros:";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
+            this.toolStripLabel1.Text = "Total de registros:";
             // 
             // tsTotalRegistros
             // 
@@ -102,25 +111,32 @@
             // 
             // dgvRegistros
             // 
-            this.dgvRegistros.AllowUserToAddRows = false;
-            this.dgvRegistros.AllowUserToDeleteRows = false;
-            this.dgvRegistros.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvRegistros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRegistros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegistros.Location = new System.Drawing.Point(15, 69);
-            this.dgvRegistros.MultiSelect = false;
+            this.dgvRegistros.Location = new System.Drawing.Point(19, 81);
             this.dgvRegistros.Name = "dgvRegistros";
-            this.dgvRegistros.ReadOnly = true;
-            this.dgvRegistros.RowHeadersVisible = false;
-            this.dgvRegistros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRegistros.Size = new System.Drawing.Size(722, 280);
-            this.dgvRegistros.TabIndex = 21;
-            this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
-            this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
+            this.dgvRegistros.Size = new System.Drawing.Size(722, 253);
+            this.dgvRegistros.TabIndex = 0;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btnLayout
+            // 
+            this.btnLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLayout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLayout.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLayout.Image = global::PRESENTACION.Properties.Resources.excel;
+            this.btnLayout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLayout.Location = new System.Drawing.Point(12, 398);
+            this.btnLayout.MaximumSize = new System.Drawing.Size(110, 40);
+            this.btnLayout.MinimumSize = new System.Drawing.Size(110, 40);
+            this.btnLayout.Name = "btnLayout";
+            this.btnLayout.Size = new System.Drawing.Size(110, 40);
+            this.btnLayout.TabIndex = 43;
+            this.btnLayout.Text = "     Layout";
+            this.btnLayout.UseVisualStyleBackColor = true;
+            this.btnLayout.Click += new System.EventHandler(this.btnLayout_Click);
             // 
             // btnCancelar
             // 
@@ -144,7 +160,7 @@
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.seleccione;
+            this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.upload;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.Location = new System.Drawing.Point(536, 398);
             this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
@@ -152,25 +168,25 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(110, 40);
             this.btnGuardar.TabIndex = 41;
-            this.btnGuardar.Text = "     Seleccionar";
+            this.btnGuardar.Text = "     Importar";
             this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // busModulos
+            // formImportacionLayouts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 450);
+            this.Controls.Add(this.btnLayout);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(790, 489);
             this.MinimumSize = new System.Drawing.Size(790, 489);
-            this.Name = "busModulos";
-            this.Text = "Búsqueda - Módulos";
-            this.Load += new System.EventHandler(this.busModulos_Load);
-            this.Shown += new System.EventHandler(this.busModulos_Shown);
+            this.Name = "formImportacionLayouts";
+            this.Text = "formImportContratos";
+            this.Load += new System.EventHandler(this.formImportacionLayouts_Load);
+            this.Shown += new System.EventHandler(this.formImportacionLayouts_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -183,13 +199,16 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DataGridView dgvRegistros;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel tsTotalRegistros;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnLayout;
+        private System.Windows.Forms.ComboBox cbxTipo;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

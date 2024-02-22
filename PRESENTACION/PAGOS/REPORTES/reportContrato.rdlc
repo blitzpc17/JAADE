@@ -100,12 +100,34 @@
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> DEL DIA </Value>
+                    <Value> HORAS </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!MINUTO.Value</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> MINUTOS DEL </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -122,7 +144,7 @@
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
@@ -144,12 +166,12 @@
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> DEL AÑO DOS MIL </Value>
+                    <Value> DEL AÑO </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -166,56 +188,12 @@
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>, SE PROCEDE A REDACTAR EL CONTRATO DE COMPRAVENTA QUE CELEBRA POR UNA PARTE EL C. </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!CLIENTE.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> Y POR OTRA PARTE </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>Red</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> DOCUMENTO QUE SE SUJETA A LAS SIGUIENTES DECLARACIONES Y CLAUSULAS:</Value>
+                    <Value>, SE PROCEDE A REDACTAR EL CONTRATO DE COMPRAVENTA QUE CELEBRA POR UNA PARTE EL C. ALEJANDRA GUADALUPE MORO GARCIA Y POR OTRA PARTE   DOCUMENTO QUE SE SUJETA A LAS SIGUIENTES DECLARACIONES Y CLAUSULAS:</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -231,12 +209,24 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value xml:space="preserve">
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">========================DECLARACIONES=======================</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
@@ -247,47 +237,17 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value EvaluationMode="Constant">======================DECLARACIONES=========================</Value>
+                    <Value xml:space="preserve">
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
                     <Value>1.-</Value>
                     <Style>
@@ -300,7 +260,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> EL VENDEDOR manifiesta que es una persona física con la capacidad jurídica necesaria para obligarse en términos y condiciones de este contrato, con domicilio en calle </Value>
+                    <Value> EL VENDEDOR manifiesta que es una persona física con la capacidad jurídica necesaria para obligarse en términos y condiciones de este contrato, con domicilio en 	Calle </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -421,17 +381,24 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>2-.</Value>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>2.-</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -459,22 +426,51 @@
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>.</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>El bien inmueble materia de la compraventa está identificado como lote número </Value>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>3.-</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> El bien inmueble materia de la compraventa está identificado como lote número </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -496,24 +492,14 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value xml:space="preserve"> </Value>
+                    <Value> de la manzana </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
-                      <Color>Red</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>de la Manzana </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
@@ -523,17 +509,19 @@
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> Ubicado en </Value>
+                    <Value>. Ubicado en la parcela número </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
@@ -543,21 +531,12 @@
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>y cuyas medidas y colindancias son las siguientes:</Value>
+                    <Value>  y cuyas medidas y colindancias son las siguientes:</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -568,19 +547,39 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>AL NORTE MIDE     </Value>
+                    <Value xml:space="preserve">
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>AL NORTE</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>: </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -590,24 +589,19 @@
                     <Value>=Parameters!MNORTE.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>    METROS Y COLINDA CON:     </Value>
+                    <Value> metros y colinda con </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -617,52 +611,42 @@
                     <Value>=Parameters!CNORTE.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> .</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value xml:space="preserve">
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontSize>11pt</FontSize>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value>AL SUR MIDE     </Value>
+                    <Value>AL SUR</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>: </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -672,15 +656,19 @@
                     <Value>=Parameters!MSUR.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>     METROS Y COLINDA CON:     </Value>
+                    <Value> metros y colinda con </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -690,52 +678,42 @@
                     <Value>=Parameters!CSUR.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> .   </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value xml:space="preserve">
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontSize>11pt</FontSize>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value>AL ORIENTE MIDE     </Value>
+                    <Value>AL ORIENTE</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>: </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -745,34 +723,19 @@
                     <Value>=Parameters!MESTE.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve">     </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>METROS</Value>
+                    <Value> metros y colinda con </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> Y COLINDA CON:     </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -782,51 +745,42 @@
                     <Value>=Parameters!CESTE.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>AL PONIENTE</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> .</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value xml:space="preserve"> </Value>
+                    <Value>: </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>AL PONIENTE MIDE     </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -836,24 +790,19 @@
                     <Value>=Parameters!MOESTE.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value xml:space="preserve"> </Value>
+                    <Value> metros y colinda con </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>    METROS Y COLINDA CON:     </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -863,64 +812,16 @@
                     <Value>=Parameters!COESTE.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> .</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value EvaluationMode="Constant">==========================CLAUSULAS=========================</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
                 <Style>
                   <TextAlign>Center</TextAlign>
-                  <LineHeight>12pt</LineHeight>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -937,32 +838,59 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
                 <Style>
                   <TextAlign>Center</TextAlign>
-                  <LineHeight>12pt</LineHeight>
                 </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">=========================CLAUSULAS==========================</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
                   <TextRun>
                     <Value>I.-</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> El C.</Value>
+                    <Value> El C.  </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -973,166 +901,41 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> vende </Value>
+                    <Value> vende con reserva de dominio al C.  </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>con reserva de dominio</Value>
+                    <Value>=Parameters!CLIENTE.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> al</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>C. </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!NOMBRECLIENTE.Value</Value>
+                    <Value>
+el bien inmueble identificado como lote número 20 de la manzana 03. Ubicado en la parcela número </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>el bien inmueble identificado como lote número </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!CODIGOLOTE.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>de la manzana </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!MANZANA.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> .</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Ubicado en </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
@@ -1143,35 +946,14 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> .</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value>Los contratantes convienen en que el precio fijado por la presente compraventa total del predio es la cantidad de </Value>
+                    <Value>.</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1182,17 +964,35 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>$</Value>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>II.-</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> Los contratantes convienen en que el precio fijado por la presente compraventa total del predio es la cantidad de $</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1208,13 +1008,13 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> monto que será cubierto en mensualidades de la siguiente manera:</Value>
+                    <Value> (Ciento Cuarenta Mil Pesos 00/100 Moneda Nacional) monto que será cubierto en mensualidades de la siguiente manera:</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1225,12 +1025,23 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1246,18 +1057,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value xml:space="preserve">   </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>Un pago inicial de $</Value>
+                    <Value>	Un pago inicial de $ </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1273,25 +1073,14 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <HangingIndent>-18pt</HangingIndent>
-                <ListLevel>1</ListLevel>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value> (Cinco mil Pesos 00/100 Moneda Nacional).
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1301,24 +1090,24 @@
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0.88547cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <ListLevel>1</ListLevel>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value>b)   </Value>
+                    <Value>b)</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
@@ -1329,24 +1118,14 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>mensualidades de $</Value>
+                    <Value>	 Mensualidades de $3,000 (Tres mil pesos 00/100 Moneda Nacional).
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1356,63 +1135,6 @@
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!MONTOPAGOMENSUAL.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> .</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <HangingIndent>-18pt</HangingIndent>
-                <ListLevel>1</ListLevel>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <HangingIndent>-18pt</HangingIndent>
-                <ListLevel>1</ListLevel>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
                     <Value>c)</Value>
                     <Style>
@@ -1421,26 +1143,18 @@
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value xml:space="preserve">   </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>Los pagos se efectuarán los días </Value>
+                    <Value>	Los pagos se efectuarán los días </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
@@ -1449,54 +1163,40 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> de cada mes en el domicilio del vendedor.</Value>
+                    <Value> de cada mes en el domicilio del vendedor. </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <HangingIndent>-18pt</HangingIndent>
                 <ListLevel>1</ListLevel>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value xml:space="preserve">
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <HangingIndent>-18pt</HangingIndent>
-                <ListLevel>1</ListLevel>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
                     <Value>III.-</Value>
                     <Style>
@@ -1509,18 +1209,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>Se establece que las </Value>
+                    <Value> Se establece que las </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1536,13 +1225,13 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> (mensualidades) para liquidar la operación de compraventa serán obligatorios para el vendedor, pero no así para el comprador pudiente este último liquidar de en un plazo menor;</Value>
+                    <Value> (mensualidades) para liquidar la operación de compraventa serán obligatorios para el vendedor, pero no así para el comprador pudiente este último liquidar de en un plazo menor; </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1553,17 +1242,24 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>IV.-</Value>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>IV.- </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1574,7 +1270,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> Ambas partes acuerdan que en caso de que el comprador exceda del plazo de </Value>
+                    <Value>Ambas partes acuerdan que en caso de que el comprador exceda del plazo de </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1590,45 +1286,13 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>mensualidades para liquidar el pago total, se le incrementara un 25% del monto total de la deuda, mismo que deberá ser cubierto en </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>3 mensualidades</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>.</Value>
+                    <Value> mensualidades para liquidar el pago total, se le incrementara un 25 % del monto total de la deuda, mismo que deberá ser cubierto en 6 mensualidades.</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1639,15 +1303,22 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
                   <TextRun>
                     <Value>V.-</Value>
                     <Style>
@@ -1660,7 +1331,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>El comprador </Value>
+                    <Value> El comprador se reserva de dominio del bien inmueble, quedando está condicionada al cumplimiento del pago total (45 mensualidades) por lo cual la propiedad permanecerá en favor del vendedor y el único medio para que aquélla se transmita al nuevo adquirente, será cubriendo el adeudo pactado en la cláusula II.</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1668,94 +1339,25 @@
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>se </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>reserva de dominio del bien inmueble</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#212529</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>, quedando está condicionada al cumplimiento del pago total (</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#212529</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!NOPAGOS.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#212529</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#212529</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>mensualidades</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>) por lo cual la propiedad permanecerá en favor del vendedor y el único medio para que aquélla se transmita al nuevo adquirente, será cubriendo el adeudo pactado en la cláusula II.</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#212529</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
                   <TextRun>
                     <Value>VI.-</Value>
                     <Style>
@@ -1768,51 +1370,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> Ambas partes acuerdan</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>que el comprador toma posesión del bien inmueble materia de la compraventa y en caso de que incumpla con lo establecido en la cláusula II, III, IV, VII este se considerara como </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>abandono</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> del lote y dicha posesión será recuperada por el vendedor. </Value>
+                    <Value> Ambas partes acuerdan que el comprador toma posesión del bien inmueble materia de la compraventa y en caso de que incumpla con lo establecido en la cláusula II, III, IV, VII este se considerara como abandono del lote y dicha posesión será recuperada por el vendedor. </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1823,17 +1381,24 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>VII.- </Value>
+                    <Value xml:space="preserve"> 
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>VII.-</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1844,7 +1409,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>Ambas partes acuerdan que en caso de terminación o recisión del contrato será devuelto el 50 % de las mensualidades pagadas siempre y cuando tenga un mínimo de un año abonado ininterrumpidamente y con previo otorgamiento del convenio extintivo de compraventa.</Value>
+                    <Value> Ambas partes acuerdan que en caso de terminación o recisión del contrato será devuelto el 50 % de las mensualidades pagadas siempre y cuando tenga un mínimo de un año abonado ininterrumpidamente y con previo otorgamiento del convenio extintivo de compraventa.</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1855,15 +1420,22 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
                   <TextRun>
                     <Value>VIII.-</Value>
                     <Style>
@@ -1876,29 +1448,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> En caso de que el comprador incumpla con el pago de 3 mensualidades o más, el lote podrá ser recogido sin necesidad de cancelación o recisión de contrato, o en su defecto podrá ser </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>reubicado</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> en otro lote o lotificación a solicitud del comprador y con ello poder recuperar lo abonado (mensualidades).</Value>
+                    <Value> En caso de que el comprador incumpla con el pago de 3 mensualidades o más, el lote podrá ser recogido sin necesidad de cancelación o recisión de contrato, o en su defecto podrá ser reubicado en otro lote o lotificación a solicitud del comprador y con ello poder recuperar lo abonado (mensualidades).</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1909,15 +1459,22 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">
+</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
                   <TextRun>
                     <Value>IX.-</Value>
                     <Style>
@@ -1941,17 +1498,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>12pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADOS, FIRMANDO QUIENES INTERVIENEN Y LOS TESTIGOS INSTRUMENTALES QUE DAN FE DE LA PRESENTE COMPRA VENTA.</Value>
+                    <Value>
+SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADOS, FIRMANDO QUIENES INTERVIENEN Y LOS TESTIGOS INSTRUMENTALES QUE DAN FE DE LA PRESENTE COMPRAVENTA.
+</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1962,12 +1516,7 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
+                <Style />
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -2162,6 +1711,90 @@
                 <TextRuns>
                   <TextRun>
                     <Value>“EL COMPRADORES (A)”</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12.5pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <LeftIndent>0cm</LeftIndent>
+                <RightIndent>0cm</RightIndent>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                  <LineHeight>13pt</LineHeight>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12.5pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <LeftIndent>0cm</LeftIndent>
+                <RightIndent>0cm</RightIndent>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                  <LineHeight>13pt</LineHeight>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12.5pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <LeftIndent>0cm</LeftIndent>
+                <RightIndent>0cm</RightIndent>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                  <LineHeight>13pt</LineHeight>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12.5pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <LeftIndent>0cm</LeftIndent>
+                <RightIndent>0cm</RightIndent>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                  <LineHeight>13pt</LineHeight>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!CLIENTE.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -2401,11 +2034,19 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="MINUTO">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NOLOTE">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>8</NumberOfRows>
+      <NumberOfRows>9</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -2566,6 +2207,16 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>7</RowIndex>
           <ParameterName>MONTOPAGOMENSUAL</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>MINUTO</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>NOLOTE</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

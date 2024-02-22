@@ -16,10 +16,13 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         private LotesADO contextoLote;
         private ContratoLoteADO contextoContrato;
         
-        public clsPagoData ObjPagoData;
+  //      public clsPagoData ObjPagoData;
         public PAGO ObjPago;
         public clsContratoCliente ObjContratoData;
-        
+        public CLIENTELOTE ObjContrato;
+
+        public clsInformacionContratoPago ObjInformacionPago;
+
         public formPagoLogica()
         {
             contextoPago = new PagoADO();
@@ -41,7 +44,12 @@ namespace CAPALOGICA.LOGICAS.PAGOS
             contextoPago.Guardar();
         }
 
-        public void BuscarPagoFolio(string folioContrato)
+        public void GuardarContrato()
+        {
+            contextoLote.Guardar();
+        }
+
+      /*  public void BuscarPagoFolio(string folioContrato)
         {
             ObjPagoData = contextoPago.ObtenerPagoClienteFolio(folioContrato);
             if (ObjPagoData != null)
@@ -49,17 +57,42 @@ namespace CAPALOGICA.LOGICAS.PAGOS
                 ObjPago = contextoPago.Obtener(ObjPagoData.PagoId);
                 ObjContratoData = contextoContrato.ObtenerContratoClienteFolio(ObjPagoData.FolioContrato);
             }
-        }
+        }*/
 
         public void BuscarContratoFolio(string folioContrato)
         {
-            ObjContratoData = contextoContrato.ObtenerContratoClienteFolio(folioContrato); 
+            ObjContratoData = contextoContrato.ObtenerContratoClienteFolio(folioContrato);
+            if (ObjContratoData != null)
+            {
+                ObjContrato = contextoContrato.Obtener(ObjContratoData.ContratoId);
+                ObtenerInformacionPago(folioContrato);
+            }
+            
         }
 
-        
+        public void BuscarContratoId(int ContratoId)
+        {
+            ObjContratoData = contextoContrato.ObtenerContratoClienteXId(ContratoId);
+            if (ObjContratoData != null)
+            {
+                ObjContrato = contextoContrato.Obtener(ObjContratoData.ContratoId);
+            }
 
+        }
 
+        public void ObtenerInformacionPago(string folio)
+        {
+            ObjInformacionPago = contextoPago.ObtenerInformacionPago(folio);
+        }
 
+        public void ObtenerPago(int id)
+        {
+            ObjPago = contextoPago.Obtener(id);
+        }
 
+        public void ObtenerPagFolioo(string folio)
+        {
+            ObjPago = contextoPago.ObtenerXFolio(folio);
+        }
     }
 }

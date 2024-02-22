@@ -33,12 +33,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsTotalRegistros = new System.Windows.Forms.ToolStripLabel();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
@@ -91,6 +91,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registros";
             // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(326, 30);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(225, 23);
+            this.txtBuscar.TabIndex = 25;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -99,7 +108,7 @@
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 23;
             this.label1.Text = "Buscar:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // toolStrip1
             // 
@@ -146,15 +155,6 @@
             this.dgvRegistros.TabIndex = 21;
             this.dgvRegistros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellClick);
             this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
-            // 
-            // txtBuscar
-            // 
-            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(326, 30);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(225, 23);
-            this.txtBuscar.TabIndex = 25;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // busClientes
             // 

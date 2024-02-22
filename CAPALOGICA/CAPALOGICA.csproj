@@ -50,6 +50,7 @@
     <Compile Include="LOGICAS\PAGOS\busClientesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formClientesLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formContratoLogica.cs" />
+    <Compile Include="LOGICAS\PAGOS\formImportacionLayoutsLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formPagoLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catEstadosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catRolesLogica.cs" />

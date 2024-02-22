@@ -108,7 +108,7 @@
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 23;
             this.label1.Text = "Buscar:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // toolStrip1
             // 

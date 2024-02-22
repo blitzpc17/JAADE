@@ -92,6 +92,8 @@
     </Compile>
     <Compile Include="Entidades\clsAgenda.cs" />
     <Compile Include="Entidades\clsAGENDACLIENTE.cs" />
+    <Compile Include="Entidades\clsArrendamientoLoteData.cs" />
+    <Compile Include="Entidades\clsBusquedaPago.cs" />
     <Compile Include="Entidades\clsClienteLote.cs" />
     <Compile Include="Entidades\clsClientes.cs" />
     <Compile Include="Entidades\clsClientesImportacion.cs" />
@@ -102,6 +104,8 @@
     <Compile Include="Entidades\clsCredencialesFtp.cs" />
     <Compile Include="Entidades\clsCredencialesTwilio.cs" />
     <Compile Include="Entidades\clsExcepciones.cs" />
+    <Compile Include="Entidades\clsFormatoFechaEscrito.cs" />
+    <Compile Include="Entidades\clsInformacionContratoPago.cs" />
     <Compile Include="Entidades\clsInformacionPagoLote.cs" />
     <Compile Include="Entidades\clsLotes.cs" />
     <Compile Include="Entidades\clsModulo.cs" />

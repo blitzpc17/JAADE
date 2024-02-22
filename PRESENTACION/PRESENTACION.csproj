@@ -177,17 +177,11 @@
     <Compile Include="PAGOS\formPago.Designer.cs">
       <DependentUpon>formPago.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAGOS\Importaciones\formImportContratos.cs">
+    <Compile Include="PAGOS\Importaciones\formImportacionLayouts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PAGOS\Importaciones\formImportContratos.Designer.cs">
-      <DependentUpon>formImportContratos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PAGOS\Importaciones\formImportPagos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PAGOS\Importaciones\formImportPagos.Designer.cs">
-      <DependentUpon>formImportPagos.cs</DependentUpon>
+    <Compile Include="PAGOS\Importaciones\formImportacionLayouts.Designer.cs">
+      <DependentUpon>formImportacionLayouts.cs</DependentUpon>
     </Compile>
     <Compile Include="PAGOS\REPORTES\dtTicket.cs">
       <DependentUpon>dtTicket.xsd</DependentUpon>
@@ -308,10 +302,16 @@
     <EmbeddedResource Include="PAGOS\formPago.resx">
       <DependentUpon>formPago.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\Importaciones\formImportacionLayouts.resx">
+      <DependentUpon>formImportacionLayouts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\repContratoLote.resx">
       <DependentUpon>repContratoLote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\reportContrato.rdlc" />
+    <EmbeddedResource Include="PAGOS\REPORTES\repPagosGlobal.resx">
+      <DependentUpon>repPagosGlobal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\repTicket.resx">
       <DependentUpon>repTicket.cs</DependentUpon>
     </EmbeddedResource>
@@ -404,6 +404,7 @@
     <None Include="Resources\persona.png" />
     <None Include="Resources\upload.png" />
     <None Include="Resources\contrato.png" />
+    <None Include="Resources\excel.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

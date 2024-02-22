@@ -195,7 +195,7 @@
             this.label15.Size = new System.Drawing.Size(115, 23);
             this.label15.TabIndex = 38;
             this.label15.Text = "Estado:";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label13
             // 
@@ -205,7 +205,7 @@
             this.label13.Size = new System.Drawing.Size(115, 23);
             this.label13.TabIndex = 34;
             this.label13.Text = "Clave:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -215,7 +215,7 @@
             this.label3.Size = new System.Drawing.Size(115, 23);
             this.label3.TabIndex = 13;
             this.label3.Text = "Apellidos:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -225,7 +225,7 @@
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 11;
             this.label1.Text = "Nombre(s):";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtCurp
             // 
@@ -238,12 +238,13 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label16.Location = new System.Drawing.Point(10, 213);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(115, 23);
             this.label16.TabIndex = 54;
             this.label16.Text = "Entidad Fed:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtEntidadFederativa
             // 
@@ -264,12 +265,13 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label14.Location = new System.Drawing.Point(10, 184);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(115, 23);
             this.label14.TabIndex = 52;
             this.label14.Text = "Municipio:";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtCodigoPostal
             // 
@@ -322,62 +324,68 @@
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label12.Location = new System.Drawing.Point(10, 155);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(115, 23);
             this.label12.TabIndex = 32;
             this.label12.Text = "Código Postal:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label11.Location = new System.Drawing.Point(10, 126);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(115, 23);
             this.label11.TabIndex = 30;
             this.label11.Text = "Localidad:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label10.Location = new System.Drawing.Point(10, 97);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(115, 23);
             this.label10.TabIndex = 28;
             this.label10.Text = "Colonia:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label9.Location = new System.Drawing.Point(10, 68);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(115, 23);
             this.label9.TabIndex = 26;
             this.label9.Text = "No. Int:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label8.Location = new System.Drawing.Point(10, 39);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 23);
             this.label8.TabIndex = 24;
             this.label8.Text = "No. Ext:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label7.Location = new System.Drawing.Point(10, 10);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(115, 23);
             this.label7.TabIndex = 22;
             this.label7.Text = "Calle:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // dtpFechaNacimiento
             // 
@@ -397,7 +405,7 @@
             this.label6.Size = new System.Drawing.Size(115, 23);
             this.label6.TabIndex = 19;
             this.label6.Text = "Curp:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label5
             // 
@@ -407,7 +415,7 @@
             this.label5.Size = new System.Drawing.Size(115, 23);
             this.label5.TabIndex = 17;
             this.label5.Text = "Fecha Nacimiento:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tabDatos
             // 
@@ -515,7 +523,7 @@
             this.label2.Size = new System.Drawing.Size(115, 23);
             this.label2.TabIndex = 50;
             this.label2.Text = "Dato contacto:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbxTipoContacto
             // 
@@ -535,7 +543,7 @@
             this.label17.Size = new System.Drawing.Size(115, 23);
             this.label17.TabIndex = 47;
             this.label17.Text = "Tipo:";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // dgvAgenda
             // 
@@ -597,7 +605,7 @@
             this.label4.Size = new System.Drawing.Size(115, 23);
             this.label4.TabIndex = 53;
             this.label4.Text = "Socio:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // toolStrip2
             // 

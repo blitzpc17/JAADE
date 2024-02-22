@@ -47,55 +47,116 @@ namespace CAPADATOS.ADO.PAGOS
 
         public clsContratoCliente ObtenerContratoClienteFolio(string folio)
         {
-            string query =  "SELECT \r\n"+
-                            "CL.Id AS ContratoId, CL.Folio, \r\n"+
-                            "CLI.Clave as ClaveCliente, (PER.Nombres + ' ' + PER.Apellidos) AS ClienteNombre, \r\n"+
-                            "CLI.Id as ClienteId, LT.Identificador AS ClaveLote, ZN.Nombre as ZonaLote, \r\n"+
-                            "LT.Id as LoteId, ZN.Id as ZonaLoteId,  \r\n"+
-                            "CL.PrecioInicial as PrecioLote, CL.NoPagos, CL.DiaPago,  \r\n"+
-                            "CL.FechaArrendamiento as FechaEmision,  \r\n"+
-                            "(PER.Nombres + ' ' + PER.Apellidos) as UsuarioRealizo, CL.FechaReimpresion, \r\n"+
-                            "CL.SOCIOSId as SocioId, \r\n" +
-                            "(SELECT COUNT(*) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as PagosRealizados, \r\n" +
-                            "CL.NoPagosGracia, CL.PagoInicial, EDO.Id AS EstadoId, EDO.Nombre as Estado, \r\n" +
-                            "cl.Observacion, cl.MontoGracia \r\n" +
-                            "FROM CLIENTELOTE AS CL \r\n" +
-                            "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n"+
-                            "JOIN PERSONA PER ON CLI.PERSONAId = PER.Id \r\n"+
+            string query = "SELECT  \r\n"+
+                            "CL.Id as ContratoId, CL.Folio AS NoReferencia, CL.PrecioInicial AS PrecioLote,  \r\n"+
+                            "CL.NoPagos, CL.DiaPago, Cl.PagoInicial,  \r\n"+
+                            "CL.NoPagosGracia, CL.MontoGracia,  \r\n"+
+                            "C.Id AS ClienteId, C.Clave AS ClaveCliente, (PC.Nombres + ' ' + pc.Apellidos) AS NombreCliente, \r\n"+
+                            "LT.Id AS LoteId, LT.Identificador AS IdentificadorLote,  \r\n"+
+                            "Zn.Id AS ZonaId, ZN.Nombre AS NombreZona, \r\n"+
+                            "SOC.Id AS SocioId, SOC.Nombre as SocioNombre, \r\n"+
+                            "EDO.Id AS EstadoId, EDO.Nombre AS NombreEstado, \r\n"+
+                            "CRU.Id as ContratoReubicadoId, CRU.Folio As ContratoReubicado, \r\n" +
+                            "EDO.Id AS EstadoId, EDO.Nombre AS EstadoNombre, \r\n"+
+                            "CL.FechaArrendamiento AS FechaEmision, CL.FechaReimpresion, \r\n"+
+                            "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre \r\n"+
+                            "FROM CLIENTELOTE CL \r\n"+
+                            "JOIN CLIENTE C ON CL.CLIENTEId = C.Id \r\n"+
+                            "JOIN PERSONA PC ON C.PERSONAId = PC.Id \r\n"+
                             "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n"+
                             "JOIN ZONA ZN ON LT.ZONAId = ZN.Id \r\n"+
-                            "JOIN USUARIO USOP ON CL.USUARIOOperacionId = USOP.Id \r\n"+
-                            "JOIN PERSONA PERUSOP ON USOP.PERSONAId = PERUSOP.Id \r\n" +
                             "JOIN ESTADO EDO ON CL.ESTADOId = EDO.Id \r\n"+
-                            "WHERE CL.Folio = '"+folio+"'";
+                            "JOIN USUARIO USOP ON CL.USUARIOOperacionId = USOP.Id \r\n"+
+                            "JOIN PERSONA PERUSOP ON USOP.PERSONAId = PERUSOP.Id \r\n"+
+                            "LEFT JOIN CLIENTES_SOCIOS CLISOC ON CL.CLIENTEId = CLISOC.CLIENTEId \r\n"+
+                            "LEFT JOIN SOCIOS SOC ON CLISOC.SOCIOSId = SOC.Id \r\n"+
+                            "LEFT JOIN CLIENTELOTE CRU ON cl.CLIENTELOTEId = CRU.Id \r\n" +
+                            "WHERE CL.Folio = '"+folio+"'";   
 
             return contexto.Database.SqlQuery<clsContratoCliente>(query).FirstOrDefault();
         }
-        public List<clsContratoCliente> ListarContratosCliente()
+
+        public clsContratoCliente ObtenerContratoClienteXId(int contratoId)
         {
-            string query = "SELECT \r\n" +
-                            "CL.Id AS ContratoId, CL.Folio, \r\n" +
-                            "CLI.Clave as ClaveCliente, (PER.Nombres + ' ' + PER.Apellidos) AS ClienteNombre, \r\n" +
-                            "CLI.Id as ClienteId, LT.Identificador AS ClaveLote, ZN.Nombre as ZonaLote, \r\n" +
-                            "LT.Id as LoteId, ZN.Id as ZonaLoteId,  \r\n" +
-                            "CL.PrecioInicial as PrecioLote, CL.NoPagos, CL.DiaPago,  \r\n" +
-                            "CL.FechaArrendamiento as FechaEmision,  \r\n" +
-                            "(PER.Nombres + ' ' + PER.Apellidos) as UsuarioRealizo, CL.FechaReimpresion, \r\n" +
-                            "CL.SOCIOSId as SocioId, \r\n" +
-                            "(SELECT COUNT(*) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as PagosRealizados, \r\n" +
-                            "cl.NoPagosGracia, cl.PagoInicial, EDO.Id AS EstadoId, EDO.Nombre as Estado, \r\n" +
-                            "cl.Observacion, cl.MontoGracia \r\n"+
-                            "FROM CLIENTELOTE AS CL \r\n" +
-                            "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n" +
-                            "JOIN PERSONA PER ON CLI.PERSONAId = PER.Id \r\n" +
+            string query = "SELECT  \r\n" +
+                            "CL.Id as ContratoId, CL.Folio AS NoReferencia, CL.PrecioInicial AS PrecioLote,  \r\n" +
+                            "CL.NoPagos, CL.DiaPago, Cl.PagoInicial,  \r\n" +
+                            "CL.NoPagosGracia, CL.MontoGracia,  \r\n" +
+                            "C.Id AS ClienteId, C.Clave AS ClaveCliente, (PC.Nombres + ' ' + pc.Apellidos) AS NombreCliente, \r\n" +
+                            "LT.Id AS LoteId, LT.Identificador AS IdentificadorLote,  \r\n" +
+                            "Zn.Id AS ZonaId, ZN.Nombre AS NombreZona, \r\n" +
+                            "SOC.Id AS SocioId, SOC.Nombre as SocioNombre, \r\n" +
+                            "EDO.Id AS EstadoId, EDO.Nombre AS NombreEstado, \r\n" +
+                            "CRU.Id as ContratoReubicadoId, CRU.Folio As ContratoReubicado, \r\n" +
+                            "EDO.Id AS EstadoId, EDO.Nombre AS EstadoNombre, \r\n" +
+                            "CL.FechaArrendamiento AS FechaEmision, CL.FechaReimpresion, \r\n" +
+                            "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre \r\n" +
+                            "FROM CLIENTELOTE CL \r\n" +
+                            "JOIN CLIENTE C ON CL.CLIENTEId = C.Id \r\n" +
+                            "JOIN PERSONA PC ON C.PERSONAId = PC.Id \r\n" +
                             "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n" +
                             "JOIN ZONA ZN ON LT.ZONAId = ZN.Id \r\n" +
+                            "JOIN ESTADO EDO ON CL.ESTADOId = EDO.Id \r\n" +
                             "JOIN USUARIO USOP ON CL.USUARIOOperacionId = USOP.Id \r\n" +
                             "JOIN PERSONA PERUSOP ON USOP.PERSONAId = PERUSOP.Id \r\n" +
-                            "JOIN ESTADO EDO ON CL.ESTADOId = EDO.Id \r\n" +
-                            "ORDER BY 1 DESC";
+                            "LEFT JOIN CLIENTES_SOCIOS CLISOC ON CL.CLIENTEId = CLISOC.CLIENTEId \r\n" +
+                            "LEFT JOIN SOCIOS SOC ON CLISOC.SOCIOSId = SOC.Id \r\n" +
+                            "LEFT JOIN CLIENTELOTE CRU ON cl.CLIENTELOTEId = CRU.Id \r\n" +
+                            "WHERE CL.Id = " + contratoId ;
+
+            return contexto.Database.SqlQuery<clsContratoCliente>(query).FirstOrDefault();
+        }
+
+        public List<clsContratoCliente> ListarContratosCliente()
+        {
+            string query = "SELECT \r\n"+
+                            "CL.Id as ContratoId,  CL.Folio AS NoReferencia, CL.PrecioInicial AS PrecioLote, \r\n"+
+                            "CL.NoPagos, CL.DiaPago, Cl.PagoInicial, \r\n"+
+                            "CL.NoPagosGracia, CL.MontoGracia, \r\n"+
+                            "C.Id AS ClienteId, C.Clave AS ClaveCliente, (PC.Nombres + ' ' + pc.Apellidos) AS NombreCliente,\r\n" +
+                            "LT.Id AS LoteId, LT.Identificador AS IdentificadorLote, \r\n"+
+                            "Zn.Id AS ZonaId, ZN.Nombre AS NombreZona,\r\n"+
+                            "SOC.Id AS SocioId, SOC.Nombre as SocioNombre,\r\n" +
+                            "EDO.Id AS EstadoId, EDO.Nombre AS NombreEstado,\r\n"+
+                            "CRU.Id as ContratoReubicadoId, CRU.Folio As ContratoReubicado,\r\n"+
+                            "EDO.Id AS EstadoId, EDO.Nombre AS EstadoNombre,\r\n"+
+                            "CL.FechaArrendamiento AS FechaEmision, CL.FechaReimpresion,\r\n"+
+                            "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre\r\n"+
+                            "FROM CLIENTELOTE CL\r\n"+
+                            "JOIN CLIENTE C ON CL.CLIENTEId = C.Id\r\n"+
+                            "JOIN PERSONA PC ON C.PERSONAId = PC.Id\r\n"+
+                            "JOIN LOTE LT ON CL.LOTEId = LT.Id\r\n"+
+                            "JOIN ZONA ZN ON LT.ZONAId = ZN.Id\r\n"+
+                            "JOIN ESTADO EDO ON CL.ESTADOId = EDO.Id\r\n"+
+                            "JOIN USUARIO USOP ON CL.USUARIOOperacionId = USOP.Id\r\n"+
+                            "JOIN PERSONA PERUSOP ON USOP.PERSONAId = PERUSOP.Id\r\n"+
+                            "LEFT JOIN CLIENTES_SOCIOS CLISOC ON CL.CLIENTEId = CLISOC.CLIENTEId\r\n"+
+                            "LEFT JOIN SOCIOS SOC ON CLISOC.SOCIOSId = SOC.Id\r\n"+
+                            "LEFT JOIN CLIENTELOTE CRU ON cl.CLIENTELOTEId = CRU.Id"; 
 
             return contexto.Database.SqlQuery<clsContratoCliente>(query).ToList();
+        }
+
+        public clsArrendamientoLoteData ObtenerDatosContratoImpreso(string folioContrato)
+        {
+            string query = "SELECT "+
+                            "CL.Folio AS NoReferencia, cl.FechaArrendamiento as FechaEmision, \r\n"+
+                            "LT.Identificador as IdentificadorLote, Z.Nombre as ClaveZona, \r\n"+
+                            "Z.Direccion as DomicilioZona, LT.Manzana, LT.CEste, LT.CNorte, LT.COeste, LT.CSur, \r\n"+
+                            "LT.MEste, LT.MNorte, LT.MOeste, LT.MSur, LT.Precio AS PrecioLote, \r\n"+
+                            "(PERCLI.Nombres + ' ' + PERCLI.Apellidos) AS NombreCliente, \r\n"+
+                            "CL.DiaPago, CL.PagoInicial, CL.NoPagos, \r\n"+
+                            "(PERCLI.Calle + ' ' + PERCLI.NoExt \r\n"+
+                            "+ (CASE WHEN PERCLI.NoInt = null THEN ' ' ELSE ' ' + PERCLI.NoInt END) \r\n"+
+                            "+' Col. ' + PERCLI.Colonia + ' C.P. ' + PERCLI.CodigoPostal + ' ' + PERCLI.Localidad + ' ' + PERCLI.Municipio + ' ' + PERCLI.EntidadFederativa) AS DomicilioCliente \r\n"+
+                            "FROM CLIENTELOTE CL \r\n"+
+                            "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n"+
+                            "JOIN ZONA Z ON LT.ZONAId = Z.Id \r\n"+
+                            "JOIN CLIENTE AS CLI ON CL.CLIENTEId = CLI.Id \r\n"+
+                            "JOIN PERSONA AS PERCLI ON CLI.PERSONAId = PERCLI.Id \r\n"+
+                            "WHERE CL.Folio = '"+folioContrato+"'"; 
+
+           return contexto.Database.SqlQuery<clsArrendamientoLoteData>(query).FirstOrDefault();  
         }
 
         public clsObjMontoGracia CalcularMontoGracia(string folioContrato)

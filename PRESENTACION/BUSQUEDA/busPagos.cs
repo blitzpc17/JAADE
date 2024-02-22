@@ -16,15 +16,14 @@ namespace PRESENTACION.BUSQUEDA
     public partial class busPagos : Form
     {
         private busPagosLogica contexto;
-        public clsPago ObjEntidad;
-        private int? clienteId;
-        private int rowIndexSeleccionado = -1;
-        public busPagos(int? clienteId = null)
+        public clsBusquedaPago ObjEntidad;
+        private string contrato;
+        public busPagos(string contrato = null)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Normal;
-            this.clienteId = clienteId;
+            this.contrato = contrato;
         }
 
         private void InicializarForm()
@@ -51,7 +50,7 @@ namespace PRESENTACION.BUSQUEDA
 
         public void Listar()
         {
-            contexto.ListarRegistros(clienteId);
+            contexto.ListarRegistros(contrato);
         }
 
         private void filtrar(int column, string termino)
@@ -78,34 +77,24 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[0].Visible = false;
             dgvRegistros.Columns[0].Frozen = true;
             dgvRegistros.Columns[1].HeaderText = "Número Referencia";
-            dgvRegistros.Columns[1].Width = 110;
+            dgvRegistros.Columns[1].Width = 90;
             dgvRegistros.Columns[1].Frozen = true;
             dgvRegistros.Columns[2].HeaderText = "Fecha Emisión";
-            dgvRegistros.Columns[2].Width = 180;
+            dgvRegistros.Columns[2].Width = 120;
             dgvRegistros.Columns[3].Visible = false;
-            dgvRegistros.Columns[4].HeaderText = "Cliente";
-            dgvRegistros.Columns[4].Width = 250;
-            dgvRegistros.Columns[5].Visible = false;
-            dgvRegistros.Columns[6].HeaderText = "Lote";
+            dgvRegistros.Columns[4].HeaderText = "Contrato";
+            dgvRegistros.Columns[4].Width = 90;
+            dgvRegistros.Columns[5].HeaderText = "Cliente";
+            dgvRegistros.Columns[5].Width = 210;
+            dgvRegistros.Columns[6].HeaderText = "Zona";
             dgvRegistros.Columns[6].Width = 110;
-            dgvRegistros.Columns[7].Visible = false;
-            dgvRegistros.Columns[8].HeaderText = "Zona";
-            dgvRegistros.Columns[8].Width = 180;
-            dgvRegistros.Columns[9].HeaderText = "Manzana";
-            dgvRegistros.Columns[9].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[9].Width = 85;
-            dgvRegistros.Columns[10].HeaderText = "Monto";
-            dgvRegistros.Columns[10].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[10].Width = 110;
-            dgvRegistros.Columns[11].Visible = false;
-            dgvRegistros.Columns[12].HeaderText = "Recibio";
-            dgvRegistros.Columns[12].Width = 250;
-            dgvRegistros.Columns[13].Visible = false;
-            dgvRegistros.Columns[14].Visible = false;
-            dgvRegistros.Columns[15].Visible = false;
-            dgvRegistros.Columns[16].Visible = false;
+            dgvRegistros.Columns[7].HeaderText = "Lote";           
+            dgvRegistros.Columns[7].Width = 90;
+            dgvRegistros.Columns[8].HeaderText = "Monto";
+            dgvRegistros.Columns[8].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvRegistros.Columns[7].Width = 100;
+            
 
             tsTotalRegistros.Text = contexto.LstPagosAux.Count.ToString("N0");
         }
@@ -124,9 +113,7 @@ namespace PRESENTACION.BUSQUEDA
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (dgvRegistros.DataSource == null) return;
-            if (rowIndexSeleccionado == -1) return;
-            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
-            ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
+            ObjEntidad = contexto.ObtenerRegistro(dgvRegistros.CurrentRow.Cells[1].Value.ToString());
             Close();
         }
 
@@ -151,8 +138,7 @@ namespace PRESENTACION.BUSQUEDA
         private void dgvRegistros_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvRegistros.DataSource == null) return;
-            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
-            ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
+            ObjEntidad = contexto.ObtenerRegistro(dgvRegistros.CurrentRow.Cells[1].Value.ToString());
             Close();
         }
 
