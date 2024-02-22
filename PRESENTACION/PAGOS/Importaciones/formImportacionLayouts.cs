@@ -369,7 +369,7 @@ namespace PRESENTACION.PAGOS.Importaciones
             dgvRegistros.Columns[6].HeaderText = "DIA PAGO";
             dgvRegistros.Columns[6].Width = 120;
             dgvRegistros.Columns[7].HeaderText = "PAGO INICIAL";
-            dgvRegistros.Columns[7].Width = 12;
+            dgvRegistros.Columns[7].Width = 120;
             dgvRegistros.Columns[8].HeaderText = "NO. PAGOS GRACIA";
             dgvRegistros.Columns[8].Width = 120;
             dgvRegistros.Columns[9].HeaderText = "OSERVACION";
