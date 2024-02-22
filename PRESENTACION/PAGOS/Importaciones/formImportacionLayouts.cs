@@ -253,7 +253,7 @@ namespace PRESENTACION.PAGOS.Importaciones
                 {
                     contexto.InstanciarContratoImportacion();
                     DateTime fechaRecibida = sl.GetCellValueAsDateTime(row, 1);
-                    contexto.ObjContratoImportacion.FechaArrendamiento = fechaRecibida;//DateTime.ParseExact(fechaRecibida, "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture);
+                    contexto.ObjContratoImportacion.FechaArrendamiento = fechaRecibida;
                     contexto.ObjContratoImportacion.ClaveCliente = sl.GetCellValueAsString(row, 2);
                     contexto.ObjContratoImportacion.Socio = sl.GetCellValueAsString(row, 3);
                     contexto.ObjContratoImportacion.IdentificadorLote = sl.GetCellValueAsString(row, 4);
