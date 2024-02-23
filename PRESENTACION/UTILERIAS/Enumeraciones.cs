@@ -82,6 +82,12 @@ namespace PRESENTACION.UTILERIAS
             CANCELADO = 13
         }
 
+        public enum PagosViaGeneracion
+        {
+            PAGO = 1,
+            IMPORTACION = 2
+        }
+
 
     }
 }

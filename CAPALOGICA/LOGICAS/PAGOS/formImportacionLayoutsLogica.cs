@@ -56,6 +56,9 @@ namespace CAPALOGICA.LOGICAS.PAGOS
 
         public List<clsCONTRATOIMPORTACION> LstContratosImpotacion;
 
+        public List<clsPagoImportacion> LstPagosImportacion;
+        public clsPagoImportacion ObjPagoImportacion;
+
         public formImportacionLayoutsLogica()
         {
             contextoZona = new ZonaADO();
@@ -236,7 +239,10 @@ namespace CAPALOGICA.LOGICAS.PAGOS
 
         public void GuardarLote()
         {
-            contextoLote.Insertar(ObjLote);
+            if(ObjLote.Id == 0)
+            {
+                contextoLote.Insertar(ObjLote);
+            }            
             contextoLote.Guardar();
         }
 
@@ -265,9 +271,9 @@ namespace CAPALOGICA.LOGICAS.PAGOS
                 ObjCliente = contextoClientes.ObtenerXClave(claveCliente);
             }
 
-            public void ObtenerLoteXIdentidicador(string identificador)
+            public void ObtenerLoteXIdentidicador(string zona, string identificadorLote)
             {
-                ObjLote = contextoLote.ObtenerXIdentificador(identificador);
+                ObjLote = contextoLote.ObtenerXIdentificador(zona, identificadorLote);
             }
 
             public void ObtenerSocioXNombre(int clienteId, string nombre)
@@ -301,6 +307,21 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         {
             contextoPago.Insertar(ObjPago);
             contextoPago.Guardar();
+        }
+
+        public void InstanciarListaPago()
+        {
+            LstPagosImportacion = new List<clsPagoImportacion>();
+        }
+
+        public void InstanciarPagoImportacion()
+        {
+            ObjPagoImportacion = new clsPagoImportacion();
+        }
+
+        public void ObtenerContrato(string contrato)
+        {
+            ObjContrato = contextoClienteLote.ObtenerContratoXFolio(contrato);
         }
         #endregion
 

@@ -129,8 +129,6 @@ namespace PRESENTACION.PAGOS
                         contexto.ObjPago.PagoOrdinario = true;
                         contexto.ObjPago.NoPago = contexto.ObjInformacionPago.NoPagosRealizados + 1;
                     }
-                   
-
 
                     msjSuccess[0] = "Se ha generado el pago " + contexto.ObjPago.Folio +" exitosanente.";
                 }
@@ -138,13 +136,11 @@ namespace PRESENTACION.PAGOS
                 {
                     msjSuccess[0] = "Se ha modificado el pago " + contexto.ObjPago.Folio +".";
                 }
-
-
-               
+                
                 contexto.ObjPago.ContratoId = contexto.ObjContratoData.ContratoId;
                 contexto.ObjPago.USUARIORecibeId = Global.ObjUsuario.Id;
                 contexto.ObjPago.Monto = Convert.ToDecimal(txtMontoRecibido.Text);
-
+                contexto.ObjPago.ViaGenerado = (int)Enumeraciones.PagosViaGeneracion.PAGO;
 
                 contexto.Guardar();
 
@@ -397,12 +393,6 @@ namespace PRESENTACION.PAGOS
                 txtMontoRecibido.Enabled = false;
                     
             }
-
-
-
-
-
-
 
 
         }

@@ -16,10 +16,5 @@ namespace CAPADATOS
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-
-        public static implicit operator SOCIOS(CLIENTES_SOCIOS v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

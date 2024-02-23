@@ -41,9 +41,17 @@
             this.btnLayout = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvErrores = new System.Windows.Forms.DataGridView();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.tsTotalErrores = new System.Windows.Forms.ToolStripLabel();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvErrores)).BeginInit();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -55,9 +63,9 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.toolStrip1);
             this.groupBox1.Controls.Add(this.dgvRegistros);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(15, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(750, 380);
+            this.groupBox1.Size = new System.Drawing.Size(760, 491);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Importaciones";
@@ -94,9 +102,9 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.tsTotalRegistros});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 352);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 463);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(744, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(754, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -120,11 +128,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRegistros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegistros.Location = new System.Drawing.Point(19, 81);
+            this.dgvRegistros.Location = new System.Drawing.Point(19, 80);
             this.dgvRegistros.Name = "dgvRegistros";
             this.dgvRegistros.ReadOnly = true;
             this.dgvRegistros.RowHeadersVisible = false;
-            this.dgvRegistros.Size = new System.Drawing.Size(722, 253);
+            this.dgvRegistros.Size = new System.Drawing.Size(722, 364);
             this.dgvRegistros.TabIndex = 0;
             // 
             // openFileDialog1
@@ -133,12 +141,12 @@
             // 
             // btnLayout
             // 
-            this.btnLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLayout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLayout.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLayout.Image = global::PRESENTACION.Properties.Resources.excel;
             this.btnLayout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLayout.Location = new System.Drawing.Point(12, 398);
+            this.btnLayout.Location = new System.Drawing.Point(9, 509);
             this.btnLayout.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnLayout.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnLayout.Name = "btnLayout";
@@ -155,7 +163,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = global::PRESENTACION.Properties.Resources.cancelar;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(652, 398);
+            this.btnCancelar.Location = new System.Drawing.Point(1046, 509);
             this.btnCancelar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnCancelar.Name = "btnCancelar";
@@ -172,7 +180,7 @@
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = global::PRESENTACION.Properties.Resources.subir;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(536, 398);
+            this.btnGuardar.Location = new System.Drawing.Point(930, 509);
             this.btnGuardar.MaximumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.MinimumSize = new System.Drawing.Size(110, 40);
             this.btnGuardar.Name = "btnGuardar";
@@ -182,17 +190,70 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.toolStrip2);
+            this.groupBox2.Controls.Add(this.dgvErrores);
+            this.groupBox2.Location = new System.Drawing.Point(781, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(375, 491);
+            this.groupBox2.TabIndex = 44;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Errores";
+            // 
+            // dgvErrores
+            // 
+            this.dgvErrores.AllowUserToAddRows = false;
+            this.dgvErrores.AllowUserToDeleteRows = false;
+            this.dgvErrores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvErrores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvErrores.Location = new System.Drawing.Point(19, 30);
+            this.dgvErrores.Name = "dgvErrores";
+            this.dgvErrores.ReadOnly = true;
+            this.dgvErrores.RowHeadersVisible = false;
+            this.dgvErrores.Size = new System.Drawing.Size(337, 409);
+            this.dgvErrores.TabIndex = 1;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel2,
+            this.tsTotalErrores});
+            this.toolStrip2.Location = new System.Drawing.Point(3, 463);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(369, 25);
+            this.toolStrip2.TabIndex = 2;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(107, 22);
+            this.toolStripLabel2.Text = "Errores detectados:";
+            // 
+            // tsTotalErrores
+            // 
+            this.tsTotalErrores.Name = "tsTotalErrores";
+            this.tsTotalErrores.Size = new System.Drawing.Size(13, 22);
+            this.tsTotalErrores.Text = "0";
+            // 
             // formImportacionLayouts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 450);
+            this.ClientSize = new System.Drawing.Size(1167, 561);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnLayout);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(790, 489);
+            this.MinimumSize = new System.Drawing.Size(1183, 600);
             this.Name = "formImportacionLayouts";
             this.Text = "formImportContratos";
             this.Load += new System.EventHandler(this.formImportacionLayouts_Load);
@@ -202,6 +263,11 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvErrores)).EndInit();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -220,5 +286,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripLabel tsTotalErrores;
+        private System.Windows.Forms.DataGridView dgvErrores;
     }
 }

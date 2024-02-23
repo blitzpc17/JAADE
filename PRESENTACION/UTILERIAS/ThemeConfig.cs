@@ -139,6 +139,17 @@ namespace PRESENTACION.UTILERIAS
                         {
                             ((DateTimePicker)ctrlG).Value = DateTime.Now;
                         }
+                        else if (ctrlG is DataGridView)
+                        {
+                            if (((DataGridView)ctrlG).DataSource != null)
+                            {
+                                ((DataGridView)ctrlG).DataSource = null;
+                            }
+                            else if (((DataGridView)ctrlG).RowCount > 0)
+                            {
+                                ((DataGridView)ctrlG).Rows.Clear();
+                            }
+                        }
                     }
                 }else if(ctrl is TabControl)
                 {

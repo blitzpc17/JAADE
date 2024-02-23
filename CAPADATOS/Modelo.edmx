@@ -356,6 +356,7 @@
     <Property Name="USUARIORecibeId" Type="int" Nullable="false" />
     <Property Name="FechaReimpresion" Type="datetime" Nullable="true" />
     <Property Name="PagoOrdinario" Type="bit" Nullable="false" />
+    <Property Name="ViaGenerado" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="USUARIOESTADO">
     <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="*" />
@@ -1353,6 +1354,7 @@
           <Property Name="USUARIORecibeId" Type="Int32" Nullable="false" />
           <Property Name="FechaReimpresion" Type="DateTime" Nullable="true" />
           <Property Name="PagoOrdinario" Type="Boolean" Nullable="false" />
+          <Property Name="ViaGenerado" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="PAGOUSUARIO">
           <End Type="DB_JAADEModel.PAGO" Role="PAGO" Multiplicity="*" />
@@ -1655,6 +1657,7 @@
           <ScalarProperty Name="USUARIORecibeId" ColumnName="USUARIORecibeId" />
           <ScalarProperty Name="FechaReimpresion" ColumnName="FechaReimpresion" />
           <ScalarProperty Name="PagoOrdinario" ColumnName="PagoOrdinario" />
+          <ScalarProperty Name="ViaGenerado" ColumnName="ViaGenerado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

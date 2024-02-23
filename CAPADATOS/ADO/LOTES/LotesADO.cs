@@ -77,9 +77,9 @@ namespace CAPADATOS.ADO.LOTES
             return contexto.LOTE.FirstOrDefault(x => x.Id == id);
         }
 
-        public LOTE ObtenerXIdentificador(string identificador)
+        public LOTE ObtenerXIdentificador(string zona, string identificadorLote)
         {
-            return contexto.LOTE.FirstOrDefault(x => x.Identificador == identificador);
+            return contexto.LOTE.FirstOrDefault(x => x.Identificador == identificadorLote && x.ZONA.Nombre == zona);
         }
 
         public int ObtenerUltimoLote(int zonaId)

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/21/2024 14:06:58
+-- Date Created: 02/23/2024 09:34:24
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -383,7 +383,8 @@ CREATE TABLE [dbo].[PAGO] (
     [Observacion] nvarchar(max)  NULL,
     [USUARIORecibeId] int  NOT NULL,
     [FechaReimpresion] datetime  NULL,
-    [PagoOrdinario] bit  NOT NULL
+    [PagoOrdinario] bit  NOT NULL,
+    [ViaGenerado] int  NOT NULL
 );
 GO
 

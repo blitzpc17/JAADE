@@ -77,7 +77,8 @@ namespace CAPADATOS.ADO.PAGOS
                             "CRU.Id as ContratoReubicadoId, CRU.Folio As ContratoReubicado, \r\n" +
                             "EDO.Id AS EstadoId, EDO.Nombre AS EstadoNombre, \r\n"+
                             "CL.FechaArrendamiento AS FechaEmision, CL.FechaReimpresion, \r\n"+
-                            "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre \r\n"+
+                            "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre, \r\n"+
+                            "CL.Observacion \r\n"+
                             "FROM CLIENTELOTE CL \r\n"+
                             "JOIN CLIENTE C ON CL.CLIENTEId = C.Id \r\n"+
                             "JOIN PERSONA PC ON C.PERSONAId = PC.Id \r\n"+
@@ -175,6 +176,11 @@ namespace CAPADATOS.ADO.PAGOS
                             "WHERE CL.Folio = '"+folioContrato+"'"; 
 
            return contexto.Database.SqlQuery<clsArrendamientoLoteData>(query).FirstOrDefault();  
+        }
+
+        public CLIENTELOTE ObtenerContratoXFolio(string contrato)
+        {
+            return contexto.CLIENTELOTE.FirstOrDefault(x=>x.Folio == contrato);
         }
 
         public clsObjMontoGracia CalcularMontoGracia(string folioContrato)

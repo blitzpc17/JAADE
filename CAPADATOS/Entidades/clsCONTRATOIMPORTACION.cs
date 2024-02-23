@@ -11,6 +11,7 @@ namespace CAPADATOS.Entidades
         public DateTime FechaArrendamiento { get; set; }
         public string ClaveCliente { get; set; }
         public string Socio { get; set; }
+        public string Zona { get; set; }
         public string IdentificadorLote { get; set; }
         public int NoPagos { get; set; }
         public decimal PrecioInicial { get; set; }

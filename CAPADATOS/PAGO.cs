@@ -24,6 +24,7 @@ namespace CAPADATOS
         public int USUARIORecibeId { get; set; }
         public Nullable<System.DateTime> FechaReimpresion { get; set; }
         public bool PagoOrdinario { get; set; }
+        public int ViaGenerado { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }
         public virtual CLIENTELOTE CLIENTELOTE { get; set; }
