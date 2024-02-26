@@ -506,7 +506,11 @@ namespace PRESENTACION.PAGOS
                 }
 
                 contexto.ObjContrato.CLIENTEId = contexto.ObjCliente.Id;
-                contexto.ObjContrato.SOCIOSId = (int)cbxSocios.SelectedValue;
+                if(cbxSocios.DataSource!= null || cbxSocios.SelectedValue != null)
+                {
+                    contexto.ObjContrato.SOCIOSId = (int)cbxSocios.SelectedValue;
+                }
+                
                 contexto.ObjContrato.LOTEId = contexto.ObjLote.Id;
                 contexto.ObjContrato.PrecioInicial = contexto.ObjLote.Precio;
                 contexto.ObjContrato.DiaPago = Convert.ToInt32(txtDiaPago.Text);
