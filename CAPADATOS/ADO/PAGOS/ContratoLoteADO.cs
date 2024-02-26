@@ -164,7 +164,7 @@ namespace CAPADATOS.ADO.PAGOS
                             "Z.Direccion as DomicilioZona, LT.Manzana, LT.CEste, LT.CNorte, LT.COeste, LT.CSur, \r\n"+
                             "LT.MEste, LT.MNorte, LT.MOeste, LT.MSur, LT.Precio AS PrecioLote, \r\n"+
                             "(PERCLI.Nombres + ' ' + PERCLI.Apellidos) AS NombreCliente, \r\n"+
-                            "CL.DiaPago, CL.PagoInicial, CL.NoPagos, \r\n"+
+                            "CL.DiaPago, CL.PagoInicial, CL.NoPagos, CL.NoPagosGracia, \r\n"+
                             "(PERCLI.Calle + ' ' + PERCLI.NoExt \r\n"+
                             "+ (CASE WHEN PERCLI.NoInt = null THEN ' ' ELSE ' ' + PERCLI.NoInt END) \r\n"+
                             "+' Col. ' + PERCLI.Colonia + ' C.P. ' + PERCLI.CodigoPostal + ' ' + PERCLI.Localidad + ' ' + PERCLI.Municipio + ' ' + PERCLI.EntidadFederativa) AS DomicilioCliente \r\n"+

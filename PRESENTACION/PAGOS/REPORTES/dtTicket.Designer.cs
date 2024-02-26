@@ -651,6 +651,8 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             private global::System.Data.DataColumn columnFecha;
             
+            private global::System.Data.DataColumn columnObservacion;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public dtPartidasDataTable() {
@@ -710,6 +712,14 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ObservacionColumn {
+                get {
+                    return this.columnObservacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -745,12 +755,13 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dtPartidasRow AdddtPartidasRow(string _No_, string Monto, string Fecha) {
+            public dtPartidasRow AdddtPartidasRow(string _No_, string Monto, string Fecha, string Observacion) {
                 dtPartidasRow rowdtPartidasRow = ((dtPartidasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         _No_,
                         Monto,
-                        Fecha};
+                        Fecha,
+                        Observacion};
                 rowdtPartidasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtPartidasRow);
                 return rowdtPartidasRow;
@@ -776,6 +787,7 @@ namespace PRESENTACION.PAGOS.REPORTES {
                 this._columnNo_ = base.Columns["No."];
                 this.columnMonto = base.Columns["Monto"];
                 this.columnFecha = base.Columns["Fecha"];
+                this.columnObservacion = base.Columns["Observacion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -789,6 +801,8 @@ namespace PRESENTACION.PAGOS.REPORTES {
                 base.Columns.Add(this.columnMonto);
                 this.columnFecha = new global::System.Data.DataColumn("Fecha", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFecha);
+                this.columnObservacion = new global::System.Data.DataColumn("Observacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacion);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1191,6 +1205,22 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Observacion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPartidas.ObservacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Observacion\' de la tabla \'dtPartidas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPartidas.ObservacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Is_No_Null() {
                 return this.IsNull(this.tabledtPartidas._No_Column);
             }
@@ -1223,6 +1253,18 @@ namespace PRESENTACION.PAGOS.REPORTES {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetFechaNull() {
                 this[this.tabledtPartidas.FechaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsObservacionNull() {
+                return this.IsNull(this.tabledtPartidas.ObservacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetObservacionNull() {
+                this[this.tabledtPartidas.ObservacionColumn] = global::System.Convert.DBNull;
             }
         }
         

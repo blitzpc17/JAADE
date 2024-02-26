@@ -28,6 +28,6 @@ namespace CAPADATOS.Entidades
         public int NoPagos { get; set; }
         public string DomicilioCliente { get; set; }
         public int? Manzana { get; set; }
-
+        public int NoPagosGracia { get; set; }
     }
 }

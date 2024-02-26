@@ -631,9 +631,8 @@ namespace PRESENTACION.PAGOS
             repContrato.parametros.Add(new ReportParameter("ESTADOJAADE", ObjDatosJaade.Estado));
             repContrato.parametros.Add(new ReportParameter("TELEFONOJAADE", ObjDatosJaade.Telefono));
             repContrato.parametros.Add(new ReportParameter("DOMICILIOCLIENTE", contexto.ObjContratoImpresoData.DomicilioCliente ));
-            repContrato.parametros.Add(new ReportParameter("CODIGOLOTE", contexto.ObjContratoImpresoData.IdentificadorLote));            
             repContrato.parametros.Add(new ReportParameter("MANZANA", contexto.ObjContratoImpresoData.Manzana == null ? "S/M" : contexto.ObjContratoImpresoData.Manzana.ToString()));
-            repContrato.parametros.Add(new ReportParameter("ZONA", contexto.ObjContratoImpresoData.ClaveZona+ ' '+ contexto.ObjContratoImpresoData.DomicilioZona));
+            repContrato.parametros.Add(new ReportParameter("UBICACIONPARCELA", contexto.ObjContratoImpresoData.DomicilioZona+ ' '+ contexto.ObjContratoImpresoData.DomicilioZona));
             repContrato.parametros.Add(new ReportParameter("MNORTE", contexto.ObjContratoImpresoData.MNorte.ToString("N2")));
             repContrato.parametros.Add(new ReportParameter("MSUR", contexto.ObjContratoImpresoData.MSur.ToString("N2")));
             repContrato.parametros.Add(new ReportParameter("MESTE", contexto.ObjContratoImpresoData.MEste.ToString("N2")));
@@ -649,8 +648,12 @@ namespace PRESENTACION.PAGOS
             repContrato.parametros.Add(new ReportParameter("NOPAGOS", contexto.ObjContratoImpresoData.NoPagos.ToString("N0")));
             repContrato.parametros.Add(new ReportParameter("DIAPAGO", contexto.ObjContratoImpresoData.DiaPago.ToString("N0")));
             repContrato.parametros.Add(new ReportParameter("MONTOPAGOMENSUAL", ((contexto.ObjContratoImpresoData.PrecioLote-contexto.ObjContratoImpresoData.PagoInicial)/contexto.ObjContratoImpresoData.NoPagos).ToString("N2") ));
-            repContrato.parametros.Add(new ReportParameter("MINUTO", fechaData.Minuto.ToString()));
+            repContrato.parametros.Add(new ReportParameter("MINUTO", fechaData.Minuto.ToUpper() ));
             repContrato.parametros.Add(new ReportParameter("NOLOTE", NoLote));
+            repContrato.parametros.Add(new ReportParameter("PRECIOLOTELETRA", Global.ConvertirNumeroALetras((int)Math.Round(contexto.ObjContratoImpresoData.PrecioLote) )));
+            repContrato.parametros.Add(new ReportParameter("MONTOPAGOINICIALLETRA", Global.ConvertirNumeroALetras((int)Math.Round(contexto.ObjContratoImpresoData.PagoInicial) )));
+            repContrato.parametros.Add(new ReportParameter("MONTOPAGOINICIAL", contexto.ObjContratoImpresoData.PagoInicial.ToString("N2")));
+            repContrato.parametros.Add(new ReportParameter("NOPAGOSEXTENDIDOCONINTERES",contexto.ObjContratoImpresoData.NoPagosGracia.ToString("N0") ));
 
 
             repContrato.ShowDialog();

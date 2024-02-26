@@ -52,6 +52,7 @@
     <Compile Include="LOGICAS\PAGOS\formContratoLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formImportacionLayoutsLogica.cs" />
     <Compile Include="LOGICAS\PAGOS\formPagoLogica.cs" />
+    <Compile Include="LOGICAS\PAGOS\repPagosGlobalLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catEstadosLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\catRolesLogica.cs" />
     <Compile Include="LOGICAS\SISTEMA\clsDatosJaade.cs" />

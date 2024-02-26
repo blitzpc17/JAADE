@@ -365,99 +365,18 @@ namespace PRESENTACION.UTILERIAS
             int _hora = _tiempo.Hours;
             int _minuto = _tiempo.Minutes;
 
-            ObjData.Dia = ConvertirCantidadEnLetras(_dia);
+            
             ObjData.Mes = MesEnLetras(_mes);
-            ObjData.Anio = ConvertirCantidadEnLetras(_anio);
-            ObjData.Hora = ConvertirCantidadEnLetras(_hora);
-            ObjData.Minuto = ConvertirCantidadEnLetras(_minuto);
+            ObjData.Dia =    ConvertirNumeroALetras(_dia);
+            ObjData.Anio = ConvertirNumeroALetras(624925);//ConvertirNumeroALetras(_anio);
+            ObjData.Hora =   ConvertirNumeroALetras(_hora);
+            ObjData.Minuto = ConvertirNumeroALetras(_minuto);
 
             return ObjData;
                 
         }
 
-        public static string ConvertirCantidadEnLetras(decimal cantidad)
-        {
-            if (cantidad == 0)
-                return "cero";
-
-            if (cantidad < 0)
-                return "menos " + ConvertirCantidadEnLetras(Math.Abs(cantidad));
-
-            string[] grupos = { "", "mil", "millón", "mil millones", "billón", "mil billones" };
-
-            int grupo = 0;
-            string cantidadEnLetras = "";
-
-            while (cantidad > 0)
-            {
-                int grupoActual = (int)(cantidad % 1000);
-                if (grupoActual > 0)
-                {
-                    if (cantidadEnLetras.Length > 0)
-                        cantidadEnLetras = " " + cantidadEnLetras;
-
-                    cantidadEnLetras = ConvertirGrupoEnLetras(grupoActual) + " " + grupos[grupo] + cantidadEnLetras;
-                }
-
-                cantidad = cantidad / 1000;
-                grupo++;
-            }
-
-            return cantidadEnLetras.Trim();
-        }
-
-        public static string ConvertirGrupoEnLetras(int numero)
-        {
-            string[] unidades = { "", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve" };
-            string[] decenas = { "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve" };
-            string[] decenas2 = { "veinti", "treinta ", "cuarenta ", "cincuenta", "sesenta", "setenta", "ochenta", "noventa" };
-            string[] centenas = { "", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos" };
-
-            string resultado = "";
-
-            if (numero >= 100)
-            {
-                resultado += centenas[numero / 100];
-                numero %= 100;
-            }
-
-            if (numero >= 10 && numero <= 19)
-            {
-                if (resultado.Length > 0)
-                    resultado += " ";
-
-                resultado += decenas[numero - 10];
-                return resultado;
-            }
-
-            if (numero >= 20)
-            {
-               /* if (resultado.Length > 0)
-                    resultado += " ";*/
-
-                if(numero>=30 && numero%10 == 0)
-                {
-                    resultado += decenas2[numero / 10 - 2] + " y ";
-                }
-                else
-                {                    
-                    resultado += decenas2[numero / 10 - 2];
-                }
-                
-                numero %= 10;
-            }
-
-            if (numero >= 1 && numero <= 9)
-            {
-                if (resultado.Length > 0)
-                    resultado += " ";
-
-                resultado += unidades[numero];
-            }
-
-            return resultado;
-        }
-
+     
         public static string MesEnLetras(int mes)
         {
             switch (mes)
@@ -478,7 +397,99 @@ namespace PRESENTACION.UTILERIAS
             }
         }
 
+        private static readonly string[] Unidades =
+    {
+        "", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"
+    };
 
+        private static readonly string[] Decenas =
+        {
+        "", "diez", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa"
+    };
 
+        private static readonly string[] Especiales =
+        {
+        "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve"
+    };
+
+        private static readonly string[] Centenas =
+        {
+        "", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos"
+    };
+
+        public static string ConvertirNumeroALetras(int numero)
+        {
+            if (numero < 0 || numero > 999999999)
+            {
+                throw new ArgumentOutOfRangeException(nameof(numero));
+            }
+
+            if (numero == 0)
+            {
+                return "cero";
+            }
+
+            return ConvertirParte(numero);
+        }
+
+        private static string ConvertirParte(int numero)
+        {
+            string letras = "";
+            bool entroVeintes = false;
+
+            if (numero >= 1000000)
+            {
+                letras += ConvertirParte(numero / 1000000) + " millones ";
+                numero %= 1000000;
+            }
+
+            if (numero >= 1000)
+            {
+                letras += ConvertirParte(numero / 1000) + " mil ";
+                numero %= 1000;
+            }
+
+            if (numero >= 100)
+            {
+                letras += Centenas[numero / 100] + " ";
+                numero %= 100;
+            }
+
+            if (numero >= 20)
+            {
+                if(numero>20 && numero < 30)
+                {
+                    letras += "veinti";
+                    entroVeintes = true;
+                }
+                else
+                {
+                    letras += Decenas[numero / 10] + " ";
+                }
+                
+                numero %= 10;
+            }
+
+            if (numero >= 10)
+            {
+                letras += Especiales[numero - 10] + " ";
+                numero = 0;
+            }
+
+            if (numero > 0)
+            {
+                if (!string.IsNullOrEmpty(letras) && numero < 10)
+                {
+                    if (!entroVeintes)
+                    {
+                        letras += "y ";
+                    }
+                    
+                }
+                letras += Unidades[numero] + " ";
+            }
+
+            return letras.Trim();
+        }
     }
 }

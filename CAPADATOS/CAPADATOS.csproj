@@ -117,6 +117,9 @@
     <Compile Include="Entidades\clsPago.cs" />
     <Compile Include="Entidades\clsPagoData.cs" />
     <Compile Include="Entidades\clsPagoImportacion.cs" />
+    <Compile Include="Entidades\clsPagoRecibo.cs" />
+    <Compile Include="Entidades\clsPagoReciboEncabezado.cs" />
+    <Compile Include="Entidades\clsPagoReciboPartida.cs" />
     <Compile Include="Entidades\clsRolPermiso.cs" />
     <Compile Include="Entidades\clsTicketEncabezado.cs" />
     <Compile Include="Entidades\clsTicketPago.cs" />

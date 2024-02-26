@@ -36,6 +36,45 @@ namespace CAPADATOS.ADO.PAGOS
             return contexto.PAGO.ToList();
         }
 
+        public List<clsPagoReciboEncabezado> ListarEncabezadosPagoXZona(int? zonaId)
+        {
+            string condicion = zonaId !=null? "WHERE ZN.Id = "+zonaId : "";
+            string query= "SELECT \r\n"+
+                            "CL.Id AS ContratoId, CL.Folio as FolioContrato, \r\n" +
+                            "CLI.Id as ClienteId, CLI.Clave as ClaveCliente, \r\n" +
+                            "(PERCLI.Nombres + ' ' + PERCLI.Apellidos) as NombreCliente, \r\n" +
+                            "SOC.Nombre as Socio, ZN.Id as ZonaId, ZN.Nombre as ZonaNombre, \r\n" +
+                            "LT.Id as LoteId, LT.Identificador as LoteIdentificador,  \r\n" +
+                            "Lt.Precio as PrecioLote, CL.NoPagos, CL.FechaArrendamiento \r\n" +
+                            "FROM CLIENTELOTE CL \r\n" +
+                            "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n" +
+                            "JOIN PERSONA PERCLI ON CLI.PERSONAId = PERCLI.Id \r\n" +
+                            "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n" +
+                            "JOIN ZONA ZN ON LT.ZONAId = ZN.Id \r\n" +
+                            "LEFT JOIN SOCIOS SOC ON CL.SOCIOSId = SOC.Id "+condicion;
+
+
+
+            return 
+                contexto.Database.SqlQuery<clsPagoReciboEncabezado>(query).ToList();
+
+        }
+
+        public List<clsPagoReciboPartida>ListarPartidasPagoXZona(int? zonaId)
+        {
+            string condicion = zonaId != null ? "WHERE CL.ZonaId = "+zonaId : "";
+            string query = "SELECT \r\n" +
+                    "CL.Id AS ContratoId, PG.Id as PagoId, \r\n" +
+                    "PG.Folio, PG.NoPago, PG.Monto, PG.FechaEmision, \r\n" +
+                    "PG.Observacion \r\n" +
+                    "FROM PAGO PG \r\n" +
+                    "JOIN CLIENTELOTE CL ON PG.ContratoId = CL.Id "+condicion;
+
+            return
+                contexto.Database.SqlQuery<clsPagoReciboPartida>(query).ToList();
+
+        }
+
         public PAGO Obtener(int id)
         {
             return contexto.PAGO.FirstOrDefault(x => x.Id == id);
