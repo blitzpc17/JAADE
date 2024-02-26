@@ -506,7 +506,7 @@ namespace PRESENTACION.PAGOS
                 }
 
                 contexto.ObjContrato.CLIENTEId = contexto.ObjCliente.Id;
-                if(cbxSocios.DataSource!= null || cbxSocios.SelectedValue != null)
+                if(cbxSocios.SelectedValue != null)
                 {
                     contexto.ObjContrato.SOCIOSId = (int)cbxSocios.SelectedValue;
                 }
