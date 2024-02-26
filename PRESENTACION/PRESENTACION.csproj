@@ -197,6 +197,12 @@
     <Compile Include="PAGOS\REPORTES\repContratoLote.Designer.cs">
       <DependentUpon>repContratoLote.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAGOS\REPORTES\repCorteCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAGOS\REPORTES\repCorteCaja.Designer.cs">
+      <DependentUpon>repCorteCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAGOS\REPORTES\repPagosGlobal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,6 +314,9 @@
     <EmbeddedResource Include="PAGOS\REPORTES\repContratoLote.resx">
       <DependentUpon>repContratoLote.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PAGOS\REPORTES\repCorteCaja.resx">
+      <DependentUpon>repCorteCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAGOS\REPORTES\reportContrato.rdlc" />
     <EmbeddedResource Include="PAGOS\REPORTES\repPagosGlobal.resx">
       <DependentUpon>repPagosGlobal.cs</DependentUpon>
@@ -407,6 +416,7 @@
     <None Include="Resources\excel.png" />
     <None Include="Resources\subir16.png" />
     <None Include="Resources\subir.png" />
+    <None Include="Resources\consulta.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

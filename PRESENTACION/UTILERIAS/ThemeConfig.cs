@@ -119,6 +119,10 @@ namespace PRESENTACION.UTILERIAS
                 else if (ctrlG is TextBox)
                 {
                     ((TextBox)ctrlG).CharacterCasing = CharacterCasing.Upper;
+
+                }else if (ctrlG is DateTimePicker)
+                {
+                    ((DateTimePicker)ctrlG).Value = DateTime.Now;
                 }
             }
         }

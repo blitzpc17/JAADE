@@ -19,6 +19,8 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public List<clsPagoReciboEncabezado> LstEncabezados;
         public List<clsPagoReciboPartida> LstPartidas;
 
+        public List<KeyValuePair<string, int>> LstExportados;
+
         public repPagosGlobalLogica()
         {
             contextoZonas = new ZonaADO();
@@ -38,6 +40,11 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public void ListarPartidasPagoXZona(int? ZonaId = null)
         {
             LstPartidas = contextoPago.ListarPartidasPagoXZona(ZonaId);
+        }
+
+        public void InstanciarLstExportados()
+        {
+            LstExportados = new List<KeyValuePair<string, int>>();
         }
 
 

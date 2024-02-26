@@ -26,6 +26,24 @@ namespace CAPADATOS.ADO.PAGOS
             contexto.SaveChanges();
         }
 
+        public List<clsRepCorteCaja> ListarPagosPorFechaEmision(DateTime fechaInicio, DateTime fechaFin)
+        {
+            string query = "SELECT \r\n"+
+                            "P.Folio, P.FechaEmision, P.Observacion, \r\n"+
+                            "CL.Folio AS Contrato, lt.Identificador as IdentificadorLote, \r\n"+
+                            "P.Monto, (PERREC.Nombres + ' ' + perrec.Apellidos) as NombreRecibio \r\n"+
+                            "FROM PAGO P \r\n"+
+                            "JOIN CLIENTELOTE CL ON P.ContratoId = CL.Id \r\n"+
+                            "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n"+
+                            "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n"+
+                            "JOIN USUARIO USREC ON P.USUARIORecibeId = USREC.Id \r\n"+
+                            "JOIN PERSONA PERREC ON USREC.PERSONAId = PERREC.Id \r\n"+
+                            "WHERE CAST(p.FechaEmision AS DATE ) >= '"+fechaInicio.ToString("yyyy-MM-dd")+ "' " +
+                            "AND CAST(p.FechaEmision AS DATE )  <= '"+fechaFin.ToString("yyyy-MM-dd")+"' "; 
+
+            return contexto.Database.SqlQuery<clsRepCorteCaja>(query).ToList();
+        }
+
         public void Eliminar(PAGO entidad)
         {
             contexto.PAGO.Remove(entidad);
@@ -62,13 +80,14 @@ namespace CAPADATOS.ADO.PAGOS
 
         public List<clsPagoReciboPartida>ListarPartidasPagoXZona(int? zonaId)
         {
-            string condicion = zonaId != null ? "WHERE CL.ZonaId = "+zonaId : "";
+            string condicion = zonaId != null ? "WHERE LT.ZonaId = "+zonaId : "";
             string query = "SELECT \r\n" +
                     "CL.Id AS ContratoId, PG.Id as PagoId, \r\n" +
                     "PG.Folio, PG.NoPago, PG.Monto, PG.FechaEmision, \r\n" +
                     "PG.Observacion \r\n" +
                     "FROM PAGO PG \r\n" +
-                    "JOIN CLIENTELOTE CL ON PG.ContratoId = CL.Id "+condicion;
+                    "JOIN CLIENTELOTE CL ON PG.ContratoId = CL.Id \r\n" +
+                    "JOIN LOTE LT ON CL.LOTEId = LT.Id "+condicion;
 
             return
                 contexto.Database.SqlQuery<clsPagoReciboPartida>(query).ToList();

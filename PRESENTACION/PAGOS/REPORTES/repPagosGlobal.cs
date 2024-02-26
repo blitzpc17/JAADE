@@ -84,7 +84,20 @@ namespace PRESENTACION.PAGOS.REPORTES
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            GenerarGlobal();
+            try
+            {
+                GenerarGlobal();
+            }
+            catch (Exception ex)
+            {
+                Global.GuardarExcepcion(ex, Name);
+                MessageBox.Show(
+                    "Ocurrió un error al intentar generar el reporte. Intentelo nuevamente.",
+                    "Error en la operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            
         }
 
         private void GenerarGlobal()
@@ -97,6 +110,10 @@ namespace PRESENTACION.PAGOS.REPORTES
             }else if(chkTodos.Checked)
             {
                 zonaSeleccionada = null;
+            }
+            else
+            {
+                zonaSeleccionada = (int)cbxZonas.SelectedValue;
             }
             saveFileDialog1.Filter = "Archivos de Excel (*.xlsx)|*.xlsx|Todos los archivos (*.*)|*.*";
             saveFileDialog1.Title = "Guardar reporte de pagos";
@@ -125,7 +142,7 @@ namespace PRESENTACION.PAGOS.REPORTES
                 if(contexto.LstPartidas!=null && contexto.LstPartidas.Count > 0)
                 {
                     var lstZonasAux = zonaSeleccionada != null ? contexto.LstZonas.Where(x => x.Id == zonaSeleccionada) : contexto.LstZonas;
-
+                    contexto.InstanciarLstExportados();
                     using (SLDocument sl = new SLDocument())
                     {
 
@@ -197,8 +214,10 @@ namespace PRESENTACION.PAGOS.REPORTES
 
                                 ex = +4;
                             }
-                        }
 
+                            contexto.LstExportados.Add(new KeyValuePair<string, int>(zona.Nombre, contexto.LstEncabezados.Where(x => x.ZonaId == zona.Id).Count()));
+                        }
+                        sl.DeleteWorksheet("Sheet1");
                         sl.SaveAs(path);
                     }
                     
@@ -212,7 +231,29 @@ namespace PRESENTACION.PAGOS.REPORTES
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("¡Reporte generado!.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(contexto.LstExportados!=null && contexto.LstExportados.Count > 0)
+            {
+                AparienciasRegistros();
+                MessageBox.Show("¡Reporte generado!.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No hay registros para mostrar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+           
+        }
+
+        private void AparienciasRegistros()
+        {
+            dgvRegistros.DataSource = contexto.LstExportados;
+            tsTotalRegistros.Text = contexto.LstExportados.Count.ToString("N0");
+
+
+            dgvRegistros.Columns[0].HeaderText = "ZONA";
+            dgvRegistros.Columns[1].HeaderText = "NO. CONTRATOS";
+
+
         }
     }
 }
