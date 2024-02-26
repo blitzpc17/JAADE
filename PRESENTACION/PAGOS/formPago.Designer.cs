@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPago));
-            this.btnImportar = new System.Windows.Forms.Button();
+            this.btnGenerar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtMensualidad = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtSaldoPendiente = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtPrecioLote = new System.Windows.Forms.TextBox();
@@ -62,29 +66,25 @@
             this.txtDiaPago = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtMensualidad = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnImportar
+            // btnGenerar
             // 
-            this.btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnImportar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImportar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportar.Image = global::PRESENTACION.Properties.Resources.ticket;
-            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(12, 569);
-            this.btnImportar.MaximumSize = new System.Drawing.Size(110, 40);
-            this.btnImportar.MinimumSize = new System.Drawing.Size(110, 40);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(110, 40);
-            this.btnImportar.TabIndex = 20;
-            this.btnImportar.Text = "     Recibo";
-            this.btnImportar.UseVisualStyleBackColor = true;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            this.btnGenerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGenerar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerar.Image = global::PRESENTACION.Properties.Resources.ticket;
+            this.btnGenerar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGenerar.Location = new System.Drawing.Point(12, 569);
+            this.btnGenerar.MaximumSize = new System.Drawing.Size(110, 40);
+            this.btnGenerar.MinimumSize = new System.Drawing.Size(110, 40);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(110, 40);
+            this.btnGenerar.TabIndex = 20;
+            this.btnGenerar.Text = "     Recibo";
+            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // btnCancelar
             // 
@@ -164,6 +164,44 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del pago";
+            // 
+            // txtObservacion
+            // 
+            this.txtObservacion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservacion.Location = new System.Drawing.Point(131, 320);
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(225, 56);
+            this.txtObservacion.TabIndex = 150;
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(10, 320);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(115, 23);
+            this.label16.TabIndex = 204;
+            this.label16.Text = "Observación:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMensualidad
+            // 
+            this.txtMensualidad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMensualidad.Location = new System.Drawing.Point(131, 233);
+            this.txtMensualidad.Name = "txtMensualidad";
+            this.txtMensualidad.ReadOnly = true;
+            this.txtMensualidad.Size = new System.Drawing.Size(225, 23);
+            this.txtMensualidad.TabIndex = 120;
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(10, 233);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(115, 23);
+            this.label15.TabIndex = 200;
+            this.label15.Text = "Mensualidad ($):";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtSaldoPendiente
             // 
@@ -448,50 +486,12 @@
             this.label1.Text = "Día pago:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtMensualidad
-            // 
-            this.txtMensualidad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMensualidad.Location = new System.Drawing.Point(131, 233);
-            this.txtMensualidad.Name = "txtMensualidad";
-            this.txtMensualidad.ReadOnly = true;
-            this.txtMensualidad.Size = new System.Drawing.Size(225, 23);
-            this.txtMensualidad.TabIndex = 120;
-            // 
-            // label15
-            // 
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(10, 233);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(115, 23);
-            this.label15.TabIndex = 200;
-            this.label15.Text = "Mensualidad ($):";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtObservacion
-            // 
-            this.txtObservacion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservacion.Location = new System.Drawing.Point(131, 320);
-            this.txtObservacion.Multiline = true;
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(225, 56);
-            this.txtObservacion.TabIndex = 150;
-            // 
-            // label16
-            // 
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(10, 320);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(115, 23);
-            this.label16.TabIndex = 204;
-            this.label16.Text = "Observación:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // formPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(403, 621);
-            this.Controls.Add(this.btnImportar);
+            this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
@@ -509,7 +509,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnImportar;
+        private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.GroupBox groupBox1;

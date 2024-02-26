@@ -22,6 +22,9 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public CLIENTELOTE ObjContrato;
 
         public clsInformacionContratoPago ObjInformacionPago;
+        public clsTicketEncabezado ObjEncabezadoTicket;
+        public List<clsTicketPartida> LstPartidasTicket;
+        public clsTicketPago ObjTicket;
 
         public formPagoLogica()
         {
@@ -94,5 +97,22 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         {
             ObjPago = contextoPago.ObtenerXFolio(folio);
         }
+
+        //ticket
+        public void InstanciarObjTicket()
+        {
+            ObjTicket = new clsTicketPago();
+        }
+
+        public void InstanciarEncabezadoTicket()
+        {
+            ObjEncabezadoTicket = new clsTicketEncabezado();
+        }
+
+        public void ObtenerPartidasPagoContrato(string noReferencia)
+        {
+            LstPartidasTicket = contextoPago.ObtenerPartidasPagoContrato(noReferencia);
+        }      
+
     }
 }

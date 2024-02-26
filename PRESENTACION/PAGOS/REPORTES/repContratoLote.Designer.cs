@@ -52,7 +52,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "repContratoLote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "repContratoLote";
+            this.Text = "Generar contrato de lote";
             this.Load += new System.EventHandler(this.repContratoLote_Load);
             this.Shown += new System.EventHandler(this.repContratoLote_Shown);
             this.ResumeLayout(false);

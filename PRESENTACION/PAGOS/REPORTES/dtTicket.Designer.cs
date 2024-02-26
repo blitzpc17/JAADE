@@ -645,7 +645,7 @@ namespace PRESENTACION.PAGOS.REPORTES {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class dtPartidasDataTable : global::System.Data.TypedTableBase<dtPartidasRow> {
             
-            private global::System.Data.DataColumn _columnNo_;
+            private global::System.Data.DataColumn columnNoPago;
             
             private global::System.Data.DataColumn columnMonto;
             
@@ -688,9 +688,9 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn _No_Column {
+            public global::System.Data.DataColumn NoPagoColumn {
                 get {
-                    return this._columnNo_;
+                    return this.columnNoPago;
                 }
             }
             
@@ -755,10 +755,10 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dtPartidasRow AdddtPartidasRow(string _No_, string Monto, string Fecha, string Observacion) {
+            public dtPartidasRow AdddtPartidasRow(string NoPago, string Monto, string Fecha, string Observacion) {
                 dtPartidasRow rowdtPartidasRow = ((dtPartidasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        _No_,
+                        NoPago,
                         Monto,
                         Fecha,
                         Observacion};
@@ -784,7 +784,7 @@ namespace PRESENTACION.PAGOS.REPORTES {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this._columnNo_ = base.Columns["No."];
+                this.columnNoPago = base.Columns["NoPago"];
                 this.columnMonto = base.Columns["Monto"];
                 this.columnFecha = base.Columns["Fecha"];
                 this.columnObservacion = base.Columns["Observacion"];
@@ -793,10 +793,8 @@ namespace PRESENTACION.PAGOS.REPORTES {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this._columnNo_ = new global::System.Data.DataColumn("No.", typeof(string), null, global::System.Data.MappingType.Element);
-                this._columnNo_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnNo_");
-                this._columnNo_.ExtendedProperties.Add("Generator_UserColumnName", "No.");
-                base.Columns.Add(this._columnNo_);
+                this.columnNoPago = new global::System.Data.DataColumn("NoPago", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoPago);
                 this.columnMonto = new global::System.Data.DataColumn("Monto", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMonto);
                 this.columnFecha = new global::System.Data.DataColumn("Fecha", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1157,17 +1155,17 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string _No_ {
+            public string NoPago {
                 get {
                     try {
-                        return ((string)(this[this.tabledtPartidas._No_Column]));
+                        return ((string)(this[this.tabledtPartidas.NoPagoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'No.\' de la tabla \'dtPartidas\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoPago\' de la tabla \'dtPartidas\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabledtPartidas._No_Column] = value;
+                    this[this.tabledtPartidas.NoPagoColumn] = value;
                 }
             }
             
@@ -1221,14 +1219,14 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Is_No_Null() {
-                return this.IsNull(this.tabledtPartidas._No_Column);
+            public bool IsNoPagoNull() {
+                return this.IsNull(this.tabledtPartidas.NoPagoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Set_No_Null() {
-                this[this.tabledtPartidas._No_Column] = global::System.Convert.DBNull;
+            public void SetNoPagoNull() {
+                this[this.tabledtPartidas.NoPagoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

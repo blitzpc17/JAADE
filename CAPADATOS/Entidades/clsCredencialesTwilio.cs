@@ -9,7 +9,7 @@ namespace CAPADATOS.Entidades
     public class clsCredencialesTwilio
     {
         public string AccountSId { get; set; }
-        public string AuthToke { get; set; }
+        public string AuthToken { get; set; }
         public string TelefonoSalida { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using CAPALOGICA.LOGICAS.PAGOS;
+using Microsoft.Reporting.WinForms;
 using PRESENTACION.BUSQUEDA;
+using PRESENTACION.PAGOS.REPORTES;
 using PRESENTACION.UTILERIAS;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,8 @@ namespace PRESENTACION.PAGOS
         private formPagoLogica contexto;
         private busContratos busContrato;
         private busPagos busPagos;
+
+        private List<ReportParameter> parametros;
         private bool cargado = false;
 
         public formPago()
@@ -189,12 +193,50 @@ namespace PRESENTACION.PAGOS
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            ImportarLayout();
+            GenerarRecibo();
         }
 
-        private void ImportarLayout()
+        private void GenerarRecibo()
         {
-            
+            if (contexto.ObjPago == null)
+            {
+                MessageBox.Show("No se ha seleccionado ningún registro.", "Advertencia",
+                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            contexto.InstanciarObjTicket();
+            contexto.InstanciarEncabezadoTicket();
+            //traer agenda del cliente
+            contexto.ObjEncabezadoTicket.Cliente = contexto.ObjContratoData.ClaveCliente + " " + contexto.ObjContratoData.NombreCliente;
+            contexto.ObjEncabezadoTicket.ObsComportamientoPago = contexto.ObjContratoData.Observacion;
+            contexto.ObjEncabezadoTicket.NoPagos = contexto.ObjContratoData.NoPagos;
+            contexto.ObjEncabezadoTicket.Fecha = contexto.ObjContratoData.FechaEmision;
+            contexto.ObjEncabezadoTicket.PrecioLote = contexto.ObjContratoData.PrecioLote;
+            contexto.ObjEncabezadoTicket.IdentificadorLote = contexto.ObjContratoData.IdentificadorLote;
+            contexto.ObjEncabezadoTicket.Zona = contexto.ObjContratoData.NombreZona;
+
+            contexto.ObjTicket.Encabezado = contexto.ObjEncabezadoTicket;
+
+            contexto.ObtenerPartidasPagoContrato(contexto.ObjContratoData.NoReferencia);
+
+            contexto.ObjTicket.Partidas = contexto.LstPartidasTicket;
+
+            InstanciarListaParametros();
+
+            parametros.Add(new ReportParameter("MontoAcumulado", contexto.LstPartidasTicket.Sum(x=>x.Monto).ToString("N2")));
+            parametros.Add(new ReportParameter("FechaReimpresion", Global.FechaServidor().ToString("dd/MM/yyyy HH:mm:ss")));
+
+            repTicket rep = new repTicket(contexto.ObjTicket);
+            rep.parametros = parametros;    
+            rep.ShowDialog();
+
+
+        }
+
+        public void InstanciarListaParametros()
+        {
+            parametros = new List<ReportParameter>();
         }
 
         private void btnBuscarPago_Click(object sender, EventArgs e)

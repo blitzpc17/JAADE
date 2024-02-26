@@ -144,7 +144,7 @@ namespace PRESENTACION.UTILERIAS
             string rutaRemota = pathRemoto;
 
             // Crear una instancia de FtpWebRequest
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create($"{ftpServer}{rutaRemota}");
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create($"ftp://{ftpServer}/{rutaRemota}");
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
 
@@ -203,19 +203,19 @@ namespace PRESENTACION.UTILERIAS
             clsCredencialesTwilio _ObjCredenciales = 
                 JsonConvert.DeserializeObject<clsCredencialesTwilio>(DevulveVariableGlobal(variableCredenciales));
             string accountSid = _ObjCredenciales.AccountSId;
-            string authToken = _ObjCredenciales.AccountSId;
+            string authToken = _ObjCredenciales.AuthToken;
 
             TwilioClient.Init(accountSid, authToken);
 
             // Número de teléfono del destinatario en formato internacional (por ejemplo, +1234567890)
             //string recipientPhoneNumber = "whatsapp:+5212381458680";
-            string recipientPhoneNumber = "whatsapp:+52"+objWhats.TelefonoDestino;
+            string recipientPhoneNumber = "whatsapp:+521"+objWhats.TelefonoDestino;
 
             try
             {
                 var message = MessageResource.Create(
                     body: objWhats.Cuerpo,
-                    from: new PhoneNumber("whatsapp:+52"+_ObjCredenciales.TelefonoSalida),
+                    from: new PhoneNumber("whatsapp:+"+_ObjCredenciales.TelefonoSalida),
                     to: new PhoneNumber(recipientPhoneNumber),
                     mediaUrl: new List<Uri> { new Uri(objWhats.PathMediaFile) }
                 );

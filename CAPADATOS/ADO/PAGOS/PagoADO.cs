@@ -94,6 +94,17 @@ namespace CAPADATOS.ADO.PAGOS
 
         }
 
+        public List<clsTicketPartida> ObtenerPartidasPagoContrato(string noReferencia)
+        {
+            string query = "SELECT \r\n" +
+                            "PG.NoPago as No, PG.Monto, PG.FechaEmision as Fecha, PG.Observacion \r\n" +
+                            "FROM PAGO PG \r\n"+
+                            "JOIN CLIENTELOTE CL ON PG.ContratoId = CL.Id \r\n"+
+                            "WHERE CL.Folio = '"+noReferencia+"'"; 
+
+            return contexto.Database.SqlQuery<clsTicketPartida>(query).ToList();
+        }
+
         public PAGO Obtener(int id)
         {
             return contexto.PAGO.FirstOrDefault(x => x.Id == id);

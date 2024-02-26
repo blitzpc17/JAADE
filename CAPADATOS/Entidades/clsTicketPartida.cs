@@ -11,5 +11,7 @@ namespace CAPADATOS.Entidades
         public int No { get; set; }
         public decimal Monto { get; set; }
         public DateTime Fecha { get; set; }
+        public string Observacion { get; set; }
+
     }
 }
