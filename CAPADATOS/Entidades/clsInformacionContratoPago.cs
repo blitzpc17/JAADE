@@ -19,6 +19,6 @@ namespace CAPADATOS.Entidades
         public int? NoUltimoPagoGraciaPago { get; set; }
         public decimal? SaldoProrrogaFavor { get; set; }
         public decimal? MensualidadGracia { get; set; }
-        public int NoPagosGraciaRealizados { get; set; } 
+        public int? NoPagosGraciaRealizados { get; set; } 
     }
 }
