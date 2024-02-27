@@ -517,7 +517,6 @@ namespace PRESENTACION.PAGOS
                 contexto.ObjContrato.NoPagos = Convert.ToInt32(txtNoPagos.Text);
                 contexto.ObjContrato.USUARIOOperacionId = Global.ObjUsuario.Id;
                 contexto.ObjContrato.Observacion = txtObservacion.Text;
-                
 
                 contexto.Guardar();
                 if (nuevoContrato)
@@ -530,6 +529,7 @@ namespace PRESENTACION.PAGOS
                     contexto.ObjPago.ContratoId = contexto.ObjContrato.Id;
                     contexto.ObjPago.USUARIORecibeId = Global.ObjUsuario.Id;
                     contexto.ObjPago.NoPago = 1;
+                    contexto.ObjPago.PagoOrdinario = true;
                     contexto.GuardarPago();
 
                     msjSuccess[0] += " Se ha generado el pago inicial folio de seguimiento " + contexto.ObjPago.Folio + ".";
