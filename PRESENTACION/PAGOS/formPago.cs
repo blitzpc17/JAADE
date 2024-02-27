@@ -126,7 +126,11 @@ namespace PRESENTACION.PAGOS
                     if (contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
                     {
                         contexto.ObjPago.PagoOrdinario = false;
-                        contexto.ObjPago.NoPago = contexto.ObjInformacionPago.NoPagosGraciaRealizados + 1;
+                        if (contexto.ObjInformacionPago.NoPagosGraciaRealizados != null)
+                        {
+                            contexto.ObjPago.NoPago = Convert.ToInt32(contexto.ObjInformacionPago.NoPagosGraciaRealizados) + 1;
+                        }                            
+                        
                     }
                     else
                     {
@@ -311,7 +315,7 @@ namespace PRESENTACION.PAGOS
             {
                 if(contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
                 {
-                    txtNoPago.Text = (contexto.ObjInformacionPago.NoPagosGraciaRealizados + 1).ToString("N0");
+                    txtNoPago.Text = (contexto.ObjInformacionPago.NoPagosGraciaRealizados + 1).ToString();
                 }
                 else
                 {
