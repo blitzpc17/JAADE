@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="052b261e117d42e980ee246947a56e2c" Name="Diagram1" ZoomLevel="90" >
-        <EntityTypeShape EntityType="DB_JAADEModel.USUARIO" Width="1.5" PointX="0.875" PointY="4.375" />
+        <EntityTypeShape EntityType="DB_JAADEModel.USUARIO" Width="1.5" PointX="0.875" PointY="3.375" />
         <EntityTypeShape EntityType="DB_JAADEModel.PERSONA" Width="1.5" PointX="0.875" PointY="0.5" />
         <EntityTypeShape EntityType="DB_JAADEModel.MODULO" Width="1.5" PointX="3.5" PointY="3.375" />
         <EntityTypeShape EntityType="DB_JAADEModel.ROL" Width="1.5" PointX="0.75" PointY="8" />
-        <EntityTypeShape EntityType="DB_JAADEModel.MODULO_PERMISO" Width="2" PointX="5.875" PointY="3.5" />
-        <EntityTypeShape EntityType="DB_JAADEModel.CLIENTE" Width="1.5" PointX="8.625" PointY="0.5" />
-        <EntityTypeShape EntityType="DB_JAADEModel.AGENDA" Width="1.5" PointX="5.25" PointY="0.5" />
+        <EntityTypeShape EntityType="DB_JAADEModel.MODULO_PERMISO" Width="2" PointX="6.25" PointY="2.875" />
+        <EntityTypeShape EntityType="DB_JAADEModel.CLIENTE" Width="1.5" PointX="8.875" PointY="0.5" />
+        <EntityTypeShape EntityType="DB_JAADEModel.AGENDA" Width="1.5" PointX="5.375" PointY="0.875" />
         <EntityTypeShape EntityType="DB_JAADEModel.ESTADO" Width="1.5" PointX="3.375" PointY="6.25" />
-        <EntityTypeShape EntityType="DB_JAADEModel.ZONA" Width="1.5" PointX="14.75" PointY="5.25" />
-        <EntityTypeShape EntityType="DB_JAADEModel.LOTE" Width="1.5" PointX="12.125" PointY="4.375" />
+        <EntityTypeShape EntityType="DB_JAADEModel.ZONA" Width="1.5" PointX="16.875" PointY="7.125" />
+        <EntityTypeShape EntityType="DB_JAADEModel.LOTE" Width="1.5" PointX="14.75" PointY="7.125" />
         <AssociationConnector Association="DB_JAADEModel.USUARIOESTADO" />
         <AssociationConnector Association="DB_JAADEModel.USUARIOPERSONA" />
         <AssociationConnector Association="DB_JAADEModel.ROLUSUARIO" />
-        <EntityTypeShape EntityType="DB_JAADEModel.PERSONA_AGENDA" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="DB_JAADEModel.PERSONA_AGENDA" Width="1.5" PointX="3" PointY="0.625" />
         <AssociationConnector Association="DB_JAADEModel.AGENDAPERSONA_AGENDA" />
         <AssociationConnector Association="DB_JAADEModel.MODULO_PERMISOMODULO" />
         <AssociationConnector Association="DB_JAADEModel.MODULO_PERMISOUSUARIO" />
@@ -38,20 +38,26 @@
         <AssociationConnector Association="DB_JAADEModel.CONTROL_PERMISOCONTROL" />
         <AssociationConnector Association="DB_JAADEModel.CONTROL_PERMISOUSUARIO" />
         <AssociationConnector Association="DB_JAADEModel.CONTROL_PERMISOUSUARIO1" />
-        <EntityTypeShape EntityType="DB_JAADEModel.SOCIOS" Width="1.5" PointX="14.5" PointY="1" />
-        <EntityTypeShape EntityType="DB_JAADEModel.CLIENTES_SOCIOS" Width="1.5" PointX="11.625" PointY="1" />
+        <EntityTypeShape EntityType="DB_JAADEModel.SOCIOS" Width="1.5" PointX="14.5" PointY="0.5" />
+        <EntityTypeShape EntityType="DB_JAADEModel.CLIENTES_SOCIOS" Width="2" PointX="11.375" PointY="0.5" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTES_SOCIOSCLIENTE" />
         <AssociationConnector Association="DB_JAADEModel.SOCIOSCLIENTES_SOCIOS" />
-        <EntityTypeShape EntityType="DB_JAADEModel.CLIENTELOTE" Width="1.5" PointX="9.5" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_JAADEModel.CONTRATO" Width="1.5" PointX="10" PointY="3.375" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTECLIENTE" />
-        <AssociationConnector Association="DB_JAADEModel.CLIENTELOTELOTE" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTEUSUARIO" />
-        <EntityTypeShape EntityType="DB_JAADEModel.PAGO" Width="1.5" PointX="8" PointY="9.625" />
+        <EntityTypeShape EntityType="DB_JAADEModel.PAGO" Width="1.5" PointX="10.125" PointY="11.125" />
         <AssociationConnector Association="DB_JAADEModel.PAGOUSUARIO" />
         <AssociationConnector Association="DB_JAADEModel.PAGOCLIENTELOTE" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTESOCIOS" />
         <AssociationConnector Association="DB_JAADEModel.CLIENTELOTEESTADO" />
-        <AssociationConnector Association="DB_JAADEModel.CLIENTELOTECLIENTELOTEREUBICADO" />
+        <EntityTypeShape EntityType="DB_JAADEModel.CONTRATO_LOTES" PointX="12" PointY="7.25" Width="2.125" />
+        <AssociationConnector Association="DB_JAADEModel.CONTRATOCONTRATO_LOTES" />
+        <AssociationConnector Association="DB_JAADEModel.CONTRATO_LOTESLOTE" />
+        <EntityTypeShape EntityType="DB_JAADEModel.ROL_PERMISO" Width="1.5" PointX="7.75" PointY="7.25" />
+        <AssociationConnector Association="DB_JAADEModel.ROL_PERMISOMODULO" />
+        <AssociationConnector Association="DB_JAADEModel.ROL_PERMISOROL" />
+        <AssociationConnector Association="DB_JAADEModel.CONTRATOAGENDA" />
+        <AssociationConnector Association="DB_JAADEModel.CONTRATOCONTRATOORIGEN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

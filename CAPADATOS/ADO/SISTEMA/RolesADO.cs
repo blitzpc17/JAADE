@@ -39,5 +39,7 @@ namespace CAPADATOS.ADO.SISTEMA
         {
             return contexto.ROL.FirstOrDefault(x => x.Id == id);
         }
+
+  
     }
 }

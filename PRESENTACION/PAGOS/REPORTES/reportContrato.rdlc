@@ -94,7 +94,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!HORA.Value</Value>
+                    <Value>=Parameters!Hora.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -116,7 +116,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MINUTO.Value</Value>
+                    <Value>=Parameters!Minuto.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -138,7 +138,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!DIA.Value</Value>
+                    <Value>=Parameters!Dia.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -160,7 +160,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MES.Value</Value>
+                    <Value>=Parameters!Mes.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -182,7 +182,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!ANIO.Value</Value>
+                    <Value>=Parameters!Anio.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -204,7 +204,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -232,7 +234,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -271,7 +275,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!CALLEJAADE.Value</Value>
+                    <Value>=Parameters!CalleJaade.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -293,7 +297,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!NOEXTJAADE.Value</Value>
+                    <Value>=Parameters!NoExtJaade.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -315,7 +319,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!LOCALIDADJAADE.Value</Value>
+                    <Value>=Parameters!LocalidadJaade.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -337,7 +341,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MUNICIPIOJAADE.Value</Value>
+                    <Value>=Parameters!MunicipioJaade.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -359,7 +363,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!ESTADOJAADE.Value</Value>
+                    <Value>=Parameters!EstadoJaade.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -381,7 +385,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -420,7 +426,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!DOMICILIOCLIENTE.Value</Value>
+                    <Value>=Parameters!DomicilioCliente.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -442,7 +448,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -470,7 +478,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> El bien inmueble materia de la compraventa está identificado como lote número </Value>
+                    <Value> El bien inmueble materia de la compraventa está identificado como </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -481,7 +489,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!NOLOTE.Value</Value>
+                    <Value>=Parameters!LotesRelacionados.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -492,7 +500,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> de la manzana </Value>
+                    <Value>=Parameters!NoManzana.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -503,7 +511,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MANZANA.Value</Value>
+                    <Value>. Ubicado en </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -514,7 +522,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>. </Value>
+                    <Value>=Parameters!UbicacionZona.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -525,18 +533,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!UBICACIONPARCELA.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> y cuyas medidas y colindancias son las siguientes:</Value>
+                    <Value> , Estado de Puebla  y cuyas medidas y colindancias son las siguientes:</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -547,7 +544,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -586,7 +585,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MNORTE.Value</Value>
+                    <Value>=Parameters!MideNorte.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -608,7 +607,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!CNORTE.Value</Value>
+                    <Value>=Parameters!ColindaNorte.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -653,7 +652,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MSUR.Value</Value>
+                    <Value>=Parameters!MideSur.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -675,7 +674,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!CSUR.Value</Value>
+                    <Value>=Parameters!ColindaSur.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -720,7 +719,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MESTE.Value</Value>
+                    <Value>=Parameters!MideEste.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -742,7 +741,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!CESTE.Value</Value>
+                    <Value>=Parameters!ColindaEste.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -787,7 +786,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MOESTE.Value</Value>
+                    <Value>=Parameters!MideOeste.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -809,7 +808,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!COESTE.Value</Value>
+                    <Value>=Parameters!ColindaOeste.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -839,7 +838,7 @@
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -855,13 +854,6 @@
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
                     <Value xml:space="preserve">
 </Value>
@@ -886,7 +878,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> El C.  </Value>
+                    <Value> El C. </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -897,7 +889,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!TITULARVENTAJAADE.Value</Value>
+                    <Value>=Parameters!TitularVentaJaade.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -908,7 +900,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> vende con reserva de dominio al C.  </Value>
+                    <Value> vende con reserva de dominio al C. </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -919,7 +911,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!CLIENTE.Value</Value>
+                    <Value>=Parameters!NombreCliente.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -930,74 +922,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>
-el bien inmueble identificado como lote número </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!NOLOTE.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> de la manzana </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!MANZANA.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>. </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!UBICACIONPARCELA.Value</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>.</Value>
+                    <Value> el bien inmueble identificado como lote número  de la manzana . </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1008,7 +933,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1036,7 +963,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> Los contratantes convienen en que el precio fijado por la presente compraventa total del predio es la cantidad de $</Value>
+                    <Value> Los contratantes convienen en que el precio fijado por la presente compraventa total del predio es la cantidad de </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1047,7 +974,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!PRECIOLOTE.Value</Value>
+                    <Value>=Parameters!TotalContrato.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1069,7 +996,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!PRECIOLOTELETRA.Value</Value>
+                    <Value>=Parameters!TotalContratoLetra.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1091,7 +1018,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1107,7 +1036,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1123,7 +1054,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>	Un pago inicial de $ </Value>
+                    <Value>	Un pago inicial de </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1134,7 +1065,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!PAGOINICIAL.Value</Value>
+                    <Value>=Parameters!PagoInicial.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1156,7 +1087,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MONTOPAGOINICIALLETRA.Value</Value>
+                    <Value>=Parameters!PagoInicialLetra.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1201,7 +1132,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!NOPAGOS.Value</Value>
+                    <Value>=Parameters!NoPagos.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1212,7 +1143,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>	 Mensualidades de $ </Value>
+                    <Value> Mensualidades de </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1223,7 +1154,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MONTOPAGOINICIAL.Value</Value>
+                    <Value>=Parameters!MontoMensualidad.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1234,7 +1165,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>(</Value>
+                    <Value> (</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1245,7 +1176,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!MONTOPAGOINICIALLETRA.Value</Value>
+                    <Value>=Parameters!MontoMensualidadLetra.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1290,7 +1221,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!DIAPAGO.Value</Value>
+                    <Value>=Parameters!DiaPago.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1313,7 +1244,9 @@ el bien inmueble identificado como lote número </Value>
                   </TextRun>
                 </TextRuns>
                 <ListLevel>1</ListLevel>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1352,7 +1285,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!NOPAGOS.Value</Value>
+                    <Value>=Parameters!NoPagos.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1374,7 +1307,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1413,7 +1348,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!NOPAGOS.Value</Value>
+                    <Value>=Parameters!NoPagos.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1435,7 +1370,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!NOPAGOSEXTENDIDOCONINTERES.Value</Value>
+                    <Value>=Parameters!NoPagosExtendido.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1457,7 +1392,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1496,7 +1433,7 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!NOPAGOS.Value</Value>
+                    <Value>=Parameters!NoPagos.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1518,7 +1455,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1557,7 +1496,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1596,7 +1537,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1635,7 +1578,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1674,7 +1619,9 @@ el bien inmueble identificado como lote número </Value>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1692,7 +1639,9 @@ SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADO
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1719,27 +1668,6 @@ SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADO
                 <TextRuns>
                   <TextRun>
                     <Value>PARTES CONTRATANTES</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12.5pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1802,7 +1730,7 @@ SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADO
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=Parameters!TitularVentaJaade.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1823,7 +1751,7 @@ SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADO
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!TITULARVENTAJAADE.Value</Value>
+                    <Value />
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Calibri</FontFamily>
@@ -1928,28 +1856,7 @@ SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADO
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>12.5pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <LeftIndent>0cm</LeftIndent>
-                <RightIndent>0cm</RightIndent>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                  <LineHeight>13pt</LineHeight>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!CLIENTE.Value</Value>
+                    <Value>=Parameters!NombreCliente.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -2052,158 +1959,174 @@ SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADO
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="HORA">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="DIA">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="MES">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="ANIO">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="CLIENTE">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="CALLEJAADE">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="NOEXTJAADE">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="NOINTJAADE">
+    <ReportParameter Name="NoReferencia">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="COLONIAJAADE">
+    <ReportParameter Name="LotesRelacionados">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="LOCALIDADJAADE">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="MUNICIPIOJAADE">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="ESTADOJAADE">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="TELEFONOJAADE">
+    <ReportParameter Name="NombreCliente">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="DOMICILIOCLIENTE">
+    <ReportParameter Name="DiaPago">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MANZANA">
+    <ReportParameter Name="PagoInicial">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="UBICACIONPARCELA">
+    <ReportParameter Name="NoPagos">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MNORTE">
+    <ReportParameter Name="NoPagosExtendido">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MSUR">
+    <ReportParameter Name="ColindaNorte">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MESTE">
+    <ReportParameter Name="ColindaSur">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MOESTE">
+    <ReportParameter Name="ColindaEste">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="CNORTE">
+    <ReportParameter Name="ColindaOeste">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="CSUR">
+    <ReportParameter Name="MideNorte">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="CESTE">
+    <ReportParameter Name="MideSur">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="COESTE">
+    <ReportParameter Name="MideEste">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="TITULARVENTAJAADE">
+    <ReportParameter Name="MideOeste">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="NOMBRECLIENTE">
+    <ReportParameter Name="DomicilioCliente">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="PRECIOLOTE">
+    <ReportParameter Name="Hora">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="PAGOINICIAL">
+    <ReportParameter Name="Minuto">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="NOPAGOS">
+    <ReportParameter Name="Dia">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="DIAPAGO">
+    <ReportParameter Name="Mes">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MONTOPAGOMENSUAL">
+    <ReportParameter Name="Anio">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MINUTO">
+    <ReportParameter Name="CalleJaade">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="NOLOTE">
+    <ReportParameter Name="NoExtJaade">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="PRECIOLOTELETRA">
+    <ReportParameter Name="LocalidadJaade">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MONTOPAGOINICIALLETRA">
+    <ReportParameter Name="MunicipioJaade">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MONTOPAGOINICIAL">
+    <ReportParameter Name="EstadoJaade">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="NOPAGOSEXTENDIDOCONINTERES">
+    <ReportParameter Name="TitularVentaJaade">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="PagoInicialLetra">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="MontoMensualidad">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="MontoMensualidadLetra">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TotalContrato">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TotalContratoLetra">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="UbicacionZona">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NoManzana">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -2215,187 +2138,172 @@ SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADO
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>HORA</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>DIA</ParameterName>
+          <ParameterName>NoReferencia</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>MES</ParameterName>
+          <ParameterName>LotesRelacionados</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>ANIO</ParameterName>
+          <ParameterName>NombreCliente</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>CLIENTE</ParameterName>
+          <ParameterName>DiaPago</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>CALLEJAADE</ParameterName>
+          <ParameterName>PagoInicial</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>NOEXTJAADE</ParameterName>
+          <ParameterName>NoPagos</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>NOINTJAADE</ParameterName>
+          <ParameterName>NoPagosExtendido</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>2</RowIndex>
-          <ParameterName>COLONIAJAADE</ParameterName>
+          <ParameterName>ColindaNorte</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>2</RowIndex>
-          <ParameterName>LOCALIDADJAADE</ParameterName>
+          <ParameterName>ColindaSur</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>2</RowIndex>
-          <ParameterName>MUNICIPIOJAADE</ParameterName>
+          <ParameterName>ColindaEste</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>2</RowIndex>
-          <ParameterName>ESTADOJAADE</ParameterName>
+          <ParameterName>ColindaOeste</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>3</RowIndex>
-          <ParameterName>TELEFONOJAADE</ParameterName>
+          <ParameterName>MideNorte</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>3</RowIndex>
-          <ParameterName>DOMICILIOCLIENTE</ParameterName>
+          <ParameterName>MideSur</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>MideEste</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>3</RowIndex>
-          <ParameterName>MANZANA</ParameterName>
+          <ParameterName>MideOeste</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>4</RowIndex>
-          <ParameterName>UBICACIONPARCELA</ParameterName>
+          <ParameterName>DomicilioCliente</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>4</RowIndex>
-          <ParameterName>MNORTE</ParameterName>
+          <ParameterName>Hora</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>4</RowIndex>
-          <ParameterName>MSUR</ParameterName>
+          <ParameterName>Minuto</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>4</RowIndex>
-          <ParameterName>MESTE</ParameterName>
+          <ParameterName>Dia</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>5</RowIndex>
-          <ParameterName>MOESTE</ParameterName>
+          <ParameterName>Mes</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>5</RowIndex>
-          <ParameterName>CNORTE</ParameterName>
+          <ParameterName>Anio</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>5</RowIndex>
-          <ParameterName>CSUR</ParameterName>
+          <ParameterName>CalleJaade</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>5</RowIndex>
-          <ParameterName>CESTE</ParameterName>
+          <ParameterName>NoExtJaade</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>6</RowIndex>
-          <ParameterName>COESTE</ParameterName>
+          <ParameterName>LocalidadJaade</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>6</RowIndex>
-          <ParameterName>TITULARVENTAJAADE</ParameterName>
+          <ParameterName>MunicipioJaade</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>6</RowIndex>
-          <ParameterName>NOMBRECLIENTE</ParameterName>
+          <ParameterName>EstadoJaade</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>6</RowIndex>
-          <ParameterName>PRECIOLOTE</ParameterName>
+          <ParameterName>TitularVentaJaade</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>7</RowIndex>
-          <ParameterName>PAGOINICIAL</ParameterName>
+          <ParameterName>PagoInicialLetra</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>7</RowIndex>
-          <ParameterName>NOPAGOS</ParameterName>
+          <ParameterName>MontoMensualidad</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>7</RowIndex>
-          <ParameterName>DIAPAGO</ParameterName>
+          <ParameterName>MontoMensualidadLetra</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>7</RowIndex>
-          <ParameterName>MONTOPAGOMENSUAL</ParameterName>
+          <ParameterName>TotalContrato</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>8</RowIndex>
-          <ParameterName>MINUTO</ParameterName>
+          <ParameterName>TotalContratoLetra</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>8</RowIndex>
-          <ParameterName>NOLOTE</ParameterName>
+          <ParameterName>UbicacionZona</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>8</RowIndex>
-          <ParameterName>PRECIOLOTELETRA</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>9</RowIndex>
-          <ParameterName>MONTOPAGOINICIALLETRA</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>9</RowIndex>
-          <ParameterName>MONTOPAGOINICIAL</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>9</RowIndex>
-          <ParameterName>NOPAGOSEXTENDIDOCONINTERES</ParameterName>
+          <ParameterName>NoManzana</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

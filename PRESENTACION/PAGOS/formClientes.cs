@@ -94,16 +94,7 @@ namespace PRESENTACION.PAGOS
                 {
                     contexto.ObjPersona.FechaNacimiento = dtpFechaNacimiento.Value;
                 }                
-                contexto.ObjPersona.Curp = txtCurp.Text;
-                contexto.ObjPersona.Calle = txtCalle.Text;
-                contexto.ObjPersona.NoExt = txtNoExt.Text;
-                contexto.ObjPersona.NoInt = txtNoInt.Text;
-                contexto.ObjPersona.Colonia = txtColonia.Text;
-                contexto.ObjPersona.Localidad = txtLocalidad.Text;
-                contexto.ObjPersona.CodigoPostal = txtCodigoPostal.Text;
-                contexto.ObjPersona.EntidadFederativa = txtEntidadFederativa.Text;
-                contexto.ObjPersona.Municipio = txtMunicipio.Text;
-
+                contexto.ObjPersona.Curp = txtCurp.Text; 
 
                 contexto.ObjCliente.ESTADOId = (int)cbxEstado.SelectedValue;
 
@@ -139,14 +130,7 @@ namespace PRESENTACION.PAGOS
                     dtpFechaNacimiento.Value = Convert.ToDateTime(contexto.ObjClienteData.FechaNacimiento);
                 }                
                 txtCurp.Text = contexto.ObjClienteData.Curp;
-                txtCalle.Text = contexto.ObjClienteData.Calle;
-                txtNoExt.Text = contexto.ObjClienteData.NoExt;
-                txtNoInt.Text = contexto.ObjClienteData.NoInt;
-                txtColonia.Text = contexto.ObjClienteData.Colonia;
-                txtLocalidad.Text = contexto.ObjClienteData.Localidad;
-                txtCodigoPostal.Text = contexto.ObjClienteData.CodigoPostal;
-                txtMunicipio.Text = contexto.ObjClienteData.Municipio;
-                txtEntidadFederativa.Text = contexto.ObjClienteData.EntidadFederativa;
+               
                 txtClave.Text = contexto.ObjClienteData.Clave;
                 cbxEstado.SelectedValue = contexto.ObjClienteData.EstadoId;
 
@@ -413,6 +397,14 @@ namespace PRESENTACION.PAGOS
                     return;
                 }
 
+                if (string.IsNullOrEmpty(txtSocio.Text))
+                {
+                    MessageBox.Show("Falta ingresar el nombre del socio.",
+                       "Advertencia", MessageBoxButtons.OK,
+                       MessageBoxIcon.Warning);
+                    return;
+                }
+
                 contexto.InstanciarSocio();//AQUI SUSTITUIR ESE INSTANCIAR SOCIOS POR EL QUE SE OCUPA EN LA IMPORTACION
                 contexto.ObjSocios.Nombre = txtSocio.Text;                
                 contexto.GuardarSocio();
@@ -453,11 +445,7 @@ namespace PRESENTACION.PAGOS
             dgvSocios.Columns[1].HeaderText = "Nombre";
             dgvSocios.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-
-        private void txtSocio_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -525,6 +513,13 @@ namespace PRESENTACION.PAGOS
                 {
                     MessageBox.Show("No ha seleccionado el tipo de contacto.", "Advertencia",
                       MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtDato.Text))
+                {
+                    MessageBox.Show("No ha ingresado el dato de contacto.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 

@@ -86,6 +86,11 @@ namespace PRESENTACION.SISTEMA
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.Index)
+            {
+                ordenar(column);
+            }
+
             if (contexto.Filtrar(column, termino))
             {
                 contexto.IndexAux = contexto.Index;
@@ -132,9 +137,11 @@ namespace PRESENTACION.SISTEMA
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvRegistros.DataSource == null) return;
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtBuscar.Clear();
+            }
         }
 
         private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

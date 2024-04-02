@@ -54,6 +54,10 @@ namespace PRESENTACION.BUSQUEDA
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -79,24 +83,16 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[2].Visible = false;
             dgvRegistros.Columns[3].HeaderText = "NOMBRE";
             dgvRegistros.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[4].Visible = false;
-            dgvRegistros.Columns[5].Visible = false;
-            dgvRegistros.Columns[6].Visible = false;
-            dgvRegistros.Columns[7].Visible = false;
-            dgvRegistros.Columns[8].Visible = false;
-            dgvRegistros.Columns[9].Visible = false;
-            dgvRegistros.Columns[10].Visible = false;
-            dgvRegistros.Columns[11].Visible = false;
-            dgvRegistros.Columns[12].Visible = false;
-            dgvRegistros.Columns[13].Visible = false;
-            dgvRegistros.Columns[14].Visible = false;
-            dgvRegistros.Columns[15].Visible = false;
-            dgvRegistros.Columns[16].HeaderText = "ROL";
-            dgvRegistros.Columns[16].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[17].Visible = false;
-            dgvRegistros.Columns[18].HeaderText = "ESTADO";
-            dgvRegistros.Columns[18].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[19].Visible = false;
+            dgvRegistros.Columns[4].Visible = false;//nombres
+            dgvRegistros.Columns[5].Visible = false;//apellidos
+            dgvRegistros.Columns[6].Visible = false;//curp
+            dgvRegistros.Columns[7].Visible = false;      //fechanac      
+            dgvRegistros.Columns[8].Visible = false;//rolid
+            dgvRegistros.Columns[9].HeaderText = "ROL";
+            dgvRegistros.Columns[10].Visible=false;//estadoid
+            dgvRegistros.Columns[11].HeaderText = "ESTADO";
+            dgvRegistros.Columns[12].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[13].Visible = false; //personaId
 
 
             tsTotalRegistros.Text = contexto.LstUsuario.Count.ToString("N0");
@@ -152,9 +148,16 @@ namespace PRESENTACION.BUSQUEDA
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtBuscar.Clear();
+            }
+            else
+            {
+                rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            }
         }
     }
 }

@@ -394,7 +394,7 @@ namespace PRESENTACION.PAGOS.Importaciones
                         continue;
                     }
 
-                    contexto.ObjContrato.LOTEId = contexto.ObjLote.Id;
+                   // contexto.ObjContrato.LOTEId = contexto.ObjLote.Id;
                     contexto.ObjContrato.NoPagos = item.NoPagos;
                     contexto.ObjContrato.PrecioInicial = item.PrecioInicial;    
                     contexto.ObjContrato.DiaPago = item.DiaPago;
@@ -641,14 +641,7 @@ namespace PRESENTACION.PAGOS.Importaciones
         {
             contexto.InstanciarLote();
             contexto.ObjLote.Identificador = "L/" + consecutivo + (item.Manzana !=null? " M/" + item.Manzana : "");
-            contexto.ObjLote.MNorte = item.MNorte;
-            contexto.ObjLote.MSur = item.MSur;
-            contexto.ObjLote.MEste = item.MEste;
-            contexto.ObjLote.MOeste = item.MOeste;
-            contexto.ObjLote.CNorte = item.CNorte;
-            contexto.ObjLote.CEste = item.CEste;
-            contexto.ObjLote.COeste = item.COeste;
-            contexto.ObjLote.CSur = item.CSur;
+          
             contexto.ObjLote.Precio = item.Precio;
             contexto.ObjLote.FechaRegistro = fechaServer;
             contexto.ObjLote.ZONAId = item.ZONAId;

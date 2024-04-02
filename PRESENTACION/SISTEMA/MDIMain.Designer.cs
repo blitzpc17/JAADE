@@ -31,16 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIMain));
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.sISTEMAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cATALOGOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aCCESOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mODULOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pERMISOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mODULOSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cONTROLESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cAPTURAYCONSULTAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eXCEPCIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -54,8 +44,9 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cALCULADORAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sITIOWEBJAADEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cERRARSESIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mainMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -67,93 +58,11 @@
             // mainMenuStrip
             // 
             this.mainMenuStrip.AutoSize = false;
-            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sISTEMAToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.Size = new System.Drawing.Size(890, 24);
             this.mainMenuStrip.TabIndex = 0;
             this.mainMenuStrip.Text = "MenuStrip";
-            // 
-            // sISTEMAToolStripMenuItem
-            // 
-            this.sISTEMAToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cATALOGOSToolStripMenuItem,
-            this.aCCESOToolStripMenuItem,
-            this.uSUARIOSToolStripMenuItem,
-            this.eXCEPCIONESToolStripMenuItem});
-            this.sISTEMAToolStripMenuItem.Name = "sISTEMAToolStripMenuItem";
-            this.sISTEMAToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.sISTEMAToolStripMenuItem.Text = "SISTEMA";
-            // 
-            // cATALOGOSToolStripMenuItem
-            // 
-            this.cATALOGOSToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.registro;
-            this.cATALOGOSToolStripMenuItem.Name = "cATALOGOSToolStripMenuItem";
-            this.cATALOGOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cATALOGOSToolStripMenuItem.Text = "CATALOGOS";
-            // 
-            // aCCESOToolStripMenuItem
-            // 
-            this.aCCESOToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mODULOSToolStripMenuItem,
-            this.pERMISOSToolStripMenuItem});
-            this.aCCESOToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.permiso;
-            this.aCCESOToolStripMenuItem.Name = "aCCESOToolStripMenuItem";
-            this.aCCESOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aCCESOToolStripMenuItem.Text = "ACCESO";
-            // 
-            // mODULOSToolStripMenuItem
-            // 
-            this.mODULOSToolStripMenuItem.Name = "mODULOSToolStripMenuItem";
-            this.mODULOSToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.mODULOSToolStripMenuItem.Text = "MODULOS";
-            this.mODULOSToolStripMenuItem.Click += new System.EventHandler(this.mODULOSToolStripMenuItem_Click);
-            // 
-            // pERMISOSToolStripMenuItem
-            // 
-            this.pERMISOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mODULOSToolStripMenuItem1,
-            this.cONTROLESToolStripMenuItem});
-            this.pERMISOSToolStripMenuItem.Name = "pERMISOSToolStripMenuItem";
-            this.pERMISOSToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.pERMISOSToolStripMenuItem.Text = "PERMISOS";
-            // 
-            // mODULOSToolStripMenuItem1
-            // 
-            this.mODULOSToolStripMenuItem1.Name = "mODULOSToolStripMenuItem1";
-            this.mODULOSToolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
-            this.mODULOSToolStripMenuItem1.Text = "MODULOS";
-            this.mODULOSToolStripMenuItem1.Click += new System.EventHandler(this.mODULOSToolStripMenuItem1_Click);
-            // 
-            // cONTROLESToolStripMenuItem
-            // 
-            this.cONTROLESToolStripMenuItem.Name = "cONTROLESToolStripMenuItem";
-            this.cONTROLESToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.cONTROLESToolStripMenuItem.Text = "CONTROLES";
-            // 
-            // uSUARIOSToolStripMenuItem
-            // 
-            this.uSUARIOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cAPTURAYCONSULTAToolStripMenuItem});
-            this.uSUARIOSToolStripMenuItem.Name = "uSUARIOSToolStripMenuItem";
-            this.uSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.uSUARIOSToolStripMenuItem.Text = "USUARIOS";
-            // 
-            // cAPTURAYCONSULTAToolStripMenuItem
-            // 
-            this.cAPTURAYCONSULTAToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.persona;
-            this.cAPTURAYCONSULTAToolStripMenuItem.Name = "cAPTURAYCONSULTAToolStripMenuItem";
-            this.cAPTURAYCONSULTAToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.cAPTURAYCONSULTAToolStripMenuItem.Text = "CAPTURA Y CONSULTA";
-            this.cAPTURAYCONSULTAToolStripMenuItem.Click += new System.EventHandler(this.cAPTURAYCONSULTAToolStripMenuItem_Click);
-            // 
-            // eXCEPCIONESToolStripMenuItem
-            // 
-            this.eXCEPCIONESToolStripMenuItem.Name = "eXCEPCIONESToolStripMenuItem";
-            this.eXCEPCIONESToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eXCEPCIONESToolStripMenuItem.Text = "EXCEPCIONES";
-            this.eXCEPCIONESToolStripMenuItem.Click += new System.EventHandler(this.eXCEPCIONESToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -271,6 +180,8 @@
             this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cALCULADORAToolStripMenuItem,
+            this.sITIOWEBJAADEToolStripMenuItem,
+            this.cMSToolStripMenuItem,
             this.cERRARSESIÓNToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -290,6 +201,28 @@
             this.cALCULADORAToolStripMenuItem.Text = "CALCULADORA";
             this.cALCULADORAToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cALCULADORAToolStripMenuItem.Click += new System.EventHandler(this.cALCULADORAToolStripMenuItem_Click);
+            // 
+            // sITIOWEBJAADEToolStripMenuItem
+            // 
+            this.sITIOWEBJAADEToolStripMenuItem.AutoSize = false;
+            this.sITIOWEBJAADEToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.sitio_web1;
+            this.sITIOWEBJAADEToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.sITIOWEBJAADEToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.sITIOWEBJAADEToolStripMenuItem.Name = "sITIOWEBJAADEToolStripMenuItem";
+            this.sITIOWEBJAADEToolStripMenuItem.Size = new System.Drawing.Size(208, 52);
+            this.sITIOWEBJAADEToolStripMenuItem.Text = "SITIO WEB JAADE";
+            this.sITIOWEBJAADEToolStripMenuItem.Click += new System.EventHandler(this.sITIOWEBJAADEToolStripMenuItem_Click);
+            // 
+            // cMSToolStripMenuItem
+            // 
+            this.cMSToolStripMenuItem.AutoSize = false;
+            this.cMSToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.cms;
+            this.cMSToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cMSToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cMSToolStripMenuItem.Name = "cMSToolStripMenuItem";
+            this.cMSToolStripMenuItem.Size = new System.Drawing.Size(208, 52);
+            this.cMSToolStripMenuItem.Text = "CMS";
+            this.cMSToolStripMenuItem.Click += new System.EventHandler(this.cMSToolStripMenuItem_Click);
             // 
             // cERRARSESIÓNToolStripMenuItem
             // 
@@ -318,8 +251,6 @@
             this.Text = "JAADE - SISTEMA DE CONTROL DE PAGOS";
             this.Load += new System.EventHandler(this.MDIMain_Load);
             this.Shown += new System.EventHandler(this.MDIMain_Shown);
-            this.mainMenuStrip.ResumeLayout(false);
-            this.mainMenuStrip.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -338,16 +269,6 @@
 
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.ToolStripMenuItem sISTEMAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cATALOGOSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aCCESOToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mODULOSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pERMISOSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem uSUARIOSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cAPTURAYCONSULTAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eXCEPCIONESToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mODULOSToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem cONTROLESToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -361,6 +282,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cALCULADORAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cERRARSESIÓNToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sITIOWEBJAADEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cMSToolStripMenuItem;
     }
 }
 

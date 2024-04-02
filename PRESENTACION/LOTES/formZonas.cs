@@ -30,6 +30,7 @@ namespace PRESENTACION.LOTES
             LimpiarControles();
             InstanciarContextos();
             ListarRegistros();
+            ordenar(1);
         }
 
         private void InstanciarContextos()
@@ -99,6 +100,10 @@ namespace PRESENTACION.LOTES
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -109,6 +114,7 @@ namespace PRESENTACION.LOTES
 
         private void ordenar(int column)
         {
+            txtNombre.Focus();
             contexto.Ordenar(column);
             dgvRegistros.DataSource = contexto.LstZonaAux;
             Apariencias();
@@ -168,9 +174,12 @@ namespace PRESENTACION.LOTES
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtNombre.Clear();
+            }
         }
 
         private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

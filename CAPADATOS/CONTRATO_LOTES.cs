@@ -12,12 +12,13 @@ namespace CAPADATOS
     using System;
     using System.Collections.Generic;
     
-    public partial class PERSONA
+    public partial class CONTRATO_LOTES
     {
         public int Id { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public Nullable<System.DateTime> FechaNacimiento { get; set; }
-        public string Curp { get; set; }
+        public int CONTRATOId { get; set; }
+        public int LOTEId { get; set; }
+    
+        public virtual CONTRATO CONTRATO { get; set; }
+        public virtual LOTE LOTE { get; set; }
     }
 }

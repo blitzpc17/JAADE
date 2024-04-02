@@ -14,6 +14,7 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
         private UsuariosADO contextoUsuario;
         private ModuloPermisoADO contextoPermiso;
         private ModulosADO contextoModulos;
+        private RolPermisoADO contextoRolPermiso;
 
         public List<clsModuloPermiso> LstPermisos;
         public List<clsModuloPermiso> LstPermisosAux;
@@ -33,6 +34,7 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             contextoUsuario = new UsuariosADO();
             contextoPermiso = new ModuloPermisoADO();
             contextoModulos = new ModulosADO();
+            contextoRolPermiso = new RolPermisoADO();
         }
 
         public void InstanciarPermiso()
@@ -76,6 +78,10 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             return contextoModulos.ObtenerModulo(moduloId);
         }
 
+        public bool ValidarExistePermisoEnUsuario(clsUsuario objUsuario, int moduloId)
+        {
+            return contextoPermiso.ValidarPermisoEnUsuarios(objUsuario, moduloId);
+        }
 
         public bool Filtrar(int column, string termino)
         {

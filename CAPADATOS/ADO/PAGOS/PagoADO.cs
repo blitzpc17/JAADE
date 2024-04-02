@@ -172,9 +172,15 @@ namespace CAPADATOS.ADO.PAGOS
 
         }
 
+        public clsCalculoMontoPagado CalcularMontoPagosDados(int idContrato)
+        {
+            string sql = "";
+
+            return contexto.Database.SqlQuery<clsCalculoMontoPagado>(sql).FirstOrDefault();
 
 
 
+        }
     }
 }
 

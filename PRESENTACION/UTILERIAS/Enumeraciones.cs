@@ -74,18 +74,25 @@ namespace PRESENTACION.UTILERIAS
 
         public enum EstadosProcesoContratos
         {
-            VIGENTE = 8,
-            ATRASADO = 9,
-            TERMINADO = 10,
-            RECISION = 11,
-            REUBICADO = 12,
-            CANCELADO = 13
+            VIGENTE = 9, //debe empezar en 8
+            ATRASADO = 10,
+            TERMINADO = 11,
+            RECISION = 12,
+            REUBICADO = 13,
+            CANCELADO = 14
         }
 
         public enum PagosViaGeneracion
         {
             PAGO = 1,
             IMPORTACION = 2
+        }
+
+        public enum TipoContactoAgenda
+        {
+            TELEFONO = 1,
+            DIRECCION = 2,
+            CORREOELECTRONICO =3
         }
 
 

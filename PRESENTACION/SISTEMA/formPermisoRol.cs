@@ -35,7 +35,7 @@ namespace PRESENTACION.SISTEMA
                 ListarRoles();
                 contexto.RolId = -1;
                 cargado = true;
-            }
+                            }
             catch (Exception ex)
             {
                 Global.GuardarExcepcion(ex, Name);
@@ -62,7 +62,7 @@ namespace PRESENTACION.SISTEMA
         {
             ThemeConfig.LimpiarControles(this);
             txtFechaRegistro.Text = Global.FechaServidor().ToString("dd-MM-yyyy");
-            txtUsuarioAsigno.Text = Global.ObjUsuario.Nombre;
+       
         }
 
         public void InstanciarContexto()
@@ -84,29 +84,22 @@ namespace PRESENTACION.SISTEMA
                 {
                     MessageBox.Show("No se ha seleccionado el módulo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
-                }
+                }            
 
-                contexto.ValidarPermisoEnUsuarios(contexto.ObjModulo.Id, contexto.RolId);
-                if (contexto.LstUsuariosIdPermiso != null)
+                if(contexto.ValidarExistePermisoEnRol(contexto.RolId, contexto.ObjModulo.Id))
                 {
-                    contexto.InstanciarPermiso();
-                    contexto.ObjPermiso.Motivo = txtMotivo.Text;
-                    contexto.ObjPermiso.FechaRegistro = Global.FechaServidor();
-                    contexto.ObjPermiso.USUARIOId = 0;
-                    contexto.ObjPermiso.USUARIOAUTORIZOId = Global.ObjUsuario.Id;
-                    contexto.ObjPermiso.MODULOId = contexto.ObjModulo.Id;
-
-                    contexto.InsertarPermisoMasivoRol(contexto.ObjPermiso, contexto.LstUsuariosIdPermiso);                    
-
-                    MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ListarRegistros();
-
+                    MessageBox.Show("El módulo ya esta asignado a este perfil.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                else
-                {
-                    MessageBox.Show("No hay usuarios para agregar el permiso.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                contexto.CrearPermisoRol();
+                contexto.ObjRolPermiso.ROLId = contexto.RolId;
+                contexto.ObjRolPermiso.MODULOId = contexto.ObjModulo.Id;
+                contexto.ObjRolPermiso.FechaEmision = Global.FechaServidor();
+                contexto.GuardarPermisoRol();
 
-                }
+                MessageBox.Show("Permiso asignado al rol correctamente. Cierra e inicia sesión para reflejar el cambio.", 
+                    "Aviso", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
@@ -137,6 +130,11 @@ namespace PRESENTACION.SISTEMA
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
+
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -147,7 +145,6 @@ namespace PRESENTACION.SISTEMA
 
         private void ordenar(int column)
         {
-            txtBuscar.Clear();
             txtBuscar.Focus();
             contexto.Ordenar(column);
             dgvRegistros.DataSource = contexto.LstPermisosAux;
@@ -270,6 +267,8 @@ namespace PRESENTACION.SISTEMA
             if (!cargado) return;
             contexto.RolId = (int)cbxRol.SelectedValue;
             ListarRegistros();
+            contexto.Column = 1;
+            ordenar(contexto.Column);
         }
 
         private void ListarRegistros()
@@ -282,10 +281,13 @@ namespace PRESENTACION.SISTEMA
         }
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+        { 
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtBuscar.Clear();
+            }
         }
     }
 }

@@ -90,37 +90,7 @@ namespace PRESENTACION.LOTES
                 {
                     _errorMsj = "El campo PRECIO es Obligatorio.";
                 }
-                else if (string.IsNullOrEmpty(txtMNorte.Text))
-                {
-                    _errorMsj = "El campo M. NORTE es Obligatorio.";
-                }else if (string.IsNullOrEmpty(txtMSur.Text))
-                {
-                    _errorMsj = "El campo M. SUR es Obligatorio.";
-                }
-                else if (string.IsNullOrEmpty(txtMOeste.Text))
-                {
-                    _errorMsj = "El campo M. OESTE es Obligatorio.";
-                }
-                else if (string.IsNullOrEmpty(txtMEste.Text))
-                {
-                    _errorMsj = "El campo M. ESTE es Obligatorio.";
-                }
-                else if (string.IsNullOrEmpty(txtCNorte.Text))
-                {
-                    _errorMsj = "El campo C. NORTE es Obligatorio.";
-                }
-                else if (string.IsNullOrEmpty(txtCSur.Text))
-                {
-                    _errorMsj = "El campo C. SUR es Obligatorio.";
-                }
-                else if (string.IsNullOrEmpty(txtCEste.Text))
-                {
-                    _errorMsj = "El campo C. ESTE es Obligatorio.";
-                }
-                else if (string.IsNullOrEmpty(txtCOeste.Text))
-                {
-                    _errorMsj = "El campo C. OESTE es Obligatorio.";
-                }else if((contexto.ObjZona.NoManzanas!=null && contexto.ObjZona.NoManzanas > 0)&&Manzana==null)
+                else if((contexto.ObjZona.NoManzanas!=null && contexto.ObjZona.NoManzanas > 0)&&Manzana==null)
                 {
                     _errorMsj = "El campo MANZANA es Obligatorio.";
                 }
@@ -152,19 +122,13 @@ namespace PRESENTACION.LOTES
                         {
                             contexto.InstanciarLote();
                             contexto.ObjLote.Identificador = "L/" + i + (cbxManzana.Items.Count > 0 ? " M/" + cbxManzana.SelectedItem : "");
-                            contexto.ObjLote.MNorte = Convert.ToDecimal(txtMNorte.Text);
-                            contexto.ObjLote.MSur = Convert.ToDecimal(txtMSur.Text);
-                            contexto.ObjLote.MEste = Convert.ToDecimal(txtMEste.Text);
-                            contexto.ObjLote.MOeste = Convert.ToDecimal(txtMOeste.Text);
-                            contexto.ObjLote.CNorte = txtCNorte.Text;
-                            contexto.ObjLote.CEste = txtCEste.Text;
-                            contexto.ObjLote.COeste = txtCOeste.Text;
-                            contexto.ObjLote.CSur = txtCSur.Text;
+                                             
                             contexto.ObjLote.Precio = Convert.ToDecimal(txtPrecio.Text);
                             contexto.ObjLote.FechaRegistro = _FechaRegistro;
                             contexto.ObjLote.ZONAId = (int)cbxZona.SelectedValue;
                             contexto.ObjLote.Manzana = Manzana;
                             contexto.ObjLote.ESTADOId = contexto.ObtenerEstadoLote(Enumeraciones.EstadosProcesoLote.LIBRE.ToString()).Id;
+                            contexto.ObjLote.NoLote = i.ToString();
                             contexto.Guardar();
                         }
 
@@ -181,21 +145,18 @@ namespace PRESENTACION.LOTES
                 }
                 else
                 {
-                    string[] identificadorAnterior = contexto.ObjLote.Identificador.Split(' ');
-                    string manzanaAnterior = identificadorAnterior[1].Substring(2);
-                    contexto.ObjLote.Identificador = contexto.ObjLote.Identificador.Substring(0, contexto.ObjLote.Identificador.Length - manzanaAnterior.Length) + (cbxManzana.Items.Count > 0 ? cbxManzana.SelectedItem : "");
-                    contexto.ObjLote.MNorte = Convert.ToDecimal(txtMNorte.Text);
-                    contexto.ObjLote.MSur = Convert.ToDecimal(txtMSur.Text);
-                    contexto.ObjLote.MEste = Convert.ToDecimal(txtMEste.Text);
-                    contexto.ObjLote.MOeste = Convert.ToDecimal(txtMOeste.Text);
-                    contexto.ObjLote.CNorte = txtCNorte.Text;
-                    contexto.ObjLote.CEste = txtCEste.Text;
-                    contexto.ObjLote.COeste = txtCOeste.Text;
-                    contexto.ObjLote.CSur = txtCSur.Text;
+                    if (contexto.ObjLote == null)
+                    {
+                        contexto.InstanciarLote();
+                    }
+
+                    contexto.ObjLote.Identificador = "L/" + txtNoLote.Text + (cbxManzana.SelectedIndex > -1 ? ("M/" + cbxManzana.SelectedItem) : "");                
                     contexto.ObjLote.Precio = Convert.ToDecimal(txtPrecio.Text);
                     contexto.ObjLote.FechaRegistro = _FechaRegistro;
                     contexto.ObjLote.ZONAId = (int)cbxZona.SelectedValue;
                     contexto.ObjLote.Manzana = (int)cbxManzana.SelectedItem;
+                    contexto.ObjLote.NoLote = txtNoLote.Text;
+                    contexto.ObjLote.ESTADOId = contexto.ObtenerEstadoLote(Enumeraciones.EstadosProcesoLote.LIBRE.ToString()).Id;
                     contexto.Guardar();
 
                     MessageBox.Show("Registro guardado correctamente.",
@@ -227,52 +188,43 @@ namespace PRESENTACION.LOTES
         private void Apariencias()
         {
             if (dgvRegistros.DataSource == null) return;
-            dgvRegistros.Columns[0].Visible = false;
+
+            dgvRegistros.Columns[0].Visible = false; //id
             dgvRegistros.Columns[0].Frozen = true;
+
             dgvRegistros.Columns[1].HeaderText = "Identificador";
             dgvRegistros.Columns[1].Width = 110;
             dgvRegistros.Columns[1].Frozen = true;
-            dgvRegistros.Columns[2].HeaderText = "Zona";
-            dgvRegistros.Columns[2].Width = 200;
-            dgvRegistros.Columns[2].Frozen = true;
-            dgvRegistros.Columns[3].Visible = false;
-            dgvRegistros.Columns[4].HeaderText = "Medida Norte";
+
+            dgvRegistros.Columns[2].Visible = false;
+
+            dgvRegistros.Columns[3].HeaderText = "Zona";//zona
+            dgvRegistros.Columns[3].Width = 200;
+
+            dgvRegistros.Columns[4].HeaderText = "Manzana";
+            dgvRegistros.Columns[4].DefaultCellStyle.Format = "N0";
             dgvRegistros.Columns[4].Width = 110;
-            dgvRegistros.Columns[4].DefaultCellStyle.Format = "N2";
             dgvRegistros.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[5].HeaderText = "Medida Sur";
+
+            dgvRegistros.Columns[5].HeaderText = "No. Lote";
             dgvRegistros.Columns[5].Width = 110;
-            dgvRegistros.Columns[5].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[5].DefaultCellStyle.Format = "N0";
             dgvRegistros.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[6].HeaderText = "Medida Este";
-            dgvRegistros.Columns[6].Width = 110;
+
+            dgvRegistros.Columns[6].HeaderText = "Precio";
             dgvRegistros.Columns[6].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[6].Width = 110;
             dgvRegistros.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[7].HeaderText = "Medida Oeste";
-            dgvRegistros.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[7].Width = 110;
-            dgvRegistros.Columns[7].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[8].HeaderText = "Colinada Norte";
+
+            dgvRegistros.Columns[7].Visible = false;//estadoid
+
+            dgvRegistros.Columns[8].HeaderText = "Estado";
             dgvRegistros.Columns[8].Width = 110;
-            dgvRegistros.Columns[9].HeaderText = "Colinada Sur"; 
-            dgvRegistros.Columns[9].Width = 110;
-            dgvRegistros.Columns[10].HeaderText = "Colinada Este";
-            dgvRegistros.Columns[10].Width = 110;
-            dgvRegistros.Columns[11].HeaderText = "Colinada Oeste";
-            dgvRegistros.Columns[11].Width = 110;
-            dgvRegistros.Columns[12].HeaderText = "Fecha Registro";
-            dgvRegistros.Columns[12].Width = 135;
-            dgvRegistros.Columns[13].HeaderText = "Precio";
-            dgvRegistros.Columns[13].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[13].Width = 110;
-            dgvRegistros.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[14].HeaderText = "Manzana";
-            dgvRegistros.Columns[14].DefaultCellStyle.Format = "N0";
-            dgvRegistros.Columns[14].Width = 110;
-            dgvRegistros.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[15].Visible= false;
-            dgvRegistros.Columns[16].HeaderText = "Estado";
-            dgvRegistros.Columns[16].Width = 110;
+            
+
+            dgvRegistros.Columns[9].HeaderText = "Fecha Registro";
+            dgvRegistros.Columns[9].Width = 135;  
+           
             tsTotalRegistros.Text = contexto.LstLoteAux.Count.ToString("N0");
 
             
@@ -285,21 +237,12 @@ namespace PRESENTACION.LOTES
             contexto.ObjLote = contexto.Obtener(idLote);
             if (contexto.ObjLoteData == null) return;
 
-            txtMNorte.Text = contexto.ObjLoteData.MNorte.ToString("N2");
-            txtMEste.Text = contexto.ObjLoteData.MEste.ToString("N2");
-            txtMOeste.Text = contexto.ObjLoteData.MOeste.ToString("N2");
-            txtMSur.Text = contexto.ObjLoteData.MSur.ToString("N2");
-
-            txtCNorte.Text = contexto.ObjLoteData.CNorte;
-            txtCEste.Text = contexto.ObjLoteData.CEste;
-            txtCOeste.Text = contexto.ObjLoteData.COeste;
-            txtCSur.Text = contexto.ObjLoteData.CSur;
-
             txtFechaRegistro.Text = contexto.ObjLoteData.FechaRegistro.ToString("dd/MM/yyyy HH:mm:sss");
             txtIdentificador.Text = contexto.ObjLoteData.Identificador;
             txtPrecio.Text = contexto.ObjLoteData.Precio.ToString("N2");
             cbxManzana.SelectedItem = contexto.ObjLoteData.Manzana;
             cbxZona.SelectedValue = contexto.ObjLoteData.ZonaId;
+            txtNoLote.Text = contexto.ObjLoteData.NoLote;
 
         }
 
@@ -352,14 +295,19 @@ namespace PRESENTACION.LOTES
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (dgvRegistros.DataSource == null) return;
             SetDataLote((int)dgvRegistros.CurrentRow.Cells[0].Value);
         }
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtBuscar.Clear();
+            }
         }
 
         private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -406,6 +354,10 @@ namespace PRESENTACION.LOTES
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -416,6 +368,7 @@ namespace PRESENTACION.LOTES
 
         private void ordenar(int column)
         {
+            txtBuscar.Focus();
             contexto.Ordenar(column);
             dgvRegistros.DataSource = contexto.LstLoteAux;
             Apariencias();

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/23/2024 09:34:24
+-- Date Created: 03/21/2024 15:15:58
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -78,13 +78,10 @@ IF OBJECT_ID(N'[dbo].[FK_SOCIOSCLIENTES_SOCIOS]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CLIENTES_SOCIOS] DROP CONSTRAINT [FK_SOCIOSCLIENTES_SOCIOS];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTECLIENTE]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTECLIENTE];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTELOTE]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTELOTE];
+    ALTER TABLE [dbo].[CONTRATO] DROP CONSTRAINT [FK_CLIENTELOTECLIENTE];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTEUSUARIO]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTEUSUARIO];
+    ALTER TABLE [dbo].[CONTRATO] DROP CONSTRAINT [FK_CLIENTELOTEUSUARIO];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PAGOUSUARIO]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PAGO] DROP CONSTRAINT [FK_PAGOUSUARIO];
@@ -93,13 +90,22 @@ IF OBJECT_ID(N'[dbo].[FK_PAGOCLIENTELOTE]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PAGO] DROP CONSTRAINT [FK_PAGOCLIENTELOTE];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTESOCIOS]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTESOCIOS];
+    ALTER TABLE [dbo].[CONTRATO] DROP CONSTRAINT [FK_CLIENTELOTESOCIOS];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTEESTADO]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTEESTADO];
+    ALTER TABLE [dbo].[CONTRATO] DROP CONSTRAINT [FK_CLIENTELOTEESTADO];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CLIENTELOTECLIENTELOTEREUBICADO]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CLIENTELOTE] DROP CONSTRAINT [FK_CLIENTELOTECLIENTELOTEREUBICADO];
+IF OBJECT_ID(N'[dbo].[FK_CONTRATOCONTRATO_LOTES]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CONTRATO_LOTES] DROP CONSTRAINT [FK_CONTRATOCONTRATO_LOTES];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CONTRATO_LOTESLOTE]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CONTRATO_LOTES] DROP CONSTRAINT [FK_CONTRATO_LOTESLOTE];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ROL_PERMISOMODULO]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ROL_PERMISO] DROP CONSTRAINT [FK_ROL_PERMISOMODULO];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ROL_PERMISOROL]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ROL_PERMISO] DROP CONSTRAINT [FK_ROL_PERMISOROL];
 GO
 
 -- --------------------------------------------------
@@ -157,11 +163,17 @@ GO
 IF OBJECT_ID(N'[dbo].[CLIENTES_SOCIOS]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CLIENTES_SOCIOS];
 GO
-IF OBJECT_ID(N'[dbo].[CLIENTELOTE]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CLIENTELOTE];
+IF OBJECT_ID(N'[dbo].[CONTRATO]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CONTRATO];
 GO
 IF OBJECT_ID(N'[dbo].[PAGO]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PAGO];
+GO
+IF OBJECT_ID(N'[dbo].[CONTRATO_LOTES]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CONTRATO_LOTES];
+GO
+IF OBJECT_ID(N'[dbo].[ROL_PERMISO]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ROL_PERMISO];
 GO
 
 -- --------------------------------------------------
@@ -186,15 +198,7 @@ CREATE TABLE [dbo].[PERSONA] (
     [Nombres] nvarchar(120)  NOT NULL,
     [Apellidos] nvarchar(120)  NOT NULL,
     [FechaNacimiento] datetime  NULL,
-    [Curp] nchar(18)  NULL,
-    [Calle] nvarchar(120)  NULL,
-    [NoExt] nvarchar(15)  NULL,
-    [NoInt] nvarchar(15)  NULL,
-    [Colonia] nvarchar(100)  NULL,
-    [Localidad] nvarchar(100)  NULL,
-    [Municipio] nvarchar(65)  NULL,
-    [CodigoPostal] nvarchar(6)  NULL,
-    [EntidadFederativa] nvarchar(65)  NULL
+    [Curp] nchar(18)  NULL
 );
 GO
 
@@ -266,19 +270,12 @@ GO
 -- Creating table 'LOTE'
 CREATE TABLE [dbo].[LOTE] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Identificador] nvarchar(10)  NOT NULL,
+    [Identificador] nvarchar(11)  NOT NULL,
     [ZONAId] int  NOT NULL,
-    [MNorte] decimal(18,7)  NOT NULL,
-    [MSur] decimal(18,7)  NOT NULL,
-    [MOeste] decimal(18,7)  NOT NULL,
-    [MEste] decimal(18,7)  NOT NULL,
-    [CNorte] nvarchar(350)  NULL,
-    [CSur] nvarchar(350)  NULL,
-    [COeste] nvarchar(350)  NULL,
-    [CEste] nvarchar(350)  NULL,
+    [Manzana] int  NULL,
+    [NoLote] nvarchar(max)  NOT NULL,
     [FechaRegistro] datetime  NOT NULL,
     [Precio] decimal(18,7)  NOT NULL,
-    [Manzana] int  NULL,
     [ESTADOId] int  NOT NULL
 );
 GO
@@ -349,14 +346,13 @@ CREATE TABLE [dbo].[CLIENTES_SOCIOS] (
 );
 GO
 
--- Creating table 'CLIENTELOTE'
-CREATE TABLE [dbo].[CLIENTELOTE] (
+-- Creating table 'CONTRATO'
+CREATE TABLE [dbo].[CONTRATO] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Folio] nchar(9)  NOT NULL,
+    [Folio] nchar(11)  NOT NULL,
     [FechaArrendamiento] datetime  NOT NULL,
     [CLIENTEId] int  NOT NULL,
     [SOCIOSId] int  NULL,
-    [LOTEId] int  NOT NULL,
     [NoPagos] int  NOT NULL,
     [PrecioInicial] decimal(18,7)  NOT NULL,
     [DiaPago] int  NOT NULL,
@@ -367,8 +363,17 @@ CREATE TABLE [dbo].[CLIENTELOTE] (
     [Observacion] nvarchar(2500)  NULL,
     [USUARIOOperacionId] int  NOT NULL,
     [FechaReimpresion] datetime  NULL,
-    [CLIENTELOTEId] int  NULL,
-    [FechaInicioProrroga] datetime  NULL
+    [FechaInicioProrroga] datetime  NULL,
+    [ColindaNorte] nvarchar(350)  NOT NULL,
+    [ColindaSur] nvarchar(350)  NOT NULL,
+    [ColindaEste] nvarchar(350)  NOT NULL,
+    [ColindaOeste] nvarchar(350)  NOT NULL,
+    [MideNorte] decimal(18,7)  NOT NULL,
+    [MideSur] decimal(18,7)  NOT NULL,
+    [MideEste] decimal(18,7)  NOT NULL,
+    [MideOeste] decimal(18,7)  NOT NULL,
+    [AGENDAId] int  NOT NULL,
+    [CONTRATOId] int  NULL
 );
 GO
 
@@ -385,6 +390,23 @@ CREATE TABLE [dbo].[PAGO] (
     [FechaReimpresion] datetime  NULL,
     [PagoOrdinario] bit  NOT NULL,
     [ViaGenerado] int  NOT NULL
+);
+GO
+
+-- Creating table 'CONTRATO_LOTES'
+CREATE TABLE [dbo].[CONTRATO_LOTES] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [CONTRATOId] int  NOT NULL,
+    [LOTEId] int  NOT NULL
+);
+GO
+
+-- Creating table 'ROL_PERMISO'
+CREATE TABLE [dbo].[ROL_PERMISO] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [FechaEmision] datetime  NOT NULL,
+    [MODULOId] int  NOT NULL,
+    [ROLId] int  NOT NULL
 );
 GO
 
@@ -494,15 +516,27 @@ ADD CONSTRAINT [PK_CLIENTES_SOCIOS]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'CLIENTELOTE'
-ALTER TABLE [dbo].[CLIENTELOTE]
-ADD CONSTRAINT [PK_CLIENTELOTE]
+-- Creating primary key on [Id] in table 'CONTRATO'
+ALTER TABLE [dbo].[CONTRATO]
+ADD CONSTRAINT [PK_CONTRATO]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'PAGO'
 ALTER TABLE [dbo].[PAGO]
 ADD CONSTRAINT [PK_PAGO]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CONTRATO_LOTES'
+ALTER TABLE [dbo].[CONTRATO_LOTES]
+ADD CONSTRAINT [PK_CONTRATO_LOTES]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ROL_PERMISO'
+ALTER TABLE [dbo].[ROL_PERMISO]
+ADD CONSTRAINT [PK_ROL_PERMISO]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -810,8 +844,8 @@ ON [dbo].[CLIENTES_SOCIOS]
     ([SOCIOSId]);
 GO
 
--- Creating foreign key on [CLIENTEId] in table 'CLIENTELOTE'
-ALTER TABLE [dbo].[CLIENTELOTE]
+-- Creating foreign key on [CLIENTEId] in table 'CONTRATO'
+ALTER TABLE [dbo].[CONTRATO]
 ADD CONSTRAINT [FK_CLIENTELOTECLIENTE]
     FOREIGN KEY ([CLIENTEId])
     REFERENCES [dbo].[CLIENTE]
@@ -821,27 +855,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTECLIENTE'
 CREATE INDEX [IX_FK_CLIENTELOTECLIENTE]
-ON [dbo].[CLIENTELOTE]
+ON [dbo].[CONTRATO]
     ([CLIENTEId]);
 GO
 
--- Creating foreign key on [LOTEId] in table 'CLIENTELOTE'
-ALTER TABLE [dbo].[CLIENTELOTE]
-ADD CONSTRAINT [FK_CLIENTELOTELOTE]
-    FOREIGN KEY ([LOTEId])
-    REFERENCES [dbo].[LOTE]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTELOTE'
-CREATE INDEX [IX_FK_CLIENTELOTELOTE]
-ON [dbo].[CLIENTELOTE]
-    ([LOTEId]);
-GO
-
--- Creating foreign key on [USUARIOOperacionId] in table 'CLIENTELOTE'
-ALTER TABLE [dbo].[CLIENTELOTE]
+-- Creating foreign key on [USUARIOOperacionId] in table 'CONTRATO'
+ALTER TABLE [dbo].[CONTRATO]
 ADD CONSTRAINT [FK_CLIENTELOTEUSUARIO]
     FOREIGN KEY ([USUARIOOperacionId])
     REFERENCES [dbo].[USUARIO]
@@ -851,7 +870,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTEUSUARIO'
 CREATE INDEX [IX_FK_CLIENTELOTEUSUARIO]
-ON [dbo].[CLIENTELOTE]
+ON [dbo].[CONTRATO]
     ([USUARIOOperacionId]);
 GO
 
@@ -874,7 +893,7 @@ GO
 ALTER TABLE [dbo].[PAGO]
 ADD CONSTRAINT [FK_PAGOCLIENTELOTE]
     FOREIGN KEY ([ContratoId])
-    REFERENCES [dbo].[CLIENTELOTE]
+    REFERENCES [dbo].[CONTRATO]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
@@ -885,8 +904,8 @@ ON [dbo].[PAGO]
     ([ContratoId]);
 GO
 
--- Creating foreign key on [SOCIOSId] in table 'CLIENTELOTE'
-ALTER TABLE [dbo].[CLIENTELOTE]
+-- Creating foreign key on [SOCIOSId] in table 'CONTRATO'
+ALTER TABLE [dbo].[CONTRATO]
 ADD CONSTRAINT [FK_CLIENTELOTESOCIOS]
     FOREIGN KEY ([SOCIOSId])
     REFERENCES [dbo].[SOCIOS]
@@ -896,12 +915,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTESOCIOS'
 CREATE INDEX [IX_FK_CLIENTELOTESOCIOS]
-ON [dbo].[CLIENTELOTE]
+ON [dbo].[CONTRATO]
     ([SOCIOSId]);
 GO
 
--- Creating foreign key on [ESTADOId] in table 'CLIENTELOTE'
-ALTER TABLE [dbo].[CLIENTELOTE]
+-- Creating foreign key on [ESTADOId] in table 'CONTRATO'
+ALTER TABLE [dbo].[CONTRATO]
 ADD CONSTRAINT [FK_CLIENTELOTEESTADO]
     FOREIGN KEY ([ESTADOId])
     REFERENCES [dbo].[ESTADO]
@@ -911,23 +930,98 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTEESTADO'
 CREATE INDEX [IX_FK_CLIENTELOTEESTADO]
-ON [dbo].[CLIENTELOTE]
+ON [dbo].[CONTRATO]
     ([ESTADOId]);
 GO
 
--- Creating foreign key on [CLIENTELOTEId] in table 'CLIENTELOTE'
-ALTER TABLE [dbo].[CLIENTELOTE]
-ADD CONSTRAINT [FK_CLIENTELOTECLIENTELOTEREUBICADO]
-    FOREIGN KEY ([CLIENTELOTEId])
-    REFERENCES [dbo].[CLIENTELOTE]
+-- Creating foreign key on [CONTRATOId] in table 'CONTRATO_LOTES'
+ALTER TABLE [dbo].[CONTRATO_LOTES]
+ADD CONSTRAINT [FK_CONTRATOCONTRATO_LOTES]
+    FOREIGN KEY ([CONTRATOId])
+    REFERENCES [dbo].[CONTRATO]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_CLIENTELOTECLIENTELOTEREUBICADO'
-CREATE INDEX [IX_FK_CLIENTELOTECLIENTELOTEREUBICADO]
-ON [dbo].[CLIENTELOTE]
-    ([CLIENTELOTEId]);
+-- Creating non-clustered index for FOREIGN KEY 'FK_CONTRATOCONTRATO_LOTES'
+CREATE INDEX [IX_FK_CONTRATOCONTRATO_LOTES]
+ON [dbo].[CONTRATO_LOTES]
+    ([CONTRATOId]);
+GO
+
+-- Creating foreign key on [LOTEId] in table 'CONTRATO_LOTES'
+ALTER TABLE [dbo].[CONTRATO_LOTES]
+ADD CONSTRAINT [FK_CONTRATO_LOTESLOTE]
+    FOREIGN KEY ([LOTEId])
+    REFERENCES [dbo].[LOTE]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CONTRATO_LOTESLOTE'
+CREATE INDEX [IX_FK_CONTRATO_LOTESLOTE]
+ON [dbo].[CONTRATO_LOTES]
+    ([LOTEId]);
+GO
+
+-- Creating foreign key on [MODULOId] in table 'ROL_PERMISO'
+ALTER TABLE [dbo].[ROL_PERMISO]
+ADD CONSTRAINT [FK_ROL_PERMISOMODULO]
+    FOREIGN KEY ([MODULOId])
+    REFERENCES [dbo].[MODULO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ROL_PERMISOMODULO'
+CREATE INDEX [IX_FK_ROL_PERMISOMODULO]
+ON [dbo].[ROL_PERMISO]
+    ([MODULOId]);
+GO
+
+-- Creating foreign key on [ROLId] in table 'ROL_PERMISO'
+ALTER TABLE [dbo].[ROL_PERMISO]
+ADD CONSTRAINT [FK_ROL_PERMISOROL]
+    FOREIGN KEY ([ROLId])
+    REFERENCES [dbo].[ROL]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ROL_PERMISOROL'
+CREATE INDEX [IX_FK_ROL_PERMISOROL]
+ON [dbo].[ROL_PERMISO]
+    ([ROLId]);
+GO
+
+-- Creating foreign key on [AGENDAId] in table 'CONTRATO'
+ALTER TABLE [dbo].[CONTRATO]
+ADD CONSTRAINT [FK_CONTRATOAGENDA]
+    FOREIGN KEY ([AGENDAId])
+    REFERENCES [dbo].[AGENDA]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CONTRATOAGENDA'
+CREATE INDEX [IX_FK_CONTRATOAGENDA]
+ON [dbo].[CONTRATO]
+    ([AGENDAId]);
+GO
+
+-- Creating foreign key on [CONTRATOId] in table 'CONTRATO'
+ALTER TABLE [dbo].[CONTRATO]
+ADD CONSTRAINT [FK_CONTRATOCONTRATOORIGEN]
+    FOREIGN KEY ([CONTRATOId])
+    REFERENCES [dbo].[CONTRATO]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CONTRATOCONTRATOORIGEN'
+CREATE INDEX [IX_FK_CONTRATOCONTRATOORIGEN]
+ON [dbo].[CONTRATO]
+    ([CONTRATOId]);
 GO
 
 -- --------------------------------------------------

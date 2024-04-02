@@ -59,7 +59,6 @@ namespace PRESENTACION.PAGOS.REPORTES
         private void repContratoLote_Shown(object sender, EventArgs e)
         {
             ThemeConfig.ThemeControls(this);
-            this.MaximizeBox = false;
         }
     }
 }

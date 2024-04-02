@@ -55,6 +55,11 @@ namespace PRESENTACION.BUSQUEDA
 
         private void filtrar(int column, string termino)
         {
+            if(column != contexto.index)
+            {
+                ordenar(column);
+            }
+
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -127,7 +132,7 @@ namespace PRESENTACION.BUSQUEDA
             if (contexto.Column != e.ColumnIndex)
             {
                 contexto.Column = e.ColumnIndex;
-                ordenar(contexto.Column);
+                txtBuscar.Clear();
             }
             else
             {

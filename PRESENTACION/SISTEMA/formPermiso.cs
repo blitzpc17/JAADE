@@ -67,10 +67,16 @@ namespace PRESENTACION.SISTEMA
                     return;
                 }
 
-                if (contexto.ObjPermisoData == null)
+                if (contexto.ValidarExistePermisoEnUsuario(contexto.ObjUsuario, contexto.ObjModulo.Id))
                 {
-                    contexto.InstanciarPermiso();
+                    MessageBox.Show(
+                        "El usuario ya tiene asignado el permiso, verifique los permisos por rol o en el listado de permisos extra.", "Advertencia", 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Warning);
+                    return;
                 }
+
+                contexto.InstanciarPermiso();
 
                 contexto.ObjPermiso.Motivo = txtMotivo.Text;
                 contexto.ObjPermiso.FechaRegistro = Global.FechaServidor();
@@ -80,8 +86,10 @@ namespace PRESENTACION.SISTEMA
 
                 contexto.Guardar();
 
+                MessageBox.Show("Permiso asignado correctamente, Vuelva a iniciar sesión para ver reflejado el módulo en el menú.",
+                    "Aviso", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                MessageBox.Show("Registro guardado correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 InicializarModulo();
             }
             catch (Exception ex)
@@ -100,20 +108,23 @@ namespace PRESENTACION.SISTEMA
         {
             if (dgvRegistros.DataSource == null) return;
             dgvRegistros.Columns[0].Visible = false;
+            dgvRegistros.Columns[0].Frozen = true;
             dgvRegistros.Columns[1].Visible = false;
+            dgvRegistros.Columns[1].Frozen = true;
             dgvRegistros.Columns[2].HeaderText = "MÓDULO";
-            dgvRegistros.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[2].Width = 120;
+            dgvRegistros.Columns[2].Frozen = true;
             dgvRegistros.Columns[3].HeaderText = "RUTA";
-            dgvRegistros.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[3].Width = 250;
             dgvRegistros.Columns[4].Visible = false;
             dgvRegistros.Columns[5].HeaderText = "ASIGNO";
-            dgvRegistros.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[5].Width = 110;
             dgvRegistros.Columns[6].HeaderText = "FECHA ASIGNACIÓN";
-            dgvRegistros.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[6].Width = 100;
             dgvRegistros.Columns[7].Visible = false;
             dgvRegistros.Columns[8].Visible = false;
             dgvRegistros.Columns[9].HeaderText = "MOTIVO";
-            dgvRegistros.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRegistros.Columns[9].Width = 100;
 
             tsTotalRegistros.Text = contexto.LstPermisosAux.Count.ToString("N0");
 
@@ -129,6 +140,11 @@ namespace PRESENTACION.SISTEMA
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
+
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -139,7 +155,6 @@ namespace PRESENTACION.SISTEMA
 
         private void ordenar(int column)
         {
-            txtBuscar.Clear();
             txtBuscar.Focus();
             contexto.Ordenar(column);
             dgvRegistros.DataSource = contexto.LstPermisosAux;
@@ -233,6 +248,8 @@ namespace PRESENTACION.SISTEMA
                 }
                 ListarRegistros(contexto.ObjUsuario.Id);
                 txtSolicita.Text = contexto.ObjUsuario.Nombre;
+                contexto.Column = 2;
+                ordenar(contexto.Column);
             }
             catch (Exception ex)
             {
@@ -248,9 +265,12 @@ namespace PRESENTACION.SISTEMA
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtBuscar.Clear();
+            }            
         }
 
         private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

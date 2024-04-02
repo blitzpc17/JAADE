@@ -116,6 +116,11 @@ namespace PRESENTACION.SISTEMA
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
+
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -129,16 +134,6 @@ namespace PRESENTACION.SISTEMA
             contexto.Ordenar(column);
             dgvRegistros.DataSource = contexto.LstModuloAux;
             Apariencias();
-        }
-        private void setData()
-        {
-            if (contexto.ObjModulo != null)
-            {
-                txtNombre.Text = contexto.ObjModuloData.Nombre;
-                txtIcono.Text = contexto.ObjModuloData.Icono;
-                txtRuta.Text = contexto.ObjModuloData.Ruta;
-                txtModulo.Text = contexto.ObjModuloData.ModuloPadre;
-            }
         }
 
         private void EliminarRegistro()
@@ -213,9 +208,12 @@ namespace PRESENTACION.SISTEMA
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtBuscar.Clear();
+            }
         }
 
         private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

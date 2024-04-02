@@ -27,6 +27,6 @@ namespace CAPADATOS
         public int ViaGenerado { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }
-        public virtual CLIENTELOTE CLIENTELOTE { get; set; }
+        public virtual CONTRATO CLIENTELOTE { get; set; }
     }
 }

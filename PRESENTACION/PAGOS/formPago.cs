@@ -217,8 +217,8 @@ namespace PRESENTACION.PAGOS
             contexto.ObjEncabezadoTicket.NoPagos = contexto.ObjContratoData.NoPagos;
             contexto.ObjEncabezadoTicket.Fecha = contexto.ObjContratoData.FechaEmision;
             contexto.ObjEncabezadoTicket.PrecioLote = contexto.ObjContratoData.PrecioLote;
-            contexto.ObjEncabezadoTicket.IdentificadorLote = contexto.ObjContratoData.IdentificadorLote;
-            contexto.ObjEncabezadoTicket.Zona = contexto.ObjContratoData.NombreZona;
+            //contexto.ObjEncabezadoTicket.IdentificadorLote = contexto.ObjContratoData.IdentificadorLote;
+            contexto.ObjEncabezadoTicket.Zona = contexto.ObjContratoData.ZonaNombre;
 
             contexto.ObjTicket.Encabezado = contexto.ObjEncabezadoTicket;
 
@@ -304,8 +304,7 @@ namespace PRESENTACION.PAGOS
         private void SetDataContrato()
         {
             txtFolioContrato.Text = contexto.ObjContratoData.NoReferencia;
-            txtClaveLote.Text = contexto.ObjContratoData.IdentificadorLote;
-            txtZona.Text = contexto.ObjContratoData.NombreZona;
+            txtZona.Text = contexto.ObjContratoData.ZonaNombre;
             txtDiaPago.Text = contexto.ObjContratoData.DiaPago.ToString("N0");
             txtPrecioLote.Text = contexto.ObjContratoData.PrecioLote.ToString("N2");
             txtSaldoPendiente.Text = Convert.ToDecimal(contexto.ObjContratoData.PrecioLote - contexto.ObjInformacionPago.SaldoFavor).ToString("N2");

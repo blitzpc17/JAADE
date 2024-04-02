@@ -23,8 +23,10 @@
     <EntitySet Name="CONTROL_PERMISO" EntityType="DB_JAADEModel.Store.CONTROL_PERMISO" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SOCIOS" EntityType="DB_JAADEModel.Store.SOCIOS" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CLIENTES_SOCIOS" EntityType="DB_JAADEModel.Store.CLIENTES_SOCIOS" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CLIENTELOTE" EntityType="DB_JAADEModel.Store.CLIENTELOTE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CONTRATO" EntityType="DB_JAADEModel.Store.CONTRATO" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PAGO" EntityType="DB_JAADEModel.Store.PAGO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CONTRATO_LOTES" EntityType="DB_JAADEModel.Store.CONTRATO_LOTES" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ROL_PERMISO" EntityType="DB_JAADEModel.Store.ROL_PERMISO" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="USUARIOESTADO" Association="DB_JAADEModel.Store.USUARIOESTADO">
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="ESTADO" EntitySet="ESTADO" />
@@ -106,15 +108,11 @@
       <End Role="CLIENTES_SOCIOS" EntitySet="CLIENTES_SOCIOS" />
     </AssociationSet>
     <AssociationSet Name="CLIENTELOTECLIENTE" Association="DB_JAADEModel.Store.CLIENTELOTECLIENTE">
-      <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+      <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
       <End Role="CLIENTE" EntitySet="CLIENTE" />
     </AssociationSet>
-    <AssociationSet Name="CLIENTELOTELOTE" Association="DB_JAADEModel.Store.CLIENTELOTELOTE">
-      <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
-      <End Role="LOTE" EntitySet="LOTE" />
-    </AssociationSet>
     <AssociationSet Name="CLIENTELOTEUSUARIO" Association="DB_JAADEModel.Store.CLIENTELOTEUSUARIO">
-      <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+      <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
       <End Role="USUARIO" EntitySet="USUARIO" />
     </AssociationSet>
     <AssociationSet Name="PAGOUSUARIO" Association="DB_JAADEModel.Store.PAGOUSUARIO">
@@ -123,19 +121,39 @@
     </AssociationSet>
     <AssociationSet Name="PAGOCLIENTELOTE" Association="DB_JAADEModel.Store.PAGOCLIENTELOTE">
       <End Role="PAGO" EntitySet="PAGO" />
-      <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+      <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
     </AssociationSet>
     <AssociationSet Name="CLIENTELOTESOCIOS" Association="DB_JAADEModel.Store.CLIENTELOTESOCIOS">
-      <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+      <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
       <End Role="SOCIOS" EntitySet="SOCIOS" />
     </AssociationSet>
     <AssociationSet Name="CLIENTELOTEESTADO" Association="DB_JAADEModel.Store.CLIENTELOTEESTADO">
-      <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+      <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
       <End Role="ESTADO" EntitySet="ESTADO" />
     </AssociationSet>
-    <AssociationSet Name="CLIENTELOTECLIENTELOTEREUBICADO" Association="DB_JAADEModel.Store.CLIENTELOTECLIENTELOTEREUBICADO">
-      <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
-      <End Role="CLIENTELOTE1" EntitySet="CLIENTELOTE" />
+    <AssociationSet Name="CONTRATOCONTRATO_LOTES" Association="DB_JAADEModel.Store.CONTRATOCONTRATO_LOTES">
+      <End Role="CONTRATO" EntitySet="CONTRATO" />
+      <End Role="CONTRATO_LOTES" EntitySet="CONTRATO_LOTES" />
+    </AssociationSet>
+    <AssociationSet Name="CONTRATO_LOTESLOTE" Association="DB_JAADEModel.Store.CONTRATO_LOTESLOTE">
+      <End Role="CONTRATO_LOTES" EntitySet="CONTRATO_LOTES" />
+      <End Role="LOTE" EntitySet="LOTE" />
+    </AssociationSet>
+    <AssociationSet Name="ROL_PERMISOMODULO" Association="DB_JAADEModel.Store.ROL_PERMISOMODULO">
+      <End Role="ROL_PERMISO" EntitySet="ROL_PERMISO" />
+      <End Role="MODULO" EntitySet="MODULO" />
+    </AssociationSet>
+    <AssociationSet Name="ROL_PERMISOROL" Association="DB_JAADEModel.Store.ROL_PERMISOROL">
+      <End Role="ROL_PERMISO" EntitySet="ROL_PERMISO" />
+      <End Role="ROL" EntitySet="ROL" />
+    </AssociationSet>
+    <AssociationSet Name="CONTRATOAGENDA" Association="DB_JAADEModel.Store.CONTRATOAGENDA">
+      <End Role="CONTRATO" EntitySet="CONTRATO" />
+      <End Role="AGENDA" EntitySet="AGENDA" />
+    </AssociationSet>
+    <AssociationSet Name="CONTRATOCONTRATOORIGEN" Association="DB_JAADEModel.Store.CONTRATOCONTRATOORIGEN">
+      <End Role="CONTRATO" EntitySet="CONTRATO" />
+      <End Role="CONTRATO1" EntitySet="CONTRATO" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="USUARIO">
@@ -159,14 +177,6 @@
     <Property Name="Apellidos" Type="nvarchar" Nullable="false" MaxLength="120" />
     <Property Name="FechaNacimiento" Type="datetime" Nullable="true" />
     <Property Name="Curp" Type="nchar" Nullable="true" MaxLength="18" />
-    <Property Name="Calle" Type="nvarchar" Nullable="true" MaxLength="120" />
-    <Property Name="NoExt" Type="nvarchar" Nullable="true" MaxLength="15" />
-    <Property Name="NoInt" Type="nvarchar" Nullable="true" MaxLength="15" />
-    <Property Name="Colonia" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Localidad" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Municipio" Type="nvarchar" Nullable="true" MaxLength="65" />
-    <Property Name="CodigoPostal" Type="nvarchar" Nullable="true" MaxLength="6" />
-    <Property Name="EntidadFederativa" Type="nvarchar" Nullable="true" MaxLength="65" />
   </EntityType>
   <EntityType Name="MODULO">
     <Key>
@@ -238,19 +248,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Identificador" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Identificador" Type="nvarchar" Nullable="false" MaxLength="11" />
     <Property Name="ZONAId" Type="int" Nullable="false" />
-    <Property Name="MNorte" Type="decimal" Nullable="false" Precision="18" Scale="7" />
-    <Property Name="MSur" Type="decimal" Nullable="false" Precision="18" Scale="7" />
-    <Property Name="MOeste" Type="decimal" Nullable="false" Precision="18" Scale="7" />
-    <Property Name="MEste" Type="decimal" Nullable="false" Precision="18" Scale="7" />
-    <Property Name="CNorte" Type="nvarchar" Nullable="true" MaxLength="350" />
-    <Property Name="CSur" Type="nvarchar" Nullable="true" MaxLength="350" />
-    <Property Name="COeste" Type="nvarchar" Nullable="true" MaxLength="350" />
-    <Property Name="CEste" Type="nvarchar" Nullable="true" MaxLength="350" />
+    <Property Name="Manzana" Type="int" Nullable="true" />
+    <Property Name="NoLote" Type="nvarchar(max)" Nullable="false" />
     <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="Precio" Type="decimal" Nullable="false" Precision="18" Scale="7" />
-    <Property Name="Manzana" Type="int" Nullable="true" />
     <Property Name="ESTADOId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PERSONA_AGENDA">
@@ -319,16 +322,15 @@
     <Property Name="CLIENTEId" Type="int" Nullable="false" />
     <Property Name="SOCIOSId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="CLIENTELOTE">
+  <EntityType Name="CONTRATO">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Folio" Type="nchar" Nullable="false" MaxLength="9" />
+    <Property Name="Folio" Type="nchar" Nullable="false" MaxLength="11" />
     <Property Name="FechaArrendamiento" Type="datetime" Nullable="false" />
     <Property Name="CLIENTEId" Type="int" Nullable="false" />
     <Property Name="SOCIOSId" Type="int" Nullable="true" />
-    <Property Name="LOTEId" Type="int" Nullable="false" />
     <Property Name="NoPagos" Type="int" Nullable="false" />
     <Property Name="PrecioInicial" Type="decimal" Nullable="false" Precision="18" Scale="7" />
     <Property Name="DiaPago" Type="int" Nullable="false" />
@@ -339,8 +341,17 @@
     <Property Name="Observacion" Type="nvarchar" Nullable="true" MaxLength="2500" />
     <Property Name="USUARIOOperacionId" Type="int" Nullable="false" />
     <Property Name="FechaReimpresion" Type="datetime" Nullable="true" />
-    <Property Name="CLIENTELOTEId" Type="int" Nullable="true" />
     <Property Name="FechaInicioProrroga" Type="datetime" Nullable="true" />
+    <Property Name="ColindaNorte" Type="nvarchar" Nullable="false" MaxLength="350" />
+    <Property Name="ColindaSur" Type="nvarchar" Nullable="false" MaxLength="350" />
+    <Property Name="ColindaEste" Type="nvarchar" Nullable="false" MaxLength="350" />
+    <Property Name="ColindaOeste" Type="nvarchar" Nullable="false" MaxLength="350" />
+    <Property Name="MideNorte" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="MideSur" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="MideEste" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="MideOeste" Type="decimal" Nullable="false" Precision="18" Scale="7" />
+    <Property Name="AGENDAId" Type="int" Nullable="false" />
+    <Property Name="CONTRATOId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="PAGO">
     <Key>
@@ -357,6 +368,23 @@
     <Property Name="FechaReimpresion" Type="datetime" Nullable="true" />
     <Property Name="PagoOrdinario" Type="bit" Nullable="false" />
     <Property Name="ViaGenerado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTRATO_LOTES">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CONTRATOId" Type="int" Nullable="false" />
+    <Property Name="LOTEId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROL_PERMISO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaEmision" Type="datetime" Nullable="false" />
+    <Property Name="MODULOId" Type="int" Nullable="false" />
+    <Property Name="ROLId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="USUARIOESTADO">
     <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="*" />
@@ -599,7 +627,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CLIENTELOTECLIENTE">
-    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="*" />
+    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="*" />
     <End Role="CLIENTE" Type="DB_JAADEModel.Store.CLIENTE" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="CLIENTE">
@@ -610,20 +638,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="CLIENTELOTELOTE">
-    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="*" />
-    <End Role="LOTE" Type="DB_JAADEModel.Store.LOTE" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="LOTE">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CLIENTELOTE">
-        <PropertyRef Name="LOTEId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="CLIENTELOTEUSUARIO">
-    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="*" />
+    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="*" />
     <End Role="USUARIO" Type="DB_JAADEModel.Store.USUARIO" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="USUARIO">
@@ -648,7 +664,7 @@
   </Association>
   <Association Name="PAGOCLIENTELOTE">
     <End Role="PAGO" Type="DB_JAADEModel.Store.PAGO" Multiplicity="*" />
-    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="1" />
+    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="CLIENTELOTE">
         <PropertyRef Name="Id" />
@@ -659,7 +675,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CLIENTELOTESOCIOS">
-    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="*" />
+    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="*" />
     <End Role="SOCIOS" Type="DB_JAADEModel.Store.SOCIOS" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="SOCIOS">
@@ -671,7 +687,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CLIENTELOTEESTADO">
-    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="*" />
+    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="*" />
     <End Role="ESTADO" Type="DB_JAADEModel.Store.ESTADO" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="ESTADO">
@@ -682,15 +698,75 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="CLIENTELOTECLIENTELOTEREUBICADO">
-    <End Role="CLIENTELOTE" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="*" />
-    <End Role="CLIENTELOTE1" Type="DB_JAADEModel.Store.CLIENTELOTE" Multiplicity="0..1" />
+  <Association Name="CONTRATOCONTRATO_LOTES">
+    <End Role="CONTRATO" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="1" />
+    <End Role="CONTRATO_LOTES" Type="DB_JAADEModel.Store.CONTRATO_LOTES" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="CLIENTELOTE1">
+      <Principal Role="CONTRATO">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="CLIENTELOTE">
-        <PropertyRef Name="CLIENTELOTEId" />
+      <Dependent Role="CONTRATO_LOTES">
+        <PropertyRef Name="CONTRATOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTRATO_LOTESLOTE">
+    <End Role="CONTRATO_LOTES" Type="DB_JAADEModel.Store.CONTRATO_LOTES" Multiplicity="*" />
+    <End Role="LOTE" Type="DB_JAADEModel.Store.LOTE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="LOTE">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CONTRATO_LOTES">
+        <PropertyRef Name="LOTEId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ROL_PERMISOMODULO">
+    <End Role="ROL_PERMISO" Type="DB_JAADEModel.Store.ROL_PERMISO" Multiplicity="*" />
+    <End Role="MODULO" Type="DB_JAADEModel.Store.MODULO" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MODULO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ROL_PERMISO">
+        <PropertyRef Name="MODULOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ROL_PERMISOROL">
+    <End Role="ROL_PERMISO" Type="DB_JAADEModel.Store.ROL_PERMISO" Multiplicity="*" />
+    <End Role="ROL" Type="DB_JAADEModel.Store.ROL" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ROL_PERMISO">
+        <PropertyRef Name="ROLId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTRATOAGENDA">
+    <End Role="CONTRATO" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="*" />
+    <End Role="AGENDA" Type="DB_JAADEModel.Store.AGENDA" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AGENDA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CONTRATO">
+        <PropertyRef Name="AGENDAId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTRATOCONTRATOORIGEN">
+    <End Role="CONTRATO" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="*" />
+    <End Role="CONTRATO1" Type="DB_JAADEModel.Store.CONTRATO" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CONTRATO1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CONTRATO">
+        <PropertyRef Name="CONTRATOId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -796,17 +872,13 @@
             <End Role="SOCIOS" EntitySet="SOCIOS" />
             <End Role="CLIENTES_SOCIOS" EntitySet="CLIENTES_SOCIOS" />
           </AssociationSet>
-          <EntitySet Name="CLIENTELOTE" EntityType="DB_JAADEModel.CLIENTELOTE" />
+          <EntitySet Name="CONTRATO" EntityType="DB_JAADEModel.CONTRATO" />
           <AssociationSet Name="CLIENTELOTECLIENTE" Association="DB_JAADEModel.CLIENTELOTECLIENTE">
-            <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+            <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
             <End Role="CLIENTE" EntitySet="CLIENTE" />
           </AssociationSet>
-          <AssociationSet Name="CLIENTELOTELOTE" Association="DB_JAADEModel.CLIENTELOTELOTE">
-            <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
-            <End Role="LOTE" EntitySet="LOTE" />
-          </AssociationSet>
           <AssociationSet Name="CLIENTELOTEUSUARIO" Association="DB_JAADEModel.CLIENTELOTEUSUARIO">
-            <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+            <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
           <EntitySet Name="PAGO" EntityType="DB_JAADEModel.PAGO" />
@@ -816,19 +888,41 @@
           </AssociationSet>
           <AssociationSet Name="PAGOCLIENTELOTE" Association="DB_JAADEModel.PAGOCLIENTELOTE">
             <End Role="PAGO" EntitySet="PAGO" />
-            <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+            <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
           </AssociationSet>
           <AssociationSet Name="CLIENTELOTESOCIOS" Association="DB_JAADEModel.CLIENTELOTESOCIOS">
-            <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+            <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
             <End Role="SOCIOS" EntitySet="SOCIOS" />
           </AssociationSet>
           <AssociationSet Name="CLIENTELOTEESTADO" Association="DB_JAADEModel.CLIENTELOTEESTADO">
-            <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
+            <End Role="CLIENTELOTE" EntitySet="CONTRATO" />
             <End Role="ESTADO" EntitySet="ESTADO" />
           </AssociationSet>
-          <AssociationSet Name="CLIENTELOTECLIENTELOTEREUBICADO" Association="DB_JAADEModel.CLIENTELOTECLIENTELOTEREUBICADO">
-            <End Role="CLIENTELOTE" EntitySet="CLIENTELOTE" />
-            <End Role="CLIENTELOTE1" EntitySet="CLIENTELOTE" />
+          <EntitySet Name="CONTRATO_LOTES" EntityType="DB_JAADEModel.CONTRATO_LOTES" />
+          <AssociationSet Name="CONTRATOCONTRATO_LOTES" Association="DB_JAADEModel.CONTRATOCONTRATO_LOTES">
+            <End Role="CONTRATO" EntitySet="CONTRATO" />
+            <End Role="CONTRATO_LOTES" EntitySet="CONTRATO_LOTES" />
+          </AssociationSet>
+          <AssociationSet Name="CONTRATO_LOTESLOTE" Association="DB_JAADEModel.CONTRATO_LOTESLOTE">
+            <End Role="CONTRATO_LOTES" EntitySet="CONTRATO_LOTES" />
+            <End Role="LOTE" EntitySet="LOTE" />
+          </AssociationSet>
+          <EntitySet Name="ROL_PERMISO" EntityType="DB_JAADEModel.ROL_PERMISO" />
+          <AssociationSet Name="ROL_PERMISOMODULO" Association="DB_JAADEModel.ROL_PERMISOMODULO">
+            <End Role="ROL_PERMISO" EntitySet="ROL_PERMISO" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="ROL_PERMISOROL" Association="DB_JAADEModel.ROL_PERMISOROL">
+            <End Role="ROL_PERMISO" EntitySet="ROL_PERMISO" />
+            <End Role="ROL" EntitySet="ROL" />
+          </AssociationSet>
+          <AssociationSet Name="CONTRATOAGENDA" Association="DB_JAADEModel.CONTRATOAGENDA">
+            <End Role="CONTRATO" EntitySet="CONTRATO" />
+            <End Role="AGENDA" EntitySet="AGENDA" />
+          </AssociationSet>
+          <AssociationSet Name="CONTRATOCONTRATOORIGEN" Association="DB_JAADEModel.CONTRATOCONTRATOORIGEN">
+            <End Role="CONTRATO" EntitySet="CONTRATO" />
+            <End Role="CONTRATO1" EntitySet="CONTRATO" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="USUARIO">
@@ -855,14 +949,6 @@
           <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
           <Property Name="FechaNacimiento" Type="DateTime" Nullable="true" />
           <Property Name="Curp" Type="String" FixedLength="true" MaxLength="18" Unicode="true" Nullable="true" />
-          <Property Name="Calle" Type="String" Unicode="true" FixedLength="false" MaxLength="120" Nullable="true" />
-          <Property Name="NoExt" Type="String" FixedLength="false" MaxLength="15" Unicode="true" Nullable="true" />
-          <Property Name="NoInt" Type="String" Unicode="true" FixedLength="false" MaxLength="15" Nullable="true" />
-          <Property Name="Colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
-          <Property Name="Localidad" Type="String" Unicode="true" FixedLength="false" MaxLength="100" Nullable="true" />
-          <Property Name="Municipio" Type="String" Unicode="true" FixedLength="false" MaxLength="65" Nullable="true" />
-          <Property Name="CodigoPostal" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="true" />
-          <Property Name="EntidadFederativa" Type="String" Unicode="true" MaxLength="65" FixedLength="false" Nullable="true" />
         </EntityType>
         <EntityType Name="MODULO">
           <Key>
@@ -941,20 +1027,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Identificador" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="10" />
           <NavigationProperty Name="ZONA" Relationship="DB_JAADEModel.LOTEZONA" FromRole="LOTE" ToRole="ZONA" />
+          <Property Name="Identificador" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="11" />
           <Property Name="ZONAId" Type="Int32" Nullable="false" />
-          <Property Name="MNorte" Type="Decimal" Nullable="false" Precision="18" Scale="7" />
-          <Property Name="MSur" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
-          <Property Name="MOeste" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
-          <Property Name="MEste" Type="Decimal" Nullable="false" Precision="18" Scale="7" />
-          <Property Name="CNorte" Type="String" Unicode="true" FixedLength="false" MaxLength="350" Nullable="true" />
-          <Property Name="CSur" Type="String" Unicode="true" Nullable="true" MaxLength="350" FixedLength="false" />
-          <Property Name="COeste" Type="String" Nullable="true" Unicode="true" FixedLength="false" MaxLength="350" />
-          <Property Name="CEste" Type="String" Nullable="true" Unicode="true" FixedLength="false" MaxLength="350" />
+          <Property Name="Manzana" Type="Int32" Nullable="true" />
+          <Property Name="NoLote" Type="String" Nullable="false" />
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
-          <Property Name="Manzana" Type="Int32" Nullable="true" />
           <NavigationProperty Name="ESTADO" Relationship="DB_JAADEModel.LOTEESTADO" FromRole="LOTE" ToRole="ESTADO" />
           <Property Name="ESTADOId" Type="Int32" Nullable="false" />
         </EntityType>
@@ -1273,20 +1352,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CLIENTELOTE">
+        <EntityType Name="CONTRATO">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Folio" Type="String" Nullable="false" Unicode="true" FixedLength="true" MaxLength="9" />
+          <Property Name="Folio" Type="String" Nullable="false" Unicode="true" FixedLength="true" MaxLength="11" />
           <NavigationProperty Name="CLIENTE" Relationship="DB_JAADEModel.CLIENTELOTECLIENTE" FromRole="CLIENTELOTE" ToRole="CLIENTE" />
           <Property Name="FechaArrendamiento" Type="DateTime" Nullable="false" />
           <Property Name="CLIENTEId" Type="Int32" Nullable="false" />
           <Property Name="SOCIOSId" Type="Int32" Nullable="true" />
-          <Property Name="LOTEId" Type="Int32" Nullable="false" />
           <Property Name="NoPagos" Type="Int32" Nullable="false" />
           <Property Name="PrecioInicial" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
-          <NavigationProperty Name="LOTE" Relationship="DB_JAADEModel.CLIENTELOTELOTE" FromRole="CLIENTELOTE" ToRole="LOTE" />
           <NavigationProperty Name="USUARIO" Relationship="DB_JAADEModel.CLIENTELOTEUSUARIO" FromRole="CLIENTELOTE" ToRole="USUARIO" />
           <Property Name="DiaPago" Type="Int32" Nullable="false" />
           <Property Name="PagoInicial" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
@@ -1298,12 +1375,23 @@
           <Property Name="Observacion" Type="String" Unicode="true" Nullable="true" FixedLength="false" MaxLength="2500" />
           <Property Name="USUARIOOperacionId" Type="Int32" Nullable="false" />
           <Property Name="FechaReimpresion" Type="DateTime" Nullable="true" />
-          <NavigationProperty Name="CLIENTELOTEREUBICADO" Relationship="DB_JAADEModel.CLIENTELOTECLIENTELOTEREUBICADO" FromRole="CLIENTELOTE" ToRole="CLIENTELOTE1" />
-          <Property Name="CLIENTELOTEId" Type="Int32" Nullable="true" />
           <Property Name="FechaInicioProrroga" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="CONTRATO_LOTES" Relationship="DB_JAADEModel.CONTRATOCONTRATO_LOTES" FromRole="CONTRATO" ToRole="CONTRATO_LOTES" />
+          <Property Name="ColindaNorte" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="350" />
+          <Property Name="ColindaSur" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="350" />
+          <Property Name="ColindaEste" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="350" />
+          <Property Name="ColindaOeste" Type="String" Nullable="false" FixedLength="false" MaxLength="350" Unicode="true" />
+          <Property Name="MideNorte" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <Property Name="MideSur" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <Property Name="MideEste" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <Property Name="MideOeste" Type="Decimal" Nullable="false" Scale="7" Precision="18" />
+          <NavigationProperty Name="AGENDA" Relationship="DB_JAADEModel.CONTRATOAGENDA" FromRole="CONTRATO" ToRole="AGENDA" />
+          <Property Name="AGENDAId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CONTRATOORIGEN" Relationship="DB_JAADEModel.CONTRATOCONTRATOORIGEN" FromRole="CONTRATO" ToRole="CONTRATO1" />
+          <Property Name="CONTRATOId" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="CLIENTELOTECLIENTE">
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CONTRATO" Role="CLIENTELOTE" Multiplicity="*" />
           <End Type="DB_JAADEModel.CLIENTE" Role="CLIENTE" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="CLIENTE">
@@ -1314,20 +1402,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CLIENTELOTELOTE">
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="*" />
-          <End Type="DB_JAADEModel.LOTE" Role="LOTE" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="LOTE">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CLIENTELOTE">
-              <PropertyRef Name="LOTEId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="CLIENTELOTEUSUARIO">
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CONTRATO" Role="CLIENTELOTE" Multiplicity="*" />
           <End Type="DB_JAADEModel.USUARIO" Role="USUARIO" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="USUARIO">
@@ -1370,7 +1446,7 @@
         </Association>
         <Association Name="PAGOCLIENTELOTE">
           <End Type="DB_JAADEModel.PAGO" Role="PAGO" Multiplicity="*" />
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="1" />
+          <End Type="DB_JAADEModel.CONTRATO" Role="CLIENTELOTE" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="CLIENTELOTE">
               <PropertyRef Name="Id" />
@@ -1381,7 +1457,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CLIENTELOTESOCIOS">
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CONTRATO" Role="CLIENTELOTE" Multiplicity="*" />
           <End Type="DB_JAADEModel.SOCIOS" Role="SOCIOS" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="SOCIOS">
@@ -1393,7 +1469,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CLIENTELOTEESTADO">
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CONTRATO" Role="CLIENTELOTE" Multiplicity="*" />
           <End Type="DB_JAADEModel.ESTADO" Role="ESTADO" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="ESTADO">
@@ -1404,15 +1480,96 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CLIENTELOTECLIENTELOTEREUBICADO">
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE" Multiplicity="*" />
-          <End Type="DB_JAADEModel.CLIENTELOTE" Role="CLIENTELOTE1" Multiplicity="0..1" />
+        <EntityType Name="CONTRATO_LOTES">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <NavigationProperty Name="CONTRATO" Relationship="DB_JAADEModel.CONTRATOCONTRATO_LOTES" FromRole="CONTRATO_LOTES" ToRole="CONTRATO" />
+          <Property Name="CONTRATOId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LOTE" Relationship="DB_JAADEModel.CONTRATO_LOTESLOTE" FromRole="CONTRATO_LOTES" ToRole="LOTE" />
+          <Property Name="LOTEId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="CONTRATOCONTRATO_LOTES">
+          <End Type="DB_JAADEModel.CONTRATO" Role="CONTRATO" Multiplicity="1" />
+          <End Type="DB_JAADEModel.CONTRATO_LOTES" Role="CONTRATO_LOTES" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CLIENTELOTE1">
+            <Principal Role="CONTRATO">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CLIENTELOTE">
-              <PropertyRef Name="CLIENTELOTEId" />
+            <Dependent Role="CONTRATO_LOTES">
+              <PropertyRef Name="CONTRATOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTRATO_LOTESLOTE">
+          <End Type="DB_JAADEModel.CONTRATO_LOTES" Role="CONTRATO_LOTES" Multiplicity="*" />
+          <End Type="DB_JAADEModel.LOTE" Role="LOTE" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="LOTE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CONTRATO_LOTES">
+              <PropertyRef Name="LOTEId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ROL_PERMISO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaEmision" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="MODULO" Relationship="DB_JAADEModel.ROL_PERMISOMODULO" FromRole="ROL_PERMISO" ToRole="MODULO" />
+          <Property Name="MODULOId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ROL" Relationship="DB_JAADEModel.ROL_PERMISOROL" FromRole="ROL_PERMISO" ToRole="ROL" />
+          <Property Name="ROLId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ROL_PERMISOMODULO">
+          <End Type="DB_JAADEModel.ROL_PERMISO" Role="ROL_PERMISO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.MODULO" Role="MODULO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ROL_PERMISO">
+              <PropertyRef Name="MODULOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ROL_PERMISOROL">
+          <End Type="DB_JAADEModel.ROL_PERMISO" Role="ROL_PERMISO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.ROL" Role="ROL" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ROL_PERMISO">
+              <PropertyRef Name="ROLId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTRATOAGENDA">
+          <End Type="DB_JAADEModel.CONTRATO" Role="CONTRATO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.AGENDA" Role="AGENDA" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AGENDA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CONTRATO">
+              <PropertyRef Name="AGENDAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTRATOCONTRATOORIGEN">
+          <End Type="DB_JAADEModel.CONTRATO" Role="CONTRATO" Multiplicity="*" />
+          <End Type="DB_JAADEModel.CONTRATO" Role="CONTRATO1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CONTRATO">
+              <PropertyRef Name="CONTRATOId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1443,14 +1600,6 @@
           <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
           <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
           <ScalarProperty Name="Curp" ColumnName="Curp" />
-          <ScalarProperty Name="Calle" ColumnName="Calle" />
-          <ScalarProperty Name="NoExt" ColumnName="NoExt" />
-          <ScalarProperty Name="NoInt" ColumnName="NoInt" />
-          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
-          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
-          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
-          <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
-          <ScalarProperty Name="EntidadFederativa" ColumnName="EntidadFederativa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1532,17 +1681,10 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Identificador" ColumnName="Identificador" />
           <ScalarProperty Name="ZONAId" ColumnName="ZONAId" />
-          <ScalarProperty Name="MNorte" ColumnName="MNorte" />
-          <ScalarProperty Name="MSur" ColumnName="MSur" />
-          <ScalarProperty Name="MOeste" ColumnName="MOeste" />
-          <ScalarProperty Name="MEste" ColumnName="MEste" />
-          <ScalarProperty Name="CNorte" ColumnName="CNorte" />
-          <ScalarProperty Name="CSur" ColumnName="CSur" />
-          <ScalarProperty Name="COeste" ColumnName="COeste" />
-          <ScalarProperty Name="CEste" ColumnName="CEste" />
+          <ScalarProperty Name="Manzana" ColumnName="Manzana" />
+          <ScalarProperty Name="NoLote" ColumnName="NoLote" />
           <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
-          <ScalarProperty Name="Manzana" ColumnName="Manzana" />
           <ScalarProperty Name="ESTADOId" ColumnName="ESTADOId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1620,15 +1762,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CLIENTELOTE">
-      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.CLIENTELOTE)">
-        <MappingFragment StoreEntitySet="CLIENTELOTE">
+    <EntitySetMapping Name="CONTRATO">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.CONTRATO)">
+        <MappingFragment StoreEntitySet="CONTRATO">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Folio" ColumnName="Folio" />
           <ScalarProperty Name="FechaArrendamiento" ColumnName="FechaArrendamiento" />
           <ScalarProperty Name="CLIENTEId" ColumnName="CLIENTEId" />
           <ScalarProperty Name="SOCIOSId" ColumnName="SOCIOSId" />
-          <ScalarProperty Name="LOTEId" ColumnName="LOTEId" />
           <ScalarProperty Name="NoPagos" ColumnName="NoPagos" />
           <ScalarProperty Name="PrecioInicial" ColumnName="PrecioInicial" />
           <ScalarProperty Name="DiaPago" ColumnName="DiaPago" />
@@ -1639,8 +1780,17 @@
           <ScalarProperty Name="Observacion" ColumnName="Observacion" />
           <ScalarProperty Name="USUARIOOperacionId" ColumnName="USUARIOOperacionId" />
           <ScalarProperty Name="FechaReimpresion" ColumnName="FechaReimpresion" />
-          <ScalarProperty Name="CLIENTELOTEId" ColumnName="CLIENTELOTEId" />
           <ScalarProperty Name="FechaInicioProrroga" ColumnName="FechaInicioProrroga" />
+          <ScalarProperty Name="ColindaNorte" ColumnName="ColindaNorte" />
+          <ScalarProperty Name="ColindaSur" ColumnName="ColindaSur" />
+          <ScalarProperty Name="ColindaEste" ColumnName="ColindaEste" />
+          <ScalarProperty Name="ColindaOeste" ColumnName="ColindaOeste" />
+          <ScalarProperty Name="MideNorte" ColumnName="MideNorte" />
+          <ScalarProperty Name="MideSur" ColumnName="MideSur" />
+          <ScalarProperty Name="MideEste" ColumnName="MideEste" />
+          <ScalarProperty Name="MideOeste" ColumnName="MideOeste" />
+          <ScalarProperty Name="AGENDAId" ColumnName="AGENDAId" />
+          <ScalarProperty Name="CONTRATOId" ColumnName="CONTRATOId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1658,6 +1808,25 @@
           <ScalarProperty Name="FechaReimpresion" ColumnName="FechaReimpresion" />
           <ScalarProperty Name="PagoOrdinario" ColumnName="PagoOrdinario" />
           <ScalarProperty Name="ViaGenerado" ColumnName="ViaGenerado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTRATO_LOTES">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.CONTRATO_LOTES)">
+        <MappingFragment StoreEntitySet="CONTRATO_LOTES">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CONTRATOId" ColumnName="CONTRATOId" />
+          <ScalarProperty Name="LOTEId" ColumnName="LOTEId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL_PERMISO">
+      <EntityTypeMapping TypeName="IsTypeOf(DB_JAADEModel.ROL_PERMISO)">
+        <MappingFragment StoreEntitySet="ROL_PERMISO">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+          <ScalarProperty Name="MODULOId" ColumnName="MODULOId" />
+          <ScalarProperty Name="ROLId" ColumnName="ROLId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

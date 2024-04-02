@@ -45,11 +45,11 @@ namespace CAPADATOS.ADO.SISTEMA
         {
             var query = "SELECT " +
                         "us.Id, us.Alias, us.Password as Contrasena, \r\n" +
-                        "(per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Nombre, \r\n" +
-                        "per.Nombres, per.ApellidoPaterno as Apaterno, per.ApellidoMaterno as Amaterno, \r\n" +
-                        "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n" +
-                        "per.CodigoPostal, rl.Id as RolId, rl.Nombre as Rol, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
-                        "us.FechaRegistro \r\n" +
+                        "(per.Nombres + ' ' + per.Apellidos) as Nombre, \r\n" +
+                        "per.Nombres, per.Apellidos as Apellidos, \r\n" +
+                        "per.Curp, per.FechaNacimiento, \r\n" +
+                        "rl.Id as RolId, rl.Nombre as Rol, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
+                        "us.FechaRegistro, per.Id as PersonaId \r\n" +
                         "FROM USUARIO AS us \r\n" +
                         "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n" +
                         "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id \r\n" +
@@ -63,11 +63,11 @@ namespace CAPADATOS.ADO.SISTEMA
         {
             var query = "SELECT "+
                         "us.Id, us.Alias, us.Password as Contrasena, \r\n"+
-                        "(per.Nombres + ' ' + per.ApellidoPaterno + ' ' + per.ApellidoMaterno) as Nombre, \r\n"+
-                        "per.Nombres, per.ApellidoPaterno as Apaterno, per.ApellidoMaterno as Amaterno, \r\n"+
-                        "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n"+
-                        "per.CodigoPostal, rl.Id as RolId, rl.Nombre as Rol, edo.Id as EstadoId, edo.Nombre as Estado, \r\n"+
-                        "us.FechaRegistro \r\n"+
+                        "(per.Nombres + ' ' + per.Apellidos) as Nombre, \r\n"+
+                        "per.Nombres, per.Apellidos as Apellidos, \r\n"+
+                        "per.Curp, per.FechaNacimiento, \r\n"+
+                        "rl.Id as RolId, rl.Nombre as Rol, edo.Id as EstadoId, edo.Nombre as Estado, \r\n"+
+                        "us.FechaRegistro, per.Id as PersonaId \r\n"+
                         "FROM USUARIO AS us \r\n"+
                         "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n"+
                         "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id \r\n"+
@@ -83,9 +83,9 @@ namespace CAPADATOS.ADO.SISTEMA
                        "us.Id, us.Alias, us.Password as Contrasena, \r\n" +
                        "(per.Nombres + ' ' + per.Apellidos) as Nombre, \r\n" +
                        "per.Nombres, per.Apellidos as Apellidos, \r\n" +
-                       "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n" +
-                       "per.CodigoPostal, rl.Id as RolId, rl.Nombre as Rol, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
-                       "us.FechaRegistro \r\n" +
+                       "per.Curp, per.FechaNacimiento, \r\n" +
+                       "rl.Id as RolId, rl.Nombre as Rol, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
+                       "us.FechaRegistro, per.Id as PersonaId \r\n" +
                        "FROM USUARIO AS us \r\n" +
                        "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n" +
                        "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id \r\n" +

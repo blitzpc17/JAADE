@@ -153,6 +153,27 @@ namespace PRESENTACION.UTILERIAS
                             {
                                 ((DataGridView)ctrlG).Rows.Clear();
                             }
+                        }else if(ctrlG is ComboBox)
+                        {
+                            if (((ComboBox)ctrlG).DataSource != null)
+                            {
+                                ((ComboBox)ctrlG).DataSource = null;
+                            }
+                            else
+                            {
+                                ((ComboBox)ctrlG).Items.Clear();
+                            }
+
+                        }else if(ctrlG is ListBox)
+                        {
+                            if (((ListBox)ctrlG).DataSource != null)
+                            {
+                                ((ListBox)ctrlG).DataSource = null;
+                            }
+                            else
+                            {
+                                ((ListBox)ctrlG).Items.Clear();
+                            }
                         }
                     }
                 }else if(ctrl is TabControl)

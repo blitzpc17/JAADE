@@ -21,7 +21,7 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         private EstadoADO contextoEstados;
         private PagoADO contextoPago;
 
-        public CLIENTELOTE ObjContrato;
+        public CONTRATO ObjContrato;
         public clsClientes ObjCliente;
         public LOTE ObjLote;
         public SOCIOS ObjSocio;
@@ -34,8 +34,12 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public List<SOCIOS> LstSociosCliente;
         public List<SOCIOS> LstSociosClienteContrato;//cuando ya esta asignado el cliente al contrato y lote.
         public List<ZONA> LstZonas;
+        public List<LOTE> LstLotes;
+        public List<LOTE> LstLotesSeleccionados;
 
         public List<ESTADO> LstEstados;
+
+        public List<clsAGENDACLIENTE> LstAgenda;
 
         public formContratoLogica()
         {
@@ -54,9 +58,14 @@ namespace CAPALOGICA.LOGICAS.PAGOS
             LstEstados = contextoEstados.Listar().Where(x=>x.Proceso=="CONTRATO").ToList();
         }
 
+        public List<LOTE> ListarLotesXZonaIdEstadoId(int zonaId, int estadoId)
+        {
+            return contextoLote.ListarLotesXZonaIdEstadoId(zonaId, estadoId);
+        }
+
         public void InstanciarContrato()
         {
-            ObjContrato = new CLIENTELOTE();
+            ObjContrato = new CONTRATO();
         }
 
         public void Guardar()
@@ -64,25 +73,11 @@ namespace CAPALOGICA.LOGICAS.PAGOS
             
             if (ObjContrato.Id == 0)
             {
-                contextoContrato.Insertar(ObjContrato);
-                contextoContrato.Guardar();
-                contextoLote.Obtener(ObjContrato.LOTEId);
-                ObjLote.ESTADOId = 4; //asignado
-                contextoLote.Guardar(); 
-            }
-            else
-            {
-                if (ObjLote.Id != ObjContratoData.LoteId)
-                {
-                    //modificar estado de lotes
-                    ObjLote.ESTADOId = 4;//NuevoLote
-                    contextoLote.Guardar();
-                    ObjLote = contextoLote.Obtener(ObjContratoData.LoteId);
-                    contextoLote.Guardar();
-                }
-                contextoContrato.Guardar();
-            }
-            
+                contextoContrato.Insertar(ObjContrato); 
+            }          
+
+            contextoContrato.Guardar();
+
         }
 
         public void ListarSociosCliente(string claveCliente)
@@ -140,7 +135,32 @@ namespace CAPALOGICA.LOGICAS.PAGOS
             ObjContratoImpresoData = contextoContrato.ObtenerDatosContratoImpreso(folioContrato);
         }
 
+        public void AgregarLoteSeleccionado(int loteId)
+        {
+           
+            if (LstLotesSeleccionados == null)
+            {
+                LstLotesSeleccionados = new List<LOTE>();
+            }
 
+            if (LstLotesSeleccionados.Any(x => x.Id ==  loteId)) return;
 
+            ObjLote = LstLotes.FirstOrDefault(x => x.Id == loteId);
+            LstLotesSeleccionados.Add(ObjLote); 
+        }
+
+        public bool QuitarLoteSeleccionado(int loteId)
+        {
+            if (LstLotesSeleccionados == null) return false;
+            ObjLote = LstLotesSeleccionados.First(x => x.Id == loteId);
+            LstLotesSeleccionados.Remove(ObjLote);
+
+            return true;
+        }
+
+        public List<LOTE> ObtenerLotesPorClave( int zonaId, List<string> lstLotes)
+        {
+            return contextoLote.ObtenerLotesPorClave(zonaId, lstLotes);
+        }
     }
 }

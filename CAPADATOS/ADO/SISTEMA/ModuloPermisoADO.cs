@@ -45,9 +45,9 @@ namespace CAPADATOS.ADO.SISTEMA
         {
             string query = "SELECT \r\n " +
                             "MP.Id AS PermisoId, USAUT.Id as UsuarioAsignoId, \r\n " +
-                            "(PERAUT.Nombres + ' ' + PERAUT.ApellidoPaterno + ' ' + PERAUT.ApellidoMaterno) as NombreUsuarioAsigno, \r\n " +
+                            "(PERAUT.Nombres + ' ' + PERAUT.Apellidos) as NombreUsuarioAsigno, \r\n " +
                             "MP.FechaRegistro as FechaAsigno, USSOL.Id as UsuarioSolicitaId, \r\n " +
-                            "(PERSOL.Nombres + ' ' + PERSOL.ApellidoPaterno + ' ' + PERSOL.ApellidoMaterno) as NombreUsuarioSolicita, \r\n " +
+                            "(PERSOL.Nombres + ' ' + PERSOL.Apellidos) as NombreUsuarioSolicita, \r\n " +
                             "MP.Motivo, M.Id as ModuloId, M.Nombre as NombreModulo, M.Ruta as RutaModulo \r\n " +
                             "FROM MODULO_PERMISO AS MP \r\n " +
                             "JOIN MODULO AS M ON MP.MODULOId = M.Id \r\n " +
@@ -63,13 +63,10 @@ namespace CAPADATOS.ADO.SISTEMA
         {
             string query = "SELECT \r\n"+
                              "DISTINCT M.Id as ModuloId, M.Nombre as NombreModulo, M.Ruta as RutaModulo, R.id as RolId \r\n "+
-                             "FROM MODULO_PERMISO AS MP \r\n "+
-                             "JOIN MODULO AS M ON MP.MODULOId = M.Id \r\n "+
-                             "JOIN USUARIO AS USSOL ON MP.USUARIOId = USSOL.Id \r\n "+
-                             "JOIN USUARIO AS USAUT ON MP.USUARIOId = USAUT.Id \r\n "+
-                             "JOIN PERSONA AS PERAUT ON USAUT.PERSONAId = PERAUT.Id \r\n "+
-                             "JOIN ROL AS R ON USAUT.ROLId = R.Id \r\n "+
-                             "WHERE USSOL.ROLId = "+idRol;
+                             "FROM ROL_PERMISO AS MP \r\n "+
+                             "JOIN MODULO AS M ON MP.MODULOId = M.Id \r\n "+     
+                             "JOIN ROL AS R ON MP.ROLId = R.Id \r\n "+
+                             "WHERE MP.ROLId = "+idRol;
 
             return contexto.Database.SqlQuery<clsRolPermiso>(query).ToList();
         }
@@ -78,9 +75,9 @@ namespace CAPADATOS.ADO.SISTEMA
         {
             string query = "SELECT \r\n "+
                             "MP.Id AS PermisoId, USAUT.Id as UsuarioAsignoId, \r\n "+
-                            "(PERAUT.Nombres + ' ' + PERAUT.ApellidoPaterno + ' ' + PERAUT.ApellidoMaterno) as NombreUsuarioAsigno, \r\n "+
+                            "(PERAUT.Nombres + ' ' + PERAUT.Apellidos) as NombreUsuarioAsigno, \r\n "+
                             "MP.FechaRegistro as FechaAsigno, USSOL.Id as UsuarioSolicitaId, \r\n "+
-                            "(PERSOL.Nombres + ' ' + PERSOL.ApellidoPaterno + ' ' + PERSOL.ApellidoMaterno) as NombreUsuarioSolicita, \r\n "+
+                            "(PERSOL.Nombres + ' ' + PERSOL.Apellidos) as NombreUsuarioSolicita, \r\n "+
                             "MP.Motivo, M.Id as ModuloId, M.Nombre as NombreModulo, M.Ruta as RutaModulo \r\n "+
                             "FROM MODULO_PERMISO AS MP \r\n "+
                             "JOIN MODULO AS M ON MP.MODULOId = M.Id \r\n "+
@@ -99,8 +96,23 @@ namespace CAPADATOS.ADO.SISTEMA
             return contexto.Database.ExecuteSqlCommand(query) == 1;
         }
 
-        public List<clsModulosAccesoUsuario> ListarAccesoPermisoUsuario(int usuarioId)
+        public List<clsModulosAccesoUsuario> ListarAccesoPermisoUsuario(int usuarioId, int rolId)
         {
+
+            List<clsModulosAccesoUsuario> LstRolesPermisos;
+            
+            string sqlRol = "SELECT \r\n" +
+                            "M.Id as ModuloId, M.Nombre, M.Icono, M.Ruta, \r\n" +
+                            "MS.Id as ModuloSubId, MS.Nombre as ModuloSubNombre, MS.Ruta AS ModuloSubRuta, \r\n" +
+                            "MPP.Id as ModuloPadreId, MPP.Nombre as ModuloPadreNombre, MPP.Ruta AS ModuloPadreRuta\r\n" +
+                            "FROM ROL_PERMISO MP\r\n" +
+                            "JOIN MODULO M ON MP.MODULOId = M.Id\r\n" +
+                            "LEFT JOIN MODULO MS ON M.MODULOId = MS.Id\r\n" +
+                            "LEFT JOIN MODULO MPP ON MS.MODULOId = MPP.Id\r\n" +
+                            "WHERE MP.ROLId = "+rolId;
+
+            LstRolesPermisos = contexto.Database.SqlQuery<clsModulosAccesoUsuario>(sqlRol).ToList();
+
             string sql = "SELECT \r\n" +
                             "M.Id as ModuloId, M.Nombre, M.Icono, M.Ruta, \r\n" +
                             "MS.Id as ModuloSubId, MS.Nombre as ModuloSubNombre, MS.Ruta AS ModuloSubRuta, \r\n" +
@@ -111,7 +123,15 @@ namespace CAPADATOS.ADO.SISTEMA
                             "LEFT JOIN MODULO MPP ON MS.MODULOId = MPP.Id \r\n" +
                             "WHERE MP.USUARIOId = " + usuarioId;
 
-            return contexto.Database.SqlQuery<clsModulosAccesoUsuario>(sql).ToList();
+            List<clsModulosAccesoUsuario> LstUsuariosPermisosExtras;
+
+             LstUsuariosPermisosExtras = contexto.Database.SqlQuery<clsModulosAccesoUsuario>(sql).ToList();
+
+            if (LstRolesPermisos == null) return LstUsuariosPermisosExtras;
+
+            if (LstUsuariosPermisosExtras == null) return LstRolesPermisos;
+
+            return LstRolesPermisos.Concat(LstUsuariosPermisosExtras).ToList();
         }
 
         public bool InsertarPermisoXRol(MODULO_PERMISO obj, List<int> lstIds)
@@ -134,30 +154,12 @@ namespace CAPADATOS.ADO.SISTEMA
             return (contexto.Database.ExecuteSqlCommand(sql) ==lstIds.Count);
         }
 
-        public List<int> ValidarPermisoEnUsuarios(int moduloId, int rolId, bool tienen = false)
+        public bool ValidarPermisoEnUsuarios(clsUsuario objUsuario, int moduloId)
         {
-            List<int> LstUsuariosId;
-            List<int> LstUsuariosIdAux;
-            string sql = "SELECT ID FROM USUARIO WHERE ROLId = " + rolId;
-            LstUsuariosId = contexto.Database.SqlQuery<int>(sql).ToList();
-            if (LstUsuariosId != null)
-            {
-                //validar si hay usuarios con ese rol que no tienen par aesos asignarlos
-                if (!tienen)
-                {
-                    sql = "SELECT USUARIOId FROM MODULO_PERMISO WHERE MODULOId = "
-                   + moduloId + " AND USUARIOId IN (" + String.Join(",", LstUsuariosId) + ");";
 
-                    LstUsuariosIdAux = contexto.Database.SqlQuery<int>(sql).ToList();
-                    LstUsuariosId = LstUsuariosId.Except(LstUsuariosIdAux).Union(LstUsuariosIdAux.Except(LstUsuariosId)).ToList();
+            if (contexto.MODULO_PERMISO.Any(x => x.MODULOId == moduloId && x.USUARIOId == moduloId)) return true;
 
-                }
-
-                return LstUsuariosId;
-
-            }            
-
-            return null;
+            return contexto.ROL_PERMISO.Any(x => x.MODULOId == moduloId && x.ROLId == objUsuario.RolId);
 
         }
 

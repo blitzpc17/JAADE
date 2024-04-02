@@ -12,14 +12,19 @@ namespace CAPADATOS
     using System;
     using System.Collections.Generic;
     
-    public partial class CLIENTELOTE
+    public partial class CONTRATO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CONTRATO()
+        {
+            this.CONTRATO_LOTES = new HashSet<CONTRATO_LOTES>();
+        }
+    
         public int Id { get; set; }
         public string Folio { get; set; }
         public System.DateTime FechaArrendamiento { get; set; }
         public int CLIENTEId { get; set; }
         public Nullable<int> SOCIOSId { get; set; }
-        public int LOTEId { get; set; }
         public int NoPagos { get; set; }
         public decimal PrecioInicial { get; set; }
         public int DiaPago { get; set; }
@@ -30,14 +35,25 @@ namespace CAPADATOS
         public string Observacion { get; set; }
         public int USUARIOOperacionId { get; set; }
         public Nullable<System.DateTime> FechaReimpresion { get; set; }
-        public Nullable<int> CLIENTELOTEId { get; set; }
         public Nullable<System.DateTime> FechaInicioProrroga { get; set; }
+        public string ColindaNorte { get; set; }
+        public string ColindaSur { get; set; }
+        public string ColindaEste { get; set; }
+        public string ColindaOeste { get; set; }
+        public decimal MideNorte { get; set; }
+        public decimal MideSur { get; set; }
+        public decimal MideEste { get; set; }
+        public decimal MideOeste { get; set; }
+        public int AGENDAId { get; set; }
+        public Nullable<int> CONTRATOId { get; set; }
     
         public virtual CLIENTE CLIENTE { get; set; }
-        public virtual LOTE LOTE { get; set; }
         public virtual USUARIO USUARIO { get; set; }
         public virtual SOCIOS SOCIOS { get; set; }
         public virtual ESTADO ESTADO { get; set; }
-        public virtual CLIENTELOTE CLIENTELOTEREUBICADO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CONTRATO_LOTES> CONTRATO_LOTES { get; set; }
+        public virtual AGENDA AGENDA { get; set; }
+        public virtual CONTRATO CONTRATOORIGEN { get; set; }
     }
 }

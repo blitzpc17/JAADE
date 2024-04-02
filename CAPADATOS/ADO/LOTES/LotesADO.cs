@@ -35,7 +35,12 @@ namespace CAPADATOS.ADO.LOTES
         public List<LOTE> Listar()
         {
             return contexto.LOTE.ToList();
-        }      
+        }   
+        
+        public List<LOTE> ListarLotesXZonaIdEstadoId(int zonaId, int estadoId)
+        {
+            return contexto.LOTE.Where(x=>x.ZONAId==zonaId&&x.ESTADOId == estadoId).ToList();
+        }
 
         public List<clsLotes> ListarLotes(int id,bool busquedaCliente = false)
         {
@@ -45,8 +50,7 @@ namespace CAPADATOS.ADO.LOTES
             {
                 query = "select " +
                         "LT.Id, LT.Identificador, ZN.Nombre AS Zona, zn.Id as ZonaId, \r\n " +
-                        "LT.MNorte, LT.MSur, LT.MEste, LT.MOeste, LT.CNorte, LT.CSur, \r\n" +
-                        "LT.CEste, Lt.COeste, LT.FechaRegistro, LT.Precio, LT.Manzana, \r\n" +
+                        "LT.FechaRegistro, LT.Precio, LT.Manzana, LT.NoLote, \r\n" +
                         "EDO.Id as EstadoId, EDO.Nombre as Estado \r\n"+
                         "FROM CLIENTE_LOTE cl \r\n" +
                         "JOIN CLIENTE cli ON cl.CLIENTEId = cli.Id \r\n" +
@@ -59,8 +63,7 @@ namespace CAPADATOS.ADO.LOTES
             {
                 query = "SELECT " +
                            "LT.Id, LT.Identificador, ZN.Nombre AS Zona, zn.Id as ZonaId, \r\n" +
-                           "LT.MNorte, LT.MSur, LT.MEste, LT.MOeste, LT.CNorte, LT.CSur, \r\n" +
-                           "LT.CEste, Lt.COeste, LT.FechaRegistro, LT.Precio, LT.Manzana, \r\n" +
+                           "LT.FechaRegistro, LT.Precio, LT.Manzana, LT.NoLote, \r\n" +
                            "EDO.Id as EstadoId, EDO.Nombre as Estado \r\n" +
                            "FROM ZONA AS ZN " +
                            "JOIN LOTE AS LT ON ZN.Id = LT.ZONAId " +
@@ -91,8 +94,7 @@ namespace CAPADATOS.ADO.LOTES
         {
             string query = "SELECT " +
                            "LT.Id, LT.Identificador, ZN.Nombre AS Zona, zn.Id ZonaId, " +
-                           "LT.MNorte, LT.MSur, LT.MEste, LT.MOeste, LT.CNorte, LT.CSur, " +
-                           "LT.CEste, Lt.COeste, LT.FechaRegistro, LT.Precio, LT.Manzana, \r\n" +
+                           "LT.FechaRegistro, LT.Precio, LT.Manzana, LT.NoLote,  \r\n" +
                            "EDO.Id as EstadoId, EDO.Nombre as Estado \r\n" +
                            "FROM ZONA AS ZN " +
                            "JOIN LOTE AS LT ON ZN.Id = LT.ZONAId " +
@@ -131,6 +133,18 @@ namespace CAPADATOS.ADO.LOTES
 
 
             return contexto.Database.SqlQuery<clsInformacionPagoLote>(query).FirstOrDefault();
+        }
+
+        public List<LOTE> ObtenerLotesPorClave(int zonaId, List<string> lstLotes)
+        {
+            lstLotes = lstLotes.Select(item=> $"'{item.TrimStart()}'").ToList();
+            string lotes = string.Join(",", lstLotes);
+
+            string query = "SELECT \r\n" +
+                            "*FROM LOTE LT \r\n"+
+                          "WHERE LT.ZONAId = "+zonaId+" AND LT.Identificador in  ("+lotes+") " ;
+
+            return contexto.Database.SqlQuery<LOTE>(query).ToList() ;
         }
 
         public string ObtenerIdentificadorUltimoLote(int zonaId)

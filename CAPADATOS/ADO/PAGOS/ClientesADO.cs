@@ -64,9 +64,8 @@ namespace CAPADATOS.ADO.PAGOS
         {
             var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.Apellidos) as Cliente, \r\n"+
                         "per.Nombres, per.Apellidos as Apellidos, \r\n"+
-                        "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n"+
-                        "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado, \r\n"+
-                        "per.EntidadFederativa, per.Municipio \r\n"+
+                        "per.Curp, per.FechaNacimiento, \r\n"+
+                        "edo.Id as EstadoId, edo.Nombre as Estado \r\n"+
                         "FROM CLIENTE AS us \r\n"+
                         "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n"+
                         "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id \r\n"+
@@ -79,9 +78,8 @@ namespace CAPADATOS.ADO.PAGOS
         {
             var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.Apellidos) as Cliente, \r\n" +
                         "per.Nombres, per.Apellidos as Apellidos, \r\n" +
-                        "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n" +
-                        "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
-                        "per.EntidadFederativa, per.Municipio \r\n" +
+                        "per.Curp, per.FechaNacimiento, \r\n" +
+                        "edo.Id as EstadoId, edo.Nombre as Estado \r\n" +
                         "FROM CLIENTE AS us \r\n" +
                         "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n"+
                         "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id ";
@@ -98,9 +96,8 @@ namespace CAPADATOS.ADO.PAGOS
         {
             var query = "SELECT us.Id, us.Clave, (per.Nombres+' '+per.Apellidos) as Cliente, \r\n" +
                         "per.Nombres, per.Apellidos as Apellidos, \r\n" +
-                        "per.Curp, per.FechaNacimiento, per.Calle, per.NoExt, per.NoInt, per.Colonia, per.Localidad, \r\n" +
-                        "per.CodigoPostal, edo.Id as EstadoId, edo.Nombre as Estado, \r\n" +
-                        "per.EntidadFederativa, per.Municipio \r\n" +
+                        "per.Curp, per.FechaNacimiento, \r\n" +
+                        "edo.Id as EstadoId, edo.Nombre as Estado \r\n" +
                         "FROM CLIENTE AS us \r\n" +
                         "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n" +
                         "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id \r\n" +

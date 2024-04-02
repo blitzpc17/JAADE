@@ -17,17 +17,10 @@ namespace CAPADATOS
         public int Id { get; set; }
         public string Identificador { get; set; }
         public int ZONAId { get; set; }
-        public decimal MNorte { get; set; }
-        public decimal MSur { get; set; }
-        public decimal MOeste { get; set; }
-        public decimal MEste { get; set; }
-        public string CNorte { get; set; }
-        public string CSur { get; set; }
-        public string COeste { get; set; }
-        public string CEste { get; set; }
+        public Nullable<int> Manzana { get; set; }
+        public string NoLote { get; set; }
         public System.DateTime FechaRegistro { get; set; }
         public decimal Precio { get; set; }
-        public Nullable<int> Manzana { get; set; }
         public int ESTADOId { get; set; }
     
         public virtual ZONA ZONA { get; set; }

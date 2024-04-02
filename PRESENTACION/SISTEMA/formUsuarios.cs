@@ -1,4 +1,5 @@
-﻿using CAPALOGICA.LOGICAS.SISTEMA;
+﻿using CAPADATOS.Entidades;
+using CAPALOGICA.LOGICAS.SISTEMA;
 using PRESENTACION.UTILERIAS;
 using System;
 using System.Collections.Generic;
@@ -96,13 +97,18 @@ namespace PRESENTACION.SISTEMA
                     contexto.InstanciarUsuario();
                 }
                 contexto.ObjPersona.Nombres = txtNombre.Text;
-                contexto.ObjPersona.Apellidos =txtApellidos.Text;             
+                contexto.ObjPersona.Apellidos = txtApellidos.Text;             
 
                 contexto.ObjUsuario.Alias = txtUsuario.Text;
                 contexto.ObjUsuario.Password = txtPassword.Text;
                 contexto.ObjUsuario.ESTADOId = (int)cbxEstado.SelectedValue;
                 contexto.ObjUsuario.ROLId = (int)cbxRol.SelectedValue;
                 contexto.ObjUsuario.FechaRegistro = DateTime.Now;
+                if (contexto.ObjUsuarioData != null)
+                {
+                    contexto.ObjUsuario.Id = contexto.ObjUsuarioData.Id;
+                }
+                
 
                 contexto.Guardar();
 
@@ -121,31 +127,6 @@ namespace PRESENTACION.SISTEMA
             }          
 
         }
-
-        
-
-       
-
-       
-
-        private void Modificar()
-        {          
-            //modificar
-            contexto.ObjUsuarioData = contexto.ObtenerDataUsuario(1);
-            contexto.ObjUsuario = contexto.ObtenerUsuario(contexto.ObjUsuarioData.Id);
-            contexto.ObjPersona = contexto.ObtenerPersona(contexto.ObjUsuario.PERSONAId);
-            if (contexto.ObjUsuario != null)
-            {
-                txtNombre.Text = contexto.ObjUsuarioData.Nombres;
-                txtApellidos.Text = contexto.ObjUsuarioData.Apellidos;
-
-                txtUsuario.Text = contexto.ObjUsuarioData.Alias;
-                txtPassword.Text = contexto.ObjUsuarioData.Contrasena;
-                cbxEstado.SelectedValue = contexto.ObjUsuarioData.EstadoId;
-                cbxRol.SelectedValue = contexto.ObjUsuarioData.RolId;
-            }
-        }
-
 
         private void formUsuarios_Load(object sender, EventArgs e)
         {
@@ -168,9 +149,38 @@ namespace PRESENTACION.SISTEMA
             InicializarModulo();
         }
 
-        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-            Modificar();
+            var busUsuarios = new BUSQUEDA.busUsuarios();
+            busUsuarios.ShowDialog();
+
+            contexto.ObjUsuarioData = busUsuarios.ObjEntidad;
+
+            if(contexto.ObjUsuarioData == null)
+            {
+                MessageBox.Show("No ha seleccionado ningún registro.", "Advertencia",
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            SetDataUsuario(contexto.ObjUsuarioData);
+
+
+        }
+
+        private void SetDataUsuario(clsUsuario objUsuarioData)
+        {
+            txtUsuario.Text = contexto.ObjUsuarioData.Alias;
+            txtPassword.Text = contexto.ObjUsuarioData.Contrasena;
+            txtFechaRegistro.Text = contexto.ObjUsuarioData.FechaRegistro.ToString("dd/MM/yyyy");
+            txtNombre.Text = contexto.ObjUsuarioData.Nombres;
+            txtApellidos.Text = contexto.ObjUsuarioData.Apellidos;
+            cbxEstado.SelectedValue = contexto.ObjUsuarioData.EstadoId;
+            cbxRol.SelectedValue = contexto.ObjUsuarioData.RolId;
+
+            contexto.ObjPersona = contexto.ObtenerPersona(objUsuarioData.PersonaId);
         }
     }
 }

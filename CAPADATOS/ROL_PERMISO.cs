@@ -12,12 +12,14 @@ namespace CAPADATOS
     using System;
     using System.Collections.Generic;
     
-    public partial class PERSONA
+    public partial class ROL_PERMISO
     {
         public int Id { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public Nullable<System.DateTime> FechaNacimiento { get; set; }
-        public string Curp { get; set; }
+        public System.DateTime FechaEmision { get; set; }
+        public int MODULOId { get; set; }
+        public int ROLId { get; set; }
+    
+        public virtual MODULO MODULO { get; set; }
+        public virtual ROL ROL { get; set; }
     }
 }

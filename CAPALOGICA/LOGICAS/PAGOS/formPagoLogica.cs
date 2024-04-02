@@ -19,7 +19,7 @@ namespace CAPALOGICA.LOGICAS.PAGOS
   //      public clsPagoData ObjPagoData;
         public PAGO ObjPago;
         public clsContratoCliente ObjContratoData;
-        public CLIENTELOTE ObjContrato;
+        public CONTRATO ObjContrato;
 
         public clsInformacionContratoPago ObjInformacionPago;
         public clsTicketEncabezado ObjEncabezadoTicket;

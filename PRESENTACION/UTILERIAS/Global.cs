@@ -1,4 +1,5 @@
 ﻿using CAPADATOS;
+using CAPADATOS.ADO.PAGOS;
 using CAPADATOS.ADO.SISTEMA;
 using CAPADATOS.Entidades;
 using CAPALOGICA.LOGICAS.SISTEMA;
@@ -85,7 +86,7 @@ namespace PRESENTACION.UTILERIAS
             return (fecha.Year % 100).ToString();
         }
 
-        public static string ArmarDomicilioCliente(clsClientes obj)
+       /* public static string ArmarDomicilioCliente(clsClientes obj)
         {
             string Calle = obj.Calle,
                 NoExt = obj.NoExt,
@@ -99,7 +100,7 @@ namespace PRESENTACION.UTILERIAS
             return Calle + " NO. " + NoExt + (string.IsNullOrEmpty(obj.NoInt) ? "" : " INT. " + obj.NoInt) + " COL. " + obj.Colonia + ". " + (Municipio.Equals(Localidad) ? (Localidad+", "+Localidad) : (Localidad+", "+Municipio)) + ", " + Estado;
 
 
-        }
+        }*/
 
         public static bool GuardarExcepcion(Exception ex, string formularioNombre, string msjAdicional =null)
         {
@@ -311,7 +312,7 @@ namespace PRESENTACION.UTILERIAS
                     break;
                 case Enumeraciones.ProcesoFolio.CONTRATO:
                     _Prefijo = "CO";
-                    _Longitud = 7;
+                    _Longitud = 9;
                     _NombreVariable = Enumeraciones.VariablesGlobales.ConsecutivoContratos.ToString();
                     break;
 
@@ -368,7 +369,7 @@ namespace PRESENTACION.UTILERIAS
             
             ObjData.Mes = MesEnLetras(_mes);
             ObjData.Dia =    ConvertirNumeroALetras(_dia);
-            ObjData.Anio = ConvertirNumeroALetras(624925);//ConvertirNumeroALetras(_anio);
+            ObjData.Anio = ConvertirNumeroALetras(_anio);
             ObjData.Hora =   ConvertirNumeroALetras(_hora);
             ObjData.Minuto = ConvertirNumeroALetras(_minuto);
 
@@ -491,5 +492,102 @@ namespace PRESENTACION.UTILERIAS
 
             return letras.Trim();
         }
+
+        public static clsEstadoContrato ValidarEstadoContrato(DateTime fechaMovimiento, clsContratoCliente objContrato, int? EstadoId =null)
+        {
+            clsEstadoContrato objEstado = new clsEstadoContrato();
+
+            if (EstadoId == null)
+            {
+                //automatico
+            }
+            else
+            {
+                //manual
+
+              
+
+
+                switch (EstadoId)
+                {
+                    case 8:
+                        objEstado.NombreEstado = Enumeraciones.EstadosProcesoContratos.VIGENTE.ToString();
+                        objEstado.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.VIGENTE; 
+                        break;
+
+
+                    case 9:
+                        objEstado.NombreEstado = Enumeraciones.EstadosProcesoContratos.ATRASADO.ToString();
+                        objEstado.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.ATRASADO;
+                        objEstado.FechaInicioProrroga = fechaMovimiento;
+                        
+                        break;
+
+
+                    case 10:
+                        objEstado.NombreEstado = Enumeraciones.EstadosProcesoContratos.TERMINADO.ToString();
+                        objEstado.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.TERMINADO;
+                        break;
+
+                    case 11:
+                        objEstado.NombreEstado = Enumeraciones.EstadosProcesoContratos.RECISION.ToString();
+                        objEstado.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.RECISION;
+                        break;
+
+                    case 12:
+                        objEstado.NombreEstado = Enumeraciones.EstadosProcesoContratos.REUBICADO.ToString();
+                        objEstado.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.REUBICADO;
+                        break;
+
+                    case 13:
+                        objEstado.NombreEstado = Enumeraciones.EstadosProcesoContratos.CANCELADO.ToString();
+                        objEstado.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.CANCELADO;
+                        break;
+                }
+
+              
+
+
+            }
+
+            return objEstado;
+        }
+
+
+        public static clsCalculoMontoPagado CalcularMontoPagosDados(int idContrato)
+        {
+            using (var contexto = new PagoADO())
+            {
+                return contexto.CalcularMontoPagosDados(idContrato);
+            }
+        }
+
+
+        public static bool RelacionarLotesContrato(int contratoId, List<LOTE>lstLotes, int estadoContrato, int estadoLote)
+        {
+            using (var contexto = new ContratoLoteADO())
+            {
+                return contexto.RelacionarLotesContrato(contratoId, lstLotes, estadoContrato, estadoLote);
+            }
+        }
+
+        public static List<clsAGENDACLIENTE> ListarAgendaCliente(int clienteId)
+        {
+            using (var contexto = new Persona_AgendaADO())
+            {
+                return contexto.ListarAgendaCliente(clienteId);
+            }
+        }
+
+        public static int CalcularMontoMensualidadContratoVigente(int noPagos, decimal pagoInicial, decimal montoContrato)
+        {
+            return (int)Math.Round((montoContrato - pagoInicial) / noPagos);
+        }
+
+       // public static clsCalculoMontoPagado
+
+
+
+
     }
 }

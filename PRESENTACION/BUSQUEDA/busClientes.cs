@@ -34,6 +34,7 @@ namespace PRESENTACION.BUSQUEDA
                 contexto = new busClientesLogica();
                 Listar();
                 ordenar(1);
+                contexto.Column = 2;
             }
             catch (Exception ex)
             {
@@ -55,6 +56,10 @@ namespace PRESENTACION.BUSQUEDA
 
         private void filtrar(int column, string termino)
         {
+            if(column != contexto.index)
+            {
+                ordenar(column);
+            }
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -77,23 +82,15 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[0].Visible = false;
             dgvRegistros.Columns[1].HeaderText = "CLAVE";
             dgvRegistros.Columns[1].Width = 90;
-            dgvRegistros.Columns[2].HeaderText = "NOMBRE";
+            dgvRegistros.Columns[2].HeaderText = "NOMBRE"; //cliente
             dgvRegistros.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRegistros.Columns[3].Visible = false;
-            dgvRegistros.Columns[4].Visible = false;
-            dgvRegistros.Columns[5].Visible = false;
-            dgvRegistros.Columns[6].Visible = false;
-            dgvRegistros.Columns[7].Visible = false;
-            dgvRegistros.Columns[8].Visible = false;
-            dgvRegistros.Columns[9].Visible = false;
-            dgvRegistros.Columns[10].Visible = false;
-            dgvRegistros.Columns[11].Visible = false;
-            dgvRegistros.Columns[12].Visible = false;
-            dgvRegistros.Columns[13].Visible = false;
-            dgvRegistros.Columns[14].Visible = false;
-            dgvRegistros.Columns[15].Visible = false;
-            dgvRegistros.Columns[16].HeaderText = "ESTADO";
-            dgvRegistros.Columns[16].Width = 100;
+            dgvRegistros.Columns[3].Visible = false;//nombres
+            dgvRegistros.Columns[4].Visible = false;//apellidos
+            dgvRegistros.Columns[5].Visible = false;//curp
+            dgvRegistros.Columns[6].Visible = false;//fechanacimiento
+            dgvRegistros.Columns[7].Visible = false;//estadoid
+            dgvRegistros.Columns[8].HeaderText = "ESTADO";
+            dgvRegistros.Columns[8].Width = 100;
 
 
             tsTotalRegistros.Text = contexto.LstClientes.Count.ToString("N0");
@@ -133,15 +130,12 @@ namespace PRESENTACION.BUSQUEDA
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);*/
 
             if (dgvRegistros.DataSource == null) return;
             if (contexto.Column != e.ColumnIndex)
             {
                 contexto.Column = e.ColumnIndex;
-                ordenar(contexto.Column);
+                txtBuscar.Clear();
             }
             else
             {
@@ -150,11 +144,7 @@ namespace PRESENTACION.BUSQUEDA
         }
 
         private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-           /* if (dgvRegistros.DataSource == null) return;
-            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
-            ObjEntidad = contexto.ObtenerRegistro(rowIndexSeleccionado);
-            Close();*/
+        {          
 
             if (dgvRegistros.DataSource == null) return;
             rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;

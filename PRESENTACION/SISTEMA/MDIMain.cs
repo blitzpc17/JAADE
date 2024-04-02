@@ -69,7 +69,7 @@ namespace PRESENTACION.SISTEMA
         {
             using (var contexto = new ModuloPermisoADO())
             {
-                LstPermisos = contexto.ListarAccesoPermisoUsuario(ObjCredencial.Id);
+                LstPermisos = contexto.ListarAccesoPermisoUsuario(ObjCredencial.Id, ObjCredencial.RolId);
             }
         }
         private void LLenarMenu()
@@ -214,6 +214,18 @@ namespace PRESENTACION.SISTEMA
                 }
             };
             p.Start();
+        }
+
+        private void sITIOWEBJAADEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://www.ejemplo.com";
+            Process.Start(url);
+        }
+
+        private void cMSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://www.ejemplo.com";
+            Process.Start(url);
         }
     }
 }

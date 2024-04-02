@@ -54,6 +54,11 @@ namespace PRESENTACION.BUSQUEDA
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
+
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -63,44 +68,46 @@ namespace PRESENTACION.BUSQUEDA
         }
 
         private void ordenar(int column)
-        {
+        {;
             txtBuscar.Focus();
             contexto.Ordenar(column);
-            dgvRegistros.DataSource = null;
             dgvRegistros.DataSource = contexto.LstContratosAux;
             Apariencias();
         }
 
         private void Apariencias()
         {
-            dgvRegistros.Columns[0].Visible = false;
-            dgvRegistros.Columns[0].Frozen = false;
+            dgvRegistros.Columns[0].Visible = false;//contratoid
+            dgvRegistros.Columns[0].Frozen = true;
             dgvRegistros.Columns[1].HeaderText = "FOLIO";
             dgvRegistros.Columns[1].Frozen = true;
             dgvRegistros.Columns[1].Width = 100;
             dgvRegistros.Columns[2].HeaderText = "FECHA EMISIÓN";
-            dgvRegistros.Columns[2].Frozen = true;
+            dgvRegistros.Columns[2].Frozen = false;
+            dgvRegistros.Columns[2].DefaultCellStyle.Format = "dd/MM/yyyy";
             dgvRegistros.Columns[2].Width = 100;
-            dgvRegistros.Columns[3].Visible = false;
+            dgvRegistros.Columns[3].Visible = false; //cliente id
             dgvRegistros.Columns[4].HeaderText = "CLAVE";
             dgvRegistros.Columns[4].Width = 90;
             dgvRegistros.Columns[5].HeaderText = "CLIENTE";
-            dgvRegistros.Columns[5].Width = 90;
-            dgvRegistros.Columns[6].Visible = false;
-            dgvRegistros.Columns[7].HeaderText = "LOTE";
-            dgvRegistros.Columns[7].Width = 250;
-            dgvRegistros.Columns[8].Visible = false;
+            dgvRegistros.Columns[5].Width = 180;
+            dgvRegistros.Columns[6].Visible = false;//estadoid
+            dgvRegistros.Columns[7].HeaderText = "ESTADO";
+            dgvRegistros.Columns[7].Width = 90;
+            dgvRegistros.Columns[8].Visible = false; //zonaid
             dgvRegistros.Columns[9].HeaderText = "ZONA";
             dgvRegistros.Columns[9].Width = 90;
-            dgvRegistros.Columns[10].Visible = false;
-            dgvRegistros.Columns[11].HeaderText = "ESTADO";
-            dgvRegistros.Columns[11].Width = 100;
-            dgvRegistros.Columns[12].Visible = false;
-            dgvRegistros.Columns[13].Visible = false;
+            dgvRegistros.Columns[10].HeaderText = "LOTES";
+            dgvRegistros.Columns[10].Width = 100;  
+            dgvRegistros.Columns[11].Visible = false;//socioid
+            dgvRegistros.Columns[12].HeaderText = "SOCIO";
+            dgvRegistros.Columns[12].Width = 100;
+            dgvRegistros.Columns[13].HeaderText = "TOTAL";
+            dgvRegistros.Columns[13].Width = 90;
+            dgvRegistros.Columns[13].DefaultCellStyle.Format = "N2";
             dgvRegistros.Columns[14].Visible = false;
-            dgvRegistros.Columns[15].Visible = false;
-            dgvRegistros.Columns[16].HeaderText = "DÍA PAGO";
-            dgvRegistros.Columns[16].Width = 100;
+            dgvRegistros.Columns[15].Visible = false;            
+            dgvRegistros.Columns[16].Visible = false;
             dgvRegistros.Columns[17].Visible = false;
             dgvRegistros.Columns[18].Visible = false;
             dgvRegistros.Columns[19].Visible = false;
@@ -111,6 +118,15 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[24].Visible = false;
             dgvRegistros.Columns[25].Visible = false;
             dgvRegistros.Columns[26].Visible = false;
+            dgvRegistros.Columns[27].Visible = false;
+            dgvRegistros.Columns[28].Visible = false;
+            dgvRegistros.Columns[29].Visible = false;
+            dgvRegistros.Columns[30].Visible = false;
+            dgvRegistros.Columns[31].Visible = false;
+            dgvRegistros.Columns[32].Visible = false;
+            dgvRegistros.Columns[33].Visible = false;
+            dgvRegistros.Columns[34].Visible = false;
+            dgvRegistros.Columns[35].Visible = false;
 
             tsTotalRegistros.Text = contexto.LstContratosAux.Count.ToString("N0");
 
@@ -141,12 +157,12 @@ namespace PRESENTACION.BUSQUEDA
         }
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {        
             if (dgvRegistros.DataSource == null) return;
             if (contexto.Column != e.ColumnIndex)
             {
                 contexto.Column = e.ColumnIndex;
-                ordenar(contexto.Column);
+                txtBuscar.Clear();
             }
             else
             {

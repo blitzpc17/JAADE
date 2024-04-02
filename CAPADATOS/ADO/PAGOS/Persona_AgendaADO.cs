@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CAPADATOS.ADO.PAGOS
 {
-    public class Persona_AgendaADO
+    public class Persona_AgendaADO:IDisposable
     {
         private DB_JAADEEntities contexto;
 
@@ -52,6 +52,27 @@ namespace CAPADATOS.ADO.PAGOS
                         "JOIN AGENDA AG ON PAG.AGENDAId = AG.Id \r\n"+
                         "WHERE CLI.Clave = '"+claveCliente+"'";
             return contexto.Database.SqlQuery<clsAGENDACLIENTE>(query).ToList();
+        }
+
+        public List<clsAGENDACLIENTE>ListarAgendaCliente(int clienteId)
+        {
+            string query = "SELECT \r\n" +
+                            "ag.Id, AG.Tipo AS TIPOId, \r\n" +
+                            "CASE WHEN(AG.Tipo = 1) THEN 'TELEFONO' \r\n" +
+                            "ELSE(CASE WHEN(AG.Tipo = 2) THEN 'DIRECCION' ELSE 'CORREO ELECTRONICO' END) END AS Tipo, \r\n" +
+                            "ag.Valor, pa.Id as RelacionId \r\n" +
+                            "FROM CLIENTE CLI \r\n" +
+                            "JOIN PERSONA PER ON CLI.PERSONAId = PER.Id \r\n"+
+                            "JOIN PERSONA_AGENDA PA ON PER.Id = PA.PERSONAId \r\n"+
+                            "JOIN AGENDA AG ON PA.AGENDAId = AG.Id \r\n"+
+                            "WHERE CLI.Id = "+clienteId;
+
+            return contexto.Database.SqlQuery<clsAGENDACLIENTE>(query).ToList();
+        }
+
+        public void Dispose()
+        {
+            contexto.Dispose();
         }
     }
 }

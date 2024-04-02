@@ -14,16 +14,19 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
         private RolesADO contextoRol;
         private ModuloPermisoADO contextoPermiso;
         private ModulosADO contextoModulos;
+        private RolPermisoADO contextoRolPermiso;
 
         public List<clsRolPermiso> LstPermisos;
         public List<clsRolPermiso> LstPermisosAux;
-        public List<ROL> LstRol;
+        public List<ROL> LstRol;     
+        public List<clsUsuario> LstUsuario;
+        public List<int> LstUsuariosIdPermiso;
+
         public clsUsuario ObjUsuario;
         public clsModuloPermiso ObjPermisoData;
         public clsModulo ObjModulo;
         public MODULO_PERMISO ObjPermiso;
-        public List<clsUsuario> LstUsuario;
-        public List<int> LstUsuariosIdPermiso;
+        public ROL_PERMISO ObjRolPermiso;
 
         public int RolId;
 
@@ -37,6 +40,7 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             contextoRol = new RolesADO(); 
             contextoPermiso = new ModuloPermisoADO();
             contextoModulos = new ModulosADO();
+            contextoRolPermiso = new RolPermisoADO();
         }
 
         public void InstanciarPermiso()
@@ -92,9 +96,9 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             LstRol = contextoRol.Listar();
         }
 
-        public void ValidarPermisoEnUsuarios(int moduloId, int rolId, bool tienen = false)
+        public bool ValidarPermisoEnUsuarios(int moduloId, int rolId, bool tienen = false)
         {
-            LstUsuariosIdPermiso = contextoPermiso.ValidarPermisoEnUsuarios(moduloId, rolId, tienen);
+            return contextoRolPermiso.ValidarExistePermisoEnRol(rolId, moduloId);
         }
 
 
@@ -141,8 +145,20 @@ namespace CAPALOGICA.LOGICAS.SISTEMA
             }
         }
 
+        public void CrearPermisoRol()
+        {
+            ObjRolPermiso = new ROL_PERMISO();
+        }
 
+        public void GuardarPermisoRol()
+        {
+            contextoRolPermiso.Insertar(ObjRolPermiso);
+            contextoRolPermiso.Guardar();
+        }
 
-
+        public bool ValidarExistePermisoEnRol(int rolId, int ModuloId)
+        {
+            return contextoRolPermiso.ValidarExistePermisoEnRol(rolId, ModuloId);
+        }
     }
 }

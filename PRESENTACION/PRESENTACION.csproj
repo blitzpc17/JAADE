@@ -418,6 +418,9 @@
     <None Include="Resources\subir.png" />
     <None Include="Resources\consulta.png" />
     <None Include="Resources\enviar.png" />
+    <None Include="Resources\sitio-web.png" />
+    <None Include="Resources\cms.png" />
+    <None Include="Resources\sitio-web1.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

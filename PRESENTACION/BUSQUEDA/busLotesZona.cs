@@ -75,6 +75,11 @@ namespace PRESENTACION.BUSQUEDA
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
+
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -94,53 +99,75 @@ namespace PRESENTACION.BUSQUEDA
         private void Apariencias()
         {
             if (dgvRegistros.DataSource == null) return;
-            dgvRegistros.Columns[0].Visible = false;
+
+            dgvRegistros.Columns[0].Visible = false; //id
             dgvRegistros.Columns[0].Frozen = true;
+
             dgvRegistros.Columns[1].HeaderText = "Identificador";
-            dgvRegistros.Columns[1].Width = 90;
+            dgvRegistros.Columns[1].Width = 110;
             dgvRegistros.Columns[1].Frozen = true;
-            dgvRegistros.Columns[2].HeaderText = "Zona";
-            dgvRegistros.Columns[2].Width = 135;
-            dgvRegistros.Columns[2].Frozen = true;
-            dgvRegistros.Columns[3].HeaderText = "Estado";
-            dgvRegistros.Columns[3].Width = 90;
-            dgvRegistros.Columns[4].Visible = false;
-            dgvRegistros.Columns[5].HeaderText = "Medida Norte";
-            dgvRegistros.Columns[5].Width = 90;
-            dgvRegistros.Columns[5].DefaultCellStyle.Format = "N2";
+
+            dgvRegistros.Columns[2].Frozen = true;//zonaid
+
+            dgvRegistros.Columns[3].HeaderText = "Zona";//zona
+            dgvRegistros.Columns[3].Width = 200;
+            dgvRegistros.Columns[3].Frozen = true;
+
+            dgvRegistros.Columns[4].HeaderText = "Manzana";
+            dgvRegistros.Columns[4].DefaultCellStyle.Format = "N0";
+            dgvRegistros.Columns[4].Width = 110;
+            dgvRegistros.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvRegistros.Columns[5].HeaderText = "No. Lote";
+            dgvRegistros.Columns[5].Width = 110;
+            dgvRegistros.Columns[5].DefaultCellStyle.Format = "N0";
             dgvRegistros.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[6].HeaderText = "Medida Sur";
-            dgvRegistros.Columns[6].Width = 90;
+
+            dgvRegistros.Columns[6].HeaderText = "Precio";
             dgvRegistros.Columns[6].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[6].Width = 110;
             dgvRegistros.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[7].HeaderText = "Medida Este";
-            dgvRegistros.Columns[7].Width = 90;
-            dgvRegistros.Columns[7].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[8].HeaderText = "Medida Oeste";
-            dgvRegistros.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[8].Width = 90;
-            dgvRegistros.Columns[8].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[9].HeaderText = "Colinada Norte";
+
+            dgvRegistros.Columns[7].Visible = false;//estadoid
+
+            dgvRegistros.Columns[8].HeaderText = "Estado";
+            dgvRegistros.Columns[8].Width = 110;
+
+            dgvRegistros.Columns[9].HeaderText = "Medida Norte";
             dgvRegistros.Columns[9].Width = 110;
-            dgvRegistros.Columns[10].HeaderText = "Colinada Sur";
+            dgvRegistros.Columns[9].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvRegistros.Columns[10].HeaderText = "Medida Sur";
             dgvRegistros.Columns[10].Width = 110;
-            dgvRegistros.Columns[11].HeaderText = "Colinada Este";
+            dgvRegistros.Columns[10].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvRegistros.Columns[11].HeaderText = "Medida Este";
             dgvRegistros.Columns[11].Width = 110;
-            dgvRegistros.Columns[12].HeaderText = "Colinada Oeste";
+            dgvRegistros.Columns[11].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvRegistros.Columns[12].HeaderText = "Medida Oeste";
+            dgvRegistros.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvRegistros.Columns[12].Width = 110;
-            dgvRegistros.Columns[13].HeaderText = "Fecha Registro";
-            dgvRegistros.Columns[13].Width = 135;
-            dgvRegistros.Columns[14].HeaderText = "Precio";
-            dgvRegistros.Columns[14].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[12].DefaultCellStyle.Format = "N2";
+
+            dgvRegistros.Columns[13].HeaderText = "Colinada Norte";
+            dgvRegistros.Columns[13].Width = 110;
+
+            dgvRegistros.Columns[14].HeaderText = "Colinada Sur";
             dgvRegistros.Columns[14].Width = 110;
-            dgvRegistros.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[15].HeaderText = "Manzana";
-            dgvRegistros.Columns[15].DefaultCellStyle.Format = "N0";
+
+            dgvRegistros.Columns[15].HeaderText = "Colinada Este";
             dgvRegistros.Columns[15].Width = 110;
-            dgvRegistros.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[16].Visible = false;
-         
+
+            dgvRegistros.Columns[16].HeaderText = "Colinada Oeste";
+            dgvRegistros.Columns[16].Width = 110;
+
+            dgvRegistros.Columns[17].HeaderText = "Fecha Registro";
+            dgvRegistros.Columns[17].Width = 135;
+
             tsTotalRegistros.Text = contexto.LstLoteAux.Count.ToString("N0");
         }
 
@@ -170,10 +197,18 @@ namespace PRESENTACION.BUSQUEDA
         }
 
         private void dgvRegistros_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (contexto.Column == e.ColumnIndex) return;
-            contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+        {   
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtBuscar.Clear();
+            }
+            else
+            {
+                rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            }
+
         }
 
         private void dgvRegistros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

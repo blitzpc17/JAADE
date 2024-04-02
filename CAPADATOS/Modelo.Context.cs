@@ -42,7 +42,9 @@ namespace CAPADATOS
         public virtual DbSet<CONTROL_PERMISO> CONTROL_PERMISO { get; set; }
         public virtual DbSet<SOCIOS> SOCIOS { get; set; }
         public virtual DbSet<CLIENTES_SOCIOS> CLIENTES_SOCIOS { get; set; }
-        public virtual DbSet<CLIENTELOTE> CLIENTELOTE { get; set; }
+        public virtual DbSet<CONTRATO> CONTRATO { get; set; }
         public virtual DbSet<PAGO> PAGO { get; set; }
+        public virtual DbSet<CONTRATO_LOTES> CONTRATO_LOTES { get; set; }
+        public virtual DbSet<ROL_PERMISO> ROL_PERMISO { get; set; }
     }
 }

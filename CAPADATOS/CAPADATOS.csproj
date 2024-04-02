@@ -70,6 +70,7 @@
     <Compile Include="ADO\SISTEMA\ModuloPermisoADO.cs" />
     <Compile Include="ADO\SISTEMA\PersonaADO.cs" />
     <Compile Include="ADO\SISTEMA\RolesADO.cs" />
+    <Compile Include="ADO\SISTEMA\RolPermisoADO.cs" />
     <Compile Include="ADO\SISTEMA\UsuariosADO.cs" />
     <Compile Include="ADO\SISTEMA\VariableGlobalADO.cs" />
     <Compile Include="AGENDA.cs">
@@ -78,10 +79,13 @@
     <Compile Include="CLIENTE.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLIENTELOTE.cs">
+    <Compile Include="CLIENTES_SOCIOS.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLIENTES_SOCIOS.cs">
+    <Compile Include="CONTRATO.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONTRATO_LOTES.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="CONTROL.cs">
@@ -94,6 +98,7 @@
     <Compile Include="Entidades\clsAGENDACLIENTE.cs" />
     <Compile Include="Entidades\clsArrendamientoLoteData.cs" />
     <Compile Include="Entidades\clsBusquedaPago.cs" />
+    <Compile Include="Entidades\clsCalculoMontoPagado.cs" />
     <Compile Include="Entidades\clsClienteLote.cs" />
     <Compile Include="Entidades\clsClientes.cs" />
     <Compile Include="Entidades\clsClientesImportacion.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="Entidades\clsCredencialesCorreo.cs" />
     <Compile Include="Entidades\clsCredencialesFtp.cs" />
     <Compile Include="Entidades\clsCredencialesTwilio.cs" />
+    <Compile Include="Entidades\clsEstadoContrato.cs" />
     <Compile Include="Entidades\clsExcepciones.cs" />
     <Compile Include="Entidades\clsFormatoFechaEscrito.cs" />
     <Compile Include="Entidades\clsInformacionContratoPago.cs" />
@@ -168,6 +174,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ROL.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ROL_PERMISO.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SOCIOS.cs">

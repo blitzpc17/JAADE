@@ -40,10 +40,10 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public clsClientesImportacion ObjClienteImportacion;
         public CLIENTES_SOCIOS ObjClienteSocio;
         public SOCIOS ObjSocios;
-        public CLIENTELOTE ObjContrato;
+        public CONTRATO ObjContrato;
         public clsCONTRATOIMPORTACION ObjContratoImportacion;
         public PAGO ObjPago;
-        public CLIENTELOTE ObjClienteLote;
+        public CONTRATO ObjClienteLote;
 
         public List<ZONA> LstZonasImportadas;
 
@@ -289,7 +289,7 @@ namespace CAPALOGICA.LOGICAS.PAGOS
 
             public void InstanciarContrato()
             {
-                ObjContrato = new CLIENTELOTE();
+                ObjContrato = new CONTRATO();
             }
 
 

@@ -43,27 +43,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCurp = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtEntidadFederativa = new System.Windows.Forms.TextBox();
-            this.txtMunicipio = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtCodigoPostal = new System.Windows.Forms.TextBox();
-            this.txtLocalidad = new System.Windows.Forms.TextBox();
-            this.txtColonia = new System.Windows.Forms.TextBox();
-            this.txtNoInt = new System.Windows.Forms.TextBox();
-            this.txtNoExt = new System.Windows.Forms.TextBox();
-            this.txtCalle = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabDatos = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnTipo = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -92,7 +75,6 @@
             this.cmsContacto.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabDatos.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAgenda)).BeginInit();
@@ -145,7 +127,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(328, 30);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(28, 28);
-            this.btnBuscar.TabIndex = 161;
+            this.btnBuscar.TabIndex = 20;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -156,7 +138,7 @@
             this.txtClave.MaxLength = 5;
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(185, 23);
-            this.txtClave.TabIndex = 48;
+            this.txtClave.TabIndex = 10;
             this.txtClave.Click += new System.EventHandler(this.txtClave_Click);
             this.txtClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClave_KeyDown);
             this.txtClave.Leave += new System.EventHandler(this.txtClave_Leave);
@@ -167,7 +149,7 @@
             this.txtApellidos.Location = new System.Drawing.Point(131, 88);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(225, 23);
-            this.txtApellidos.TabIndex = 36;
+            this.txtApellidos.TabIndex = 40;
             // 
             // txtNombre
             // 
@@ -175,7 +157,7 @@
             this.txtNombre.Location = new System.Drawing.Point(131, 59);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(225, 23);
-            this.txtNombre.TabIndex = 35;
+            this.txtNombre.TabIndex = 30;
             // 
             // cbxEstado
             // 
@@ -185,7 +167,7 @@
             this.cbxEstado.Location = new System.Drawing.Point(131, 117);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(225, 23);
-            this.cbxEstado.TabIndex = 160;
+            this.cbxEstado.TabIndex = 50;
             // 
             // label15
             // 
@@ -235,158 +217,6 @@
             this.txtCurp.Size = new System.Drawing.Size(225, 23);
             this.txtCurp.TabIndex = 10;
             // 
-            // label16
-            // 
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label16.Location = new System.Drawing.Point(10, 213);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(115, 23);
-            this.label16.TabIndex = 54;
-            this.label16.Text = "Entidad Fed:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtEntidadFederativa
-            // 
-            this.txtEntidadFederativa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEntidadFederativa.Location = new System.Drawing.Point(131, 213);
-            this.txtEntidadFederativa.Name = "txtEntidadFederativa";
-            this.txtEntidadFederativa.Size = new System.Drawing.Size(225, 23);
-            this.txtEntidadFederativa.TabIndex = 80;
-            // 
-            // txtMunicipio
-            // 
-            this.txtMunicipio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMunicipio.Location = new System.Drawing.Point(131, 184);
-            this.txtMunicipio.Name = "txtMunicipio";
-            this.txtMunicipio.Size = new System.Drawing.Size(225, 23);
-            this.txtMunicipio.TabIndex = 70;
-            // 
-            // label14
-            // 
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label14.Location = new System.Drawing.Point(10, 184);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(115, 23);
-            this.label14.TabIndex = 52;
-            this.label14.Text = "Municipio:";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtCodigoPostal
-            // 
-            this.txtCodigoPostal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoPostal.Location = new System.Drawing.Point(131, 155);
-            this.txtCodigoPostal.Name = "txtCodigoPostal";
-            this.txtCodigoPostal.Size = new System.Drawing.Size(225, 23);
-            this.txtCodigoPostal.TabIndex = 60;
-            // 
-            // txtLocalidad
-            // 
-            this.txtLocalidad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLocalidad.Location = new System.Drawing.Point(131, 126);
-            this.txtLocalidad.Name = "txtLocalidad";
-            this.txtLocalidad.Size = new System.Drawing.Size(225, 23);
-            this.txtLocalidad.TabIndex = 50;
-            // 
-            // txtColonia
-            // 
-            this.txtColonia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColonia.Location = new System.Drawing.Point(131, 97);
-            this.txtColonia.Name = "txtColonia";
-            this.txtColonia.Size = new System.Drawing.Size(225, 23);
-            this.txtColonia.TabIndex = 40;
-            // 
-            // txtNoInt
-            // 
-            this.txtNoInt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoInt.Location = new System.Drawing.Point(131, 68);
-            this.txtNoInt.Name = "txtNoInt";
-            this.txtNoInt.Size = new System.Drawing.Size(225, 23);
-            this.txtNoInt.TabIndex = 30;
-            // 
-            // txtNoExt
-            // 
-            this.txtNoExt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoExt.Location = new System.Drawing.Point(131, 39);
-            this.txtNoExt.Name = "txtNoExt";
-            this.txtNoExt.Size = new System.Drawing.Size(225, 23);
-            this.txtNoExt.TabIndex = 20;
-            // 
-            // txtCalle
-            // 
-            this.txtCalle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCalle.Location = new System.Drawing.Point(131, 10);
-            this.txtCalle.Name = "txtCalle";
-            this.txtCalle.Size = new System.Drawing.Size(225, 23);
-            this.txtCalle.TabIndex = 10;
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label12.Location = new System.Drawing.Point(10, 155);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(115, 23);
-            this.label12.TabIndex = 32;
-            this.label12.Text = "Código Postal:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label11
-            // 
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label11.Location = new System.Drawing.Point(10, 126);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(115, 23);
-            this.label11.TabIndex = 30;
-            this.label11.Text = "Localidad:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label10.Location = new System.Drawing.Point(10, 97);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(115, 23);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "Colonia:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label9.Location = new System.Drawing.Point(10, 68);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(115, 23);
-            this.label9.TabIndex = 26;
-            this.label9.Text = "No. Int:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label8.Location = new System.Drawing.Point(10, 39);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 23);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "No. Ext:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label7.Location = new System.Drawing.Point(10, 10);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(115, 23);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Calle:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // dtpFechaNacimiento
             // 
             this.dtpFechaNacimiento.CustomFormat = "dd-MM-yyyy";
@@ -419,7 +249,6 @@
             // 
             // tabDatos
             // 
-            this.tabDatos.Controls.Add(this.tabPage1);
             this.tabDatos.Controls.Add(this.tabPage2);
             this.tabDatos.Controls.Add(this.tabPage3);
             this.tabDatos.Location = new System.Drawing.Point(16, 173);
@@ -427,32 +256,6 @@
             this.tabDatos.SelectedIndex = 0;
             this.tabDatos.Size = new System.Drawing.Size(375, 316);
             this.tabDatos.TabIndex = 20;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.txtColonia);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.label16);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.txtEntidadFederativa);
-            this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.txtCalle);
-            this.tabPage1.Controls.Add(this.txtMunicipio);
-            this.tabPage1.Controls.Add(this.txtNoExt);
-            this.tabPage1.Controls.Add(this.label14);
-            this.tabPage1.Controls.Add(this.txtNoInt);
-            this.tabPage1.Controls.Add(this.txtCodigoPostal);
-            this.tabPage1.Controls.Add(this.txtLocalidad);
-            this.tabPage1.Controls.Add(this.label12);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(367, 290);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Domicilio";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -595,7 +398,6 @@
             this.txtSocio.Name = "txtSocio";
             this.txtSocio.Size = new System.Drawing.Size(185, 23);
             this.txtSocio.TabIndex = 30;
-            this.txtSocio.TextChanged += new System.EventHandler(this.txtSocio_TextChanged);
             // 
             // label4
             // 
@@ -743,8 +545,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabDatos.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -768,12 +568,6 @@
         private System.Windows.Forms.ComboBox cbxEstado;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -781,22 +575,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip cmsContacto;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtCurp;
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.TextBox txtApellidos;
-        private System.Windows.Forms.TextBox txtEntidadFederativa;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtMunicipio;
-        private System.Windows.Forms.TextBox txtCodigoPostal;
-        private System.Windows.Forms.TextBox txtLocalidad;
-        private System.Windows.Forms.TextBox txtColonia;
-        private System.Windows.Forms.TextBox txtNoInt;
-        private System.Windows.Forms.TextBox txtNoExt;
-        private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.TabControl tabDatos;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dgvAgenda;
         private System.Windows.Forms.TabPage tabPage3;
