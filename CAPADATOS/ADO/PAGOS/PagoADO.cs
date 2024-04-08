@@ -99,7 +99,7 @@ namespace CAPADATOS.ADO.PAGOS
             string query = "SELECT \r\n" +
                             "PG.NoPago as No, PG.Monto, PG.FechaEmision as Fecha, PG.Observacion \r\n" +
                             "FROM PAGO PG \r\n"+
-                            "JOIN CLIENTELOTE CL ON PG.ContratoId = CL.Id \r\n"+
+                            "JOIN CONTRATO CL ON PG.ContratoId = CL.Id \r\n"+
                             "WHERE CL.Folio = '"+noReferencia+"'"; 
 
             return contexto.Database.SqlQuery<clsTicketPartida>(query).ToList();
@@ -142,7 +142,7 @@ namespace CAPADATOS.ADO.PAGOS
                             "(select top 1 pago.NoPago from pago where pago.ContratoId = cl.Id and pago.PagoOrdinario = 0 order by pago.Id desc) as NoUltimoPagoGraciaPago, \r\n"+
                             "(select sum(pago.Monto) from pago where pago.ContratoId = cl.id and pago.PagoOrdinario = 0) as SaldoProrrogaFavor, \r\n"+
                             "(cl.MontoGracia / cl.NoPagosGracia) as MensualidadGracia \r\n"+
-                            "from CLIENTELOTE cl where cl.Folio = '"+folio+"'"; 
+                            "from CONTRATO cl where cl.Folio = '"+folio+"'"; 
 
             return contexto.Database.SqlQuery<clsInformacionContratoPago>(query).FirstOrDefault();  
 
@@ -155,17 +155,25 @@ namespace CAPADATOS.ADO.PAGOS
 
         public List<clsBusquedaPago> ListarPagosContrato(string contrato = null)
         {
-            string query = "SELECT " +
-                            "PG.Id AS PagoId, PG.Folio, PG.FechaEmision,  \r\n" +
+            string query = "SELECT PG.Id AS PagoId, PG.Folio, PG.FechaEmision,  \r\n" +
                             "CL.Id As ContratoId, CL.Folio as Contrato, (PERCLI.Nombres + ' ' + PERCLI.Apellidos) as Cliente, \r\n" +
-                            "ZN.Nombre As Zona, LT.Identificador, PG.Monto \r\n" +
+                            "( \r\n" +
+                            "select top 1 zona.Nombre \r\nfrom contrato_lotes \r\n" +
+                            "join lote on contrato_lotes.LoteId = lote.id \r\n" +
+                            "join zona on lote.zonaid = zona.id \r\n" +
+                            "where contrato_lotes.contratoid = cl.id ) as Zona,\r\n" +
+                            "STUFF(( \r\n        " +
+                                "SELECT ', ' + CAST(LOTE.Identificador AS VARCHAR(MAX)) \r\n        " +
+                                "FROM LOTE \r\n        " +
+                                "JOIN CONTRATO_LOTES ON LOTE.Id = CONTRATO_LOTES.LOTEId \r\n        " +
+                                "WHERE CONTRATO_LOTES.CONTRATOId = CL.Id \r\n        " +
+                            "FOR XML PATH('')), 1, 2, '') As LotesRelacionados, \r\n" +
+                            "PG.Monto \r\n" +
                             "FROM PAGO AS PG \r\n" +
-                            "JOIN CLIENTELOTE AS CL ON PG.ContratoId = CL.Id \r\n" +
-                            "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n" +
-                            "JOIN ZONA ZN ON LT.ZONAId = ZN.Id \r\n" +
+                            "JOIN CONTRATO AS CL ON PG.ContratoId = CL.Id \r\n" +
                             "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n" +
-                            "JOIN PERSONA PERCLI ON CLI.PERSONAId = PERCLI.Id \r\n"
-                            + ((string.IsNullOrEmpty(contrato)) ? "" : "WHERE CL.Folio = '"+contrato+"'");
+                            "JOIN PERSONA PERCLI ON CLI.PERSONAId = PERCLI.Id "
+                                        + ((string.IsNullOrEmpty(contrato)) ? "" : "WHERE CL.Folio = '"+contrato+"'");
 
             return contexto.Database.SqlQuery<clsBusquedaPago>(query).ToList();
 

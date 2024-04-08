@@ -212,13 +212,15 @@ namespace PRESENTACION.PAGOS
             contexto.InstanciarObjTicket();
             contexto.InstanciarEncabezadoTicket();
             //traer agenda del cliente
+            contexto.ObjEncabezadoTicket.ClienteId = contexto.ObjContratoData.ClienteId;
             contexto.ObjEncabezadoTicket.Cliente = contexto.ObjContratoData.ClaveCliente + " " + contexto.ObjContratoData.NombreCliente;
             contexto.ObjEncabezadoTicket.ObsComportamientoPago = contexto.ObjContratoData.Observacion;
             contexto.ObjEncabezadoTicket.NoPagos = contexto.ObjContratoData.NoPagos;
             contexto.ObjEncabezadoTicket.Fecha = contexto.ObjContratoData.FechaEmision;
             contexto.ObjEncabezadoTicket.PrecioLote = contexto.ObjContratoData.PrecioLote;
-            //contexto.ObjEncabezadoTicket.IdentificadorLote = contexto.ObjContratoData.IdentificadorLote;
+            contexto.ObjEncabezadoTicket.IdentificadorLote = contexto.ObjContratoData.LotesRelacionados;
             contexto.ObjEncabezadoTicket.Zona = contexto.ObjContratoData.ZonaNombre;
+            contexto.ObjEncabezadoTicket.Contrato = contexto.ObjContratoData.NoReferencia;
 
             contexto.ObjTicket.Encabezado = contexto.ObjEncabezadoTicket;
 
@@ -230,7 +232,7 @@ namespace PRESENTACION.PAGOS
 
             parametros.Add(new ReportParameter("MontoAcumulado", contexto.LstPartidasTicket.Sum(x=>x.Monto).ToString("N2")));
             parametros.Add(new ReportParameter("FechaReimpresion", Global.FechaServidor().ToString("dd/MM/yyyy HH:mm:ss")));
-
+            
             repTicket rep = new repTicket(contexto.ObjTicket);
             rep.parametros = parametros;    
             rep.ShowDialog();

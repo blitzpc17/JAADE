@@ -18,6 +18,7 @@ namespace PRESENTACION.BUSQUEDA
         private busPagosLogica contexto;
         public clsBusquedaPago ObjEntidad;
         private string contrato;
+        private int rowIndexSeleccionado = -1;
         public busPagos(string contrato = null)
         {
             InitializeComponent();
@@ -55,6 +56,11 @@ namespace PRESENTACION.BUSQUEDA
 
         private void filtrar(int column, string termino)
         {
+            if (column != contexto.index)
+            {
+                ordenar(column);
+            }
+
             if (contexto.Filtrar(column, termino))
             {
                 contexto.indexAux = contexto.index;
@@ -88,7 +94,7 @@ namespace PRESENTACION.BUSQUEDA
             dgvRegistros.Columns[5].Width = 210;
             dgvRegistros.Columns[6].HeaderText = "Zona";
             dgvRegistros.Columns[6].Width = 110;
-            dgvRegistros.Columns[7].HeaderText = "Lote";           
+            dgvRegistros.Columns[7].HeaderText = "Lote(s)";           
             dgvRegistros.Columns[7].Width = 90;
             dgvRegistros.Columns[8].HeaderText = "Monto";
             dgvRegistros.Columns[8].DefaultCellStyle.Format = "N2";
@@ -113,6 +119,7 @@ namespace PRESENTACION.BUSQUEDA
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (dgvRegistros.DataSource == null) return;
+            if (rowIndexSeleccionado == -1) return;
             ObjEntidad = contexto.ObtenerRegistro(dgvRegistros.CurrentRow.Cells[1].Value.ToString());
             Close();
         }
@@ -138,15 +145,26 @@ namespace PRESENTACION.BUSQUEDA
         private void dgvRegistros_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvRegistros.DataSource == null) return;
-            ObjEntidad = contexto.ObtenerRegistro(dgvRegistros.CurrentRow.Cells[1].Value.ToString());
+            rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            ObjEntidad = contexto.ObtenerRegistroXId(rowIndexSeleccionado);
             Close();
         }
 
         private void dgvRegistros_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (contexto.Column == e.ColumnIndex) return;
+            /*if (contexto.Column == e.ColumnIndex) return;
             contexto.Column = e.ColumnIndex;
-            ordenar(contexto.Column);
+            ordenar(contexto.Column);*/
+            if (dgvRegistros.DataSource == null) return;
+            if (contexto.Column != e.ColumnIndex)
+            {
+                contexto.Column = e.ColumnIndex;
+                txtBuscar.Clear();
+            }
+            else
+            {
+                rowIndexSeleccionado = (int)dgvRegistros.CurrentRow.Cells[0].Value;
+            }
         }
     }
 }

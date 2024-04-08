@@ -15,7 +15,7 @@ namespace CAPADATOS.Entidades
         public string Contrato { get; set; }
         public string Cliente { get; set; }
         public string Zona { get; set; }
-        public string Identificador { get; set; }
+        public string LotesRelacionados { get; set; }
         public decimal Monto { get; set; }
     }
 

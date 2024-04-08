@@ -11,7 +11,7 @@ namespace CAPADATOS.Entidades
         public string EmailBase { get; set; }
         public string Hostname { get; set; }        
         public int Puerto { get; set; }
-        public string SmtpUsername { get; set; }
-        public string SmtpPassword { get; set; }
+      //  public string SmtpUsername { get; set; }
+        public string Password { get; set; }
     }
 }

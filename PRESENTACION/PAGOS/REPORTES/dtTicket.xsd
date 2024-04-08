@@ -22,6 +22,7 @@
               <xs:element name="Zona" msprop:Generator_ColumnPropNameInTable="ZonaColumn" msprop:Generator_ColumnPropNameInRow="Zona" msprop:Generator_UserColumnName="Zona" msprop:Generator_ColumnVarNameInTable="columnZona" type="xs:string" minOccurs="0" />
               <xs:element name="IdentificadorLote" msprop:Generator_ColumnPropNameInTable="IdentificadorLoteColumn" msprop:Generator_ColumnPropNameInRow="IdentificadorLote" msprop:Generator_UserColumnName="IdentificadorLote" msprop:Generator_ColumnVarNameInTable="columnIdentificadorLote" type="xs:string" minOccurs="0" />
               <xs:element name="ObsComportamientoPago" msprop:Generator_ColumnPropNameInTable="ObsComportamientoPagoColumn" msprop:Generator_ColumnPropNameInRow="ObsComportamientoPago" msprop:Generator_UserColumnName="ObsComportamientoPago" msprop:Generator_ColumnVarNameInTable="columnObsComportamientoPago" type="xs:string" minOccurs="0" />
+              <xs:element name="Contrato" msprop:Generator_ColumnPropNameInRow="Contrato" msprop:Generator_ColumnPropNameInTable="ContratoColumn" msprop:Generator_ColumnVarNameInTable="columnContrato" msprop:Generator_UserColumnName="Contrato" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -31,7 +32,7 @@
               <xs:element name="NoPago" msprop:Generator_ColumnPropNameInTable="NoPagoColumn" msprop:Generator_ColumnPropNameInRow="NoPago" msprop:Generator_UserColumnName="NoPago" msprop:Generator_ColumnVarNameInTable="columnNoPago" type="xs:string" minOccurs="0" />
               <xs:element name="Monto" msprop:Generator_ColumnPropNameInTable="MontoColumn" msprop:Generator_ColumnPropNameInRow="Monto" msprop:Generator_UserColumnName="Monto" msprop:Generator_ColumnVarNameInTable="columnMonto" type="xs:string" minOccurs="0" />
               <xs:element name="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_UserColumnName="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" type="xs:string" minOccurs="0" />
-              <xs:element name="Observacion" msprop:Generator_UserColumnName="Observacion" msprop:Generator_ColumnPropNameInTable="ObservacionColumn" msprop:Generator_ColumnPropNameInRow="Observacion" msprop:Generator_ColumnVarNameInTable="columnObservacion" type="xs:string" minOccurs="0" />
+              <xs:element name="Observacion" msprop:Generator_ColumnPropNameInTable="ObservacionColumn" msprop:Generator_ColumnPropNameInRow="Observacion" msprop:Generator_UserColumnName="Observacion" msprop:Generator_ColumnVarNameInTable="columnObservacion" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

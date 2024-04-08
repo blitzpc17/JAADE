@@ -328,6 +328,8 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             private global::System.Data.DataColumn columnObsComportamientoPago;
             
+            private global::System.Data.DataColumn columnContrato;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public dtEncabezadoDataTable() {
@@ -419,6 +421,14 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ContratoColumn {
+                get {
+                    return this.columnContrato;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -454,7 +464,7 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dtEncabezadoRow AdddtEncabezadoRow(string Fecha, string Cliente, string PrecioLote, string NoPagos, string Zona, string IdentificadorLote, string ObsComportamientoPago) {
+            public dtEncabezadoRow AdddtEncabezadoRow(string Fecha, string Cliente, string PrecioLote, string NoPagos, string Zona, string IdentificadorLote, string ObsComportamientoPago, string Contrato) {
                 dtEncabezadoRow rowdtEncabezadoRow = ((dtEncabezadoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Fecha,
@@ -463,7 +473,8 @@ namespace PRESENTACION.PAGOS.REPORTES {
                         NoPagos,
                         Zona,
                         IdentificadorLote,
-                        ObsComportamientoPago};
+                        ObsComportamientoPago,
+                        Contrato};
                 rowdtEncabezadoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtEncabezadoRow);
                 return rowdtEncabezadoRow;
@@ -493,6 +504,7 @@ namespace PRESENTACION.PAGOS.REPORTES {
                 this.columnZona = base.Columns["Zona"];
                 this.columnIdentificadorLote = base.Columns["IdentificadorLote"];
                 this.columnObsComportamientoPago = base.Columns["ObsComportamientoPago"];
+                this.columnContrato = base.Columns["Contrato"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -512,6 +524,8 @@ namespace PRESENTACION.PAGOS.REPORTES {
                 base.Columns.Add(this.columnIdentificadorLote);
                 this.columnObsComportamientoPago = new global::System.Data.DataColumn("ObsComportamientoPago", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnObsComportamientoPago);
+                this.columnContrato = new global::System.Data.DataColumn("Contrato", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnContrato);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1056,6 +1070,22 @@ namespace PRESENTACION.PAGOS.REPORTES {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Contrato {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtEncabezado.ContratoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Contrato\' de la tabla \'dtEncabezado\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtEncabezado.ContratoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFechaNull() {
                 return this.IsNull(this.tabledtEncabezado.FechaColumn);
             }
@@ -1136,6 +1166,18 @@ namespace PRESENTACION.PAGOS.REPORTES {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetObsComportamientoPagoNull() {
                 this[this.tabledtEncabezado.ObsComportamientoPagoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsContratoNull() {
+                return this.IsNull(this.tabledtEncabezado.ContratoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetContratoNull() {
+                this[this.tabledtEncabezado.ContratoColumn] = global::System.Convert.DBNull;
             }
         }
         

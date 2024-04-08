@@ -34,6 +34,10 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
         {
             return LstPagosAux.FirstOrDefault(x=>x.Folio == folio );
         }
+        public clsBusquedaPago ObtenerRegistroXId(int id)
+        {
+            return LstPagosAux.FirstOrDefault(x => x.PagoId == id);
+        }
 
         public bool Filtrar(int column, string termino)
         {
@@ -58,7 +62,7 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
                     break;
 
                 case 7:
-                    index = LstPagosAux.FindIndex(x => x.Identificador.ToString().StartsWith(termino));
+                    index = LstPagosAux.FindIndex(x => x.LotesRelacionados.ToString().StartsWith(termino));
                     break;
 
               
@@ -81,26 +85,26 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
                 case 1:
                     LstPagosAux = LstPagos.OrderBy(x => x.Folio)
                         .ThenBy(x=>x.Contrato).ThenBy(x => x.Cliente)
-                        .ThenBy(x=>x.Zona).ThenBy(x=>x.Identificador).ToList();
+                        .ThenBy(x=>x.Zona).ThenBy(x=>x.LotesRelacionados).ToList();
                     break;
                 case 4:
                     LstPagosAux = LstPagos.OrderBy(x => x.Contrato)
                         .ThenBy(x => x.Cliente).ThenBy(x => x.Zona)
-                        .ThenBy(x => x.Identificador).ThenBy(x => x.Folio).ToList();
+                        .ThenBy(x => x.LotesRelacionados).ThenBy(x => x.Folio).ToList();
                     break;
                 case 6:
                     LstPagosAux = LstPagos.OrderBy(x => x.Cliente)
-                      .ThenBy(x => x.Zona).ThenBy(x => x.Identificador)
+                      .ThenBy(x => x.Zona).ThenBy(x => x.LotesRelacionados)
                       .ThenBy(x => x.Folio).ThenBy(x => x.Contrato).ToList();
                     break;
                 case 8:
                     LstPagosAux = LstPagos.OrderBy(x => x.Zona)
-                        .ThenBy(x => x.Identificador).ThenBy(x => x.Folio)
+                        .ThenBy(x => x.LotesRelacionados).ThenBy(x => x.Folio)
                         .ThenBy(x => x.Contrato).ThenBy(x => x.Cliente)
                         .ToList();
                     break;
                 case 9:
-                    LstPagosAux = LstPagos.OrderBy(x => x.Identificador)
+                    LstPagosAux = LstPagos.OrderBy(x => x.LotesRelacionados)
                         .ThenBy(x => x.Folio)
                         .ThenBy(x => x.Contrato).ThenBy(x => x.Cliente)
                         .ThenBy(x => x.Zona).ToList();
@@ -110,7 +114,7 @@ namespace CAPALOGICA.LOGICAS.BUSQUEDA
                 default:
                     LstPagosAux = LstPagos.OrderBy(x => x.Folio)
                       .ThenBy(x => x.Contrato).ThenBy(x => x.Cliente)
-                      .ThenBy(x => x.Zona).ThenBy(x => x.Identificador).ToList();
+                      .ThenBy(x => x.Zona).ThenBy(x => x.LotesRelacionados).ToList();
                     break;
 
             }

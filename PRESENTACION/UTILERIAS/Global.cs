@@ -241,8 +241,8 @@ namespace PRESENTACION.UTILERIAS
             string body = objCorreo.Cuerpo;
             string smtpHost = _ObjCorreoCredenciales.Hostname;
             int smtpPort = _ObjCorreoCredenciales.Puerto;
-            string smtpUsername = _ObjCorreoCredenciales.SmtpUsername;
-            string smtpPassword = _ObjCorreoCredenciales.SmtpPassword;
+            string smtpUsername = _ObjCorreoCredenciales.EmailBase;
+            string smtpPassword = _ObjCorreoCredenciales.Password;
 
             // Ruta del archivo PDF que deseas adjuntar
             List<string> pdfFilePath = objCorreo.PathAttach; //@"C:\Ruta\Al\Archivo.pdf";
