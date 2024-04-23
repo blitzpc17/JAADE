@@ -1,4 +1,5 @@
-﻿using CAPALOGICA.LOGICAS.PAGOS;
+﻿using CAPADATOS.Entidades;
+using CAPALOGICA.LOGICAS.PAGOS;
 using Microsoft.Reporting.WinForms;
 using PRESENTACION.BUSQUEDA;
 using PRESENTACION.PAGOS.REPORTES;
@@ -23,6 +24,8 @@ namespace PRESENTACION.PAGOS
 
         private List<ReportParameter> parametros;
         private bool cargado = false;
+
+        private clsValidacionContrato objValidacion;
 
         public formPago()
         {
@@ -273,6 +276,17 @@ namespace PRESENTACION.PAGOS
             }
             contexto.BuscarContratoFolio(busContrato.ObjEntidad.NoReferencia);
             SetDataContrato();
+            clsEstadoContrato objValidacionEstado;
+            objValidacionEstado = Global.ValidarEstadoContrato(Global.FechaServidor(), contexto.ObjContratoData);
+            if(objValidacionEstado.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.VIGENTE || objValidacionEstado.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
+            {
+                btnGuardar.Enabled = false;
+
+            }
+            else
+            {
+                btnGuardar.Enabled = true;
+            }
         }
 
         private void txtFolioPago_Leave(object sender, EventArgs e)
@@ -330,7 +344,24 @@ namespace PRESENTACION.PAGOS
                 txtMontoRecibido.Text = contexto.ObjPago.Monto.ToString("N2");
                 txtObservacion.Text = contexto.ObjPago.Observacion;
             }
-            
+
+            objValidacion = Global.ValidarEstadoContrato(contexto.ObjContratoData);
+            if (!objValidacion.ProcedePagar)
+            {
+                MessageBox.Show(
+                   "No se pueden recibir pagos para el contrato seleccionado: " + objValidacion.Mensaje,
+                   "Advertencia",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Warning);
+
+                txtMontoRecibido.Enabled = objValidacion.ProcedePagar;
+                txtEstadoPagoCliente.Text = "NO SE PUEDE COBRAR.";
+            }
+            else
+            {
+                txtEstadoPagoCliente.Text = "PAGO AL CORRIENTE.";
+            }
+            /*
             //validar si no excede el numero de pagos ordinarios poner el normal
             if (contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.VIGENTE)
             {
@@ -440,7 +471,7 @@ namespace PRESENTACION.PAGOS
                 txtMontoRecibido.Enabled = false;
                     
             }
-
+            */
 
         }
 

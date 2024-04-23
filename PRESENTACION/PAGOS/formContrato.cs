@@ -148,6 +148,7 @@ namespace PRESENTACION.PAGOS
         private void btnBuscarContrato_Click(object sender, EventArgs e)
         {
             busContrato = new busContratos();
+            cargado = false;
             busContrato.ShowDialog();
 
             if (busContrato.ObjEntidad == null)
@@ -158,6 +159,7 @@ namespace PRESENTACION.PAGOS
             }
             contexto.BuscarContratoFolio(busContrato.ObjEntidad.NoReferencia);
             SetDataContrato();
+            cargado = true;
         }
 
         private void btnNombreCliente_Click(object sender, EventArgs e)
@@ -243,7 +245,9 @@ namespace PRESENTACION.PAGOS
             }
             if (e.KeyCode == Keys.Enter)
             {
+                cargado = false;
                 BuscarContratoFolio(txtFolioContrato.Text);
+                cargado = true;
             }
         }
 
@@ -323,7 +327,7 @@ namespace PRESENTACION.PAGOS
 
             if(contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.REUBICADO)
             {
-                txtContratoReubidado.Text = contexto.ObjContratoData.ContratoOrigen;
+                txtContratoReubidado.Text = contexto.ObjContratoData.FolioContratoOrigen;
                 
             }
 
@@ -331,7 +335,12 @@ namespace PRESENTACION.PAGOS
             txtFechaEmision.Text = contexto.ObjContratoData.FechaEmision.ToString("dd/MM/yyyy HH:mm:ss");
             txtRealizo.Text = contexto.ObjContratoData.UsuarioOperacionNombre;
             txtFechaReimpresion.Text = contexto.ObjContratoData.FechaReimpresion != null ? 
-                Convert.ToDateTime(contexto.ObjContratoData.FechaReimpresion).ToString("dd/MM/yyyy HH:mm:ss") : "";
+            Convert.ToDateTime(contexto.ObjContratoData.FechaReimpresion).ToString("dd/MM/yyyy HH:mm:ss") : "";
+
+            if(contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
+            {
+                txtMontoGracia.Text = Convert.ToDecimal(contexto.ObjContratoData.MontoGracia).ToString("N2");
+            }
             
             
             
@@ -363,21 +372,7 @@ namespace PRESENTACION.PAGOS
                 return;
             }
             SetDataCliente();
-        }
-
-        private void BuscarLotePorIdentificador(string claveLote)
-        {
-            contexto.ObjLote = contexto.BuscarLotePorClave(claveLote);
-            if (contexto.ObjLote == null)
-            {
-                MessageBox.Show("No se encontro ningún lote con la clave ingresada.", "Advertencia",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            cargado = false;
-            cargado = true;
-            cbxZona.SelectedValue = contexto.ObjLote.ZONAId;
-        }     
+        }          
 
         private void cbxZona_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -662,6 +657,17 @@ namespace PRESENTACION.PAGOS
             {
                 txtContratoReubidado.Enabled = false;
                 btnBusContratoReubicado.Enabled = false;
+
+                KeyValuePair<int?, string> objValidacion;
+                objValidacion = Global.CambiarEstadoContrato(contexto.ObjContratoData, (int)cbxEstado.SelectedValue, txtObservacion.Text);
+                if (objValidacion.Key != null)
+                {
+                    MessageBox.Show(objValidacion.Value, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InicializarModulo();
+                }else if(objValidacion.Key==null && objValidacion.Value != null)
+                {
+                    MessageBox.Show(objValidacion.Value, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
 
         }

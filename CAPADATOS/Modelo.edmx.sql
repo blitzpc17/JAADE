@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/21/2024 15:15:58
+-- Date Created: 04/22/2024 15:34:42
 -- Generated from EDMX file: C:\Users\USER\source\repos\JADE\CAPADATOS\Modelo.edmx
 -- --------------------------------------------------
 
@@ -106,6 +106,12 @@ IF OBJECT_ID(N'[dbo].[FK_ROL_PERMISOMODULO]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ROL_PERMISOROL]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ROL_PERMISO] DROP CONSTRAINT [FK_ROL_PERMISOROL];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CONTRATOAGENDA]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CONTRATO] DROP CONSTRAINT [FK_CONTRATOAGENDA];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CONTRATOCONTRATOORIGEN]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CONTRATO] DROP CONSTRAINT [FK_CONTRATOCONTRATOORIGEN];
 GO
 
 -- --------------------------------------------------
@@ -373,7 +379,8 @@ CREATE TABLE [dbo].[CONTRATO] (
     [MideEste] decimal(18,7)  NOT NULL,
     [MideOeste] decimal(18,7)  NOT NULL,
     [AGENDAId] int  NOT NULL,
-    [CONTRATOId] int  NULL
+    [CONTRATOId] int  NULL,
+    [MontoReicision] decimal(18,7)  NULL
 );
 GO
 

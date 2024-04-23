@@ -6,6 +6,7 @@ using CAPALOGICA.LOGICAS.SISTEMA;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.EntitySql;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -504,11 +505,7 @@ namespace PRESENTACION.UTILERIAS
             else
             {
                 //manual
-
-              
-
-
-                switch (EstadoId)
+                switch (objContrato.EstadoId)
                 {
                     case 8:
                         objEstado.NombreEstado = Enumeraciones.EstadosProcesoContratos.VIGENTE.ToString();
@@ -584,7 +581,168 @@ namespace PRESENTACION.UTILERIAS
             return (int)Math.Round((montoContrato - pagoInicial) / noPagos);
         }
 
-       // public static clsCalculoMontoPagado
+
+
+        
+        public static KeyValuePair<int?, string> CambiarEstadoContrato(clsContratoCliente objContratoData, int estadoContrato, string observacion = null)
+        {
+            using (var contexto = new ContratoLoteADO())
+            {
+                CONTRATO obj;
+
+                if (estadoContrato == (int)Enumeraciones.EstadosProcesoContratos.REUBICADO)
+                {
+                    //si es reubicado se pasa a null porque ese va primero a crearse el nuevo y lueego se asigna el original.
+                    return new KeyValuePair<int?, string>(null, null);
+                }
+
+                obj =  contexto.ObtenerContratoXId(objContratoData.ContratoId);
+                string msj = "";
+
+                if (obj == null) return new KeyValuePair<int?, string>(null, "No se encontro el contrato seleccionado. Carga el registro nuevamente.");
+
+                switch (estadoContrato)
+                {
+                    case 9:
+                        obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.VIGENTE;
+                        obj.MontoGracia = null;
+                        msj = "Se ha cambiado el contrato a estado "+Enumeraciones.EstadosProcesoContratos.VIGENTE.ToString();
+                        break;
+
+                    case 10:
+                        obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.ATRASADO;
+                        //calcular monto extendido
+                        //calcular mensualidad pago extendido
+                        int noPagosGracia = objContratoData.NoPagosGracia;
+                        decimal montoDadoD = objContratoData.MontoDado;
+                        decimal montoLote = objContratoData.PrecioLote;
+                        decimal montoExtendido = (montoLote - montoDadoD) * 1.25m;
+
+                        obj.MontoGracia = montoExtendido;
+
+                        break;
+
+                    case 11:
+                        obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.TERMINADO;
+                        msj = "Se ha cambiado el estado de contrato a "+Enumeraciones.EstadosProcesoContratos.TERMINADO.ToString()+".";
+                        break;
+
+                    case 12:
+                        obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.RECISION;
+                        //ver si no tiene mas de 3 pagos atrasdos
+                        //calculo a regresar y minimo el año
+                        int noPagosCaidos = DiferenciaMeses(objContratoData.FechaUltimoPago, FechaServidor());
+                        if (noPagosCaidos > 3)
+                        {
+                            return new KeyValuePair<int?, string>(null, "No se puede realizar la "+Enumeraciones.EstadosProcesoContratos.RECISION.ToString()+" hay mas de 3 pagos caídos.." );
+                        }
+                        
+                        if (objContratoData.FechaEmision.AddYears(1) > FechaServidor())
+                        {
+                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RECISION.ToString() + ", no ha transcurrido el año como mínimo.");
+                        }
+
+                        decimal montoDado = objContratoData.MontoDado;
+                        decimal montoRegresar = montoDado * 0.5m;
+                        obj.MontoReicision = montoRegresar;
+                        msj = "El contrato se ha cambiado a estado "+Enumeraciones.EstadosProcesoContratos.RECISION.ToString()+". El monto a regresar es de $"+montoRegresar.ToString("N2");
+                        break;
+
+                    case 14:                       
+                        obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.CANCELADO;
+                        int noPagosCaidosC = DiferenciaMeses(objContratoData.FechaUltimoPago, FechaServidor());
+                        if (noPagosCaidosC > 3)
+                        {
+                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RECISION.ToString() + " hay mas de 3 pagos caídos..");
+                        }
+
+                        if (objContratoData.FechaEmision.AddYears(1) > FechaServidor())
+                        {
+                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RECISION.ToString() + ", no ha transcurrido el año como mínimo.");
+                        }
+                        decimal montoDadoC = objContratoData.MontoDado;
+                        decimal montoRegresarC = montoDadoC * 0.5m;
+                        obj.MontoReicision = montoRegresarC;
+                        msj = "El contrato se ha cambiado a estado " + Enumeraciones.EstadosProcesoContratos.CANCELADO.ToString() + ". El monto a regresar es de $" + montoRegresarC.ToString("N2");
+
+                        break;                      
+
+                }
+
+
+                contexto.Guardar();
+                return new KeyValuePair<int?, string>(obj.ESTADOId, msj);
+            }
+        }
+        
+
+        public static clsValidacionContrato ValidarEstadoContrato(clsContratoCliente obj)
+        {           
+            int estado = obj.EstadoId;
+            int noPagos =  obj.NoPagos;
+            int noPagosExtendidos = obj.NoPagosGracia;
+            int noPagosRealizados = obj.NoPagosDados;
+            int noPagosRestantes = noPagos - noPagosRealizados;
+            int noPagosCaidos = DiferenciaMeses(obj.FechaUltimoPago, FechaServidor());
+            int noPagosExtendidosDados = obj.NoPagosExtendidosDados;
+
+            DateTime fechaContrato = obj.FechaEmision;
+            DateTime fechaVencimiento = fechaContrato.AddMonths(noPagos);
+
+            decimal montoContrato = obj.PrecioLote;
+            decimal totalDado = obj.MontoDado;            
+            decimal montoRestante = montoContrato - totalDado;
+            decimal montoExtendidoDado = obj.MontoExtendidoDado ?? 0;
+
+            bool excedeLimitePagos = noPagos<noPagosRealizados;
+            bool excedeFechaContrato = FechaServidor()>fechaVencimiento;
+            bool masDeTresPagosCaidos = noPagosCaidos > 3;
+            bool excedeNoPagosExtendido =
+                (estado == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO) ? (noPagosExtendidos< noPagosExtendidosDados ) : false; 
+
+
+            clsValidacionContrato objRespuesta = new clsValidacionContrato();
+
+            if(masDeTresPagosCaidos)
+            {
+                objRespuesta.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.CANCELADO;
+                objRespuesta.Mensaje = "El contrato tiene más de 3 pagos caídos.";
+                objRespuesta.ProcedePagar = false;
+               
+            }else if (excedeLimitePagos&&!excedeFechaContrato&&montoRestante>0)
+            {
+                objRespuesta.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.ATRASADO;
+                objRespuesta.Mensaje = "Se ha superado el número de pagos establecidos y no se ha terminado de liquidar el monto del contrato.";
+                objRespuesta.ProcedePagar = false;
+                return objRespuesta;
+            }else if (excedeFechaContrato && montoRestante>0)
+            {
+                objRespuesta.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.ATRASADO;
+                objRespuesta.Mensaje = "Se ha excedido la fecha límite establecida y no se ha terminado de liquidar el monto del contrato.";
+                objRespuesta.ProcedePagar = false;
+                return objRespuesta;
+            }else if (excedeNoPagosExtendido&&obj.MontoGracia>montoExtendidoDado)
+            {
+                objRespuesta.EstadoId = (int)Enumeraciones.EstadosProcesoContratos.ATRASADO;
+                objRespuesta.Mensaje = "Ha concluido el tiempo extendido establecido y no se ha saldado el monto del contrato.";
+                objRespuesta.ProcedePagar = false;
+
+            }
+            else
+            {
+                objRespuesta.ProcedePagar = true;
+            }
+
+            return objRespuesta;
+
+        }
+
+        public static int DiferenciaMeses(DateTime fechaInicio, DateTime fechaFin)
+        {
+            TimeSpan diferencia = fechaFin.Subtract(fechaInicio);
+            int diferenciaMeses = (fechaFin.Year - fechaInicio.Year) * 12 + fechaFin.Month - fechaInicio.Month;
+            return diferenciaMeses;
+        }
 
 
 

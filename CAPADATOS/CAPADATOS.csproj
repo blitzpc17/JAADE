@@ -132,6 +132,7 @@
     <Compile Include="Entidades\clsTicketPago.cs" />
     <Compile Include="Entidades\clsTicketPartida.cs" />
     <Compile Include="Entidades\clsUsuario.cs" />
+    <Compile Include="Entidades\clsValidacionContrato.cs" />
     <Compile Include="Entidades\clsWhatsApp.cs" />
     <Compile Include="ESTADO.cs">
       <DependentUpon>Modelo.tt</DependentUpon>

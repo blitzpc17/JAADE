@@ -28,7 +28,7 @@ namespace CAPADATOS.Entidades
         public int NoPagosGracia { get; set; }
         public decimal? MontoGracia { get; set; }      
         public int? ContratoOrigenId { get; set; }
-        public string ContratoOrigen { get; set; }
+        public string FolioContratoOrigen { get; set; }
         public string Observacion { get; set; }       
         public int UsuarioOperacionId { get; set; }
         public string UsuarioOperacionNombre { get; set; }
@@ -44,6 +44,10 @@ namespace CAPADATOS.Entidades
         public string ColindaEste { get; set; }
         public string ColindaOeste { get; set; }
         public decimal MontoDado { get; set; }
+        public int NoPagosDados { get; set; }
+        public DateTime FechaUltimoPago { get; set; }
+        public decimal? MontoExtendidoDado {  get; set; }
+        public int NoPagosExtendidosDados { get; set; }
 
     }
 }

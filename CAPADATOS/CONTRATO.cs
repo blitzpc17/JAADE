@@ -46,6 +46,7 @@ namespace CAPADATOS
         public decimal MideOeste { get; set; }
         public int AGENDAId { get; set; }
         public Nullable<int> CONTRATOId { get; set; }
+        public Nullable<decimal> MontoReicision { get; set; }
     
         public virtual CLIENTE CLIENTE { get; set; }
         public virtual USUARIO USUARIO { get; set; }

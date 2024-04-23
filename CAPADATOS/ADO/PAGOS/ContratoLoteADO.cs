@@ -84,8 +84,12 @@ namespace CAPADATOS.ADO.PAGOS
                             "CL.FechaArrendamiento AS FechaEmision, CL.FechaReimpresion, \r\n" +
                             "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre, \r\n" +
                             "CL.ColindaNorte, CL.ColindaSur, CL.ColindaEste, CL.ColindaOeste, CL.MideNorte, CL.MideSur, CL.MideEste, CL.MideOeste, AG.Id as DomicilioClienteId, \r\n" +
-                            "AG.Valor AS DomicilioCliente, CU.Id as ContratoOrigen, CU.Folio as ContratoOrigen, CL.Observacion, \r\n" +
-                            "(SELECT (SUM(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as MontoDado \r\n" +
+                            "AG.Valor AS DomicilioCliente, CU.Id as ContratoOrigenId, CU.Folio as FolioContratoOrigen, CL.Observacion, \r\n" +
+                            "(SELECT (SUM(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as MontoDado, \r\n" +
+                            "(SELECT(COUNT(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as NoPagosDados, \r\n"+
+                            "(SELECT TOP 1 PAGO.FechaEmision FROM PAGO WHERE PAGO.ContratoId = CL.Id ORDER BY 1 DESC) as FechaUltimoPago, \r\n" +
+                            "(SELECT SUM(PAGO.Monto) FROM PAGO WHERE PAGO.ContratoId = CL.Id and PAGO.PagoOrdinario = 0 ) as MontoExtendidoDado, \r\n"+
+                            "(SELECT COUNT(PAGO.Id) FROM PAGO WHERE PAGO.ContratoId = CL.Id and PAGO.PagoOrdinario = 0 ) as NoPagosExtendidosDados \r\n"+
                             "FROM CONTRATO CL \r\n" +
                             "JOIN CLIENTE C ON CL.CLIENTEId = C.Id \r\n" +
                             "JOIN PERSONA PC ON C.PERSONAId = PC.Id \r\n" +
@@ -122,7 +126,12 @@ namespace CAPADATOS.ADO.PAGOS
                            "CL.FechaArrendamiento AS FechaEmision, CL.FechaReimpresion, \r\n" +
                            "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre, \r\n" +
                            "CL.ColindaNorte, CL.ColindaSur, CL.ColindaEste, CL.ColindaOeste, CL.MideNorte, CL.MideSur, CL.MideEste, CL.MideOeste, AG.Id as DomicilioClienteId, \r\n" +
-                           "AG.Valor AS DomicilioCliente, CU.Id as ContratoOrigen, CU.Folio as ContratoOrigen, CL.Observacion \r\n" +
+                           "AG.Valor AS DomicilioCliente, CU.Id as ContratoOrigenId, CU.Folio as FolioContratoOrigen, CL.Observacion, \r\n" +
+                           "(SELECT (SUM(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as MontoDado, \r\n" +
+                           "(SELECT(COUNT(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as NoPagosDados, \r\n" +
+                           "(SELECT TOP 1 PAGO.FechaEmision FROM PAGO WHERE PAGO.ContratoId = CL.Id ORDER BY 1 DESC) as FechaUltimoPago, \r\n" +
+                            "(SELECT SUM(PAGO.Monto) FROM PAGO WHERE PAGO.ContratoId = CL.Id and PAGO.PagoOrdinario = 0 ) as MontoExtendidoDado, \r\n" +
+                            "(SELECT COUNT(PAGO.Id) FROM PAGO WHERE PAGO.ContratoId = CL.Id and PAGO.PagoOrdinario = 0 ) as NoPagosExtendidosDados \r\n" +
                            "FROM CONTRATO CL \r\n" +
                            "JOIN CLIENTE C ON CL.CLIENTEId = C.Id \r\n" +
                            "JOIN PERSONA PC ON C.PERSONAId = PC.Id \r\n" +
@@ -159,8 +168,13 @@ namespace CAPADATOS.ADO.PAGOS
                             "CL.FechaArrendamiento AS FechaEmision, CL.FechaReimpresion, \r\n"+
                             "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre, \r\n"+
                             "CL.ColindaNorte, CL.ColindaSur, CL.ColindaEste, CL.ColindaOeste, CL.MideNorte, CL.MideSur, CL.MideEste, CL.MideOeste, AG.Id as DomicilioClienteId, \r\n" +
-                            "AG.Valor AS DomicilioCliente, CU.Id as ContratoOrigen, CU.Folio as ContratoOrigen, CL.Observacion \r\n"+
-                            "FROM CONTRATO CL \r\n"+
+                            "AG.Valor AS DomicilioCliente, CU.Id as ContratoOrigenId, CU.Folio as FolioContratoOrigen, CL.Observacion, \r\n"+
+                            "(SELECT (SUM(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as MontoDado, \r\n" +
+                            "(SELECT(COUNT(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as NoPagosDados, \r\n" +
+                            "(SELECT TOP 1 PAGO.FechaEmision FROM PAGO WHERE PAGO.ContratoId = CL.Id ORDER BY 1 DESC) as FechaUltimoPago, \r\n" +
+                            "(SELECT SUM(PAGO.Monto) FROM PAGO WHERE PAGO.ContratoId = CL.Id and PAGO.PagoOrdinario = 0 ) as MontoExtendidoDado, \r\n" +
+                            "(SELECT COUNT(PAGO.Id) FROM PAGO WHERE PAGO.ContratoId = CL.Id and PAGO.PagoOrdinario = 0 ) as NoPagosExtendidosDados \r\n" +
+                            "FROM CONTRATO CL \r\n" +
                             "JOIN CLIENTE C ON CL.CLIENTEId = C.Id \r\n"+
                             "JOIN PERSONA PC ON C.PERSONAId = PC.Id \r\n"+
                             "JOIN PERSONA_AGENDA PA ON PC.Id = PA.PERSONAId \r\n"+
@@ -211,6 +225,11 @@ namespace CAPADATOS.ADO.PAGOS
         public CONTRATO ObtenerContratoXFolio(string contrato)
         {
             return contexto.CONTRATO.FirstOrDefault(x=>x.Folio == contrato);
+        }
+
+        public CONTRATO ObtenerContratoXId(int contratoId)
+        {
+            return contexto.CONTRATO.FirstOrDefault(x => x.Id== contratoId);
         }
 
         public clsObjMontoGracia CalcularMontoGracia(string folioContrato)

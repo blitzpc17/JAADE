@@ -352,6 +352,7 @@
     <Property Name="MideOeste" Type="decimal" Nullable="false" Precision="18" Scale="7" />
     <Property Name="AGENDAId" Type="int" Nullable="false" />
     <Property Name="CONTRATOId" Type="int" Nullable="true" />
+    <Property Name="MontoReicision" Type="decimal" Nullable="true" Precision="18" Scale="7" />
   </EntityType>
   <EntityType Name="PAGO">
     <Key>
@@ -1389,6 +1390,7 @@
           <Property Name="AGENDAId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CONTRATOORIGEN" Relationship="DB_JAADEModel.CONTRATOCONTRATOORIGEN" FromRole="CONTRATO" ToRole="CONTRATO1" />
           <Property Name="CONTRATOId" Type="Int32" Nullable="true" />
+          <Property Name="MontoReicision" Type="Decimal" Nullable="true" Scale="7" Precision="18" />
         </EntityType>
         <Association Name="CLIENTELOTECLIENTE">
           <End Type="DB_JAADEModel.CONTRATO" Role="CLIENTELOTE" Multiplicity="*" />
@@ -1791,6 +1793,7 @@
           <ScalarProperty Name="MideOeste" ColumnName="MideOeste" />
           <ScalarProperty Name="AGENDAId" ColumnName="AGENDAId" />
           <ScalarProperty Name="CONTRATOId" ColumnName="CONTRATOId" />
+          <ScalarProperty Name="MontoReicision" ColumnName="MontoReicision" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
