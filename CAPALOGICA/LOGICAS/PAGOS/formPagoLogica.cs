@@ -52,16 +52,6 @@ namespace CAPALOGICA.LOGICAS.PAGOS
             contextoLote.Guardar();
         }
 
-      /*  public void BuscarPagoFolio(string folioContrato)
-        {
-            ObjPagoData = contextoPago.ObtenerPagoClienteFolio(folioContrato);
-            if (ObjPagoData != null)
-            {
-                ObjPago = contextoPago.Obtener(ObjPagoData.PagoId);
-                ObjContratoData = contextoContrato.ObtenerContratoClienteFolio(ObjPagoData.FolioContrato);
-            }
-        }*/
-
         public void BuscarContratoFolio(string folioContrato)
         {
             ObjContratoData = contextoContrato.ObtenerContratoClienteFolio(folioContrato);

@@ -100,10 +100,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.08cm</Width>
+                  <Width>1.60917cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.33cm</Width>
+                  <Width>3.80083cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.59cm</Width>
@@ -122,19 +122,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Cliente:</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox14</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -168,7 +170,7 @@
                           <rd:DefaultName>Cliente</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -197,19 +199,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Contrato:</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox1</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -243,7 +247,7 @@
                           <rd:DefaultName>Contrato</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -255,6 +259,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>2</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -272,19 +277,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Precio:</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox20</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -318,7 +325,7 @@
                           <rd:DefaultName>PrecioLote</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -340,6 +347,12 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
+                                  <Value>No. Pagos:</Value>
+                                  <Style>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
                                   <Value>=Fields!NoPagos.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
@@ -353,7 +366,7 @@
                           <rd:DefaultName>NoPagos</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -379,19 +392,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Zona:</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox23</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -425,7 +440,7 @@
                           <rd:DefaultName>Zona</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -454,19 +469,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Lote:</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox26</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -489,7 +506,6 @@
                                 <TextRun>
                                   <Value>=Fields!IdentificadorLote.Value</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
@@ -503,7 +519,7 @@
                           <rd:DefaultName>IdentificadorLote</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -527,7 +543,6 @@
                                 <TextRun>
                                   <Value>=Fields!Fecha.Value</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
@@ -541,7 +556,7 @@
                           <rd:DefaultName>Fecha</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -568,19 +583,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Obs.:</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox29</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -613,7 +630,7 @@
                           <rd:DefaultName>ObsComportamientoPago</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#18a852</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#18a852</BackgroundColor>
@@ -655,6 +672,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
+            <Left>0cm</Left>
             <Height>3.69cm</Height>
             <Width>8cm</Width>
             <Style>
@@ -938,7 +956,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>3.09cm</Top>
+            <Top>3.69cm</Top>
+            <Left>0cm</Left>
             <Height>1.8cm</Height>
             <Width>8cm</Width>
             <ZIndex>1</ZIndex>
@@ -973,7 +992,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>5.12639cm</Top>
+            <Top>5.56056cm</Top>
             <Height>0.6cm</Height>
             <Width>8cm</Width>
             <ZIndex>2</ZIndex>
@@ -1006,7 +1025,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>6.4cm</Top>
+            <Top>6.16056cm</Top>
             <Height>0.6cm</Height>
             <Width>8cm</Width>
             <ZIndex>3</ZIndex>
@@ -1021,7 +1040,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>7cm</Height>
+        <Height>6.76056cm</Height>
         <Style />
       </Body>
       <Width>8cm</Width>
