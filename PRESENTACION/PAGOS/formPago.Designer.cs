@@ -36,11 +36,11 @@
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtMensualidad = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblMensualidad = new System.Windows.Forms.Label();
             this.txtSaldoPendiente = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblSaldoPendiente = new System.Windows.Forms.Label();
             this.txtPrecioLote = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblPrecioLote = new System.Windows.Forms.Label();
             this.txtNoPago = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtEstadoPagoCliente = new System.Windows.Forms.TextBox();
@@ -56,7 +56,7 @@
             this.txtFechaEmision = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtSaldoFavor = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblSaldoFavor = new System.Windows.Forms.Label();
             this.txtMontoRecibido = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnBuscarContrato = new System.Windows.Forms.Button();
@@ -128,11 +128,11 @@
             this.groupBox1.Controls.Add(this.txtObservacion);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txtMensualidad);
-            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.lblMensualidad);
             this.groupBox1.Controls.Add(this.txtSaldoPendiente);
-            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.lblSaldoPendiente);
             this.groupBox1.Controls.Add(this.txtPrecioLote);
-            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.lblPrecioLote);
             this.groupBox1.Controls.Add(this.txtNoPago);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.txtEstadoPagoCliente);
@@ -148,7 +148,7 @@
             this.groupBox1.Controls.Add(this.txtFechaEmision);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtSaldoFavor);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblSaldoFavor);
             this.groupBox1.Controls.Add(this.txtMontoRecibido);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnBuscarContrato);
@@ -193,15 +193,15 @@
             this.txtMensualidad.Size = new System.Drawing.Size(225, 23);
             this.txtMensualidad.TabIndex = 120;
             // 
-            // label15
+            // lblMensualidad
             // 
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(10, 233);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(115, 23);
-            this.label15.TabIndex = 200;
-            this.label15.Text = "Mensualidad ($):";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblMensualidad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensualidad.Location = new System.Drawing.Point(10, 233);
+            this.lblMensualidad.Name = "lblMensualidad";
+            this.lblMensualidad.Size = new System.Drawing.Size(115, 23);
+            this.lblMensualidad.TabIndex = 200;
+            this.lblMensualidad.Text = "Mensualidad ($):";
+            this.lblMensualidad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtSaldoPendiente
             // 
@@ -212,15 +212,15 @@
             this.txtSaldoPendiente.Size = new System.Drawing.Size(225, 23);
             this.txtSaldoPendiente.TabIndex = 90;
             // 
-            // label14
+            // lblSaldoPendiente
             // 
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(10, 175);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(115, 23);
-            this.label14.TabIndex = 198;
-            this.label14.Text = "Saldo Pendiente ($):";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSaldoPendiente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaldoPendiente.Location = new System.Drawing.Point(10, 175);
+            this.lblSaldoPendiente.Name = "lblSaldoPendiente";
+            this.lblSaldoPendiente.Size = new System.Drawing.Size(115, 23);
+            this.lblSaldoPendiente.TabIndex = 198;
+            this.lblSaldoPendiente.Text = "Saldo Pendiente ($):";
+            this.lblSaldoPendiente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtPrecioLote
             // 
@@ -231,15 +231,15 @@
             this.txtPrecioLote.Size = new System.Drawing.Size(225, 23);
             this.txtPrecioLote.TabIndex = 80;
             // 
-            // label12
+            // lblPrecioLote
             // 
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(10, 146);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(115, 23);
-            this.label12.TabIndex = 196;
-            this.label12.Text = "Precio Lote ($):";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPrecioLote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioLote.Location = new System.Drawing.Point(10, 146);
+            this.lblPrecioLote.Name = "lblPrecioLote";
+            this.lblPrecioLote.Size = new System.Drawing.Size(115, 23);
+            this.lblPrecioLote.TabIndex = 196;
+            this.lblPrecioLote.Text = "Precio Lote ($):";
+            this.lblPrecioLote.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtNoPago
             // 
@@ -332,7 +332,7 @@
             // 
             this.txtFolioContrato.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFolioContrato.Location = new System.Drawing.Point(131, 59);
-            this.txtFolioContrato.MaxLength = 9;
+            this.txtFolioContrato.MaxLength = 11;
             this.txtFolioContrato.Name = "txtFolioContrato";
             this.txtFolioContrato.Size = new System.Drawing.Size(185, 23);
             this.txtFolioContrato.TabIndex = 30;
@@ -386,15 +386,15 @@
             this.txtSaldoFavor.Size = new System.Drawing.Size(225, 23);
             this.txtSaldoFavor.TabIndex = 100;
             // 
-            // label5
+            // lblSaldoFavor
             // 
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 204);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(115, 23);
-            this.label5.TabIndex = 175;
-            this.label5.Text = "Saldo a favor ($):";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSaldoFavor.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaldoFavor.Location = new System.Drawing.Point(10, 204);
+            this.lblSaldoFavor.Name = "lblSaldoFavor";
+            this.lblSaldoFavor.Size = new System.Drawing.Size(115, 23);
+            this.lblSaldoFavor.TabIndex = 175;
+            this.lblSaldoFavor.Text = "Saldo a favor ($):";
+            this.lblSaldoFavor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtMontoRecibido
             // 
@@ -524,7 +524,7 @@
         private System.Windows.Forms.TextBox txtFechaEmision;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtSaldoFavor;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblSaldoFavor;
         private System.Windows.Forms.TextBox txtMontoRecibido;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnBuscarContrato;
@@ -539,12 +539,12 @@
         private System.Windows.Forms.TextBox txtNoPago;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtSaldoPendiente;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblSaldoPendiente;
         private System.Windows.Forms.TextBox txtPrecioLote;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblPrecioLote;
         private System.Windows.Forms.TextBox txtObservacion;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtMensualidad;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblMensualidad;
     }
 }

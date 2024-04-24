@@ -77,7 +77,7 @@ namespace PRESENTACION.UTILERIAS
             VIGENTE = 9, //debe empezar en 8
             ATRASADO = 10,
             TERMINADO = 11,
-            RECISION = 12,
+            RESCISION = 12,
             REUBICADO = 13,
             CANCELADO = 14
         }

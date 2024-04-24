@@ -87,22 +87,6 @@ namespace PRESENTACION.UTILERIAS
             return (fecha.Year % 100).ToString();
         }
 
-       /* public static string ArmarDomicilioCliente(clsClientes obj)
-        {
-            string Calle = obj.Calle,
-                NoExt = obj.NoExt,
-                NoInt = obj.NoInt,
-                Colonia = obj.Colonia,
-                Localidad = obj.Localidad,
-                CodigoPostal = obj.CodigoPostal,
-                Municipio = "",
-                Estado = "";
-
-            return Calle + " NO. " + NoExt + (string.IsNullOrEmpty(obj.NoInt) ? "" : " INT. " + obj.NoInt) + " COL. " + obj.Colonia + ". " + (Municipio.Equals(Localidad) ? (Localidad+", "+Localidad) : (Localidad+", "+Municipio)) + ", " + Estado;
-
-
-        }*/
-
         public static bool GuardarExcepcion(Exception ex, string formularioNombre, string msjAdicional =null)
         {
             try
@@ -265,6 +249,7 @@ namespace PRESENTACION.UTILERIAS
                     }                    
                     mailMessage.Subject = subject;
                     mailMessage.Body = body;
+                    mailMessage.IsBodyHtml = true;
 
                     // Adjuntar el archivo PDF
                     foreach(var file in pdfFilePath)
@@ -493,7 +478,7 @@ namespace PRESENTACION.UTILERIAS
 
             return letras.Trim();
         }
-
+        /*
         public static clsEstadoContrato ValidarEstadoContrato(DateTime fechaMovimiento, clsContratoCliente objContrato, int? EstadoId =null)
         {
             clsEstadoContrato objEstado = new clsEstadoContrato();
@@ -549,7 +534,7 @@ namespace PRESENTACION.UTILERIAS
 
             return objEstado;
         }
-
+        */
 
         public static clsCalculoMontoPagado CalcularMontoPagosDados(int idContrato)
         {
@@ -628,24 +613,24 @@ namespace PRESENTACION.UTILERIAS
                         break;
 
                     case 12:
-                        obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.RECISION;
+                        obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.RESCISION;
                         //ver si no tiene mas de 3 pagos atrasdos
                         //calculo a regresar y minimo el año
                         int noPagosCaidos = DiferenciaMeses(objContratoData.FechaUltimoPago, FechaServidor());
                         if (noPagosCaidos > 3)
                         {
-                            return new KeyValuePair<int?, string>(null, "No se puede realizar la "+Enumeraciones.EstadosProcesoContratos.RECISION.ToString()+" hay mas de 3 pagos caídos.." );
+                            return new KeyValuePair<int?, string>(null, "No se puede realizar la "+Enumeraciones.EstadosProcesoContratos.RESCISION.ToString()+" hay mas de 3 pagos caídos.." );
                         }
                         
                         if (objContratoData.FechaEmision.AddYears(1) > FechaServidor())
                         {
-                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RECISION.ToString() + ", no ha transcurrido el año como mínimo.");
+                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RESCISION.ToString() + ", no ha transcurrido el año como mínimo.");
                         }
 
                         decimal montoDado = objContratoData.MontoDado;
                         decimal montoRegresar = montoDado * 0.5m;
                         obj.MontoReicision = montoRegresar;
-                        msj = "El contrato se ha cambiado a estado "+Enumeraciones.EstadosProcesoContratos.RECISION.ToString()+". El monto a regresar es de $"+montoRegresar.ToString("N2");
+                        msj = "El contrato se ha cambiado a estado "+Enumeraciones.EstadosProcesoContratos.RESCISION.ToString()+". El monto a regresar es de $"+montoRegresar.ToString("N2");
                         break;
 
                     case 14:                       
@@ -653,12 +638,12 @@ namespace PRESENTACION.UTILERIAS
                         int noPagosCaidosC = DiferenciaMeses(objContratoData.FechaUltimoPago, FechaServidor());
                         if (noPagosCaidosC > 3)
                         {
-                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RECISION.ToString() + " hay mas de 3 pagos caídos..");
+                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RESCISION.ToString() + " hay mas de 3 pagos caídos..");
                         }
 
                         if (objContratoData.FechaEmision.AddYears(1) > FechaServidor())
                         {
-                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RECISION.ToString() + ", no ha transcurrido el año como mínimo.");
+                            return new KeyValuePair<int?, string>(null, "No se puede realizar la " + Enumeraciones.EstadosProcesoContratos.RESCISION.ToString() + ", no ha transcurrido el año como mínimo.");
                         }
                         decimal montoDadoC = objContratoData.MontoDado;
                         decimal montoRegresarC = montoDadoC * 0.5m;
@@ -727,6 +712,15 @@ namespace PRESENTACION.UTILERIAS
                 objRespuesta.Mensaje = "Ha concluido el tiempo extendido establecido y no se ha saldado el monto del contrato.";
                 objRespuesta.ProcedePagar = false;
 
+            }else if (obj.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.CANCELADO ||
+                obj.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.TERMINADO ||
+                obj.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.REUBICADO ||
+                obj.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.RESCISION )
+            {
+                //vaslidar que si no son vigentes o atrasados no se puedan hacer pagos
+                objRespuesta.EstadoId = obj.EstadoId;
+                objRespuesta.Mensaje = "No se pueden generar pagos a este contrato porque su estado es: " + obj.NombreEstado;
+                objRespuesta.ProcedePagar = false;
             }
             else
             {

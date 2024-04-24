@@ -129,9 +129,11 @@ namespace PRESENTACION.PAGOS
                     if (contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
                     {
                         contexto.ObjPago.PagoOrdinario = false;
+
                         if (contexto.ObjInformacionPago.NoPagosGraciaRealizados != null)
                         {
                             contexto.ObjPago.NoPago = Convert.ToInt32(contexto.ObjInformacionPago.NoPagosGraciaRealizados) + 1;
+
                         }                            
                         
                     }
@@ -260,7 +262,7 @@ namespace PRESENTACION.PAGOS
                 return;
             }
             contexto.ObtenerPago(busPagos.ObjEntidad.PagoId);
-            SetDataPago();
+            SetDataPago();           
         }
 
         private void btnBuscarContrato_Click(object sender, EventArgs e)
@@ -276,17 +278,9 @@ namespace PRESENTACION.PAGOS
             }
             contexto.BuscarContratoFolio(busContrato.ObjEntidad.NoReferencia);
             SetDataContrato();
-            clsEstadoContrato objValidacionEstado;
-            objValidacionEstado = Global.ValidarEstadoContrato(Global.FechaServidor(), contexto.ObjContratoData);
-            if(objValidacionEstado.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.VIGENTE || objValidacionEstado.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
-            {
-                btnGuardar.Enabled = false;
 
-            }
-            else
-            {
-                btnGuardar.Enabled = true;
-            }
+            
+         
         }
 
         private void txtFolioPago_Leave(object sender, EventArgs e)
@@ -314,7 +308,7 @@ namespace PRESENTACION.PAGOS
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            SetDataContrato();
+            SetDataContrato();        
         }
 
         private void SetDataContrato()
@@ -322,10 +316,32 @@ namespace PRESENTACION.PAGOS
             txtFolioContrato.Text = contexto.ObjContratoData.NoReferencia;
             txtZona.Text = contexto.ObjContratoData.ZonaNombre;
             txtDiaPago.Text = contexto.ObjContratoData.DiaPago.ToString("N0");
-            txtPrecioLote.Text = contexto.ObjContratoData.PrecioLote.ToString("N2");
-            txtSaldoPendiente.Text = Convert.ToDecimal(contexto.ObjContratoData.PrecioLote - contexto.ObjInformacionPago.SaldoFavor).ToString("N2");
-            txtSaldoFavor.Text = contexto.ObjInformacionPago.SaldoFavor.ToString("N2");
-            txtMensualidad.Text = contexto.ObjInformacionPago.MontoMensualidad.ToString("N2");
+            txtClaveLote.Text = contexto.ObjContratoData.LotesRelacionados;
+
+            if (contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
+            {
+                lblPrecioLote.Text = @"Importe Ext. ($):";
+                txtPrecioLote.Text = Convert.ToDecimal(contexto.ObjContratoData.MontoGracia).ToString("N2");
+                lblSaldoPendiente.Text = @"Saldo Ext. Pend. ($):";
+                txtSaldoPendiente.Text = Convert.ToDecimal(contexto.ObjContratoData.MontoGracia - contexto.ObjContratoData.MontoExtendidoDado).ToString("N2");
+                lblSaldoFavor.Text = @"Saldo Favor ($):";
+                txtSaldoFavor.Text = Convert.ToDecimal(contexto.ObjContratoData.MontoExtendidoDado).ToString("N2");
+                lblMensualidad.Text = @"Mensualidad ($):";
+                txtMensualidad.Text = Convert.ToDecimal(contexto.ObjContratoData.MontoGracia/contexto.ObjContratoData.NoPagosGracia).ToString("N2");
+            }
+            else
+            {
+                lblPrecioLote.Text = @"Precio Lote ($):";
+                txtPrecioLote.Text = contexto.ObjContratoData.PrecioLote.ToString("N2");
+                lblSaldoPendiente.Text = @"Saldo Pendiente ($):";
+                txtSaldoPendiente.Text = Convert.ToDecimal(contexto.ObjContratoData.PrecioLote - contexto.ObjInformacionPago.SaldoFavor).ToString("N2");
+                lblSaldoFavor.Text = @"Saldo Favor ($):";
+                txtSaldoFavor.Text = contexto.ObjInformacionPago.SaldoFavor.ToString("N2");
+                lblMensualidad.Text = @"Mensualidad ($):";
+                txtMensualidad.Text = contexto.ObjInformacionPago.MontoMensualidad.ToString("N2");
+            }
+            
+
             if (contexto.ObjPago == null)
             {
                 if(contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
@@ -353,125 +369,17 @@ namespace PRESENTACION.PAGOS
                    "Advertencia",
                    MessageBoxButtons.OK,
                    MessageBoxIcon.Warning);
-
-                txtMontoRecibido.Enabled = objValidacion.ProcedePagar;
+                
                 txtEstadoPagoCliente.Text = "NO SE PUEDE COBRAR.";
             }
             else
             {
                 txtEstadoPagoCliente.Text = "PAGO AL CORRIENTE.";
             }
-            /*
-            //validar si no excede el numero de pagos ordinarios poner el normal
-            if (contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.VIGENTE)
-            {
-                int noPagosAtrasados = contexto.ObjInformacionPago.NoPagoActual - contexto.ObjInformacionPago.NoPagosRealizados;
-                if ( noPagosAtrasados >= 3)
-                {
-                    if(MessageBox.Show("El contrato presenta un atraso de "+noPagosAtrasados.ToString("N0")+", ¿Desea proceder a su cancelación?",
-                        "Advertencia",
-                        MessageBoxButtons.YesNo, 
-                        MessageBoxIcon.Question
-                        ) == DialogResult.Yes)
-                    {
-                        //cambiar estado del contrato y reiniciar el modulo
-                        contexto.ObjContrato.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.CANCELADO;
-                        contexto.ObjContrato.Observacion = @"CANCELADO POR EXCEDER 3 o MÁS PAGOS SIN ABONAR.";
-                        contexto.GuardarContrato();
 
-                        InicializarModulo();
-                        return;
-                    }
-                    
-                }
+            txtMontoRecibido.Enabled = objValidacion.ProcedePagar;
+            btnGuardar.Enabled = objValidacion.ProcedePagar;
 
-                if (contexto.ObjInformacionPago.NoPagoActual > contexto.ObjInformacionPago.NoPagosContrato)
-                {
-                    if (MessageBox.Show("Se ha excedido el plazo de pago ordinario, ¿desea cambiar el contrato a PERIODO DE GRACIA para que se recalculen los montos de pago?",
-                        "Atención",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        //globalCambiarestadocontrato
-                        txtEstadoPagoCliente.Text = "PERIODO DE GRACIA.";
-                    }
-                    else
-                    {
-                        //preguntar que hacer en caso de que nel
-                        txtEstadoPagoCliente.Text = "ATRASO DE PAGO.";
-                    }
-
-                }
-                else if (contexto.ObjInformacionPago.NoPagoActual == contexto.ObjInformacionPago.NoPagosContrato)
-                {
-                    txtEstadoPagoCliente.Text = "VENCIMIENTO DEL PLAZO ACORDADO PRÓXIMO.";
-                }
-                else
-                {
-                    if (
-                        (contexto.ObjInformacionPago.NoPagoActual * contexto.ObjInformacionPago.MontoMensualidad) >
-                            (contexto.ObjInformacionPago.NoUltimoPago * contexto.ObjInformacionPago.MontoMensualidad)
-                        )
-                    {
-                        txtEstadoPagoCliente.Text = "ATRASO DE PAGO.";
-                    }
-                    else
-                    {
-                        txtEstadoPagoCliente.Text = "PAGO AL CORRIENTE.";
-                    }
-                }
-
-
-            }else if(contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
-            {
-                if (contexto.ObjInformacionPago.NoPagoProrrogaActual > contexto.ObjInformacionPago.NoPagosGracia)
-                {
-                    if (MessageBox.Show("Se ha excedido el plazo de pago ordinario, ¿desea cambiar el contrato a PERIODO DE GRACIA para que se recalculen los montos de pago?",
-                        "Atención",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        //globalCambiarestadocontrato
-                        txtEstadoPagoCliente.Text = "PERIODO DE GRACIA.";
-                    }
-                    else
-                    {
-                        //preguntar que hacer en caso de que nel
-                        txtEstadoPagoCliente.Text = "ATRASO DE PAGO.";
-                    }
-
-                }
-                else if (contexto.ObjInformacionPago.NoPagoActual == contexto.ObjInformacionPago.NoPagosContrato)
-                {
-                    txtEstadoPagoCliente.Text = "VENCIMIENTO DEL PLAZO ACORDADO PRÓXIMO.";
-                }
-                else
-                {
-                    if (
-                        (contexto.ObjInformacionPago.NoPagoActual * contexto.ObjInformacionPago.MontoMensualidad) >
-                            (contexto.ObjInformacionPago.NoUltimoPago * contexto.ObjInformacionPago.MontoMensualidad)
-                        )
-                    {
-                        txtEstadoPagoCliente.Text = "ATRASO DE PAGO.";
-                    }
-                    else
-                    {
-                        txtEstadoPagoCliente.Text = "PAGO AL CORRIENTE.";
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show(
-                    "No se pueden recibir pagos para el contrato seleccionado, su estado es: "+contexto.ObjContratoData.NombreEstado.ToUpper(),
-                    "Advertencia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
-                txtMontoRecibido.Enabled = false;
-                    
-            }
-            */
 
         }
 

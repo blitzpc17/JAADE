@@ -286,7 +286,7 @@ namespace PRESENTACION.PAGOS
             LLenarCbxDirecciones();
 
             txtClaveCliente.Text = contexto.ObjCliente.Clave;
-            txtNombreCliente.Text = contexto.ObjCliente.Nombres;
+            txtNombreCliente.Text = contexto.ObjCliente.Cliente;
             cbxZona.SelectedValue = contexto.ObjContratoData.ZonaId;
 
             //lotes

@@ -140,7 +140,7 @@ namespace PRESENTACION.PAGOS.REPORTES
             // Guardar el archivo PDF en disco
             File.WriteAllBytes(pathPdf, pdf);
 
-            whats = (cbxTipoContacto.SelectedValue.ToString() == "TELEFONO");
+            whats = ((int)cbxTipoContacto.SelectedValue == (int)Enumeraciones.TipoContactoAgenda.TELEFONO);
 
             if (whats)
             {                
@@ -152,10 +152,10 @@ namespace PRESENTACION.PAGOS.REPORTES
             else
             {
                 ObjCorreo = new clsCorreo();
-                ObjCorreo.Asunto = "RECIBO DE PAGO JAADE";
-                ObjCorreo.Cuerpo = "<p>Buen día: <br>Por medio del presente se le hace el envio de su recibo de pago. <br>Saludos</p>";
+                ObjCorreo.Asunto = "JAADE";
+                ObjCorreo.Cuerpo = "<html><body>Hola "+obj.Encabezado.Cliente+"<br>Te enviamos tu recibo de pago.<br>Ten un excelente dia</body></html>";
                 ObjCorreo.CorreoDestino = new List<string> { cbxDestino.SelectedValue.ToString() };
-                ObjCorreo.PathAttach = new List<string> { };
+                ObjCorreo.PathAttach = new List<string> { pathPdf };
             }
 
             
