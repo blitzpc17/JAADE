@@ -527,7 +527,7 @@ namespace PRESENTACION.PAGOS
                 contexto.ObjAgenda.Tipo = (int)cbxTipoContacto.SelectedValue;
                 contexto.ObjAgenda.Valor = txtDato.Text;
                 contexto.GuardarContactoAgenda();
-                MessageBox.Show("Se a guardado el registro en agenda del cliente correctamente",
+                MessageBox.Show("Se ha guardado el registro en agenda del cliente correctamente",
                     "Advertencia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

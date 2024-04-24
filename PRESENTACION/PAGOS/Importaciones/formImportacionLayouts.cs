@@ -19,6 +19,7 @@ namespace PRESENTACION.PAGOS.Importaciones
         private formImportacionLayoutsLogica contexto;
         private int row = 0;
         private List<string> lstMsj;
+        List<KeyValuePair<string, int>> listaItems;
 
         public formImportacionLayouts()
         {
@@ -43,7 +44,22 @@ namespace PRESENTACION.PAGOS.Importaciones
             ThemeConfig.LimpiarControles(this);
             tsTotalRegistros.Text = @"0";
             tsTotalErrores.Text = @"0";
+            ListarTipoExportacion();
             cbxTipo.SelectedIndex = -1;
+        }
+
+        private void ListarTipoExportacion()
+        {
+            listaItems = new List<KeyValuePair<string, int>>();
+            listaItems.Add(new KeyValuePair<string, int>("CLIENTES", 1));
+            listaItems.Add(new KeyValuePair<string, int>("ZONAS", 2));
+            listaItems.Add(new KeyValuePair<string, int>("LOTES", 3));
+            listaItems.Add(new KeyValuePair<string, int>("CONTRATOS", 3));
+            listaItems.Add(new KeyValuePair<string, int>("PAGOS", 3));
+
+            cbxTipo.DataSource = listaItems;
+            cbxTipo.DisplayMember = "Key";
+            cbxTipo.ValueMember = "Value";
         }
 
         private void ImportarLayout()
@@ -96,7 +112,7 @@ namespace PRESENTACION.PAGOS.Importaciones
             {
                 Global.GuardarExcepcion(ex, Name);
                 MessageBox.Show(
-                    "Ocurrió un error al intentar importar los registros. Ejecuón pausada en el row:" + row,
+                    "Ocurrió un error al intentar importar los registros. Ejecución pausada en el row:" + row,
                     "Error en la operación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -509,32 +525,24 @@ namespace PRESENTACION.PAGOS.Importaciones
                         lstMsj.Add("No se encontro la zona "+nombreZona);
                         continue;
                     }
-
-                    contexto.ObjLoteImportacion.ZONAId = contexto.ObjZonaAux.Id;
                     contexto.ObjLoteImportacion.Zona = contexto.ObjZonaAux.Nombre;
-                    contexto.ObjLoteImportacion.Cantidad = Convert.ToInt32(sl.GetCellValueAsString(row, 2));
-                    contexto.ObjLoteImportacion.MSur = Convert.ToDecimal(sl.GetCellValueAsString(row,3));
-                    contexto.ObjLoteImportacion.MOeste = Convert.ToDecimal(sl.GetCellValueAsString(row, 4));
-                    contexto.ObjLoteImportacion.MEste = Convert.ToDecimal(sl.GetCellValueAsString(row, 5));
-                    contexto.ObjLoteImportacion.MNorte = Convert.ToDecimal(sl.GetCellValueAsString(row, 6));
-                    contexto.ObjLoteImportacion.CSur = sl.GetCellValueAsString(row, 7);
-                    contexto.ObjLoteImportacion.COeste = sl.GetCellValueAsString(row, 8);
-                    contexto.ObjLoteImportacion.CEste = sl.GetCellValueAsString(row, 9);
-                    contexto.ObjLoteImportacion.CNorte = sl.GetCellValueAsString(row, 10);
-                    contexto.ObjLoteImportacion.Precio = Convert.ToDecimal(sl.GetCellValueAsString(row, 11));
-                    contexto.ObjLoteImportacion.Manzana = Convert.ToInt32(sl.GetCellValueAsString(row, 12));
+                    contexto.ObjLoteImportacion.ZonaId = contexto.ObjZonaAux.Id;
+                    contexto.ObjLoteImportacion.Manzana = Convert.ToInt32(sl.GetCellValueAsString(row, 2));
+                    contexto.ObjLoteImportacion.Precio = Convert.ToDecimal(sl.GetCellValueAsString(row, 3));
+                    contexto.ObjLoteImportacion.Cantidad = Convert.ToInt32(sl.GetCellValueAsString(row, 4));
 
                     contexto.LstLotesImportados.Add(contexto.ObjLoteImportacion);
                     row++;
                 }
+
                 DateTime fechaServer = Global.FechaServidor();
                 int zonaIdActual = 0;
                 int consecutivoZona = 0;
-                foreach (var item in contexto.LstLotesImportados.OrderBy(x=>x.ZONAId))
+                foreach (var item in contexto.LstLotesImportados.OrderBy(x=>x.ZonaId))
                 {
-                    if(zonaIdActual!= item.ZONAId)
+                    if(zonaIdActual!= item.ZonaId)
                     {
-                        zonaIdActual = item.ZONAId;
+                        zonaIdActual = item.ZonaId;
                         //consultar ultimo lote para obtener el consecutivo
                         string identificadorUltimoLote = contexto.ObtenerIdentificadorUltimoLote(zonaIdActual);
                         if (string.IsNullOrEmpty(identificadorUltimoLote))
@@ -574,10 +582,12 @@ namespace PRESENTACION.PAGOS.Importaciones
         }
 
         private void MostrarLotesImportados()
-        {
-            AparienciasLotes();
+        {            
             if (contexto.LstLotesImportados != null && contexto.LstLotesImportados.Count > 0)
             {
+                dgvRegistros.DataSource = contexto.LstLotesImportados;
+                tsTotalRegistros.Text = dgvRegistros.RowCount.ToString("N0");
+                AparienciasLotes();
                 string msjSuccess = "Registros importados correctamente.";
                 if (lstMsj != null && lstMsj.Count > 0)
                 {
@@ -603,48 +613,27 @@ namespace PRESENTACION.PAGOS.Importaciones
 
         private void AparienciasLotes()
         {
-            dgvRegistros.Columns[0].Visible = false;
+            dgvRegistros.Columns[0].HeaderText = "ZONA";
+            dgvRegistros.Columns[0].Width = 120;
             dgvRegistros.Columns[1].Visible = false;
-            dgvRegistros.Columns[2].Visible = false;
-            dgvRegistros.Columns[0].Frozen = true;
-            dgvRegistros.Columns[1].Frozen =  true;
-            dgvRegistros.Columns[2].Frozen =  true;
-            dgvRegistros.Columns[3].HeaderText = "ZONA";
-            dgvRegistros.Columns[3].Width = 120;
-            dgvRegistros.Columns[4].HeaderText = "CANTIDAD";
-            dgvRegistros.Columns[4].Width = 80;
-            dgvRegistros.Columns[5].HeaderText = "MIDE NORTE";
-            dgvRegistros.Columns[5].Width = 100;
-            dgvRegistros.Columns[6].HeaderText = "MIDE SUR";
-            dgvRegistros.Columns[6].Width = 100;
-            dgvRegistros.Columns[7].HeaderText = "MIDE OESTE";
-            dgvRegistros.Columns[7].Width = 100;
-            dgvRegistros.Columns[8].HeaderText = "MIDE ESTE";
-            dgvRegistros.Columns[8].Width = 100;
-            dgvRegistros.Columns[9].HeaderText = "COL. NORTE";
-            dgvRegistros.Columns[9].Width = 120;
-            dgvRegistros.Columns[10].HeaderText = "COL. SUR";
-            dgvRegistros.Columns[10].Width = 12;
-            dgvRegistros.Columns[11].HeaderText = "COL. OESTE";
-            dgvRegistros.Columns[11].Width = 120;
-            dgvRegistros.Columns[12].HeaderText = "COL. ESTE";
-            dgvRegistros.Columns[12].Width = 120;
-            dgvRegistros.Columns[13].Visible = false;
-            dgvRegistros.Columns[14].HeaderText = "PRECIO";
-            dgvRegistros.Columns[14].Width = 100;
-            dgvRegistros.Columns[15].HeaderText = "MANZANA";
-            dgvRegistros.Columns[15].Width = 90;
-            dgvRegistros.Columns[16].Visible = false;
+            dgvRegistros.Columns[2].HeaderText = "MANZANA";
+            dgvRegistros.Columns[2].Width = 90;
+            dgvRegistros.Columns[3].Visible = false;
+            dgvRegistros.Columns[4].HeaderText = "PRECIO";
+            dgvRegistros.Columns[4].Width = 100;
+            dgvRegistros.Columns[5].HeaderText = "CANTIDAD";
+            dgvRegistros.Columns[5].Width = 80;            
+           
         }
 
         private void GuardarLote(clsLoteImportacion item, int consecutivo, DateTime fechaServer)
         {
             contexto.InstanciarLote();
             contexto.ObjLote.Identificador = "L/" + consecutivo + (item.Manzana !=null? " M/" + item.Manzana : "");
-          
+            contexto.ObjLote.NoLote = consecutivo.ToString("N0");
             contexto.ObjLote.Precio = item.Precio;
             contexto.ObjLote.FechaRegistro = fechaServer;
-            contexto.ObjLote.ZONAId = item.ZONAId;
+            contexto.ObjLote.ZONAId = item.ZonaId;
             contexto.ObjLote.Manzana = item.Manzana;
             contexto.ObjLote.ESTADOId = (int)Enumeraciones.EstadosProcesoLote.LIBRE;
 
