@@ -324,9 +324,12 @@ namespace PRESENTACION.PAGOS.Importaciones
 
         private void MostrarPagosImportados()
         {
-            AparienciasPagos();
+           // AparienciasPagos();
             if (contexto.LstPagosImportacion != null && contexto.LstPagosImportacion.Count > 0)
             {
+                dgvRegistros.DataSource = contexto.LstPagosImportacion;
+                tsTotalRegistros.Text = dgvRegistros.RowCount.ToString("N0");
+
                 string msjSuccess = "Registros importados correctamente.";
                 if (lstMsj != null && lstMsj.Count > 0)
                 {
