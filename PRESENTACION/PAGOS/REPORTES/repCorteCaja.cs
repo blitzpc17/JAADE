@@ -74,24 +74,26 @@ namespace PRESENTACION.PAGOS.REPORTES
             dgvRegistros.DataSource = contexto.LstRegistros;
             tsTotalRegistros.Text = contexto.LstRegistros.Count.ToString("N0");
 
-            dgvRegistros.Columns[0].HeaderText = "FOLIO";
+            dgvRegistros.Columns[0].Visible = false;
             dgvRegistros.Columns[0].Frozen = true;
-            dgvRegistros.Columns[0].Width = 100;
-            dgvRegistros.Columns[1].HeaderText = "FECHA EMISIÓN";
-            dgvRegistros.Columns[1].Width = 110;
-            dgvRegistros.Columns[1].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
-            dgvRegistros.Columns[2].HeaderText = "CONTRATO";
-            dgvRegistros.Columns[2].Width = 100;
-            dgvRegistros.Columns[3].HeaderText = "LOTE";
-            dgvRegistros.Columns[3].Width = 90;
-            dgvRegistros.Columns[4].HeaderText = "MONTO";
-            dgvRegistros.Columns[4].Width = 100;
-            dgvRegistros.Columns[4].DefaultCellStyle.Format = "N2";
-            dgvRegistros.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRegistros.Columns[5].HeaderText = "RECIBIO PAGO";
-            dgvRegistros.Columns[5].Width = 280;
-            dgvRegistros.Columns[6].HeaderText = "OBSERVACION";
-            dgvRegistros.Columns[6].Width = 350;
+            dgvRegistros.Columns[1].HeaderText = "FOLIO";
+            dgvRegistros.Columns[1].Frozen = true;
+            dgvRegistros.Columns[1].Width = 100;
+            dgvRegistros.Columns[2].HeaderText = "FECHA EMISIÓN PAGO";
+            dgvRegistros.Columns[2].Width = 110;
+            dgvRegistros.Columns[2].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+            dgvRegistros.Columns[3].HeaderText = "CONTRATO";
+            dgvRegistros.Columns[3].Width = 100;
+            dgvRegistros.Columns[4].HeaderText = "LOTE(S)";
+            dgvRegistros.Columns[4].Width = 90;
+            dgvRegistros.Columns[5].HeaderText = "MONTO";
+            dgvRegistros.Columns[5].Width = 100;
+            dgvRegistros.Columns[5].DefaultCellStyle.Format = "N2";
+            dgvRegistros.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvRegistros.Columns[6].HeaderText = "RECIBIO PAGO";
+            dgvRegistros.Columns[6].Width = 280;
+            dgvRegistros.Columns[7].HeaderText = "OBSERVACION";
+            dgvRegistros.Columns[7].Width = 350;
         }
 
         private void Exportar()
@@ -116,14 +118,14 @@ namespace PRESENTACION.PAGOS.REPORTES
                     foreach(var item in contexto.LstRegistros)
                     {
                         rowActual++;
-                        sl.SetCellValue("A"+rowActual, item.Folio);
+                        sl.SetCellValue("A"+rowActual, item.FolioPago);
 
-                        sl.SetCellValue("B" + rowActual, item.FechaEmision);
+                        sl.SetCellValue("B" + rowActual, item.FechaEmisionPago);
                         SLStyle style = sl.CreateStyle();
                         style.FormatCode = "dd/MM/yyyy HH:mm:ss";
                         sl.SetCellStyle("B"+rowActual, style);
 
-                        sl.SetCellValue("C" + rowActual, item.Contrato);
+                        sl.SetCellValue("C" + rowActual, item.FolioContrato);
                         sl.SetCellValue("D" + rowActual, item.IdentificadorLote);
                         sl.SetCellValue("E" + rowActual, item.Monto);
                         sl.SetCellValue("F" + rowActual, item.NombreRecibio);

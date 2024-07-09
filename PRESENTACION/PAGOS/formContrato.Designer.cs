@@ -31,6 +31,36 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formContrato));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMOeste = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtMEste = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtMSur = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtMNte = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtCOeste = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtCEste = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtCSur = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtCNte = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lstLotesInvolucrados = new System.Windows.Forms.ListBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbxLotes = new System.Windows.Forms.ComboBox();
+            this.cbxZona = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtClaveCliente = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnCliente = new System.Windows.Forms.Button();
+            this.txtNombreCliente = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnBuscarContrato = new System.Windows.Forms.Button();
+            this.txtFolioContrato = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.txtMontoGracia = new System.Windows.Forms.TextBox();
@@ -44,13 +74,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtPagoInicial = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.cbxZona = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txtFechaReimpresion = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtClaveCliente = new System.Windows.Forms.TextBox();
             this.txtRealizo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtFechaEmision = new System.Windows.Forms.TextBox();
@@ -59,52 +86,29 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnCliente = new System.Windows.Forms.Button();
-            this.txtNombreCliente = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnBuscarContrato = new System.Windows.Forms.Button();
-            this.txtFolioContrato = new System.Windows.Forms.TextBox();
             this.txtDiaPago = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnImportar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbxLotes = new System.Windows.Forms.ComboBox();
-            this.lstLotesInvolucrados = new System.Windows.Forms.ListBox();
-            this.txtCNte = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtCSur = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtCEste = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtCOeste = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtMNte = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtMSur = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtMEste = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txtMOeste = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.btnReubicar = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbxSocios = new System.Windows.Forms.ComboBox();
             this.cbxDomicilio = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
+            this.btnReubicar = new System.Windows.Forms.Button();
+            this.cbxSocios = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.cbxVendedores = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.cbxVendedores);
+            this.groupBox1.Controls.Add(this.label28);
             this.groupBox1.Controls.Add(this.txtMOeste);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.txtMEste);
@@ -139,6 +143,289 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos generales";
+            // 
+            // txtMOeste
+            // 
+            this.txtMOeste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMOeste.Location = new System.Drawing.Point(131, 437);
+            this.txtMOeste.Name = "txtMOeste";
+            this.txtMOeste.Size = new System.Drawing.Size(225, 23);
+            this.txtMOeste.TabIndex = 160;
+            // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(10, 437);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(115, 23);
+            this.label26.TabIndex = 206;
+            this.label26.Text = "Mide Oeste:";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMEste
+            // 
+            this.txtMEste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMEste.Location = new System.Drawing.Point(131, 408);
+            this.txtMEste.Name = "txtMEste";
+            this.txtMEste.Size = new System.Drawing.Size(225, 23);
+            this.txtMEste.TabIndex = 150;
+            // 
+            // label25
+            // 
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(10, 408);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(115, 23);
+            this.label25.TabIndex = 204;
+            this.label25.Text = "Mide Este:";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMSur
+            // 
+            this.txtMSur.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMSur.Location = new System.Drawing.Point(131, 379);
+            this.txtMSur.Name = "txtMSur";
+            this.txtMSur.Size = new System.Drawing.Size(225, 23);
+            this.txtMSur.TabIndex = 140;
+            // 
+            // label24
+            // 
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(10, 379);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(115, 23);
+            this.label24.TabIndex = 202;
+            this.label24.Text = "Mide Sur:";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMNte
+            // 
+            this.txtMNte.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMNte.Location = new System.Drawing.Point(131, 350);
+            this.txtMNte.Name = "txtMNte";
+            this.txtMNte.Size = new System.Drawing.Size(225, 23);
+            this.txtMNte.TabIndex = 130;
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(10, 350);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(115, 23);
+            this.label23.TabIndex = 200;
+            this.label23.Text = "Mide Norte:";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtCOeste
+            // 
+            this.txtCOeste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCOeste.Location = new System.Drawing.Point(131, 321);
+            this.txtCOeste.Name = "txtCOeste";
+            this.txtCOeste.Size = new System.Drawing.Size(225, 23);
+            this.txtCOeste.TabIndex = 120;
+            // 
+            // label22
+            // 
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(10, 321);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(115, 23);
+            this.label22.TabIndex = 198;
+            this.label22.Text = "Colinda Oeste:";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtCEste
+            // 
+            this.txtCEste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCEste.Location = new System.Drawing.Point(131, 292);
+            this.txtCEste.Name = "txtCEste";
+            this.txtCEste.Size = new System.Drawing.Size(225, 23);
+            this.txtCEste.TabIndex = 110;
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(10, 292);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(115, 23);
+            this.label21.TabIndex = 196;
+            this.label21.Text = "Colinda Este:";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtCSur
+            // 
+            this.txtCSur.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCSur.Location = new System.Drawing.Point(131, 263);
+            this.txtCSur.Name = "txtCSur";
+            this.txtCSur.Size = new System.Drawing.Size(225, 23);
+            this.txtCSur.TabIndex = 100;
+            // 
+            // label20
+            // 
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(10, 263);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(115, 23);
+            this.label20.TabIndex = 194;
+            this.label20.Text = "Colinda Sur:";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtCNte
+            // 
+            this.txtCNte.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCNte.Location = new System.Drawing.Point(131, 234);
+            this.txtCNte.Name = "txtCNte";
+            this.txtCNte.Size = new System.Drawing.Size(225, 23);
+            this.txtCNte.TabIndex = 90;
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(10, 234);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(115, 23);
+            this.label18.TabIndex = 192;
+            this.label18.Text = "Colinda Norte:";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lstLotesInvolucrados
+            // 
+            this.lstLotesInvolucrados.ContextMenuStrip = this.contextMenuStrip1;
+            this.lstLotesInvolucrados.FormattingEnabled = true;
+            this.lstLotesInvolucrados.Location = new System.Drawing.Point(131, 146);
+            this.lstLotesInvolucrados.Name = "lstLotesInvolucrados";
+            this.lstLotesInvolucrados.Size = new System.Drawing.Size(225, 56);
+            this.lstLotesInvolucrados.TabIndex = 80;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(118, 26);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.eliminar;
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
+            // cbxLotes
+            // 
+            this.cbxLotes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxLotes.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxLotes.FormattingEnabled = true;
+            this.cbxLotes.Location = new System.Drawing.Point(131, 117);
+            this.cbxLotes.Name = "cbxLotes";
+            this.cbxLotes.Size = new System.Drawing.Size(225, 23);
+            this.cbxLotes.TabIndex = 70;
+            this.cbxLotes.SelectedValueChanged += new System.EventHandler(this.cbxLotes_SelectedValueChanged);
+            // 
+            // cbxZona
+            // 
+            this.cbxZona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxZona.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxZona.FormattingEnabled = true;
+            this.cbxZona.Location = new System.Drawing.Point(131, 88);
+            this.cbxZona.Name = "cbxZona";
+            this.cbxZona.Size = new System.Drawing.Size(225, 23);
+            this.cbxZona.TabIndex = 60;
+            this.cbxZona.SelectedValueChanged += new System.EventHandler(this.cbxZona_SelectedValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(10, 88);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(115, 23);
+            this.label10.TabIndex = 188;
+            this.label10.Text = "Zona:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtClaveCliente
+            // 
+            this.txtClaveCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClaveCliente.Location = new System.Drawing.Point(131, 59);
+            this.txtClaveCliente.MaxLength = 5;
+            this.txtClaveCliente.Name = "txtClaveCliente";
+            this.txtClaveCliente.Size = new System.Drawing.Size(57, 23);
+            this.txtClaveCliente.TabIndex = 30;
+            this.txtClaveCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClaveCliente_KeyDown);
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(10, 117);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 23);
+            this.label3.TabIndex = 170;
+            this.label3.Text = "Lote:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCliente.Image = global::PRESENTACION.Properties.Resources.lupa;
+            this.btnCliente.Location = new System.Drawing.Point(328, 59);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(28, 28);
+            this.btnCliente.TabIndex = 50;
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnNombreCliente_Click);
+            // 
+            // txtNombreCliente
+            // 
+            this.txtNombreCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreCliente.Location = new System.Drawing.Point(193, 59);
+            this.txtNombreCliente.MaxLength = 5;
+            this.txtNombreCliente.Name = "txtNombreCliente";
+            this.txtNombreCliente.ReadOnly = true;
+            this.txtNombreCliente.Size = new System.Drawing.Size(123, 23);
+            this.txtNombreCliente.TabIndex = 40;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(10, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 23);
+            this.label2.TabIndex = 167;
+            this.label2.Text = "Cliente:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnBuscarContrato
+            // 
+            this.btnBuscarContrato.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscarContrato.Image = global::PRESENTACION.Properties.Resources.lupa;
+            this.btnBuscarContrato.Location = new System.Drawing.Point(328, 30);
+            this.btnBuscarContrato.Name = "btnBuscarContrato";
+            this.btnBuscarContrato.Size = new System.Drawing.Size(28, 28);
+            this.btnBuscarContrato.TabIndex = 20;
+            this.btnBuscarContrato.UseVisualStyleBackColor = true;
+            this.btnBuscarContrato.Click += new System.EventHandler(this.btnBuscarContrato_Click);
+            // 
+            // txtFolioContrato
+            // 
+            this.txtFolioContrato.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFolioContrato.Location = new System.Drawing.Point(131, 30);
+            this.txtFolioContrato.MaxLength = 11;
+            this.txtFolioContrato.Name = "txtFolioContrato";
+            this.txtFolioContrato.Size = new System.Drawing.Size(185, 23);
+            this.txtFolioContrato.TabIndex = 10;
+            this.txtFolioContrato.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFolioContrato_KeyDown);
+            this.txtFolioContrato.Leave += new System.EventHandler(this.txtFolioContrato_Leave);
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(10, 30);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(115, 23);
+            this.label13.TabIndex = 163;
+            this.label13.Text = "Folio:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label19
             // 
@@ -265,27 +552,6 @@
             this.label11.Text = "Pago Inicial ($):";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cbxZona
-            // 
-            this.cbxZona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxZona.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxZona.FormattingEnabled = true;
-            this.cbxZona.Location = new System.Drawing.Point(131, 88);
-            this.cbxZona.Name = "cbxZona";
-            this.cbxZona.Size = new System.Drawing.Size(225, 23);
-            this.cbxZona.TabIndex = 60;
-            this.cbxZona.SelectedValueChanged += new System.EventHandler(this.cbxZona_SelectedValueChanged);
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(10, 88);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(115, 23);
-            this.label10.TabIndex = 188;
-            this.label10.Text = "Zona:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -324,16 +590,6 @@
             this.label8.TabIndex = 183;
             this.label8.Text = "F. Reimpresión:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtClaveCliente
-            // 
-            this.txtClaveCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClaveCliente.Location = new System.Drawing.Point(131, 59);
-            this.txtClaveCliente.MaxLength = 5;
-            this.txtClaveCliente.Name = "txtClaveCliente";
-            this.txtClaveCliente.Size = new System.Drawing.Size(57, 23);
-            this.txtClaveCliente.TabIndex = 30;
-            this.txtClaveCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClaveCliente_KeyDown);
             // 
             // txtRealizo
             // 
@@ -411,69 +667,6 @@
             this.label4.Text = "Precio ($):";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 23);
-            this.label3.TabIndex = 170;
-            this.label3.Text = "Lote:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnCliente
-            // 
-            this.btnCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCliente.Image = global::PRESENTACION.Properties.Resources.lupa;
-            this.btnCliente.Location = new System.Drawing.Point(328, 59);
-            this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Size = new System.Drawing.Size(28, 28);
-            this.btnCliente.TabIndex = 50;
-            this.btnCliente.UseVisualStyleBackColor = true;
-            this.btnCliente.Click += new System.EventHandler(this.btnNombreCliente_Click);
-            // 
-            // txtNombreCliente
-            // 
-            this.txtNombreCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreCliente.Location = new System.Drawing.Point(193, 59);
-            this.txtNombreCliente.MaxLength = 5;
-            this.txtNombreCliente.Name = "txtNombreCliente";
-            this.txtNombreCliente.ReadOnly = true;
-            this.txtNombreCliente.Size = new System.Drawing.Size(123, 23);
-            this.txtNombreCliente.TabIndex = 40;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 23);
-            this.label2.TabIndex = 167;
-            this.label2.Text = "Cliente:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnBuscarContrato
-            // 
-            this.btnBuscarContrato.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscarContrato.Image = global::PRESENTACION.Properties.Resources.lupa;
-            this.btnBuscarContrato.Location = new System.Drawing.Point(328, 30);
-            this.btnBuscarContrato.Name = "btnBuscarContrato";
-            this.btnBuscarContrato.Size = new System.Drawing.Size(28, 28);
-            this.btnBuscarContrato.TabIndex = 20;
-            this.btnBuscarContrato.UseVisualStyleBackColor = true;
-            this.btnBuscarContrato.Click += new System.EventHandler(this.btnBuscarContrato_Click);
-            // 
-            // txtFolioContrato
-            // 
-            this.txtFolioContrato.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFolioContrato.Location = new System.Drawing.Point(131, 30);
-            this.txtFolioContrato.MaxLength = 11;
-            this.txtFolioContrato.Name = "txtFolioContrato";
-            this.txtFolioContrato.Size = new System.Drawing.Size(185, 23);
-            this.txtFolioContrato.TabIndex = 10;
-            this.txtFolioContrato.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFolioContrato_KeyDown);
-            this.txtFolioContrato.Leave += new System.EventHandler(this.txtFolioContrato_Leave);
-            // 
             // txtDiaPago
             // 
             this.txtDiaPago.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -482,16 +675,6 @@
             this.txtDiaPago.Size = new System.Drawing.Size(110, 23);
             this.txtDiaPago.TabIndex = 50;
             this.txtDiaPago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiaPago_KeyPress);
-            // 
-            // label13
-            // 
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(10, 30);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(115, 23);
-            this.label13.TabIndex = 163;
-            this.label13.Text = "Folio:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -596,206 +779,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Pago";
             // 
-            // cbxLotes
-            // 
-            this.cbxLotes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxLotes.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxLotes.FormattingEnabled = true;
-            this.cbxLotes.Location = new System.Drawing.Point(131, 117);
-            this.cbxLotes.Name = "cbxLotes";
-            this.cbxLotes.Size = new System.Drawing.Size(225, 23);
-            this.cbxLotes.TabIndex = 70;
-            this.cbxLotes.SelectedValueChanged += new System.EventHandler(this.cbxLotes_SelectedValueChanged);
-            // 
-            // lstLotesInvolucrados
-            // 
-            this.lstLotesInvolucrados.ContextMenuStrip = this.contextMenuStrip1;
-            this.lstLotesInvolucrados.FormattingEnabled = true;
-            this.lstLotesInvolucrados.Location = new System.Drawing.Point(131, 146);
-            this.lstLotesInvolucrados.Name = "lstLotesInvolucrados";
-            this.lstLotesInvolucrados.Size = new System.Drawing.Size(225, 82);
-            this.lstLotesInvolucrados.TabIndex = 80;
-            // 
-            // txtCNte
-            // 
-            this.txtCNte.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCNte.Location = new System.Drawing.Point(131, 234);
-            this.txtCNte.Name = "txtCNte";
-            this.txtCNte.Size = new System.Drawing.Size(225, 23);
-            this.txtCNte.TabIndex = 90;
-            // 
-            // label18
-            // 
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(10, 234);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(115, 23);
-            this.label18.TabIndex = 192;
-            this.label18.Text = "Colinda Norte:";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtCSur
-            // 
-            this.txtCSur.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCSur.Location = new System.Drawing.Point(131, 263);
-            this.txtCSur.Name = "txtCSur";
-            this.txtCSur.Size = new System.Drawing.Size(225, 23);
-            this.txtCSur.TabIndex = 100;
-            // 
-            // label20
-            // 
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(10, 263);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(115, 23);
-            this.label20.TabIndex = 194;
-            this.label20.Text = "Colinda Sur:";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtCEste
-            // 
-            this.txtCEste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCEste.Location = new System.Drawing.Point(131, 292);
-            this.txtCEste.Name = "txtCEste";
-            this.txtCEste.Size = new System.Drawing.Size(225, 23);
-            this.txtCEste.TabIndex = 110;
-            // 
-            // label21
-            // 
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(10, 292);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(115, 23);
-            this.label21.TabIndex = 196;
-            this.label21.Text = "Colinda Este:";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtCOeste
-            // 
-            this.txtCOeste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCOeste.Location = new System.Drawing.Point(131, 321);
-            this.txtCOeste.Name = "txtCOeste";
-            this.txtCOeste.Size = new System.Drawing.Size(225, 23);
-            this.txtCOeste.TabIndex = 120;
-            // 
-            // label22
-            // 
-            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(10, 321);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(115, 23);
-            this.label22.TabIndex = 198;
-            this.label22.Text = "Colinda Oeste:";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtMNte
-            // 
-            this.txtMNte.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMNte.Location = new System.Drawing.Point(131, 350);
-            this.txtMNte.Name = "txtMNte";
-            this.txtMNte.Size = new System.Drawing.Size(225, 23);
-            this.txtMNte.TabIndex = 130;
-            // 
-            // label23
-            // 
-            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(10, 350);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(115, 23);
-            this.label23.TabIndex = 200;
-            this.label23.Text = "Mide Norte:";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtMSur
-            // 
-            this.txtMSur.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMSur.Location = new System.Drawing.Point(131, 379);
-            this.txtMSur.Name = "txtMSur";
-            this.txtMSur.Size = new System.Drawing.Size(225, 23);
-            this.txtMSur.TabIndex = 140;
-            // 
-            // label24
-            // 
-            this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(10, 379);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(115, 23);
-            this.label24.TabIndex = 202;
-            this.label24.Text = "Mide Sur:";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtMEste
-            // 
-            this.txtMEste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMEste.Location = new System.Drawing.Point(131, 408);
-            this.txtMEste.Name = "txtMEste";
-            this.txtMEste.Size = new System.Drawing.Size(225, 23);
-            this.txtMEste.TabIndex = 150;
-            // 
-            // label25
-            // 
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(10, 408);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(115, 23);
-            this.label25.TabIndex = 204;
-            this.label25.Text = "Mide Este:";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtMOeste
-            // 
-            this.txtMOeste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMOeste.Location = new System.Drawing.Point(131, 437);
-            this.txtMOeste.Name = "txtMOeste";
-            this.txtMOeste.Size = new System.Drawing.Size(225, 23);
-            this.txtMOeste.TabIndex = 160;
-            // 
-            // label26
-            // 
-            this.label26.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(10, 437);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(115, 23);
-            this.label26.TabIndex = 206;
-            this.label26.Text = "Mide Oeste:";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnReubicar
-            // 
-            this.btnReubicar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReubicar.Image = global::PRESENTACION.Properties.Resources.lupa;
-            this.btnReubicar.Location = new System.Drawing.Point(330, 290);
-            this.btnReubicar.Name = "btnReubicar";
-            this.btnReubicar.Size = new System.Drawing.Size(28, 28);
-            this.btnReubicar.TabIndex = 110;
-            this.btnReubicar.UseVisualStyleBackColor = true;
-            this.btnReubicar.Click += new System.EventHandler(this.btnReubicar_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eliminarToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(118, 26);
-            // 
-            // eliminarToolStripMenuItem
-            // 
-            this.eliminarToolStripMenuItem.Image = global::PRESENTACION.Properties.Resources.eliminar;
-            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.eliminarToolStripMenuItem.Text = "Eliminar";
-            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
-            // 
-            // cbxSocios
-            // 
-            this.cbxSocios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSocios.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxSocios.FormattingEnabled = true;
-            this.cbxSocios.Location = new System.Drawing.Point(133, 58);
-            this.cbxSocios.Name = "cbxSocios";
-            this.cbxSocios.Size = new System.Drawing.Size(225, 23);
-            this.cbxSocios.TabIndex = 20;
-            // 
             // cbxDomicilio
             // 
             this.cbxDomicilio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -816,6 +799,47 @@
             this.label27.Text = "Domicilio Cte:";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnReubicar
+            // 
+            this.btnReubicar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReubicar.Image = global::PRESENTACION.Properties.Resources.lupa;
+            this.btnReubicar.Location = new System.Drawing.Point(330, 290);
+            this.btnReubicar.Name = "btnReubicar";
+            this.btnReubicar.Size = new System.Drawing.Size(28, 28);
+            this.btnReubicar.TabIndex = 110;
+            this.btnReubicar.UseVisualStyleBackColor = true;
+            this.btnReubicar.Click += new System.EventHandler(this.btnReubicar_Click);
+            // 
+            // cbxSocios
+            // 
+            this.cbxSocios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSocios.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxSocios.FormattingEnabled = true;
+            this.cbxSocios.Location = new System.Drawing.Point(133, 58);
+            this.cbxSocios.Name = "cbxSocios";
+            this.cbxSocios.Size = new System.Drawing.Size(225, 23);
+            this.cbxSocios.TabIndex = 20;
+            // 
+            // label28
+            // 
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(10, 205);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(115, 23);
+            this.label28.TabIndex = 208;
+            this.label28.Text = "Vendedor:";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cbxVendedores
+            // 
+            this.cbxVendedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxVendedores.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxVendedores.FormattingEnabled = true;
+            this.cbxVendedores.Location = new System.Drawing.Point(131, 206);
+            this.cbxVendedores.Name = "cbxVendedores";
+            this.cbxVendedores.Size = new System.Drawing.Size(225, 23);
+            this.cbxVendedores.TabIndex = 209;
+            // 
             // formContrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -835,9 +859,9 @@
             this.Shown += new System.EventHandler(this.formContrato_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -910,5 +934,7 @@
         private System.Windows.Forms.ComboBox cbxDomicilio;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cbxSocios;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox cbxVendedores;
     }
 }

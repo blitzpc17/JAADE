@@ -151,5 +151,11 @@ namespace CAPADATOS.ADO.LOTES
         {
             return contexto.LOTE.Where(x => x.ZONAId == zonaId).OrderByDescending(x=>x.Id).Select(x=>x.Identificador).FirstOrDefault();
         }
+
+        public List<LOTE> ObtenerLoteIdentificadorMultiple(List<string> lotesRelacionados, int zonaId)
+        {
+            string query ="SELECT *FROM LOTE WHERE LOTE.Identificador in ("+(string.Join(",", lotesRelacionados.Select(s=>$"'{s}'")))+") AND LOTE.ZONAId = "+zonaId;
+            return contexto.Database.SqlQuery<LOTE>(query).ToList();
+        }
     }
 }

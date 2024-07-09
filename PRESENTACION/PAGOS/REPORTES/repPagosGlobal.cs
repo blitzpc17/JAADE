@@ -212,7 +212,7 @@ namespace PRESENTACION.PAGOS.REPORTES
 
 
 
-                                ex = +4;
+                                ex +=4;
                             }
 
                             contexto.LstExportados.Add(new KeyValuePair<string, int>(zona.Nombre, contexto.LstEncabezados.Where(x => x.ZonaId == zona.Id).Count()));

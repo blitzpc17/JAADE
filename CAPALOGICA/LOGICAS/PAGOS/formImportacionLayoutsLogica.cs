@@ -59,6 +59,8 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public List<clsPagoImportacion> LstPagosImportacion;
         public clsPagoImportacion ObjPagoImportacion;
 
+        public AGENDA ObjDireccionContrato;
+
         public formImportacionLayoutsLogica()
         {
             contextoZona = new ZonaADO();
@@ -322,6 +324,16 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public void ObtenerContrato(string contrato)
         {
             ObjContrato = contextoClienteLote.ObtenerContratoXFolio(contrato);
+        }
+
+        public List<LOTE> ObtenerLoteXIdentidicadorMultiple(List<string> lotesRelacionados, int zonaId)
+        {
+            return contextoLote.ObtenerLoteIdentificadorMultiple(lotesRelacionados, zonaId);
+        }
+
+        public AGENDA ObtenerDireccionCliente(string direccion, int clienteId)
+        {
+            return contextoPersonaAgenda.ObtenerDireccionCliente(direccion, clienteId);
         }
         #endregion
 

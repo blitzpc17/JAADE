@@ -28,18 +28,21 @@ namespace CAPADATOS.ADO.PAGOS
 
         public List<clsRepCorteCaja> ListarPagosPorFechaEmision(DateTime fechaInicio, DateTime fechaFin)
         {
-            string query = "SELECT \r\n"+
-                            "P.Folio, P.FechaEmision, P.Observacion, \r\n"+
-                            "CL.Folio AS Contrato, lt.Identificador as IdentificadorLote, \r\n"+
-                            "P.Monto, (PERREC.Nombres + ' ' + perrec.Apellidos) as NombreRecibio \r\n"+
-                            "FROM PAGO P \r\n"+
-                            "JOIN CLIENTELOTE CL ON P.ContratoId = CL.Id \r\n"+
-                            "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n"+
-                            "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n"+
-                            "JOIN USUARIO USREC ON P.USUARIORecibeId = USREC.Id \r\n"+
-                            "JOIN PERSONA PERREC ON USREC.PERSONAId = PERREC.Id \r\n"+
-                            "WHERE CAST(p.FechaEmision AS DATE ) >= '"+fechaInicio.ToString("yyyy-MM-dd")+ "' " +
-                            "AND CAST(p.FechaEmision AS DATE )  <= '"+fechaFin.ToString("yyyy-MM-dd")+"' "; 
+
+            string query = "SELECT \r\n" +
+                "P.Id AS PagoId, P.Folio as FolioPago, P.FechaEmision as FechaEmisionPago, C.Folio as FolioContrato,\r\n" +
+                "STUFF(( \r\n" +
+                    "SELECT ', ' + CAST(LOTE.Identificador AS VARCHAR(MAX)) \r\n" +
+                    "FROM LOTE \r\n" +
+                    "JOIN CONTRATO_LOTES ON LOTE.Id = CONTRATO_LOTES.LOTEId \r\n" +
+                    "WHERE CONTRATO_LOTES.CONTRATOId = C.Id\r\n " +
+                    "FOR XML PATH('')), 1, 2, '')  as IdentificadorLote, P.Monto, (PERREC.Nombres + ' ' + perrec.Apellidos) as NombreRecibio,\r\n" +
+                "P.Observacion\r\n" +
+                "FROM PAGO P\r\n" +
+                "JOIN CONTRATO C ON P.ContratoId = C.Id\r\n" +             
+                "JOIN USUARIO USREC ON P.USUARIORecibeId = USREC.Id\r\n" +
+                "JOIN PERSONA PERREC ON USREC.PERSONAId = PERREC.Id\r\n" +
+                "WHERE CAST(P.FechaEmision AS DATE ) >= '"+fechaInicio.ToString("yyyy-MM-dd")+"' AND CAST(P.FechaEmision AS DATE )  <= '"+fechaFin.ToString("yyyy-MM-dd")+"' ";
 
             return contexto.Database.SqlQuery<clsRepCorteCaja>(query).ToList();
         }
@@ -57,19 +60,35 @@ namespace CAPADATOS.ADO.PAGOS
         public List<clsPagoReciboEncabezado> ListarEncabezadosPagoXZona(int? zonaId)
         {
             string condicion = zonaId !=null? "WHERE ZN.Id = "+zonaId : "";
-            string query= "SELECT \r\n"+
-                            "CL.Id AS ContratoId, CL.Folio as FolioContrato, \r\n" +
-                            "CLI.Id as ClienteId, CLI.Clave as ClaveCliente, \r\n" +
-                            "(PERCLI.Nombres + ' ' + PERCLI.Apellidos) as NombreCliente, \r\n" +
-                            "SOC.Nombre as Socio, ZN.Id as ZonaId, ZN.Nombre as ZonaNombre, \r\n" +
-                            "LT.Id as LoteId, LT.Identificador as LoteIdentificador,  \r\n" +
-                            "Lt.Precio as PrecioLote, CL.NoPagos, CL.FechaArrendamiento \r\n" +
-                            "FROM CLIENTELOTE CL \r\n" +
-                            "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n" +
-                            "JOIN PERSONA PERCLI ON CLI.PERSONAId = PERCLI.Id \r\n" +
-                            "JOIN LOTE LT ON CL.LOTEId = LT.Id \r\n" +
-                            "JOIN ZONA ZN ON LT.ZONAId = ZN.Id \r\n" +
-                            "LEFT JOIN SOCIOS SOC ON CL.SOCIOSId = SOC.Id "+condicion;
+            string query= "SELECT \r\n" +
+                "C.Id AS ContratoId, C.Folio as FolioContrato, \r\n" +
+                "CLI.Id as ClienteId, CLI.Clave as ClaveCliente, \r\n" +
+                "(PERCLI.Nombres + ' ' + PERCLI.Apellidos) as NombreCliente, \r\n" +
+                "SOC.Nombre as Socio, \r\n" +
+                "(SELECT TOP 1 ZONA.Id\r\nFROM CONTRATO_LOTES \r\n" +
+                "JOIN LOTE ON CONTRATO_LOTES.LOTEId = LOTE.Id\r\nJOIN ZONA ON LOTE.ZONAId = ZONA.Id\r\n" +
+                "WHERE CONTRATO_LOTES.CONTRATOId = C.Id\r\n" +
+                ") as ZonaId, \r\n" +
+                "(SELECT TOP 1 ZONA.Nombre \r\n" +
+                "FROM CONTRATO_LOTES \r\n" +
+                "JOIN LOTE ON CONTRATO_LOTES.LOTEId = LOTE.Id\r\n" +
+                "JOIN ZONA ON LOTE.ZONAId = ZONA.Id\r\n" +
+                "WHERE CONTRATO_LOTES.CONTRATOId = C.Id\r\n" +
+                ") as ZonaNombre, \r\nSTUFF(( \r\n" +
+                "SELECT ', ' + CAST(LOTE.Identificador AS VARCHAR(MAX)) \r\n " +
+                "FROM LOTE \r\n JOIN CONTRATO_LOTES ON LOTE.Id = CONTRATO_LOTES.LOTEId \r\n" +
+                "WHERE CONTRATO_LOTES.CONTRATOId = C.Id\r\n" +
+                "FOR XML PATH('')), 1, 2, '') \r\n" +
+                "as LoteIdentificador,  \r\n                            " +
+                "C.PrecioInicial as PrecioLote, \r\n" +
+                "C.NoPagos, \r\n" +
+                "C.FechaArrendamiento,\r\n" +
+                "C.Observacion\r\n" +
+                "FROM \r\n" +
+                "CONTRATO C \r\n" +
+                "JOIN CLIENTE CLI ON  C.CLIENTEId = CLI.Id\r\n" +
+                "JOIN PERSONA PERCLI ON CLI.PERSONAId = PERCLI.Id \r\n" +
+                "LEFT JOIN SOCIOS SOC ON C.SOCIOSId = SOC.Id  " + condicion;
 
 
 
@@ -81,13 +100,16 @@ namespace CAPADATOS.ADO.PAGOS
         public List<clsPagoReciboPartida>ListarPartidasPagoXZona(int? zonaId)
         {
             string condicion = zonaId != null ? "WHERE LT.ZonaId = "+zonaId : "";
-            string query = "SELECT \r\n" +
-                    "CL.Id AS ContratoId, PG.Id as PagoId, \r\n" +
-                    "PG.Folio, PG.NoPago, PG.Monto, PG.FechaEmision, \r\n" +
-                    "PG.Observacion \r\n" +
-                    "FROM PAGO PG \r\n" +
-                    "JOIN CLIENTELOTE CL ON PG.ContratoId = CL.Id \r\n" +
-                    "JOIN LOTE LT ON CL.LOTEId = LT.Id "+condicion;
+            string query = "SELECT\r\n " +
+                "CL.CONTRATOId AS ContratoId, PG.Id as PagoId, \r\n" +
+                "PG.Folio, PG.NoPago, PG.Monto, PG.FechaEmision, \r\n" +
+                "PG.Observacion \r\n" +
+                "FROM PAGO PG \r\n" +
+                "JOIN CONTRATO_LOTES CL ON PG.ContratoId = CL.CONTRATOId\r\n" +
+                "JOIN LOTE LT ON CL.LOTEId = LT.Id\r\n" +
+                "group by  CL.CONTRATOId, PG.Id, \r\n" +
+                "PG.Folio, PG.NoPago, PG.Monto, PG.FechaEmision, \r\n" +
+                "PG.Observacion " + condicion;
 
             return
                 contexto.Database.SqlQuery<clsPagoReciboPartida>(query).ToList();

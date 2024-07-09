@@ -74,5 +74,17 @@ namespace CAPADATOS.ADO.PAGOS
         {
             contexto.Dispose();
         }
+
+        public AGENDA ObtenerDireccionCliente(string direccion, int clienteId)
+        {
+            string query = "select top 1\r\n" +
+                            "ag.*\r\n" +
+                            "from CLIENTE  cli \r\n" +
+                            "join PERSONA_AGENDA pa on cli.PERSONAId = pa.PERSONAId\r\n" +
+                            "join AGENDA ag on pa.AGENDAId = ag.Id\r\n" +
+                            "where cli.Id = "+clienteId+" and  ag.Valor = '"+direccion+"'";
+
+            return contexto.Database.SqlQuery<AGENDA>(query).FirstOrDefault();
+        }
     }
 }

@@ -193,7 +193,29 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>, SE PROCEDE A REDACTAR EL CONTRATO DE COMPRAVENTA QUE CELEBRA POR UNA PARTE EL C. ALEJANDRA GUADALUPE MORO GARCIA Y POR OTRA PARTE   DOCUMENTO QUE SE SUJETA A LAS SIGUIENTES DECLARACIONES Y CLAUSULAS:</Value>
+                    <Value>, SE PROCEDE A REDACTAR EL CONTRATO DE COMPRAVENTA QUE CELEBRA POR UNA PARTE EL C. </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!TitularVentaJaade.Value</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> Y POR OTRA PARTE DOCUMENTO QUE SE SUJETA A LAS SIGUIENTES DECLARACIONES Y CLAUSULAS:</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -922,7 +944,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> el bien inmueble identificado como lote número  de la manzana . </Value>
+                    <Value> el bien inmueble identificado como lote número de la manzana . </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1422,7 +1444,29 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> El comprador se reserva de dominio del bien inmueble, quedando está condicionada al cumplimiento del pago total (</Value>
+                    <Value> El comprador s</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>e reserva de dominio del bien inmueble</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>Underline</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>, quedando está condicionada al cumplimiento del pago total (</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1485,7 +1529,29 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> Ambas partes acuerdan que el comprador toma posesión del bien inmueble materia de la compraventa y en caso de que incumpla con lo establecido en la cláusula II, III, IV, VII este se considerara como abandono del lote y dicha posesión será recuperada por el vendedor. </Value>
+                    <Value> Ambas partes acuerdan que el comprador toma posesión del bien inmueble materia de la compraventa y en caso de que incumpla con lo establecido en la cláusula II, III, IV, VII este se considerara como </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>abandono </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>Underline</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>del lote y dicha posesión será recuperada por el vendedor. </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1567,7 +1633,29 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> En caso de que el comprador incumpla con el pago de 3 mensualidades o más, el lote podrá ser recogido sin necesidad de cancelación o recisión de contrato, o en su defecto podrá ser reubicado en otro lote o lotificación a solicitud del comprador y con ello poder recuperar lo abonado (mensualidades).</Value>
+                    <Value> En caso de que el comprador incumpla con el pago de 3 mensualidades o más, el lote podrá ser recogido sin necesidad de cancelación o recisión de contrato, o en su defecto podrá ser </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>reubicado</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> en otro lote o lotificación a solicitud del comprador y con ello poder recuperar lo abonado (mensualidades).</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>
@@ -1814,7 +1902,7 @@ SE FIRMA EL PRESENTE CONTRATO AL MARGEN Y CALCE EN 1 FOJA ÚTILES POR AMBOS LADO
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>“EL COMPRADORES (A)”</Value>
+                    <Value>“EL COMPRADOR (A)”</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Century Gothic</FontFamily>

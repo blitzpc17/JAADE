@@ -39,6 +39,7 @@ namespace CAPADATOS.ADO.PAGOS
             }
             catch(DbUpdateException ex)
             {
+                Console.WriteLine(ex.Message);
                 throw;
             }
             
@@ -258,7 +259,7 @@ namespace CAPADATOS.ADO.PAGOS
         {
             string sql = "";
 
-            if (estadoContrato == 9)//vigente
+            if (estadoContrato == 9 || estadoContrato == 10)//vigente o atrasado
             {
                 sql = "INSERT INTO CONTRATO_LOTES (CONTRATOId, LOTEId) VALUES ";
                 int totalLotes = lstLotes.Count;

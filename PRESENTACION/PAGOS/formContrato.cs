@@ -27,6 +27,7 @@ namespace PRESENTACION.PAGOS
         private busLotesZona busLoteZona;
         private busContratos busContrato;
         private bool lotescargados = false;
+        private List<KeyValuePair<String, int>>LstVendedores;
 
         public formContrato()
         {
@@ -51,6 +52,7 @@ namespace PRESENTACION.PAGOS
                 txtContratoReubidado.Enabled = false;
                 btnBusContratoReubicado.Enabled = false;
             }
+
             catch (Exception ex)
             {
                 Global.GuardarExcepcion(ex, Name);
@@ -89,7 +91,17 @@ namespace PRESENTACION.PAGOS
             cbxEstado.DataSource = contexto.LstEstados;
             cbxEstado.DisplayMember = "Nombre";
             cbxEstado.ValueMember = "Id";
-            cbxEstado.SelectedIndex = -1;       
+            cbxEstado.SelectedIndex = -1;
+
+            LstVendedores = new List<KeyValuePair<string, int>>();
+            LstVendedores.Add(new KeyValuePair<string, int>("ALEJANDRA GUADALUPE MORO GARCIA", 0));
+            LstVendedores.Add(new KeyValuePair<string, int>("ANGEL DONATO BRAVO MORO", 1));
+        
+
+            cbxVendedores.DataSource = LstVendedores;
+            cbxVendedores.DisplayMember = "Key";
+            cbxVendedores.ValueMember = "Value";
+            cbxVendedores.SelectedIndex = -1;
 
 
         }
@@ -647,6 +659,7 @@ namespace PRESENTACION.PAGOS
         private void cbxEstado_SelectedValueChanged(object sender, EventArgs e)
         {
             if (!cargado) return;
+            if (contexto.ObjContratoData == null) return;
 
             if((int)cbxEstado.SelectedValue == (int)Enumeraciones.EstadosProcesoContratos.REUBICADO)
             {
@@ -678,6 +691,16 @@ namespace PRESENTACION.PAGOS
             {
                 MessageBox.Show(
                   "No se ha cargado ningún registro. Intentelo nuevamente.",
+                  "Advertencia",
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(cbxVendedores.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                  "No se ha seleccionado el vendedor para generar el contrato.",
                   "Advertencia",
                   MessageBoxButtons.OK,
                   MessageBoxIcon.Warning);
@@ -774,7 +797,7 @@ namespace PRESENTACION.PAGOS
             repContrato.parametros.Add(new ReportParameter("LocalidadJaade", ObjDatosJaade.Localidad));
             repContrato.parametros.Add(new ReportParameter("MunicipioJaade", ObjDatosJaade.Municipio));
             repContrato.parametros.Add(new ReportParameter("EstadoJaade", ObjDatosJaade.Estado));
-            repContrato.parametros.Add(new ReportParameter("TitularVentaJaade", ObjDatosJaade.TitularVenta));
+            repContrato.parametros.Add(new ReportParameter("TitularVentaJaade", LstVendedores[cbxVendedores.SelectedIndex].Key));//ALEJANDRA G MORO GARCIA
             repContrato.parametros.Add(new ReportParameter("PagoInicialLetra", Global.ConvertirNumeroALetras((int)Math.Round(contexto.ObjContratoImpresoData.PagoInicial)).ToUpperInvariant() ));
             repContrato.parametros.Add(new ReportParameter("MontoMensualidad", string.Format(cultureInfo, "{0:C}",  Global.CalcularMontoMensualidadContratoVigente(contexto.ObjContratoImpresoData.NoPagos, contexto.ObjContratoImpresoData.PagoInicial, contexto.ObjContratoImpresoData.TotalContrato)) ));
             repContrato.parametros.Add(new ReportParameter("MontoMensualidadLetra", Global.ConvertirNumeroALetras(Global.CalcularMontoMensualidadContratoVigente(contexto.ObjContratoImpresoData.NoPagos, contexto.ObjContratoImpresoData.PagoInicial, contexto.ObjContratoImpresoData.TotalContrato)).ToUpperInvariant()));

@@ -1,4 +1,6 @@
-﻿using CAPADATOS.Entidades;
+﻿using CAPADATOS;
+using CAPADATOS.ADO.LOTES;
+using CAPADATOS.Entidades;
 using CAPALOGICA.LOGICAS.PAGOS;
 using PRESENTACION.UTILERIAS;
 using SpreadsheetLight;
@@ -6,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,6 +23,7 @@ namespace PRESENTACION.PAGOS.Importaciones
         private int row = 0;
         private List<string> lstMsj;
         List<KeyValuePair<string, int>> listaItems;
+        bool cargado = false;
 
         public formImportacionLayouts()
         {
@@ -30,8 +34,10 @@ namespace PRESENTACION.PAGOS.Importaciones
 
         private void InicializarForm()
         {
+            cargado = false;
             LimpiarControles();
             InstanciarContextos();
+            cargado = true;
         }
 
         private void InstanciarContextos()
@@ -108,7 +114,7 @@ namespace PRESENTACION.PAGOS.Importaciones
                 }
                 
             }
-            catch (Exception ex)
+            catch (DbUpdateException ex)
             {
                 Global.GuardarExcepcion(ex, Name);
                 MessageBox.Show(
@@ -373,14 +379,24 @@ namespace PRESENTACION.PAGOS.Importaciones
                     contexto.ObjContratoImportacion.FechaArrendamiento = fechaRecibida;
                     contexto.ObjContratoImportacion.ClaveCliente = sl.GetCellValueAsString(row, 2);
                     contexto.ObjContratoImportacion.Socio = sl.GetCellValueAsString(row, 3);
-                    contexto.ObjContratoImportacion.Zona = sl.GetCellValueAsString(row,4);
-                    contexto.ObjContratoImportacion.IdentificadorLote = sl.GetCellValueAsString(row, 5);
-                    contexto.ObjContratoImportacion.NoPagos = sl.GetCellValueAsInt32(row, 6);
-                    contexto.ObjContratoImportacion.PrecioInicial = sl.GetCellValueAsDecimal(row, 7);
-                    contexto.ObjContratoImportacion.DiaPago = sl.GetCellValueAsInt32(row, 8);
-                    contexto.ObjContratoImportacion.PagoInicial = sl.GetCellValueAsDecimal(row, 9);
-                    contexto.ObjContratoImportacion.NoPagosGracia = sl.GetCellValueAsInt32(row, 10);
-                    contexto.ObjContratoImportacion.Observacion = sl.GetCellValueAsString(row, 11);
+                    contexto.ObjContratoImportacion.NoPagos = sl.GetCellValueAsInt32(row, 4);                    
+                    contexto.ObjContratoImportacion.PrecioInicial = sl.GetCellValueAsDecimal(row, 5);
+                    contexto.ObjContratoImportacion.DiaPago = sl.GetCellValueAsInt32(row, 6);
+                    contexto.ObjContratoImportacion.NoPagosGracia = sl.GetCellValueAsInt32(row, 7);
+                    contexto.ObjContratoImportacion.Observacion = sl.GetCellValueAsString(row, 8);
+                    contexto.ObjContratoImportacion.Zona = sl.GetCellValueAsString(row,9);
+                    contexto.ObjContratoImportacion.IdentificadorLote = sl.GetCellValueAsString(row, 10);
+                    contexto.ObjContratoImportacion.ColindaNorte = sl.GetCellValueAsString(row, 11);
+                    contexto.ObjContratoImportacion.ColindaSur = sl.GetCellValueAsString(row, 12);
+                    contexto.ObjContratoImportacion.ColindaEste = sl.GetCellValueAsString(row, 13);
+                    contexto.ObjContratoImportacion.ColindaOeste = sl.GetCellValueAsString(row, 14);
+                    contexto.ObjContratoImportacion.MideNorte = sl.GetCellValueAsDecimal(row, 15);
+                    contexto.ObjContratoImportacion.MideSur = sl.GetCellValueAsDecimal(row, 16);
+                    contexto.ObjContratoImportacion.MideEste = sl.GetCellValueAsDecimal(row, 17);
+                    contexto.ObjContratoImportacion.MideOeste = sl.GetCellValueAsDecimal(row, 18);
+                    contexto.ObjContratoImportacion.Direccion = sl.GetCellValueAsString(row, 19);
+                    contexto.ObjContratoImportacion.Estado = sl.GetCellValueAsString(row, 20);
+                    contexto.ObjContratoImportacion.PagoInical = sl.GetCellValueAsDecimal(row, 21);
 
                     contexto.LstContratosImpotacion.Add(contexto.ObjContratoImportacion);
                     row++;
@@ -390,41 +406,74 @@ namespace PRESENTACION.PAGOS.Importaciones
                 {
                     contexto.InstanciarContrato();
                     
-                    contexto.ObjContrato.FechaArrendamiento = item.FechaArrendamiento;
+                   
                     contexto.ObtenerClienteXClave(item.ClaveCliente);
                     if (contexto.ObjCliente == null)
                     {
                         lstMsj.Add("No se encontro el cliente con clave: " + item.ClaveCliente);
                         continue;
                     }
+
+                    contexto.ObjPersona = contexto.ObtenerPersona(contexto.ObjCliente.PERSONAId);                
+                    contexto.ObtenerSocioXNombre(contexto.ObjCliente.Id, item.Socio);                   
+
+                    contexto.ObjContrato.Folio = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.CONTRATO);
+                    contexto.ObjContrato.FechaArrendamiento = item.FechaArrendamiento;
                     contexto.ObjContrato.CLIENTEId = contexto.ObjCliente.Id;
-                    contexto.ObtenerSocioXNombre(contexto.ObjCliente.Id, item.Socio);
                     if (contexto.ObjSocios != null)
                     {
                         contexto.ObjContrato.SOCIOSId = contexto.ObjSocios.Id;
                     }
-                    contexto.ObtenerLoteXIdentidicador(item.Zona,  item.IdentificadorLote);
-                    if (contexto.ObjLote == null)
-                    {
-                        lstMsj.Add("No se encontro el lote: " + item.IdentificadorLote+" del cliente: "+item.ClaveCliente);
-                        continue;
-                    }
-
-                   // contexto.ObjContrato.LOTEId = contexto.ObjLote.Id;
                     contexto.ObjContrato.NoPagos = item.NoPagos;
-                    contexto.ObjContrato.PrecioInicial = item.PrecioInicial;    
+                    contexto.ObjContrato.PrecioInicial = item.PrecioInicial;
                     contexto.ObjContrato.DiaPago = item.DiaPago;
-                    contexto.ObjContrato.PagoInicial = item.PagoInicial;    
+                    contexto.ObjContrato.PagoInicial = item.PagoInical;
                     contexto.ObjContrato.NoPagosGracia = item.NoPagosGracia;
-                    contexto.ObjContrato.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.VIGENTE;
+                    contexto.ObjContrato.ESTADOId = (int)Enum.Parse(typeof(Enumeraciones.EstadosProcesoContratos), contexto.ObjContratoImportacion.Estado.ToUpper());
                     contexto.ObjContrato.Observacion = item.Observacion;
                     contexto.ObjContrato.USUARIOOperacionId = Global.ObjUsuario.Id;
-                    contexto.ObjContrato.Folio = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.CONTRATO);
+
+                    contexto.ObjContrato.ColindaNorte = item.ColindaNorte;
+                    contexto.ObjContrato.ColindaSur = item.ColindaSur;  
+                    contexto.ObjContrato.ColindaEste = item.ColindaEste;    
+                    contexto.ObjContrato.ColindaOeste = item.ColindaOeste;
+
+                    contexto.ObjContrato.MideNorte = item.MideNorte;
+                    contexto.ObjContrato.MideSur = item.MideSur;
+                    contexto.ObjContrato.MideEste = item.MideEste;
+                    contexto.ObjContrato.MideOeste = item.MideOeste;
+
+                    contexto.ObjDireccionContrato = contexto.ObtenerDireccionCliente(item.Direccion, contexto.ObjCliente.Id);
+                    if (contexto.ObjDireccionContrato != null)
+                    {
+                        contexto.ObjContrato.AGENDAId = contexto.ObjDireccionContrato.Id;
+                    }
+                    else
+                    {
+                        //crearla
+                        contexto.InstanciarContactoAgenda();
+                        contexto.ObjAgenda.Tipo = (int)Enumeraciones.TipoContactoAgenda.DIRECCION;
+                        contexto.ObjAgenda.Valor = item.Direccion;
+                        contexto.GuardarContactoAgenda();
+                        contexto.ObjContrato.AGENDAId = contexto.ObjAgenda.Id;
+                    }
+
                     contexto.GuardarContrato();
 
-                    //actualizar estado lote
-                    contexto.ObjLote.ESTADOId = (int)Enumeraciones.EstadosProcesoLote.ASIGNADO;
-                    contexto.GuardarLote();
+                    contexto.ObjZona = contexto.ObtenerZonaNombre(contexto.ObjContratoImportacion.Zona);
+
+                    //como va a venir multiples hacerlo multiple
+                    List<string> lotesRelacionados;
+                    lotesRelacionados = item.IdentificadorLote.Split(',').ToList();
+                    List<LOTE> lstLotes = contexto.ObtenerLoteXIdentidicadorMultiple(lotesRelacionados, contexto.ObjZona.Id);
+                    
+                    Global.RelacionarLotesContrato(contexto.ObjContrato.Id,lstLotes, contexto.ObjContrato.ESTADOId, 
+                        ( (contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.VIGENTE || 
+                        contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)? 
+                        (int)Enumeraciones.EstadosProcesoLote.ASIGNADO: 
+                        (contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.TERMINADO) ? (int)Enumeraciones.EstadosProcesoLote.VENDIDO: (int)Enumeraciones.EstadosProcesoLote.LIBRE ));
+
+                    /* se omite el pago porque se va a meter la boleta completa
                     if (contexto.ObjContrato.Id != 0)
                     {
                         contexto.InstanciarPago();
@@ -432,13 +481,12 @@ namespace PRESENTACION.PAGOS.Importaciones
                         contexto.ObjPago.FechaEmision = Global.FechaServidor();
                         contexto.ObjPago.ContratoId = contexto.ObjContrato.Id;
                         contexto.ObjPago.NoPago = 1;
-                        contexto.ObjPago.Monto = item.PagoInicial;
                         contexto.ObjPago.Observacion = item.Observacion;
                         contexto.ObjPago.USUARIORecibeId = Global.ObjUsuario.Id;
                         contexto.ObjPago.PagoOrdinario = true;
                         contexto.GuardarPago();
                     }
-
+                    */
                 }
 
 
@@ -454,7 +502,7 @@ namespace PRESENTACION.PAGOS.Importaciones
                 dgvRegistros.DataSource = contexto.LstContratosImpotacion;
                 tsTotalRegistros.Text = dgvRegistros.RowCount.ToString("N0");
 
-                AparienciasContratos();
+              //  AparienciasContratos();
 
                 string msjSuccess = "Registros importados correctamente.";
                 if (lstMsj!=null && lstMsj.Count > 0)
@@ -923,6 +971,20 @@ namespace PRESENTACION.PAGOS.Importaciones
         private void formImportacionLayouts_Load(object sender, EventArgs e)
         {
             InicializarForm();
+        }
+
+        private void cbxTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!cargado||cbxTipo.SelectedIndex == -1) return;
+            if (dgvRegistros.DataSource == null) return;
+            if(MessageBox.Show("¿Desea cambiar el tipo de importación de datos?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                dgvErrores.Rows.Clear();
+                dgvErrores.Columns.Clear();
+                dgvRegistros.DataSource = null;
+                tsTotalRegistros.Text = @"0";
+                tsTotalErrores.Text = @"0";
+            }
         }
     }
 }

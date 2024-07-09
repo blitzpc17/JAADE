@@ -42,16 +42,16 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvErrores = new System.Windows.Forms.DataGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.tsTotalErrores = new System.Windows.Forms.ToolStripLabel();
+            this.dgvErrores = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvErrores)).BeginInit();
             this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvErrores)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -85,6 +85,7 @@
             this.cbxTipo.Name = "cbxTipo";
             this.cbxTipo.Size = new System.Drawing.Size(225, 23);
             this.cbxTipo.TabIndex = 189;
+            this.cbxTipo.SelectedIndexChanged += new System.EventHandler(this.cbxTipo_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -203,21 +204,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Errores";
             // 
-            // dgvErrores
-            // 
-            this.dgvErrores.AllowUserToAddRows = false;
-            this.dgvErrores.AllowUserToDeleteRows = false;
-            this.dgvErrores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvErrores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvErrores.Location = new System.Drawing.Point(19, 30);
-            this.dgvErrores.Name = "dgvErrores";
-            this.dgvErrores.ReadOnly = true;
-            this.dgvErrores.RowHeadersVisible = false;
-            this.dgvErrores.Size = new System.Drawing.Size(337, 409);
-            this.dgvErrores.TabIndex = 1;
-            // 
             // toolStrip2
             // 
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -242,6 +228,21 @@
             this.tsTotalErrores.Size = new System.Drawing.Size(13, 22);
             this.tsTotalErrores.Text = "0";
             // 
+            // dgvErrores
+            // 
+            this.dgvErrores.AllowUserToAddRows = false;
+            this.dgvErrores.AllowUserToDeleteRows = false;
+            this.dgvErrores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvErrores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvErrores.Location = new System.Drawing.Point(19, 30);
+            this.dgvErrores.Name = "dgvErrores";
+            this.dgvErrores.ReadOnly = true;
+            this.dgvErrores.RowHeadersVisible = false;
+            this.dgvErrores.Size = new System.Drawing.Size(337, 409);
+            this.dgvErrores.TabIndex = 1;
+            // 
             // formImportacionLayouts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,9 +266,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvErrores)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvErrores)).EndInit();
             this.ResumeLayout(false);
 
         }

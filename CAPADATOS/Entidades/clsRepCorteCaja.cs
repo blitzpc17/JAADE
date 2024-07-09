@@ -8,19 +8,15 @@ namespace CAPADATOS.Entidades
 {
     public class clsRepCorteCaja
     {
-        public string Folio { get; set; }
-        public DateTime FechaEmision { get; set; }      
-        public string Contrato { get; set; }
+        public int PagoId { get; set; }
+        public string FolioPago { get; set; }
+        public DateTime FechaEmisionPago { get; set; }      
+        public string FolioContrato { get; set; }
         public string IdentificadorLote { get; set; }
         public decimal Monto { get; set; }        
         public string NombreRecibio { get; set; }
         public string Observacion { get; set; }
 
 
-
-
     }
-
-
-
 }
