@@ -225,17 +225,9 @@ namespace PRESENTACION.PAGOS.Importaciones
             using (SLDocument sl = new SLDocument())
             {
                 sl.SetCellValue(1, 1, "ZONA");
-                sl.SetCellValue(1, 2, "CANTIDAD");
-                sl.SetCellValue(1, 3, "MIDE SUR");
-                sl.SetCellValue(1, 4, "MIDE OESTE");
-                sl.SetCellValue(1, 5, "MIDE ESTE");
-                sl.SetCellValue(1, 6, "MIDE NORTE");
-                sl.SetCellValue(1, 7, "COLINDA SUR");
-                sl.SetCellValue(1, 8, "COLINDA OESTE");
-                sl.SetCellValue(1, 9, "COLINDA ESTE");
-                sl.SetCellValue(1, 10, "COLINDA NORTE");
-                sl.SetCellValue(1, 11, "PRECIO");
-                sl.SetCellValue(1, 12, "MANZANA");
+                sl.SetCellValue(1, 2, "CANTIDAD");              
+                sl.SetCellValue(1, 3, "PRECIO");
+                sl.SetCellValue(1, 4, "MANZANA");
 
 
                 sl.SaveAs(rutaArchivo);
@@ -578,9 +570,9 @@ namespace PRESENTACION.PAGOS.Importaciones
                     }
                     contexto.ObjLoteImportacion.Zona = contexto.ObjZonaAux.Nombre;
                     contexto.ObjLoteImportacion.ZonaId = contexto.ObjZonaAux.Id;
-                    contexto.ObjLoteImportacion.Manzana = Convert.ToInt32(sl.GetCellValueAsString(row, 2));
+                    contexto.ObjLoteImportacion.Manzana = Convert.ToInt32(sl.GetCellValueAsString(row, 4));
                     contexto.ObjLoteImportacion.Precio = Convert.ToDecimal(sl.GetCellValueAsString(row, 3));
-                    contexto.ObjLoteImportacion.Cantidad = Convert.ToInt32(sl.GetCellValueAsString(row, 4));
+                    contexto.ObjLoteImportacion.Cantidad = Convert.ToInt32(sl.GetCellValueAsString(row, 2));
 
                     contexto.LstLotesImportados.Add(contexto.ObjLoteImportacion);
                     row++;
