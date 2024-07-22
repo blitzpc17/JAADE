@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formUsuarios));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnOcultarPass = new System.Windows.Forms.Button();
             this.txtFechaRegistro = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -52,6 +53,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnOcultarPass);
             this.groupBox1.Controls.Add(this.txtFechaRegistro);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.btnBuscar);
@@ -73,6 +75,16 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
+            // 
+            // btnOcultarPass
+            // 
+            this.btnOcultarPass.Image = global::PRESENTACION.Properties.Resources.ojo;
+            this.btnOcultarPass.Location = new System.Drawing.Point(331, 117);
+            this.btnOcultarPass.Name = "btnOcultarPass";
+            this.btnOcultarPass.Size = new System.Drawing.Size(25, 25);
+            this.btnOcultarPass.TabIndex = 175;
+            this.btnOcultarPass.UseVisualStyleBackColor = true;
+            this.btnOcultarPass.Click += new System.EventHandler(this.btnOcultarPass_Click);
             // 
             // txtFechaRegistro
             // 
@@ -127,10 +139,8 @@
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(131, 117);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(225, 23);
+            this.txtPassword.Size = new System.Drawing.Size(185, 23);
             this.txtPassword.TabIndex = 50;
-            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtApellidos
             // 
@@ -293,5 +303,6 @@
         private System.Windows.Forms.TextBox txtFechaRegistro;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnOcultarPass;
     }
 }

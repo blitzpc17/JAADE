@@ -16,6 +16,8 @@ namespace PRESENTACION.SISTEMA
     public partial class formUsuarios : Form
     {
         private formUsuariosLogica contexto;
+        private bool ocultarPass = true;
+          
 
         public formUsuarios()
         {
@@ -49,6 +51,8 @@ namespace PRESENTACION.SISTEMA
         {
             ThemeConfig.LimpiarControles(this);
             txtFechaRegistro.Text = Global.FechaServidor().ToString("dd-MM-yyyy HH:mm:ss");
+            txtPassword.UseSystemPasswordChar = true;
+            ocultarPass = true;
         }
 
         public void ListarCatalogos()
@@ -104,10 +108,10 @@ namespace PRESENTACION.SISTEMA
                 contexto.ObjUsuario.ESTADOId = (int)cbxEstado.SelectedValue;
                 contexto.ObjUsuario.ROLId = (int)cbxRol.SelectedValue;
                 contexto.ObjUsuario.FechaRegistro = DateTime.Now;
-                if (contexto.ObjUsuarioData != null)
+                /*if (contexto.ObjUsuarioData != null)
                 {
                     contexto.ObjUsuario.Id = contexto.ObjUsuarioData.Id;
-                }
+                }*/
                 
 
                 contexto.Guardar();
@@ -181,6 +185,17 @@ namespace PRESENTACION.SISTEMA
             cbxRol.SelectedValue = contexto.ObjUsuarioData.RolId;
 
             contexto.ObjPersona = contexto.ObtenerPersona(objUsuarioData.PersonaId);
+            contexto.ObjUsuario = contexto.ObtenerUsuario(objUsuarioData.Id);
+            txtPassword.UseSystemPasswordChar = true;
+            ocultarPass = true;
+            //falta llenar el objusuario
+            //falta llenar el objusuario
+        }
+
+        private void btnOcultarPass_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !ocultarPass;            
+            ocultarPass = !ocultarPass;
         }
     }
 }

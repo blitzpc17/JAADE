@@ -207,14 +207,25 @@ namespace PRESENTACION.PAGOS.Importaciones
                 sl.SetCellValue(1, 1, "FECHA ARRENDAMIENTO");
                 sl.SetCellValue(1, 2, "CLAVE CLIENTE");
                 sl.SetCellValue(1, 3, "SOCIO");
-                sl.SetCellValue(1, 4, "ZONA");
-                sl.SetCellValue(1, 5, "IDENTIFICADOR LOTE");
-                sl.SetCellValue(1, 6, "NO. PAGOS");
-                sl.SetCellValue(1, 7, "PRECIO INICIAL");
-                sl.SetCellValue(1, 8, "DIA PAGO");
-                sl.SetCellValue(1, 9, "PAGO INICIAL");
-                sl.SetCellValue(1, 10, "NO. PAGOS GRACIA");
-                sl.SetCellValue(1, 11, "OBSERVACION");
+                sl.SetCellValue(1, 4, "NO. PAGOS");
+                sl.SetCellValue(1, 5, "PRECIO INICIAL");
+                sl.SetCellValue(1, 6, "DIA PAGO");
+                sl.SetCellValue(1, 7, "NO. PAGOS GRACIA");
+                sl.SetCellValue(1, 8, "OBSERVACION");
+                sl.SetCellValue(1, 9, "ZONA");
+                sl.SetCellValue(1, 10, "IDENTIFICADOR LOTE");
+                sl.SetCellValue(1, 11, "COLINDA NORTE");
+                sl.SetCellValue(1, 12, "COLINDA SUR");
+                sl.SetCellValue(1, 13, "COLINDA ESTE");
+                sl.SetCellValue(1, 14, "COLINDA OESTTE");
+                sl.SetCellValue(1, 15, "MIDE NORTE");
+                sl.SetCellValue(1, 16, "MIDE SUR");
+                sl.SetCellValue(1, 17, "MIDE ESTE");
+                sl.SetCellValue(1, 18, "MIDE OESTE");
+                sl.SetCellValue(1, 19, "DIRECCION");
+                sl.SetCellValue(1, 20, "ESTADO");
+                sl.SetCellValue(1, 21, "PAGO INICIAL");
+                
 
                 sl.SaveAs(rutaArchivo);
             }
@@ -345,19 +356,6 @@ namespace PRESENTACION.PAGOS.Importaciones
             }
         }
 
-        private void AparienciasPagos()
-        {
-            dgvRegistros.Columns[0].HeaderText = "CONTRATO";
-            dgvRegistros.Columns[0].Width = 100;
-            dgvRegistros.Columns[1].HeaderText = "NO. PAGO";
-            dgvRegistros.Columns[1].Width = 80;
-            dgvRegistros.Columns[2].HeaderText = "MONTO";
-            dgvRegistros.Columns[2].Width = 100;
-            dgvRegistros.Columns[3].HeaderText = "FECHA";
-            dgvRegistros.Columns[3].Width = 120;
-            dgvRegistros.Columns[4].HeaderText = "OBSERVACION";
-            dgvRegistros.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
 
         private void ImportarContratos(string fileName)
         {

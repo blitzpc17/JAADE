@@ -170,7 +170,7 @@ namespace CAPADATOS.ADO.PAGOS
                             "USOP.Id AS UsuarioOperacionId, (PERUSOP.Nombres + ' ' + PERUSOP.Apellidos) AS UsuarioOperacionNombre, \r\n"+
                             "CL.ColindaNorte, CL.ColindaSur, CL.ColindaEste, CL.ColindaOeste, CL.MideNorte, CL.MideSur, CL.MideEste, CL.MideOeste, AG.Id as DomicilioClienteId, \r\n" +
                             "AG.Valor AS DomicilioCliente, CU.Id as ContratoOrigenId, CU.Folio as FolioContratoOrigen, CL.Observacion, \r\n"+
-                            "(SELECT (SUM(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as MontoDado, \r\n" +
+                            "(case when (SELECT (COUNT(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) = 0 THEN 0 ELSE (SELECT (SUM(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) END) as MontoDado,  \r\n" +
                             "(SELECT(COUNT(PAGO.Monto)) FROM PAGO WHERE PAGO.ContratoId = CL.Id) as NoPagosDados, \r\n" +
                             "(SELECT TOP 1 PAGO.FechaEmision FROM PAGO WHERE PAGO.ContratoId = CL.Id ORDER BY 1 DESC) as FechaUltimoPago, \r\n" +
                             "(SELECT SUM(PAGO.Monto) FROM PAGO WHERE PAGO.ContratoId = CL.Id and PAGO.PagoOrdinario = 0 ) as MontoExtendidoDado, \r\n" +
