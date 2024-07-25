@@ -13,7 +13,8 @@ using System.Windows.Forms;
 namespace PRESENTACION.SISTEMA
 {
     public partial class formLogin : Form
-    {        
+    {
+        private bool ocultarPass = true;
         public formLogin()
         {
             InitializeComponent();            
@@ -39,8 +40,7 @@ namespace PRESENTACION.SISTEMA
 
         private void formLogin_Load(object sender, EventArgs e)
         {
-            
-        }
+            txtPassword.UseSystemPasswordChar = true;        }
 
         private void formLogin_Shown(object sender, EventArgs e)
         {
@@ -76,6 +76,18 @@ namespace PRESENTACION.SISTEMA
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnOcultarPass_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !ocultarPass;
+            ocultarPass = !ocultarPass;
+        }
+
+        private void btnOcultarPass_Click_1(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !ocultarPass;
+            ocultarPass = !ocultarPass;
         }
     }
 }

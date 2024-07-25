@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnOcultarPass = new System.Windows.Forms.Button();
             this.panelBack.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -53,8 +54,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.btnOcultarPass);
             this.groupBox1.Controls.Add(this.txtPassword);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnSalir);
             this.groupBox1.Controls.Add(this.label1);
@@ -81,8 +83,7 @@
             this.txtPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPassword.Location = new System.Drawing.Point(70, 308);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(225, 20);
+            this.txtPassword.Size = new System.Drawing.Size(200, 20);
             this.txtPassword.TabIndex = 20;
             // 
             // button2
@@ -133,6 +134,16 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // btnOcultarPass
+            // 
+            this.btnOcultarPass.Image = global::PRESENTACION.Properties.Resources.ojo;
+            this.btnOcultarPass.Location = new System.Drawing.Point(270, 308);
+            this.btnOcultarPass.Name = "btnOcultarPass";
+            this.btnOcultarPass.Size = new System.Drawing.Size(25, 25);
+            this.btnOcultarPass.TabIndex = 177;
+            this.btnOcultarPass.UseVisualStyleBackColor = true;
+            this.btnOcultarPass.Click += new System.EventHandler(this.btnOcultarPass_Click_1);
+            // 
             // formLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,5 +179,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnOcultarPass;
     }
 }
