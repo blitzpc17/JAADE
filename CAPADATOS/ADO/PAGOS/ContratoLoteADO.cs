@@ -185,7 +185,8 @@ namespace CAPADATOS.ADO.PAGOS
                             "JOIN PERSONA PERUSOP ON USOP.PERSONAId = PERUSOP.Id \r\n"+
                             "LEFT JOIN CLIENTES_SOCIOS CLISOC ON CL.CLIENTEId = CLISOC.CLIENTEId \r\n"+
                             "LEFT JOIN SOCIOS SOC ON CLISOC.SOCIOSId = SOC.Id \r\n"+
-                            "LEFT JOIN CONTRATO CU ON CL.CONTRATOId = CU.Id \r\n";
+                            "LEFT JOIN CONTRATO CU ON CL.CONTRATOId = CU.Id \r\n" +
+                            "ORDER BY 1 DESC ";
 
             return contexto.Database.SqlQuery<clsContratoCliente>(query).ToList();
         }

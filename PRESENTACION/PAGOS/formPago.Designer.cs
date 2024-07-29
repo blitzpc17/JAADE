@@ -238,7 +238,7 @@
             this.lblPrecioLote.Name = "lblPrecioLote";
             this.lblPrecioLote.Size = new System.Drawing.Size(115, 23);
             this.lblPrecioLote.TabIndex = 196;
-            this.lblPrecioLote.Text = "Precio Lote ($):";
+            this.lblPrecioLote.Text = "Total ($):";
             this.lblPrecioLote.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtNoPago

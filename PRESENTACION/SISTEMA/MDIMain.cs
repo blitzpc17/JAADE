@@ -218,7 +218,7 @@ namespace PRESENTACION.SISTEMA
 
         private void sITIOWEBJAADEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string url = "https://www.ejemplo.com";
+            string url = "https://www.jaade.net";
             Process.Start(url);
         }
 

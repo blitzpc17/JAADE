@@ -435,6 +435,8 @@ namespace PRESENTACION.PAGOS.Importaciones
                     contexto.ObjContrato.MideSur = item.MideSur;
                     contexto.ObjContrato.MideEste = item.MideEste;
                     contexto.ObjContrato.MideOeste = item.MideOeste;
+                  /*  CalcularMontoGracia(contexto.ObjContrato.Folio);
+                    contexto.ObjContrato.MontoGracia = contexto.ObjMontoGraciaData.MontoGracia;*/
 
                     contexto.ObjDireccionContrato = contexto.ObtenerDireccionCliente(item.Direccion, contexto.ObjCliente.Id);
                     if (contexto.ObjDireccionContrato != null)
@@ -466,20 +468,20 @@ namespace PRESENTACION.PAGOS.Importaciones
                         (int)Enumeraciones.EstadosProcesoLote.ASIGNADO: 
                         (contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.TERMINADO) ? (int)Enumeraciones.EstadosProcesoLote.VENDIDO: (int)Enumeraciones.EstadosProcesoLote.LIBRE ));
 
-                    /* se omite el pago porque se va a meter la boleta completa
                     if (contexto.ObjContrato.Id != 0)
                     {
                         contexto.InstanciarPago();
                         contexto.ObjPago.Folio = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.PAGO);
-                        contexto.ObjPago.FechaEmision = Global.FechaServidor();
+                        contexto.ObjPago.FechaEmision = contexto.ObjContrato.FechaArrendamiento;
                         contexto.ObjPago.ContratoId = contexto.ObjContrato.Id;
                         contexto.ObjPago.NoPago = 1;
                         contexto.ObjPago.Observacion = item.Observacion;
                         contexto.ObjPago.USUARIORecibeId = Global.ObjUsuario.Id;
                         contexto.ObjPago.PagoOrdinario = true;
+                        contexto.ObjPago.Monto = contexto.ObjContrato.PagoInicial;
                         contexto.GuardarPago();
                     }
-                    */
+                    
                 }
 
 
@@ -978,6 +980,11 @@ namespace PRESENTACION.PAGOS.Importaciones
                 tsTotalRegistros.Text = @"0";
                 tsTotalErrores.Text = @"0";
             }
+        }
+
+        private void CalcularMontoGracia(string folioContrato)
+        {
+            contexto.CalcularMontoGracia(folioContrato);
         }
     }
 }

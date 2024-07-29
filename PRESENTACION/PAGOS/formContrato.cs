@@ -322,18 +322,12 @@ namespace PRESENTACION.PAGOS
                 cbxSocios.SelectedValue = contexto.ObjContratoData.SocioId;
             }            
 
-            //txtPrecio.Text = contexto.ObjContratoData.PrecioLote.ToString("N2");
+            txtPrecio.Text = contexto.ObjContratoData.PrecioLote.ToString("N2");
             txtNoPagos.Text = contexto.ObjContratoData.NoPagos.ToString("N0");
             txtDiaPago.Text = contexto.ObjContratoData.DiaPago.ToString("N0");
 
             txtPagoInicial.Text = contexto.ObjContratoData.PagoInicial.ToString("N2");
-            txtPagosGracia.Text = contexto.ObjContratoData.NoPagosGracia.ToString("N0");
-
-
-            if (contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
-            {
-                txtMontoGracia.Text = Convert.ToDecimal(contexto.ObjContratoData.MontoGracia).ToString("N2");
-            }
+            txtPagosGracia.Text = contexto.ObjContratoData.NoPagosGracia.ToString("N0");        
 
             cbxEstado.SelectedValue = contexto.ObjContratoData.EstadoId;
 
@@ -349,13 +343,18 @@ namespace PRESENTACION.PAGOS
             txtFechaReimpresion.Text = contexto.ObjContratoData.FechaReimpresion != null ? 
             Convert.ToDateTime(contexto.ObjContratoData.FechaReimpresion).ToString("dd/MM/yyyy HH:mm:ss") : "";
 
-            if(contexto.ObjContratoData.EstadoId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
+            
+            if (contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.VIGENTE)
+            {
+                txtMontoGracia.Text = ((contexto.ObjContratoData.PrecioLote - contexto.ObjContratoData.MontoDado) * 1.25m ).ToString("N2");
+            }
+            else
             {
                 txtMontoGracia.Text = Convert.ToDecimal(contexto.ObjContratoData.MontoGracia).ToString("N2");
             }
-            
-            
-            
+
+
+
 
 
         }
@@ -529,7 +528,7 @@ namespace PRESENTACION.PAGOS
                     contexto.ObjContrato.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.VIGENTE;                   
                     contexto.ObjContrato.PagoInicial = Convert.ToDecimal(txtPagoInicial.Text);
                     contexto.ObjContrato.NoPagosGracia = Convert.ToInt32(txtPagosGracia.Text);
-
+                   
 
                     nuevoContrato = true;
                     msjSuccess[0] = "Se ha generado el contrato " + contexto.ObjContrato.Folio;
@@ -542,12 +541,13 @@ namespace PRESENTACION.PAGOS
                     {
                         msjSuccess[0] = "Se han modificado los datos del contrato " + contexto.ObjContrato.Folio + " correctamente.";
                     }
-
-                    if(contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
+                    //ver si afecta solo a atrasado o es general, quitar del insert t descomentar esto en ser afirmativo
+                    if (contexto.ObjContrato.ESTADOId == (int)Enumeraciones.EstadosProcesoContratos.ATRASADO)
                     {
+                        CalcularMontoGracia(contexto.ObjContrato.Folio);
                         contexto.ObjContrato.MontoGracia = contexto.ObjMontoGraciaData.MontoGracia;
                     }
-                    
+
                 }
 
                 contexto.ObjContrato.CLIENTEId = contexto.ObjCliente.Id;
@@ -832,7 +832,11 @@ namespace PRESENTACION.PAGOS
             lstLotesInvolucrados.DisplayMember = "Identificador";
             lstLotesInvolucrados.ValueMember = "Id";
 
-            CalcularSumaLotesSeleccionados();
+            if (contexto.ObjContratoData == null)
+            {
+                CalcularSumaLotesSeleccionados();
+            }
+            
         }
 
         private void CalcularSumaLotesSeleccionados()
@@ -844,6 +848,30 @@ namespace PRESENTACION.PAGOS
         private void btnReubicar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtPagosGracia_TextChanged(object sender, EventArgs e)
+        {
+            CalcularMontoGracia();
+        }
+
+        private void CalcularMontoGracia()
+        {
+            if (contexto.ObjContratoData != null || string.IsNullOrEmpty(txtPagosGracia.Text) || string.IsNullOrEmpty(txtPagoInicial.Text) ) return;
+            int noPagosExt = 0;
+            if (int.TryParse(txtPagosGracia.Text, out noPagosExt))
+            {
+                txtMontoGracia.Text = ((Convert.ToDecimal(txtPrecio.Text) - Convert.ToDecimal(txtPagoInicial.Text)) * 1.25m).ToString("N2");
+            }
+            else
+            {
+                MessageBox.Show("Solo se aceptan números enteros en el campo de No. Pagos. Extendidos. Valide su información.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void txtPagoInicial_TextChanged(object sender, EventArgs e)
+        {
+            CalcularMontoGracia();
         }
     }
 }

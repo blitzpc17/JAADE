@@ -61,6 +61,8 @@ namespace CAPALOGICA.LOGICAS.PAGOS
 
         public AGENDA ObjDireccionContrato;
 
+        public clsObjMontoGracia ObjMontoGraciaData;
+
         public formImportacionLayoutsLogica()
         {
             contextoZona = new ZonaADO();
@@ -334,6 +336,11 @@ namespace CAPALOGICA.LOGICAS.PAGOS
         public AGENDA ObtenerDireccionCliente(string direccion, int clienteId)
         {
             return contextoPersonaAgenda.ObtenerDireccionCliente(direccion, clienteId);
+        }
+
+        public void CalcularMontoGracia(string folioContrato)
+        {
+            ObjMontoGraciaData = contextoClienteLote.CalcularMontoGracia(folioContrato);
         }
         #endregion
 

@@ -82,7 +82,8 @@ namespace CAPADATOS.ADO.PAGOS
                         "edo.Id as EstadoId, edo.Nombre as Estado \r\n" +
                         "FROM CLIENTE AS us \r\n" +
                         "JOIN PERSONA AS per ON us.PERSONAId = per.Id \r\n"+
-                        "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id ";
+                        "JOIN ESTADO AS edo ON us.ESTADOId = edo.Id \r\n" +
+                        "ORDER BY 1 DESC";
 
             return contexto.Database.SqlQuery<clsClientes>(query).ToList();
         }

@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formContrato));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxVendedores = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.txtMOeste = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.txtMEste = new System.Windows.Forms.TextBox();
@@ -96,8 +98,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.btnReubicar = new System.Windows.Forms.Button();
             this.cbxSocios = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.cbxVendedores = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -143,6 +143,26 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos generales";
+            // 
+            // cbxVendedores
+            // 
+            this.cbxVendedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxVendedores.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxVendedores.FormattingEnabled = true;
+            this.cbxVendedores.Location = new System.Drawing.Point(131, 206);
+            this.cbxVendedores.Name = "cbxVendedores";
+            this.cbxVendedores.Size = new System.Drawing.Size(225, 23);
+            this.cbxVendedores.TabIndex = 209;
+            // 
+            // label28
+            // 
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(10, 205);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(115, 23);
+            this.label28.TabIndex = 208;
+            this.label28.Text = "Vendedor:";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtMOeste
             // 
@@ -523,6 +543,7 @@
             this.txtPagosGracia.Name = "txtPagosGracia";
             this.txtPagosGracia.Size = new System.Drawing.Size(225, 23);
             this.txtPagosGracia.TabIndex = 70;
+            this.txtPagosGracia.TextChanged += new System.EventHandler(this.txtPagosGracia_TextChanged);
             // 
             // label12
             // 
@@ -541,6 +562,7 @@
             this.txtPagoInicial.Name = "txtPagoInicial";
             this.txtPagoInicial.Size = new System.Drawing.Size(225, 23);
             this.txtPagoInicial.TabIndex = 60;
+            this.txtPagoInicial.TextChanged += new System.EventHandler(this.txtPagoInicial_TextChanged);
             // 
             // label11
             // 
@@ -819,26 +841,6 @@
             this.cbxSocios.Name = "cbxSocios";
             this.cbxSocios.Size = new System.Drawing.Size(225, 23);
             this.cbxSocios.TabIndex = 20;
-            // 
-            // label28
-            // 
-            this.label28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(10, 205);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(115, 23);
-            this.label28.TabIndex = 208;
-            this.label28.Text = "Vendedor:";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cbxVendedores
-            // 
-            this.cbxVendedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxVendedores.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxVendedores.FormattingEnabled = true;
-            this.cbxVendedores.Location = new System.Drawing.Point(131, 206);
-            this.cbxVendedores.Name = "cbxVendedores";
-            this.cbxVendedores.Size = new System.Drawing.Size(225, 23);
-            this.cbxVendedores.TabIndex = 209;
             // 
             // formContrato
             // 

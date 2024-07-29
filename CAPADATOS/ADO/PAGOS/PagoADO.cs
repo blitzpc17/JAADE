@@ -194,8 +194,9 @@ namespace CAPADATOS.ADO.PAGOS
                             "FROM PAGO AS PG \r\n" +
                             "JOIN CONTRATO AS CL ON PG.ContratoId = CL.Id \r\n" +
                             "JOIN CLIENTE CLI ON CL.CLIENTEId = CLI.Id \r\n" +
-                            "JOIN PERSONA PERCLI ON CLI.PERSONAId = PERCLI.Id "
-                                        + ((string.IsNullOrEmpty(contrato)) ? "" : "WHERE CL.Folio = '"+contrato+"'");
+                            "JOIN PERSONA PERCLI ON CLI.PERSONAId = PERCLI.Id \r\n" +                          
+                            ((string.IsNullOrEmpty(contrato)) ? "" : "WHERE CL.Folio = '"+contrato+"'") +
+                            " \r\nORDER BY 1 DESC";
 
             return contexto.Database.SqlQuery<clsBusquedaPago>(query).ToList();
 
