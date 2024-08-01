@@ -68,7 +68,7 @@ namespace PRESENTACION.PAGOS
 
         private void DatosModulo()
         {
-            txtFechaEmision.Text = Global.FechaServidor().ToString("dd/MM/yyyy HH:mm:ss");
+            dtpFechaArrendamiento.Value = Global.FechaServidor();
             txtRealizo.Text = Global.ObtenerNombreUsuario(Global.ObjUsuario);
             txtFechaReimpresion.Text = (contexto.ObjContratoData == null 
                 || contexto.ObjContratoData.FechaReimpresion==null) ? "" : Convert.ToDateTime(contexto.ObjContratoData.FechaReimpresion).ToString("dd/MM/yyyy HH:mm:ss");
@@ -338,7 +338,7 @@ namespace PRESENTACION.PAGOS
             }
 
             txtObservacion.Text = contexto.ObjContratoData.Observacion;
-            txtFechaEmision.Text = contexto.ObjContratoData.FechaEmision.ToString("dd/MM/yyyy HH:mm:ss");
+            dtpFechaArrendamiento.Value = contexto.ObjContratoData.FechaEmision;
             txtRealizo.Text = contexto.ObjContratoData.UsuarioOperacionNombre;
             txtFechaReimpresion.Text = contexto.ObjContratoData.FechaReimpresion != null ? 
             Convert.ToDateTime(contexto.ObjContratoData.FechaReimpresion).ToString("dd/MM/yyyy HH:mm:ss") : "";
@@ -524,7 +524,7 @@ namespace PRESENTACION.PAGOS
                     //insert
                     contexto.InstanciarContrato();
                     contexto.ObjContrato.Folio = Global.ObtenerFolio(Enumeraciones.ProcesoFolio.CONTRATO);
-                    contexto.ObjContrato.FechaArrendamiento = Global.FechaServidor();
+                    contexto.ObjContrato.FechaArrendamiento = dtpFechaArrendamiento.Value;
                     contexto.ObjContrato.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.VIGENTE;                   
                     contexto.ObjContrato.PagoInicial = Convert.ToDecimal(txtPagoInicial.Text);
                     contexto.ObjContrato.NoPagosGracia = Convert.ToInt32(txtPagosGracia.Text);
@@ -659,7 +659,6 @@ namespace PRESENTACION.PAGOS
         private void cbxEstado_SelectedValueChanged(object sender, EventArgs e)
         {
             if (!cargado) return;
-            if (contexto.ObjContratoData == null) return;
 
             if((int)cbxEstado.SelectedValue == (int)Enumeraciones.EstadosProcesoContratos.REUBICADO)
             {
@@ -668,6 +667,8 @@ namespace PRESENTACION.PAGOS
             }
             else
             {
+                if (contexto.ObjContratoData == null) return;
+
                 txtContratoReubidado.Enabled = false;
                 btnBusContratoReubicado.Enabled = false;
 
@@ -845,11 +846,6 @@ namespace PRESENTACION.PAGOS
             txtPrecio.Text = contexto.LstLotesSeleccionados.Sum(x=>x.Precio).ToString("N2");
         }
 
-        private void btnReubicar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtPagosGracia_TextChanged(object sender, EventArgs e)
         {
             CalcularMontoGracia();
@@ -872,6 +868,11 @@ namespace PRESENTACION.PAGOS
         private void txtPagoInicial_TextChanged(object sender, EventArgs e)
         {
             CalcularMontoGracia();
+        }
+
+        private void btnBusContratoReubicado_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

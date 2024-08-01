@@ -588,13 +588,13 @@ namespace PRESENTACION.UTILERIAS
 
                 switch (estadoContrato)
                 {
-                    case 9:
+                    case (int)Enumeraciones.EstadosProcesoContratos.VIGENTE:
                         obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.VIGENTE;
                         obj.MontoGracia = null;
                         msj = "Se ha cambiado el contrato a estado "+Enumeraciones.EstadosProcesoContratos.VIGENTE.ToString();
                         break;
 
-                    case 10:
+                    case (int)Enumeraciones.EstadosProcesoContratos.ATRASADO:
                         obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.ATRASADO;
                         //calcular monto extendido
                         //calcular mensualidad pago extendido
@@ -602,17 +602,18 @@ namespace PRESENTACION.UTILERIAS
                         decimal montoDadoD = objContratoData.MontoDado;
                         decimal montoLote = objContratoData.PrecioLote;
                         decimal montoExtendido = (montoLote - montoDadoD) * 1.25m;
+                        msj = "Se ha cambiado el contrato a estado " + Enumeraciones.EstadosProcesoContratos.ATRASADO.ToString();
 
                         obj.MontoGracia = montoExtendido;
 
                         break;
 
-                    case 11:
+                    case (int)Enumeraciones.EstadosProcesoContratos.TERMINADO:
                         obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.TERMINADO;
                         msj = "Se ha cambiado el estado de contrato a "+Enumeraciones.EstadosProcesoContratos.TERMINADO.ToString()+".";
                         break;
 
-                    case 12:
+                    case (int)Enumeraciones.EstadosProcesoContratos.RESCISION:
                         obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.RESCISION;
                         //ver si no tiene mas de 3 pagos atrasdos
                         //calculo a regresar y minimo el año
@@ -633,7 +634,7 @@ namespace PRESENTACION.UTILERIAS
                         msj = "El contrato se ha cambiado a estado "+Enumeraciones.EstadosProcesoContratos.RESCISION.ToString()+". El monto a regresar es de $"+montoRegresar.ToString("N2");
                         break;
 
-                    case 14:                       
+                    case (int)Enumeraciones.EstadosProcesoContratos.CANCELADO:                       
                         obj.ESTADOId = (int)Enumeraciones.EstadosProcesoContratos.CANCELADO;
                         int noPagosCaidosC = DiferenciaMeses(objContratoData.FechaUltimoPago, FechaServidor());
                         if (noPagosCaidosC > 3)

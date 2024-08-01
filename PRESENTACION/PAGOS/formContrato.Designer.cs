@@ -82,7 +82,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtRealizo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtFechaEmision = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtNoPagos = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -96,8 +95,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbxDomicilio = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.btnReubicar = new System.Windows.Forms.Button();
             this.cbxSocios = new System.Windows.Forms.ComboBox();
+            this.dtpFechaArrendamiento = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -499,11 +498,12 @@
             // 
             this.btnBusContratoReubicado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBusContratoReubicado.Image = global::PRESENTACION.Properties.Resources.lupa;
-            this.btnBusContratoReubicado.Location = new System.Drawing.Point(330, 302);
+            this.btnBusContratoReubicado.Location = new System.Drawing.Point(330, 291);
             this.btnBusContratoReubicado.Name = "btnBusContratoReubicado";
             this.btnBusContratoReubicado.Size = new System.Drawing.Size(28, 28);
             this.btnBusContratoReubicado.TabIndex = 190;
             this.btnBusContratoReubicado.UseVisualStyleBackColor = true;
+            this.btnBusContratoReubicado.Click += new System.EventHandler(this.btnBusContratoReubicado_Click);
             // 
             // label16
             // 
@@ -632,15 +632,6 @@
             this.label7.Text = "Realizó:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtFechaEmision
-            // 
-            this.txtFechaEmision.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaEmision.Location = new System.Drawing.Point(133, 385);
-            this.txtFechaEmision.Name = "txtFechaEmision";
-            this.txtFechaEmision.ReadOnly = true;
-            this.txtFechaEmision.Size = new System.Drawing.Size(225, 23);
-            this.txtFechaEmision.TabIndex = 130;
-            // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -763,9 +754,9 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.dtpFechaArrendamiento);
             this.groupBox2.Controls.Add(this.cbxDomicilio);
             this.groupBox2.Controls.Add(this.label27);
-            this.groupBox2.Controls.Add(this.btnReubicar);
             this.groupBox2.Controls.Add(this.txtMontoGracia);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.cbxSocios);
@@ -777,7 +768,6 @@
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.txtPagoInicial);
-            this.groupBox2.Controls.Add(this.txtFechaEmision);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txtContratoReubidado);
@@ -821,17 +811,6 @@
             this.label27.Text = "Domicilio Cte:";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnReubicar
-            // 
-            this.btnReubicar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReubicar.Image = global::PRESENTACION.Properties.Resources.lupa;
-            this.btnReubicar.Location = new System.Drawing.Point(330, 290);
-            this.btnReubicar.Name = "btnReubicar";
-            this.btnReubicar.Size = new System.Drawing.Size(28, 28);
-            this.btnReubicar.TabIndex = 110;
-            this.btnReubicar.UseVisualStyleBackColor = true;
-            this.btnReubicar.Click += new System.EventHandler(this.btnReubicar_Click);
-            // 
             // cbxSocios
             // 
             this.cbxSocios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -841,6 +820,15 @@
             this.cbxSocios.Name = "cbxSocios";
             this.cbxSocios.Size = new System.Drawing.Size(225, 23);
             this.cbxSocios.TabIndex = 20;
+            // 
+            // dtpFechaArrendamiento
+            // 
+            this.dtpFechaArrendamiento.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaArrendamiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaArrendamiento.Location = new System.Drawing.Point(133, 387);
+            this.dtpFechaArrendamiento.Name = "dtpFechaArrendamiento";
+            this.dtpFechaArrendamiento.Size = new System.Drawing.Size(225, 20);
+            this.dtpFechaArrendamiento.TabIndex = 303;
             // 
             // formContrato
             // 
@@ -877,7 +865,6 @@
         private System.Windows.Forms.TextBox txtClaveCliente;
         private System.Windows.Forms.TextBox txtRealizo;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtFechaEmision;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNoPagos;
         private System.Windows.Forms.Label label5;
@@ -930,7 +917,6 @@
         private System.Windows.Forms.ListBox lstLotesInvolucrados;
         private System.Windows.Forms.ComboBox cbxLotes;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnReubicar;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbxDomicilio;
@@ -938,5 +924,6 @@
         private System.Windows.Forms.ComboBox cbxSocios;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ComboBox cbxVendedores;
+        private System.Windows.Forms.DateTimePicker dtpFechaArrendamiento;
     }
 }
