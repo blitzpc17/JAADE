@@ -555,7 +555,7 @@ namespace PRESENTACION.PAGOS
                 {
                     contexto.ObjContrato.SOCIOSId = (int)cbxSocios.SelectedValue;
                 }
-
+                contexto.ObjContrato.FechaArrendamiento = dtpFechaArrendamiento.Value;
                 contexto.ObjContrato.PrecioInicial = Convert.ToDecimal(txtPrecio.Text);
                 contexto.ObjContrato.DiaPago = Convert.ToInt32(txtDiaPago.Text);
                 contexto.ObjContrato.NoPagos = Convert.ToInt32(txtNoPagos.Text);

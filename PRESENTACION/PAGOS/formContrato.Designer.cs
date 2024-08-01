@@ -93,10 +93,10 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaArrendamiento = new System.Windows.Forms.DateTimePicker();
             this.cbxDomicilio = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.cbxSocios = new System.Windows.Forms.ComboBox();
-            this.dtpFechaArrendamiento = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -791,6 +791,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Pago";
             // 
+            // dtpFechaArrendamiento
+            // 
+            this.dtpFechaArrendamiento.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            this.dtpFechaArrendamiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaArrendamiento.Location = new System.Drawing.Point(133, 387);
+            this.dtpFechaArrendamiento.Name = "dtpFechaArrendamiento";
+            this.dtpFechaArrendamiento.Size = new System.Drawing.Size(225, 20);
+            this.dtpFechaArrendamiento.TabIndex = 303;
+            // 
             // cbxDomicilio
             // 
             this.cbxDomicilio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -820,15 +829,6 @@
             this.cbxSocios.Name = "cbxSocios";
             this.cbxSocios.Size = new System.Drawing.Size(225, 23);
             this.cbxSocios.TabIndex = 20;
-            // 
-            // dtpFechaArrendamiento
-            // 
-            this.dtpFechaArrendamiento.CustomFormat = "dd/MM/yyyy";
-            this.dtpFechaArrendamiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaArrendamiento.Location = new System.Drawing.Point(133, 387);
-            this.dtpFechaArrendamiento.Name = "dtpFechaArrendamiento";
-            this.dtpFechaArrendamiento.Size = new System.Drawing.Size(225, 20);
-            this.dtpFechaArrendamiento.TabIndex = 303;
             // 
             // formContrato
             // 
